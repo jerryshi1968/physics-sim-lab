@@ -1,0 +1,61 @@
+[WebServer] (node:30164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:29272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document (6.3s)
+  ok 3 [chromium] › tests\e2e\reflection-experiment.spec.ts:82:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample (4.0s)
+  x  2 [chromium] › tests\e2e\reflection-experiment.spec.ts:54:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated (11.0s)
+  ok 4 [chromium] › tests\e2e\reflection-experiment.spec.ts:97:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page (2.2s)
+
+
+  1) [chromium] › tests\e2e\reflection-experiment.spec.ts:54:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('光源圆周方位角（°）', { exact: true })
+    Expected: "120"
+    Received: "148.7401"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('光源圆周方位角（°）', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('光源圆周方位角（°）', { exact: true })
+        14 × locator resolved to <input min="5" step="5" max="175" type="number" value="148.7401" aria-invalid="false" aria-label="光源圆周方位角（°）"/>
+           - unexpected value "148.7401"
+
+
+      65 |   expect((await exported(page)).equipment.find(e=>e.type===EMITTER)!.pose).toEqual(aligned.equipment.find(e=>e.type===EMITTER)!.pose);
+      66 |   const orbit=page.getByLabel('光源圆周方位角（°）',{exact:true}),beforeDraft=await exported(page);
+    > 67 |   await orbit.fill('0');await expect(orbit).toHaveAttribute('aria-invalid','true');expect(await exported(page)).toEqual(beforeDraft);await orbit.press('Escape');await expect(orbit).toHaveValue('120');
+         |                                                                                                                                                                                      ^
+      68 |   await orbit.fill('');await orbit.pressSequentially('135');await expect(orbit).toHaveValue('135');await expect(status(page)).toContainText('有连续反射光迹');await page.getByRole('heading',{name:'反射与共面观察',exact:true}).click();await expect(orbit).toHaveValue('135');
+      69 |   await orbit.fill('');await orbit.pressSequentially('120');await expect(orbit).toHaveValue('120');
+      70 |   await property(page,ids['optical.protractor']!,'量角器半径（m）','.05');await expect(status(page)).toContainText('有连续反射光迹');
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:67:182
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:54:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+  3 passed (16.2s)

@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 81,
+  "unchangedFiles": 70,
+  "changed": [
+    "src\\app\\App.tsx",
+    "src\\app\\workbench\\EquipmentGraphic.tsx",
+    "src\\app\\workbench\\InspectorEditor.tsx",
+    "src\\app\\workbench\\SceneBoard.tsx",
+    "src\\app\\workbench\\shared.ts",
+    "src\\core\\workbench\\edit.ts",
+    "src\\core\\workbench\\history.ts",
+    "tests\\core\\history.test.mjs",
+    "tests\\core\\workbench.test.mjs",
+    "tests\\e2e\\assembly.spec.ts",
+    "tests\\e2e\\persistence.spec.ts"
+  ],
+  "newTests": [
+    "tests/core/selection-delete.test.mjs",
+    "tests/e2e/selection-delete.spec.ts"
+  ],
+  "protectedFiles": 4,
+  "protectedChanged": [],
+  "textFiles": 220,
+  "strictUtf8Errors": [],
+  "relativeLinks": 291,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "badArtifacts": [],
+  "noticesMatch": true,
+  "unit177Passed": true,
+  "e2e": {
+    "startTime": "2026-11-04T01:37:35.628Z",
+    "duration": 45545.875,
+    "expected": 31,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": []
+}

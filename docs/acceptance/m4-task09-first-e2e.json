@@ -1,0 +1,309 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/optical-bench.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "optical-bench.spec.ts",
+      "file": "optical-bench.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "five object distances use real screen rays; preview/undo preserves apparatus and auxiliary virtual observer never becomes a screen image",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5334,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T06:15:24.091Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-757cece37246270b84d9",
+          "file": "optical-bench.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "timedOut",
+                  "duration": 120592,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts",
+                        "column": 164,
+                        "line": 78
+                      },
+                      "message": "Error: locator.selectOption: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('观察：虚实', { exact: true })\u001b[22m\n\n\n  76 |     for (const [slot, label] of ['蜡烛位置读数（m）', '透镜位置读数（m）', '光屏位置读数（m）'].entries()) await page.getByLabel(label, { exact: true }).fill(readings[slot]!);\n  77 |     await page.getByLabel('组别', { exact: true }).fill(`五类物距第${index + 1}组`);\n> 78 |     for (const [label, value] of [['观察：虚实', nature], ['观察：正倒', orientation], ['观察：大小', size], ['观察：清晰度', clarity]]) await page.getByLabel(label!, { exact: true }).selectOption(value!);\n     |                                                                                                                                                                    ^\n  79 |     await page.getByLabel('观察备注', { exact: true }).fill('手工读尺，自己判断像的特点');\n  80 |     await page.getByRole('button', { name: '保存读尺与观察', exact: true }).click(); await expect(page.locator('[data-measurement-id]')).toHaveCount((index + 1) * 5);\n  81 |     if (index === 0) first = await exported(page);\n    at G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts:78:164"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T06:15:24.090Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-ab10da86c16a1852a6cb",
+          "file": "optical-bench.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T06:15:30.071Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-257d38527c2a1f511494",
+          "file": "optical-bench.spec.ts",
+          "line": 100,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch optical bench",
+          "file": "optical-bench.spec.ts",
+          "line": 121,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch moves the screen to focus once and pointer cancellation restores it without horizontal page overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1607,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T06:15:33.747Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0e41afa2b16484ab773a-1d753eb8903f21b63739",
+              "file": "optical-bench.spec.ts",
+              "line": 123,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T06:15:22.479Z",
+    "duration": 124180.696,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

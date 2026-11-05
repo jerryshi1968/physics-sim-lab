@@ -1,0 +1,56 @@
+[WebServer] (node:17796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 2 workers
+
+(node:25132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\live-force.spec.ts:42:1 › pointer reflects applied force before zero confirmation; invalid drafts, zero-arm, over-range and invalid apparatus never become normal measurements (4.1s)
+  ok 3 [chromium] › tests\e2e\live-force.spec.ts:54:3 › touch live force › touch text edits apply without a separate submit and persist after leaving the input (2.1s)
+  x  2 [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save (7.7s)
+
+
+  1) [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('施加拉力（N）', { exact: true })
+    Expected: "4"
+    Received: "3"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('施加拉力（N）', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('施加拉力（N）', { exact: true })
+        14 × locator resolved to <input min="0" max="100" value="3" step="any" required="" type="number" name="forceN" aria-label="施加拉力（N）" aria-invalid="false" aria-describedby="_r_c_"/>
+           - unexpected value "3"
+
+
+      31 |   await force(page).scrollIntoViewIfNeeded(); let box = (await force(page).boundingBox())!;
+      32 |   await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);
+    > 33 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('4'); await indication(page, 4);
+         |                                                                                                                                                  ^
+      34 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 + 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);
+      35 |   await page.getByRole('heading', { name: '探究杠杆平衡条件', exact: true }).click(); await page.getByLabel('选择器材', { exact: true }).selectOption(''); await page.getByLabel('选择器材', { exact: true }).selectOption('meter'); await expect(force(page)).toHaveValue('3');
+      36 |   expect((await exported(page)).equipment.find(item => item.id === 'meter')!.parameters.forceN).toBe(3);
+        at G:\physics-sim-lab\tests\e2e\live-force.spec.ts:33:146
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save 
+  2 passed (10.6s)

@@ -1,0 +1,9 @@
+
+> cn-physics-lab@0.0.0 build
+> npm run typecheck && npm run licenses && vite build
+
+
+> cn-physics-lab@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.tools.json --noEmit
+
+tests/e2e/friction-lifecycle.spec.ts(24,73): error TS2339: Property 'createdAt' does not exist on type '{ schemaVersion: 2; documentId: string; revision: number; title: string; experimentId: string | null; equipment: { id: string; type: string; definitionVersion: number; pose: { xM: number; yM: number; rotationRad: number; flippedX?: boolean | undefined; }; parameters: Record<...>; }[]; ... 6 more ...; viewport?: { .....'.

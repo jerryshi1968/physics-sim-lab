@@ -1,0 +1,28 @@
+{
+  "task": "03-user-revision",
+  "stage": "M1",
+  "schemaVersion": 2,
+  "lockSha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131",
+  "files": [
+    {
+      "path": "dist\\index.html",
+      "bytes": 567,
+      "sha256": "816DD69D8CCD3E3895F2F8DB66C19F0E53DC26873785231D945DE84CB2A44D35"
+    },
+    {
+      "path": "dist\\THIRD_PARTY_NOTICES.txt",
+      "bytes": 5022,
+      "sha256": "CD764E74D45A5A4C8AD5E20888E6A06FC9A62A480E8BB1D869E2DE0345BD012C"
+    },
+    {
+      "path": "dist\\assets\\index-BAFcx5Ap.css",
+      "bytes": 13332,
+      "sha256": "6AF0C6B6C56C9895135FD775BAACDD14B5E6824EA5649A79596D1E386C28E55C"
+    },
+    {
+      "path": "dist\\assets\\index-D18L64eN.js",
+      "bytes": 359635,
+      "sha256": "6090927CBB302414E8F268923F9086F4274F5C8E3F118E0387E7490D2C0C5EC1"
+    }
+  ]
+}

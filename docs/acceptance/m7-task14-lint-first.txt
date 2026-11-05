@@ -1,0 +1,37 @@
+
+> cn-physics-lab@0.0.0 lint
+> eslint . --max-warnings 0
+
+
+G:\physics-sim-lab\scripts\m7-audit.mjs
+   44:17   error  'window' is not defined    no-undef
+   44:51   error  'window' is not defined    no-undef
+   44:69   error  'window' is not defined    no-undef
+   44:102  error  'window' is not defined    no-undef
+   44:125  error  'window' is not defined    no-undef
+   45:18   error  'window' is not defined    no-undef
+   46:5    error  'window' is not defined    no-undef
+   47:5    error  'window' is not defined    no-undef
+   49:5    error  'document' is not defined  no-undef
+   50:5    error  'window' is not defined    no-undef
+   62:62   error  'window' is not defined    no-undef
+   63:236  error  'window' is not defined    no-undef
+   63:273  error  'window' is not defined    no-undef
+   63:315  error  'window' is not defined    no-undef
+   72:86   error  'document' is not defined  no-undef
+   74:42   error  'document' is not defined  no-undef
+   74:82   error  'window' is not defined    no-undef
+   81:35   error  'document' is not defined  no-undef
+   87:651  error  'document' is not defined  no-undef
+   87:691  error  'window' is not defined    no-undef
+   91:143  error  'window' is not defined    no-undef
+   91:250  error  'window' is not defined    no-undef
+   92:88   error  'window' is not defined    no-undef
+   92:316  error  'window' is not defined    no-undef
+   97:81   error  'window' is not defined    no-undef
+   97:118  error  'window' is not defined    no-undef
+   97:156  error  'window' is not defined    no-undef
+  108:61   error  'window' is not defined    no-undef
+
+✖ 28 problems (28 errors, 0 warnings)
+

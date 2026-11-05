@@ -1,0 +1,4 @@
+
+> cn-physics-lab@0.1.0-rc.1 lint
+> eslint . --max-warnings 0
+

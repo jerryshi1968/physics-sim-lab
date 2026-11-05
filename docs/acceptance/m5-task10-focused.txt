@@ -1,0 +1,15 @@
+[WebServer] (node:21900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:17624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\lever-experiment.spec.ts:32:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (2.9s)
+  ok 3 [chromium] › tests\e2e\lever-experiment.spec.ts:75:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (4.5s)
+  ok 2 [chromium] › tests\e2e\lever-experiment.spec.ts:45:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (7.7s)
+  ok 4 [chromium] › tests\e2e\lever-experiment.spec.ts:95:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (4.7s)
+
+  4 passed (17.1s)

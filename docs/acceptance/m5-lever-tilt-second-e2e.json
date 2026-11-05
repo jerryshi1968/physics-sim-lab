@@ -1,0 +1,541 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/lever-tilt.spec.ts",
+      "tests/e2e/lever-experiment.spec.ts",
+      "tests/e2e/balance-nuts.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "balance-nuts.spec.ts",
+      "file": "balance-nuts.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "two end nuts actually level the empty lever; mouse preview cancels, release commits once, keyboard and undo preserve setup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4692,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T11:35:16.090Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "42b54449020070a4417b-21292ff52feeb7ddb0ac",
+          "file": "balance-nuts.spec.ts",
+          "line": 12,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch balance nuts",
+          "file": "balance-nuts.spec.ts",
+          "line": 34,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch cancellation restores nut position, step adjustment levels the rod and saved zero survives refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3476,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T11:35:16.090Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "42b54449020070a4417b-cf2eda0f4dd1963d7a86",
+              "file": "balance-nuts.spec.ts",
+              "line": 36,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lever-experiment.spec.ts",
+      "file": "lever-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "mechanical category is always available with a physical independent ruler and cancellable formal experiment entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2199,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T11:35:20.126Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-f73498edad291face5ae",
+          "file": "lever-experiment.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T11:35:21.335Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-7809eb593d8813307e8f",
+          "file": "lever-experiment.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 7505,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: '保存力与力臂记录', exact: true })\nExpected: disabled\nReceived: enabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByRole('button', { name: '保存力与力臂记录', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: '保存力与力臂记录', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button>保存力与力臂记录</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: '保存力与力臂记录', exact: true })\nExpected: disabled\nReceived: enabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByRole('button', { name: '保存力与力臂记录', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: '保存力与力臂记录', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button>保存力与力臂记录</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:82:156",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                      "column": 156,
+                      "line": 82
+                    },
+                    "snippet": "  80 |   const box = (await weight.boundingBox())!, hook = (await target.boundingBox())!, from = { x: box.x + box.width / 2, y: box.y + 3 }, to = { x: hook.x + hook.width / 2, y: hook.y + hook.height / 2 };\n  81 |   const before = await exported(page); await page.mouse.move(from.x, from.y); await page.mouse.down(); await page.mouse.move(to.x, to.y, { steps: 6 });\n> 82 |   await expect(board).toHaveAttribute('data-revision', String(before.revision)); await expect(page.getByRole('button', { name: '保存力与力臂记录', exact: true })).toBeDisabled();\n     |                                                                                                                                                            ^\n  83 |   await page.keyboard.press('Escape'); await page.mouse.up(); expect(await exported(page)).toEqual(before);\n  84 |   await page.mouse.move(from.x, from.y); await page.mouse.down(); await page.mouse.move(to.x, to.y, { steps: 6 }); await page.mouse.up();\n  85 |   const attached = await exported(page); expect(attached.revision).toBe(before.revision + 1); expect(attached.equipment.find(item => item.id === 'left')!.parameters.leverId).toBe('lever'); expect(attached.equipment.find(item => item.id === 'left')!.parameters.hookIndex).toBe(-4);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                        "column": 156,
+                        "line": 82
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: '保存力与力臂记录', exact: true })\nExpected: disabled\nReceived: enabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" getByRole('button', { name: '保存力与力臂记录', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: '保存力与力臂记录', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button>保存力与力臂记录</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n\n  80 |   const box = (await weight.boundingBox())!, hook = (await target.boundingBox())!, from = { x: box.x + box.width / 2, y: box.y + 3 }, to = { x: hook.x + hook.width / 2, y: hook.y + hook.height / 2 };\n  81 |   const before = await exported(page); await page.mouse.move(from.x, from.y); await page.mouse.down(); await page.mouse.move(to.x, to.y, { steps: 6 });\n> 82 |   await expect(board).toHaveAttribute('data-revision', String(before.revision)); await expect(page.getByRole('button', { name: '保存力与力臂记录', exact: true })).toBeDisabled();\n     |                                                                                                                                                            ^\n  83 |   await page.keyboard.press('Escape'); await page.mouse.up(); expect(await exported(page)).toEqual(before);\n  84 |   await page.mouse.move(from.x, from.y); await page.mouse.down(); await page.mouse.move(to.x, to.y, { steps: 6 }); await page.mouse.up();\n  85 |   const attached = await exported(page); expect(attached.revision).toBe(before.revision + 1); expect(attached.equipment.find(item => item.id === 'left')!.parameters.leverId).toBe('lever'); expect(attached.equipment.find(item => item.id === 'left')!.parameters.hookIndex).toBe(-4);\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:82:156"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T11:35:22.338Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                    "column": 156,
+                    "line": 82
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-c9f5eb21c18051e0954e",
+          "file": "lever-experiment.spec.ts",
+          "line": 77,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch lever assembly",
+          "file": "lever-experiment.spec.ts",
+          "line": 95,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3995,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T11:35:28.993Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "538bf497795e5e83f1e2-1496f8a222736e477e7a",
+              "file": "lever-experiment.spec.ts",
+              "line": 97,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lever-tilt.spec.ts",
+      "file": "lever-tilt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a left-heavy lever visibly lowers the left end, reverses with load and returns level at balance without changing stored poses",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8815,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\u001b[22m\n\u001b[2m    14 × locator resolved to <g tabindex=\"0\" role=\"button\" aria-label=\"选择钩码 4\" data-selected=\"false\" data-flipped-x=\"false\" class=\"equipment-body  \" transform=\"translate(776.5459323509309 176.11266160832415) rotate(0) scale(900 900)\">…</g>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\u001b[22m\n\u001b[2m    14 × locator resolved to <g tabindex=\"0\" role=\"button\" aria-label=\"选择钩码 4\" data-selected=\"false\" data-flipped-x=\"false\" class=\"equipment-body  \" transform=\"translate(776.5459323509309 176.11266160832415) rotate(0) scale(900 900)\">…</g>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-tilt.spec.ts:33:163",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-tilt.spec.ts",
+                      "column": 163,
+                      "line": 33
+                    },
+                    "snippet": "  31 |   await page.getByRole('button', { name: '保存', exact: true }).click(); await expect(page.getByTestId('save-state')).toHaveText('已保存'); await page.reload(); await expect(banner).toContainText('右端下沉'); expect((await exported(page)).equipment).toEqual(beforeAuxiliary.equipment);\n  32 |   const board = page.getByTestId('scene-board'), load = (await board.locator('[data-equipment-id=\"right\"] [data-mechanical-type=\"mechanical.weights\"]').boundingBox())!;\n> 33 |   await page.mouse.move(load.x + load.width / 2, load.y + 3); await page.mouse.down(); await expect(board.locator('[data-equipment-id=\"right\"] .equipment-body')).toHaveAttribute('data-selected', 'true'); await page.mouse.move(load.x + load.width / 2 + 15, load.y + 15, { steps: 3 });\n     |                                                                                                                                                                   ^\n  34 |   const outer = (await board.locator('[data-equipment-id=\"lever\"] [data-lever-hook=\"6\"] circle').boundingBox())!;\n  35 |   await page.mouse.move(outer.x + outer.width / 2, outer.y + outer.height / 2, { steps: 5 }); await page.mouse.up();\n  36 |   expect((await exported(page)).equipment.find(item => item.id === 'right')!.parameters.hookIndex).toBe(6); await expect(banner).toContainText('右端下沉');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-tilt.spec.ts",
+                        "column": 163,
+                        "line": 33
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board').locator('[data-equipment-id=\"right\"] .equipment-body')\u001b[22m\n\u001b[2m    14 × locator resolved to <g tabindex=\"0\" role=\"button\" aria-label=\"选择钩码 4\" data-selected=\"false\" data-flipped-x=\"false\" class=\"equipment-body  \" transform=\"translate(776.5459323509309 176.11266160832415) rotate(0) scale(900 900)\">…</g>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  31 |   await page.getByRole('button', { name: '保存', exact: true }).click(); await expect(page.getByTestId('save-state')).toHaveText('已保存'); await page.reload(); await expect(banner).toContainText('右端下沉'); expect((await exported(page)).equipment).toEqual(beforeAuxiliary.equipment);\n  32 |   const board = page.getByTestId('scene-board'), load = (await board.locator('[data-equipment-id=\"right\"] [data-mechanical-type=\"mechanical.weights\"]').boundingBox())!;\n> 33 |   await page.mouse.move(load.x + load.width / 2, load.y + 3); await page.mouse.down(); await expect(board.locator('[data-equipment-id=\"right\"] .equipment-body')).toHaveAttribute('data-selected', 'true'); await page.mouse.move(load.x + load.width / 2 + 15, load.y + 15, { steps: 3 });\n     |                                                                                                                                                                   ^\n  34 |   const outer = (await board.locator('[data-equipment-id=\"lever\"] [data-lever-hook=\"6\"] circle').boundingBox())!;\n  35 |   await page.mouse.move(outer.x + outer.width / 2, outer.y + outer.height / 2, { steps: 5 }); await page.mouse.up();\n  36 |   expect((await exported(page)).equipment.find(item => item.id === 'right')!.parameters.hookIndex).toBe(6); await expect(banner).toContainText('右端下沉');\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-tilt.spec.ts:33:163"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T11:35:31.695Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-tilt.spec.ts",
+                    "column": 163,
+                    "line": 33
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c13b6010308b60afec1f-9d561e55ab0df136a87e",
+          "file": "lever-tilt.spec.ts",
+          "line": 21,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch tilted lever",
+          "file": "lever-tilt.spec.ts",
+          "line": 39,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch hooks a load, shows the left end sinking and keeps the trend explanation on the canvas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1541,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T11:35:33.014Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c13b6010308b60afec1f-166ccad53cab4ad7659a",
+              "file": "lever-tilt.spec.ts",
+              "line": 41,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T11:35:14.640Z",
+    "duration": 27537.606,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,60 @@
+[WebServer] (node:9960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 2 workers
+
+(node:31272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\weight-chain.spec.ts:29:1 › mouse chains weights on lower hooks, restores balance, follows parent moves and preserves children when deleting a parent (9.5s)
+  x  2 [chromium] › tests\e2e\weight-chain.spec.ts:46:1 › occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available (9.4s)
+  ok 3 [chromium] › tests\e2e\weight-chain.spec.ts:60:3 › touch weight chains › native touch cancels without changing references then hangs a new weight below the existing one (5.2s)
+
+
+  1) [chromium] › tests\e2e\weight-chain.spec.ts:46:1 › occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "该挂点已有钩码"
+    Received string:    "已导出实验初态与记录；重新导入后从初态运行。"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+        14 × locator resolved to <div role="status" class="live-notice">已导出实验初态与记录；重新导入后从初态运行。</div>
+           - unexpected value "已导出实验初态与记录；重新导入后从初态运行。"
+
+
+      48 |   const before = await exported(page), grip = (await group(page, id).locator('[data-weight-grip]').boundingBox())!, occupied = (await group(page, 'right').locator('[data-weight-grip]').boundingBox())!;
+      49 |   await page.mouse.move(grip.x + grip.width / 2, grip.y + 3); await page.mouse.down(); await page.mouse.move(occupied.x + occupied.width / 2, occupied.y + 3, { steps: 5 }); await page.mouse.up();
+    > 50 |   expect(await exported(page)).toEqual(before); await expect(page.getByRole('status')).toContainText('该挂点已有钩码');
+         |                                                                                        ^
+      51 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('right'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click(); expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('right');
+      52 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('left'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();
+      53 |   expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('left');
+        at G:\physics-sim-lab\tests\e2e\weight-chain.spec.ts:50:88
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\weight-chain.spec.ts:46:1 › occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available 
+  2 passed (18.5s)

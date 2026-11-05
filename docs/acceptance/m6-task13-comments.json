@@ -1,0 +1,92 @@
+[
+  {
+    "path": "src/app/App.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/equipment/registry.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/equipment/mechanical/definitions.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/equipment/mechanical/simulate.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/measurements/charts.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/measurements/csv.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/measurements/fit.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/measurements/records.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/scene/schema.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/core/scene/validate.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/measurements/MeasurementPanel.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/mechanical/MechanicalGraphic.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/workbench/DocumentPreview.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/workbench/EquipmentLibrary.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/workbench/InspectorEditor.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/workbench/SceneBoard.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "tests/core/lever-experiment.test.mjs",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "tests/e2e/lever-experiment.spec.ts",
+    "originalComments": 0,
+    "missing": []
+  }
+]

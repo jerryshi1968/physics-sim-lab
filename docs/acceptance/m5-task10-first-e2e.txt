@@ -1,0 +1,128 @@
+[WebServer] (node:29424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:19736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\lever-experiment.spec.ts:31:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (2.7s)
+  x  3 [chromium] › tests\e2e\lever-experiment.spec.ts:74:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (1.5m)
+(node:30460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (2.0m)
+  x  4 [chromium] › tests\e2e\lever-experiment.spec.ts:94:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (1.5m)
+
+
+  1) [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByLabel('挂接杠杆', { exact: true })
+
+
+      16 | }
+      17 | async function attach(page: Page, id: string, hook: string, target = 'lever') {
+    > 18 |   await page.getByLabel('选择器材', { exact: true }).selectOption(id); await page.getByLabel('挂接杠杆', { exact: true }).selectOption(target);
+         |                                                                                                                   ^
+      19 |   if (target) await page.getByLabel('挂点编号', { exact: true }).selectOption(hook);
+      20 |   await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();
+      21 | }
+        at attach (G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:18:115)
+        at G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:47:77
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\lever-experiment.spec.ts:74:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for getByLabel('挂接杠杆', { exact: true })
+
+
+      16 | }
+      17 | async function attach(page: Page, id: string, hook: string, target = 'lever') {
+    > 18 |   await page.getByLabel('选择器材', { exact: true }).selectOption(id); await page.getByLabel('挂接杠杆', { exact: true }).selectOption(target);
+         |                                                                                                                   ^
+      19 |   if (target) await page.getByLabel('挂点编号', { exact: true }).selectOption(hook);
+      20 |   await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();
+      21 | }
+        at attach (G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:18:115)
+        at G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:84:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\lever-experiment.spec.ts:94:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for getByLabel('安装支架', { exact: true })
+
+
+       96 |     for (const type of ['mechanical.support', 'mechanical.lever', 'mechanical.weights', 'mechanical.force-meter', 'mechanical.ruler']) { await library.locator(`[data-library-type="${type}"]`).tap(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).tap(); }
+       97 |     const doc = await exported(page), lever = doc.equipment.find(item => item.type === 'mechanical.lever')!, support = doc.equipment.find(item => item.type === 'mechanical.support')!;
+    >  98 |     await page.getByLabel('选择器材', { exact: true }).selectOption(lever.id); await page.getByLabel('安装支架', { exact: true }).selectOption(support.id); await page.getByRole('button', { name: '安装到支架 / 解除', exact: true }).tap();
+          |                                                                                                                           ^
+       99 |     await page.getByRole('button', { name: '确认空载调平', exact: true }).tap(); await expect(status(page)).toHaveText('当前力矩平衡');
+      100 |     const weight = doc.equipment.find(item => item.type === 'mechanical.weights')!; await attach(page, weight.id, '-2', lever.id); await expect(status(page)).toContainText('逆时针');
+      101 |     const selected = board.locator(`[data-equipment-id="${weight.id}"] [data-mechanical-type="mechanical.weights"]`); await selected.scrollIntoViewIfNeeded(); const bounds = (await selected.boundingBox())!, x = bounds.x + bounds.width / 2, y = bounds.y + 3;
+        at G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:98:123
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent 
+    [chromium] › tests\e2e\lever-experiment.spec.ts:74:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit 
+    [chromium] › tests\e2e\lever-experiment.spec.ts:94:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow 
+  1 passed (3.1m)

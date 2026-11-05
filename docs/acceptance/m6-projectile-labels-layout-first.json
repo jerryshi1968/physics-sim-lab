@@ -1,0 +1,9 @@
+{
+  "width": 1920,
+  "zoom": "303%",
+  "scaleTitleGapPx": 5.04443359375,
+  "launcherRulerTextCollisions": 0,
+  "requiredMinimumGapPx": 6,
+  "result": "insufficient_margin",
+  "fix": "Increase world-space clearance above scale unit text."
+}

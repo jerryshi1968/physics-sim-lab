@@ -1,0 +1,134 @@
+{
+  "fiveCases": [
+    {
+      "uM": 0.3,
+      "screenDistanceM": 0.15000000000000002,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.15000000000000002,
+        "magnification": -0.5000000000000001,
+        "nearFocus": false
+      },
+      "spotRadiusM": 1.3322676295501879e-18,
+      "sharpness": 1,
+      "capturedFraction": 1,
+      "screenStatus": "sharp",
+      "rayCount": 405,
+      "imageInBench": true
+    },
+    {
+      "uM": 0.2,
+      "screenDistanceM": 0.19999999999999996,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.2,
+        "magnification": -1,
+        "nearFocus": false
+      },
+      "spotRadiusM": 1.3322676295501879e-18,
+      "sharpness": 1,
+      "capturedFraction": 1,
+      "screenStatus": "sharp",
+      "rayCount": 405,
+      "imageInBench": true
+    },
+    {
+      "uM": 0.15000000000000002,
+      "screenDistanceM": 0.30000000000000004,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.3,
+        "magnification": -1.9999999999999996,
+        "nearFocus": false
+      },
+      "spotRadiusM": 2.6645352591003758e-18,
+      "sharpness": 1,
+      "capturedFraction": 1,
+      "screenStatus": "sharp",
+      "rayCount": 405,
+      "imageInBench": true
+    },
+    {
+      "uM": 0.1,
+      "screenDistanceM": 0.19999999999999996,
+      "image": {
+        "kind": "no-finite-image",
+        "imageDistanceM": null,
+        "magnification": null,
+        "nearFocus": true
+      },
+      "spotRadiusM": 0.006,
+      "sharpness": 0.006896551724137931,
+      "capturedFraction": 1,
+      "screenStatus": "diffuse",
+      "rayCount": 405,
+      "imageInBench": false
+    },
+    {
+      "uM": 0.04999999999999999,
+      "screenDistanceM": 0.19999999999999996,
+      "image": {
+        "kind": "virtual",
+        "imageDistanceM": -0.09999999999999995,
+        "magnification": 1.9999999999999996,
+        "nearFocus": false
+      },
+      "spotRadiusM": 0.018000000000000002,
+      "sharpness": 0.0007710100231303007,
+      "capturedFraction": 0.8148148148148148,
+      "screenStatus": "diffuse",
+      "rayCount": 405,
+      "imageInBench": true
+    }
+  ],
+  "defocus": [
+    {
+      "uM": 0.3,
+      "screenDistanceM": 0.12,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.15000000000000002,
+        "magnification": -0.5000000000000001,
+        "nearFocus": false
+      },
+      "spotRadiusM": 0.0011999999999999997,
+      "sharpness": 0.1479289940828403,
+      "capturedFraction": 1,
+      "screenStatus": "defocused",
+      "rayCount": 405,
+      "imageInBench": true
+    },
+    {
+      "uM": 0.3,
+      "screenDistanceM": 0.15000000000000002,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.15000000000000002,
+        "magnification": -0.5000000000000001,
+        "nearFocus": false
+      },
+      "spotRadiusM": 1.3322676295501879e-18,
+      "sharpness": 1,
+      "capturedFraction": 1,
+      "screenStatus": "sharp",
+      "rayCount": 405,
+      "imageInBench": true
+    },
+    {
+      "uM": 0.3,
+      "screenDistanceM": 0.17999999999999994,
+      "image": {
+        "kind": "real",
+        "imageDistanceM": 0.15000000000000002,
+        "magnification": -0.5000000000000001,
+        "nearFocus": false
+      },
+      "spotRadiusM": 0.001199999999999997,
+      "sharpness": 0.14792899408284085,
+      "capturedFraction": 1,
+      "screenStatus": "defocused",
+      "rayCount": 405,
+      "imageInBench": true
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/live-force.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "live-force.spec.ts",
+      "file": "live-force.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7670,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('施加拉力（N）', { exact: true })\nExpected: \u001b[32m\"4\"\u001b[39m\nReceived: \u001b[31m\"3\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('施加拉力（N）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('施加拉力（N）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" max=\"100\" value=\"3\" step=\"any\" required=\"\" type=\"number\" name=\"forceN\" aria-label=\"施加拉力（N）\" aria-invalid=\"false\" aria-describedby=\"_r_c_\"/>\u001b[22m\n\u001b[2m       - unexpected value \"3\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('施加拉力（N）', { exact: true })\nExpected: \u001b[32m\"4\"\u001b[39m\nReceived: \u001b[31m\"3\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('施加拉力（N）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('施加拉力（N）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" max=\"100\" value=\"3\" step=\"any\" required=\"\" type=\"number\" name=\"forceN\" aria-label=\"施加拉力（N）\" aria-invalid=\"false\" aria-describedby=\"_r_c_\"/>\u001b[22m\n\u001b[2m       - unexpected value \"3\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\live-force.spec.ts:33:146",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\live-force.spec.ts",
+                      "column": 146,
+                      "line": 33
+                    },
+                    "snippet": "  31 |   await force(page).scrollIntoViewIfNeeded(); let box = (await force(page).boundingBox())!;\n  32 |   await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);\n> 33 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('4'); await indication(page, 4);\n     |                                                                                                                                                  ^\n  34 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 + 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);\n  35 |   await page.getByRole('heading', { name: '探究杠杆平衡条件', exact: true }).click(); await page.getByLabel('选择器材', { exact: true }).selectOption(''); await page.getByLabel('选择器材', { exact: true }).selectOption('meter'); await expect(force(page)).toHaveValue('3');\n  36 |   expect((await exported(page)).equipment.find(item => item.id === 'meter')!.parameters.forceN).toBe(3);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\live-force.spec.ts",
+                        "column": 146,
+                        "line": 33
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('施加拉力（N）', { exact: true })\nExpected: \u001b[32m\"4\"\u001b[39m\nReceived: \u001b[31m\"3\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('施加拉力（N）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('施加拉力（N）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" max=\"100\" value=\"3\" step=\"any\" required=\"\" type=\"number\" name=\"forceN\" aria-label=\"施加拉力（N）\" aria-invalid=\"false\" aria-describedby=\"_r_c_\"/>\u001b[22m\n\u001b[2m       - unexpected value \"3\"\u001b[22m\n\n\n  31 |   await force(page).scrollIntoViewIfNeeded(); let box = (await force(page).boundingBox())!;\n  32 |   await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);\n> 33 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 - 5); await expect(force(page)).toHaveValue('4'); await indication(page, 4);\n     |                                                                                                                                                  ^\n  34 |   box = (await force(page).boundingBox())!; await page.mouse.click(box.x + box.width - 9, box.y + box.height / 2 + 5); await expect(force(page)).toHaveValue('3'); await indication(page, 3);\n  35 |   await page.getByRole('heading', { name: '探究杠杆平衡条件', exact: true }).click(); await page.getByLabel('选择器材', { exact: true }).selectOption(''); await page.getByLabel('选择器材', { exact: true }).selectOption('meter'); await expect(force(page)).toHaveValue('3');\n  36 |   expect((await exported(page)).equipment.find(item => item.id === 'meter')!.parameters.forceN).toBe(3);\n    at G:\\physics-sim-lab\\tests\\e2e\\live-force.spec.ts:33:146"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T12:23:46.373Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\live-force.spec.ts",
+                    "column": 146,
+                    "line": 33
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "fb416e2a3c3e9c77b903-7604f524cf498fcaa724",
+          "file": "live-force.spec.ts",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "pointer reflects applied force before zero confirmation; invalid drafts, zero-arm, over-range and invalid apparatus never become normal measurements",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4069,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T12:23:46.375Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fb416e2a3c3e9c77b903-fc435332ac0a29d0593b",
+          "file": "live-force.spec.ts",
+          "line": 42,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch live force",
+          "file": "live-force.spec.ts",
+          "line": 52,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch text edits apply without a separate submit and persist after leaving the input",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2058,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T12:23:50.926Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fb416e2a3c3e9c77b903-d42fccd4a954368a48be",
+              "file": "live-force.spec.ts",
+              "line": 54,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T12:23:44.927Z",
+    "duration": 10582.279,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

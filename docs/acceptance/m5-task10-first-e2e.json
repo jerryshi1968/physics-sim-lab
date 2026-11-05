@@ -1,0 +1,383 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/lever-experiment.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "lever-experiment.spec.ts",
+      "file": "lever-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "mechanical category is always available with a physical independent ruler and cancellable formal experiment entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2727,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T07:34:33.384Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-f73498edad291face5ae",
+          "file": "lever-experiment.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "timedOut",
+                  "duration": 120216,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                        "column": 115,
+                        "line": 18
+                      },
+                      "message": "Error: locator.selectOption: Test timeout of 120000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('挂接杠杆', { exact: true })\u001b[22m\n\n\n  16 | }\n  17 | async function attach(page: Page, id: string, hook: string, target = 'lever') {\n> 18 |   await page.getByLabel('选择器材', { exact: true }).selectOption(id); await page.getByLabel('挂接杠杆', { exact: true }).selectOption(target);\n     |                                                                                                                   ^\n  19 |   if (target) await page.getByLabel('挂点编号', { exact: true }).selectOption(hook);\n  20 |   await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();\n  21 | }\n    at attach (G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:18:115)\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:47:77"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T07:34:33.384Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-7809eb593d8813307e8f",
+          "file": "lever-experiment.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 90464,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                        "column": 115,
+                        "line": 18
+                      },
+                      "message": "Error: locator.selectOption: Test timeout of 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('挂接杠杆', { exact: true })\u001b[22m\n\n\n  16 | }\n  17 | async function attach(page: Page, id: string, hook: string, target = 'lever') {\n> 18 |   await page.getByLabel('选择器材', { exact: true }).selectOption(id); await page.getByLabel('挂接杠杆', { exact: true }).selectOption(target);\n     |                                                                                                                   ^\n  19 |   if (target) await page.getByLabel('挂点编号', { exact: true }).selectOption(hook);\n  20 |   await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();\n  21 | }\n    at attach (G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:18:115)\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:84:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T07:34:36.672Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-drag-snap-fdb18-lid-support-remain-explicit-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-c9f5eb21c18051e0954e",
+          "file": "lever-experiment.spec.ts",
+          "line": 74,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch lever assembly",
+          "file": "lever-experiment.spec.ts",
+          "line": 92,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 90389,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts",
+                            "column": 123,
+                            "line": 98
+                          },
+                          "message": "Error: locator.selectOption: Test timeout of 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('安装支架', { exact: true })\u001b[22m\n\n\n   96 |     for (const type of ['mechanical.support', 'mechanical.lever', 'mechanical.weights', 'mechanical.force-meter', 'mechanical.ruler']) { await library.locator(`[data-library-type=\"${type}\"]`).tap(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).tap(); }\n   97 |     const doc = await exported(page), lever = doc.equipment.find(item => item.type === 'mechanical.lever')!, support = doc.equipment.find(item => item.type === 'mechanical.support')!;\n>  98 |     await page.getByLabel('选择器材', { exact: true }).selectOption(lever.id); await page.getByLabel('安装支架', { exact: true }).selectOption(support.id); await page.getByRole('button', { name: '安装到支架 / 解除', exact: true }).tap();\n      |                                                                                                                           ^\n   99 |     await page.getByRole('button', { name: '确认空载调平', exact: true }).tap(); await expect(status(page)).toHaveText('当前力矩平衡');\n  100 |     const weight = doc.equipment.find(item => item.type === 'mechanical.weights')!; await attach(page, weight.id, '-2', lever.id); await expect(status(page)).toContainText('逆时针');\n  101 |     const selected = board.locator(`[data-equipment-id=\"${weight.id}\"] [data-mechanical-type=\"mechanical.weights\"]`); await selected.scrollIntoViewIfNeeded(); const bounds = (await selected.boundingBox())!, x = bounds.x + bounds.width / 2, y = bounds.y + 3;\n    at G:\\physics-sim-lab\\tests\\e2e\\lever-experiment.spec.ts:98:123"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T07:36:08.198Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\\test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "G:\\physics-sim-lab\\test-results\\lever-experiment-touch-lev-ec135-ut-horizontal-page-overflow-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "538bf497795e5e83f1e2-1496f8a222736e477e7a",
+              "file": "lever-experiment.spec.ts",
+              "line": 94,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T07:34:31.855Z",
+    "duration": 187916.72699999998,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

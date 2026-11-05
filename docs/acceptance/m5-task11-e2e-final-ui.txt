@@ -1,0 +1,23 @@
+[WebServer] (node:26448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 2 workers
+
+(node:11340) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\friction-experiment.spec.ts:48:1 › controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit (4.0s)
+  ok  3 [chromium] › tests\e2e\friction-experiment.spec.ts:62:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest (9.0s)
+  ok  2 [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses (14.7s)
+  ok  4 [chromium] › tests\e2e\friction-experiment.spec.ts:84:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel (3.4s)
+  ok  5 [chromium] › tests\e2e\lever-experiment.spec.ts:33:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (2.3s)
+  ok  7 [chromium] › tests\e2e\lever-experiment.spec.ts:77:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (4.5s)
+  ok  6 [chromium] › tests\e2e\lever-experiment.spec.ts:46:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (6.9s)
+  ok  9 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (724ms)
+  ok  8 [chromium] › tests\e2e\lever-experiment.spec.ts:97:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (3.1s)
+  ok 10 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (740ms)
+  ok 11 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (754ms)
+  ok 12 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (792ms)
+
+  12 passed (29.5s)

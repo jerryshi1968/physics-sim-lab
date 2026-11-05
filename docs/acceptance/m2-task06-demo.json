@@ -1,0 +1,1114 @@
+{
+  "series": {
+    "result": {
+      "ok": true,
+      "solution": {
+        "modelVersion": "dc-mna.v2",
+        "iterations": 9,
+        "minimumDamping": 1,
+        "components": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "nodes": [
+              "[\"A\",\"common\"]",
+              "[\"A\",\"high\"]",
+              "[\"E\",\"negative\"]",
+              "[\"L1\",\"b\"]"
+            ],
+            "referenceNode": "[\"E\",\"negative\"]"
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "nodes": [
+              "[\"A\",\"low\"]"
+            ],
+            "referenceNode": "[\"A\",\"low\"]"
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "nodes": [
+              "[\"V\",\"high\"]"
+            ],
+            "referenceNode": "[\"V\",\"high\"]"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "voltageV": 6,
+            "terminals": [
+              "[\"A\",\"common\"]",
+              "[\"L1\",\"a\"]",
+              "[\"V\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"high\"]",
+            "voltageV": 6,
+            "terminals": [
+              "[\"A\",\"high\"]",
+              "[\"E\",\"positive\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"A\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"low\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"E\",\"negative\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"E\",\"negative\"]",
+              "[\"L2\",\"b\"]",
+              "[\"S\",\"a\"]",
+              "[\"S\",\"b\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"L1\",\"b\"]",
+            "voltageV": 3,
+            "terminals": [
+              "[\"L1\",\"b\"]",
+              "[\"L2\",\"a\"]",
+              "[\"V\",\"common\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"V\",\"high\"]"
+            ],
+            "componentId": "[\"V\",\"high\"]",
+            "isReference": true
+          }
+        ],
+        "branches": [
+          {
+            "id": "A",
+            "kind": "current-meter",
+            "voltageV": 0,
+            "currentA": 0.30000000000000787,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "E",
+            "kind": "voltage-source",
+            "voltageV": 6,
+            "currentA": -0.30000000000000787,
+            "powerW": -1.8000000000000473,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "internalLossW": 0,
+            "emfPowerW": -1.8000000000000473
+          },
+          {
+            "id": "L1",
+            "kind": "lamp",
+            "voltageV": 3,
+            "currentA": 0.30000000000000787,
+            "powerW": 0.9000000000000237,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 1
+          },
+          {
+            "id": "L2",
+            "kind": "lamp",
+            "voltageV": 3,
+            "currentA": 0.30000000000000787,
+            "powerW": 0.9000000000000237,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 1
+          },
+          {
+            "id": "S",
+            "kind": "switch",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "V",
+            "kind": "voltage-probe",
+            "voltageV": 3,
+            "currentA": 0,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "wire-0",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-1",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-2",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-3",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-4",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-5",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-6",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          }
+        ],
+        "residuals": {
+          "kclA": 0,
+          "normalizedKcl": 0,
+          "normalizedConstitutive": 3.4194869158453654e-14,
+          "powerBalanceW": 0,
+          "normalizedPower": 0,
+          "linear": 1.6405655824551063e-16
+        }
+      },
+      "diagnostics": [
+        {
+          "code": "FLOATING_COMPONENTS",
+          "equipmentIds": [],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.FLOATING_COMPONENTS"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "S"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-0"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-1"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-2"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-3"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-4"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-5"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-6"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        }
+      ]
+    },
+    "meters": [
+      {
+        "id": "A",
+        "unit": "A",
+        "range": "high",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 0.30000000000000787,
+        "displayValue": 0.3,
+        "needleFraction": 0.09999999999999999,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      },
+      {
+        "id": "V",
+        "unit": "V",
+        "range": "low",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 3,
+        "displayValue": 3,
+        "needleFraction": 1,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      }
+    ]
+  },
+  "parallel": {
+    "result": {
+      "ok": true,
+      "solution": {
+        "modelVersion": "dc-mna.v2",
+        "iterations": 9,
+        "minimumDamping": 1,
+        "components": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "nodes": [
+              "[\"A\",\"common\"]",
+              "[\"A\",\"high\"]",
+              "[\"E\",\"negative\"]"
+            ],
+            "referenceNode": "[\"E\",\"negative\"]"
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "nodes": [
+              "[\"A\",\"low\"]"
+            ],
+            "referenceNode": "[\"A\",\"low\"]"
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "nodes": [
+              "[\"V\",\"high\"]"
+            ],
+            "referenceNode": "[\"V\",\"high\"]"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "voltageV": 3,
+            "terminals": [
+              "[\"A\",\"common\"]",
+              "[\"L1\",\"a\"]",
+              "[\"L2\",\"a\"]",
+              "[\"V\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"high\"]",
+            "voltageV": 3,
+            "terminals": [
+              "[\"A\",\"high\"]",
+              "[\"E\",\"positive\"]",
+              "[\"S\",\"a\"]",
+              "[\"S\",\"b\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"A\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"low\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"E\",\"negative\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"E\",\"negative\"]",
+              "[\"L1\",\"b\"]",
+              "[\"L2\",\"b\"]",
+              "[\"V\",\"common\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"V\",\"high\"]"
+            ],
+            "componentId": "[\"V\",\"high\"]",
+            "isReference": true
+          }
+        ],
+        "branches": [
+          {
+            "id": "A",
+            "kind": "current-meter",
+            "voltageV": 0,
+            "currentA": 0.6000000000000159,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "E",
+            "kind": "voltage-source",
+            "voltageV": 3,
+            "currentA": -0.6000000000000159,
+            "powerW": -1.8000000000000476,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "internalLossW": 0,
+            "emfPowerW": -1.8000000000000476
+          },
+          {
+            "id": "L1",
+            "kind": "lamp",
+            "voltageV": 3,
+            "currentA": 0.3000000000000079,
+            "powerW": 0.9000000000000238,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 1
+          },
+          {
+            "id": "L2",
+            "kind": "lamp",
+            "voltageV": 3,
+            "currentA": 0.3000000000000079,
+            "powerW": 0.9000000000000238,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 1
+          },
+          {
+            "id": "S",
+            "kind": "switch",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "V",
+            "kind": "voltage-probe",
+            "voltageV": 3,
+            "currentA": 0,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "wire-0",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-1",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-2",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-3",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-4",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-5",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-6",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-7",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          }
+        ],
+        "residuals": {
+          "kclA": 0,
+          "normalizedKcl": 0,
+          "normalizedConstitutive": 3.4342898895070327e-14,
+          "powerBalanceW": 0,
+          "normalizedPower": 0,
+          "linear": 1.138689927075768e-16
+        }
+      },
+      "diagnostics": [
+        {
+          "code": "FLOATING_COMPONENTS",
+          "equipmentIds": [],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.FLOATING_COMPONENTS"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "S"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-0"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-1"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-2"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-3"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-4"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-5"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-6"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-7"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        }
+      ]
+    },
+    "meters": [
+      {
+        "id": "A",
+        "unit": "A",
+        "range": "high",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 0.6000000000000159,
+        "displayValue": 0.6,
+        "needleFraction": 0.19999999999999998,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      },
+      {
+        "id": "V",
+        "unit": "V",
+        "range": "low",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 3,
+        "displayValue": 3,
+        "needleFraction": 1,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      }
+    ]
+  },
+  "different": {
+    "result": {
+      "ok": true,
+      "solution": {
+        "modelVersion": "dc-mna.v2",
+        "iterations": 8,
+        "minimumDamping": 1,
+        "components": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "nodes": [
+              "[\"A\",\"common\"]",
+              "[\"A\",\"high\"]",
+              "[\"E\",\"negative\"]",
+              "[\"L1\",\"b\"]"
+            ],
+            "referenceNode": "[\"E\",\"negative\"]"
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "nodes": [
+              "[\"A\",\"low\"]"
+            ],
+            "referenceNode": "[\"A\",\"low\"]"
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "nodes": [
+              "[\"V\",\"high\"]"
+            ],
+            "referenceNode": "[\"V\",\"high\"]"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "[\"A\",\"common\"]",
+            "voltageV": 3.111111111111111,
+            "terminals": [
+              "[\"A\",\"common\"]",
+              "[\"L1\",\"a\"]",
+              "[\"V\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"high\"]",
+            "voltageV": 3.111111111111111,
+            "terminals": [
+              "[\"A\",\"high\"]",
+              "[\"E\",\"positive\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"A\",\"low\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"A\",\"low\"]"
+            ],
+            "componentId": "[\"A\",\"low\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"E\",\"negative\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"E\",\"negative\"]",
+              "[\"L2\",\"b\"]",
+              "[\"S\",\"a\"]",
+              "[\"S\",\"b\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": true
+          },
+          {
+            "id": "[\"L1\",\"b\"]",
+            "voltageV": 1.9999999999969775,
+            "terminals": [
+              "[\"L1\",\"b\"]",
+              "[\"L2\",\"a\"]",
+              "[\"V\",\"common\"]"
+            ],
+            "componentId": "[\"A\",\"common\"]",
+            "isReference": false
+          },
+          {
+            "id": "[\"V\",\"high\"]",
+            "voltageV": 0,
+            "terminals": [
+              "[\"V\",\"high\"]"
+            ],
+            "componentId": "[\"V\",\"high\"]",
+            "isReference": true
+          }
+        ],
+        "branches": [
+          {
+            "id": "A",
+            "kind": "current-meter",
+            "voltageV": 0,
+            "currentA": 0.20000000000392865,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "E",
+            "kind": "voltage-source",
+            "voltageV": 3.111111111111111,
+            "currentA": -0.20000000000392865,
+            "powerW": -0.6222222222344447,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "internalLossW": 0,
+            "emfPowerW": -0.6222222222344447
+          },
+          {
+            "id": "L1",
+            "kind": "lamp",
+            "voltageV": 1.1111111111141336,
+            "currentA": 0.20000000000392865,
+            "powerW": 0.2222222222271919,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 0.24691358025243548
+          },
+          {
+            "id": "L2",
+            "kind": "lamp",
+            "voltageV": 1.9999999999969775,
+            "currentA": 0.20000000000392865,
+            "powerW": 0.4000000000072528,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true,
+            "brightness": 1
+          },
+          {
+            "id": "S",
+            "kind": "switch",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "V",
+            "kind": "voltage-probe",
+            "voltageV": 1.1111111111141336,
+            "currentA": 0,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "valid",
+            "measurementUsable": true
+          },
+          {
+            "id": "wire-0",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-1",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-2",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-3",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-4",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-5",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          },
+          {
+            "id": "wire-6",
+            "kind": "wire",
+            "voltageV": 0,
+            "currentA": null,
+            "powerW": 0,
+            "voltageStatus": "valid",
+            "currentStatus": "not-observable",
+            "measurementUsable": false
+          }
+        ],
+        "residuals": {
+          "kclA": 0,
+          "normalizedKcl": 0,
+          "normalizedConstitutive": 2.629174655700912e-11,
+          "powerBalanceW": 0,
+          "normalizedPower": 0,
+          "linear": 1.1635368724124037e-16
+        }
+      },
+      "diagnostics": [
+        {
+          "code": "FLOATING_COMPONENTS",
+          "equipmentIds": [],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.FLOATING_COMPONENTS"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "S"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-0"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-1"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-2"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-3"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-4"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-5"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        },
+        {
+          "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+          "equipmentIds": [
+            "wire-6"
+          ],
+          "severity": "info",
+          "measurementUsable": false,
+          "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+        }
+      ]
+    },
+    "meters": [
+      {
+        "id": "A",
+        "unit": "A",
+        "range": "high",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 0.20000000000392865,
+        "displayValue": 0.2,
+        "needleFraction": 0.06666666666666667,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      },
+      {
+        "id": "V",
+        "unit": "V",
+        "range": "low",
+        "maximum": 3,
+        "resolution": 0.1,
+        "status": "valid",
+        "trueValue": 1.1111111111141336,
+        "displayValue": 1.1,
+        "needleFraction": 0.3666666666666667,
+        "measurementUsable": true,
+        "reverse": false,
+        "overRange": false
+      }
+    ]
+  },
+  "nonConvergence": {
+    "result": {
+      "ok": false,
+      "measurementUsable": false,
+      "diagnostics": [
+        {
+          "code": "NON_CONVERGENCE",
+          "equipmentIds": [
+            "L1",
+            "L2"
+          ],
+          "severity": "error",
+          "measurementUsable": false,
+          "messageKey": "electrical.NON_CONVERGENCE"
+        }
+      ]
+    },
+    "meters": []
+  },
+  "multiRange": {
+    "result": {
+      "ok": false,
+      "measurementUsable": false,
+      "diagnostics": [
+        {
+          "code": "METER_MULTI_RANGE",
+          "equipmentIds": [
+            "A"
+          ],
+          "severity": "error",
+          "measurementUsable": false,
+          "messageKey": "electrical.METER_MULTI_RANGE"
+        }
+      ]
+    },
+    "meters": []
+  }
+}

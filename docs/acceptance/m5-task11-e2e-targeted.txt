@@ -1,0 +1,15 @@
+[WebServer] (node:22812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:4212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\friction-experiment.spec.ts:46:1 › controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit (4.5s)
+  ok 3 [chromium] › tests\e2e\friction-experiment.spec.ts:60:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest (6.5s)
+  ok 2 [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses (12.2s)
+  ok 4 [chromium] › tests\e2e\friction-experiment.spec.ts:78:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel (2.7s)
+
+  4 passed (16.5s)

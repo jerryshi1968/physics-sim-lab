@@ -1,0 +1,19 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:25104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:18264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (1.1s)
+  ok 2 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (1.1s)
+  ok 3 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (530ms)
+  ok 4 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (580ms)
+
+  4 passed (8.9s)

@@ -1,0 +1,28 @@
+{
+  "task": "05",
+  "lockSha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131",
+  "modelVersion": "dc-mna.v1",
+  "stage": "M2",
+  "files": [
+    {
+      "path": "dist\\index.html",
+      "bytes": 567,
+      "sha256": "0C3E6908C145A199534C9933434674426316558EA43A0C366C4D64CE06F675EA"
+    },
+    {
+      "path": "dist\\THIRD_PARTY_NOTICES.txt",
+      "bytes": 5022,
+      "sha256": "CD764E74D45A5A4C8AD5E20888E6A06FC9A62A480E8BB1D869E2DE0345BD012C"
+    },
+    {
+      "path": "dist\\assets\\index-ChMabkh2.js",
+      "bytes": 375721,
+      "sha256": "D81B89EBFDA37567B852F38CF9162F6B83AEEFCE2BDA95798BA050AEAC71FF2F"
+    },
+    {
+      "path": "dist\\assets\\index-CUCuiwhw.css",
+      "bytes": 14924,
+      "sha256": "AE6E0EFE6DAA3EF853B236DA0CA0AB1073A445D98C9629D13B0E7C7C4D2CE9E5"
+    }
+  ]
+}

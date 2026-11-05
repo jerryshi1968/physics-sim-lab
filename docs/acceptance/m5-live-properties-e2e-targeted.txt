@@ -1,0 +1,18 @@
+[WebServer] (node:20520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 2 workers
+
+(node:29432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save (4.1s)
+  ok 2 [chromium] › tests\e2e\live-force.spec.ts:45:1 › pointer reflects applied force before zero confirmation; invalid drafts, zero-arm, over-range and invalid apparatus never become normal measurements (4.1s)
+  ok 3 [chromium] › tests\e2e\live-force.spec.ts:57:3 › touch live force › touch text edits apply without a separate submit and persist after leaving the input (1.9s)
+  ok 4 [chromium] › tests\e2e\live-properties.spec.ts:11:1 › friction apparatus clicks show foreground padded outlines and all properties, including attachment selects, apply immediately (2.5s)
+  ok 5 [chromium] › tests\e2e\live-properties.spec.ts:22:1 › electrical controls apply typed values, native arrows and checkboxes without a submit while invalid drafts never replace the circuit (2.5s)
+  ok 6 [chromium] › tests\e2e\live-properties.spec.ts:31:1 › optical and lever controls update immediately without remounting focused fields (3.1s)
+  ok 7 [chromium] › tests\e2e\live-properties.spec.ts:40:3 › touch live editing › touch selection outline and numeric edits remain available on narrow screens (1.4s)
+
+  7 passed (13.0s)

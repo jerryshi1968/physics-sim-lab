@@ -1,0 +1,23 @@
+CN Physics Lab / 中学物理实验室
+Copyright 2026 jerryshi1968
+
+Project-original source code, documentation, and SVG/CSS artwork are
+licensed under the Apache License, Version 2.0. See LICENSE and LICENSING.md.
+
+This project uses the following unmodified third-party runtime
+packages, each under its upstream MIT license:
+  React 19.3.1
+  React DOM 19.3.1
+  scheduler 0.28.0
+  Zod 4.6.7
+  Matter.js 0.20.0
+
+The built JavaScript also contains modulepreload compatibility code from
+Vite 8.3.5 and CommonJS/ESM helpers from Rolldown 1.2.16 (MIT). Their full
+upstream license files are retained with the third-party notices.
+
+Complete original third-party copyright and license notices are retained in
+public/THIRD_PARTY_NOTICES.txt in the source tree, and
+THIRD_PARTY_NOTICES.txt in the static distribution.
+
+This NOTICE is informational and does not replace or modify any license.

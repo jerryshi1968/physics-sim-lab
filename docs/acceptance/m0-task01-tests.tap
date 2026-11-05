@@ -1,0 +1,304 @@
+TAP version 13
+# Subtest: resistors: 3 V, 10/20 ohm series benchmark
+ok 1 - resistors: 3 V, 10/20 ohm series benchmark
+  ---
+  duration_ms: 2.7288
+  type: 'test'
+  ...
+# Subtest: resistors: parallel benchmark and independent branch currents
+ok 2 - resistors: parallel benchmark and independent branch currents
+  ---
+  duration_ms: 0.2695
+  type: 'test'
+  ...
+# Subtest: lamps: same lamps series at 6 V and parallel at 3 V
+ok 3 - lamps: same lamps series at 6 V and parallel at 3 V
+  ---
+  duration_ms: 0.4895
+  type: 'test'
+  ...
+# Subtest: different series lamps share current but do not share voltage equally
+ok 4 - different series lamps share current but do not share voltage equally
+  ---
+  duration_ms: 0.1758
+  type: 'test'
+  ...
+# Subtest: different parallel lamps share voltage but have different currents
+ok 5 - different parallel lamps share voltage but have different currents
+  ---
+  duration_ms: 0.1816
+  type: 'test'
+  ...
+# Subtest: off-rated mixed lamp network satisfies independent cubic and conservation checks
+ok 6 - off-rated mixed lamp network satisfies independent cubic and conservation checks
+  ---
+  duration_ms: 0.9749
+  type: 'test'
+  ...
+# Subtest: zero voltage, reversed polarity and linear limiting lamp
+ok 7 - zero voltage, reversed polarity and linear limiting lamp
+  ---
+  duration_ms: 0.4079
+  type: 'test'
+  ...
+# Subtest: rejects invalid resistor parameters instead of inventing ideal zero-ohm behavior
+ok 8 - rejects invalid resistor parameters instead of inventing ideal zero-ohm behavior
+  ---
+  duration_ms: 0.1939
+  type: 'test'
+  ...
+# Subtest: lamp parameters, range and iteration failures return no partial readings
+ok 9 - lamp parameters, range and iteration failures return no partial readings
+  ---
+  duration_ms: 0.1767
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=0.5, muk=0.2
+ok 10 - steady horizontal friction: mass=0.5, muk=0.2
+  ---
+  duration_ms: 2.1918
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=1, muk=0.2
+ok 11 - steady horizontal friction: mass=1, muk=0.2
+  ---
+  duration_ms: 0.2537
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=0.5, muk=0.4
+ok 12 - steady horizontal friction: mass=0.5, muk=0.4
+  ---
+  duration_ms: 0.2256
+  type: 'test'
+  ...
+# Subtest: static friction matches demand instead of always taking its maximum
+ok 13 - static friction matches demand instead of always taking its maximum
+  ---
+  duration_ms: 0.2839
+  type: 'test'
+  ...
+# Subtest: exact static threshold holds; exceeding it starts sliding with kinetic friction
+ok 14 - exact static threshold holds; exceeding it starts sliding with kinetic friction
+  ---
+  duration_ms: 0.2539
+  type: 'test'
+  ...
+# Subtest: friction opposes velocity even when applied pull reverses
+ok 15 - friction opposes velocity even when applied pull reverses
+  ---
+  duration_ms: 0.2447
+  type: 'test'
+  ...
+# Subtest: nonzero near-zero velocity remains sliding; exact rest can stick
+ok 16 - nonzero near-zero velocity remains sliding; exact rest can stick
+  ---
+  duration_ms: 0.2652
+  type: 'test'
+  ...
+# Subtest: invalid physical parameters and arithmetic overflow are rejected
+ok 17 - invalid physical parameters and arithmetic overflow are rejected
+  ---
+  duration_ms: 0.4116
+  type: 'test'
+  ...
+# Subtest: opposite 0.20 N m moments and 3 N support reaction
+ok 18 - opposite 0.20 N m moments and 3 N support reaction
+  ---
+  duration_ms: 1.6776
+  type: 'test'
+  ...
+# Subtest: vertical pull requires 2 N; downward 30 degree pull requires 4 N and 0.05 m arm
+ok 19 - vertical pull requires 2 N; downward 30 degree pull requires 4 N and 0.05 m arm
+  ---
+  duration_ms: 0.3358
+  type: 'test'
+  ...
+# Subtest: same-direction moments remain unbalanced, optional self-weight is an explicit force
+ok 20 - same-direction moments remain unbalanced, optional self-weight is an explicit force
+  ---
+  duration_ms: 0.2501
+  type: 'test'
+  ...
+# Subtest: force line through pivot has zero moment; inverse problem diagnoses zero arm
+ok 21 - force line through pivot has zero moment; inverse problem diagnoses zero arm
+  ---
+  duration_ms: 0.3358
+  type: 'test'
+  ...
+# Subtest: translated and rotated apparatus preserve the 0.20 N m torque
+ok 22 - translated and rotated apparatus preserve the 0.20 N m torque
+  ---
+  duration_ms: 0.208
+  type: 'test'
+  ...
+# Subtest: missing support, bad direction and non-finite geometry have no reading
+ok 23 - missing support, bad direction and non-finite geometry have no reading
+  ---
+  duration_ms: 0.1889
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.3 m: independent image distance and magnification
+ok 24 - f=0.10 m, u=0.3 m: independent image distance and magnification
+  ---
+  duration_ms: 1.6597
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.2 m: independent image distance and magnification
+ok 25 - f=0.10 m, u=0.2 m: independent image distance and magnification
+  ---
+  duration_ms: 0.2036
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.15 m: independent image distance and magnification
+ok 26 - f=0.10 m, u=0.15 m: independent image distance and magnification
+  ---
+  duration_ms: 0.0972
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.05 m: independent image distance and magnification
+ok 27 - f=0.10 m, u=0.05 m: independent image distance and magnification
+  ---
+  duration_ms: 0.0753
+  type: 'test'
+  ...
+# Subtest: at focus uses an explicit no-finite-image state and JSON nulls
+ok 28 - at focus uses an explicit no-finite-image state and JSON nulls
+  ---
+  duration_ms: 0.1763
+  type: 'test'
+  ...
+# Subtest: both sides near focus preserve image classification without clamping to focus
+ok 29 - both sides near focus preserve image classification without clamping to focus
+  ---
+  duration_ms: 0.1719
+  type: 'test'
+  ...
+# Subtest: rejects coincident object and invalid or non-finite parameters
+ok 30 - rejects coincident object and invalid or non-finite parameters
+  ---
+  duration_ms: 0.1979
+  type: 'test'
+  ...
+# Subtest: extreme finite inputs do not silently convert an overflowed ratio into a zero image
+ok 31 - extreme finite inputs do not silently convert an overflowed ratio into a zero image
+  ---
+  duration_ms: 0.1349
+  type: 'test'
+  ...
+# Subtest: projectile at 0.1 s matches independent position and velocity
+ok 32 - projectile at 0.1 s matches independent position and velocity
+  ---
+  duration_ms: 2.2393
+  type: 'test'
+  ...
+# Subtest: projectile at 0.2 s matches independent position and velocity
+ok 33 - projectile at 0.2 s matches independent position and velocity
+  ---
+  duration_ms: 0.3728
+  type: 'test'
+  ...
+# Subtest: projectile at 0.3 s matches independent position and velocity
+ok 34 - projectile at 0.3 s matches independent position and velocity
+  ---
+  duration_ms: 0.1827
+  type: 'test'
+  ...
+# Subtest: impact exactly at 0.5 s and range 1 m; a frame beyond impact is truncated
+ok 35 - impact exactly at 0.5 s and range 1 m; a frame beyond impact is truncated
+  ---
+  duration_ms: 0.3498
+  type: 'test'
+  ...
+# Subtest: zero horizontal speed permits free-fall control and translated ground
+ok 36 - zero horizontal speed permits free-fall control and translated ground
+  ---
+  duration_ms: 0.2303
+  type: 'test'
+  ...
+# Subtest: initial sample is at launch position with zero drop and round-trippable velocity
+ok 37 - initial sample is at launch position with zero drop and round-trippable velocity
+  ---
+  duration_ms: 0.1663
+  type: 'test'
+  ...
+# Subtest: launch copies its initial parameters; changing next launch does not rewrite old trajectory
+ok 38 - launch copies its initial parameters; changing next launch does not rewrite old trajectory
+  ---
+  duration_ms: 0.293
+  type: 'test'
+  ...
+# Subtest: 30 and 60 FPS schedules share analytic samples and the same impact event
+ok 39 - 30 and 60 FPS schedules share analytic samples and the same impact event
+  ---
+  duration_ms: 0.2528
+  type: 'test'
+  ...
+# Subtest: rejects invalid launch conditions, sampling times and numerical overflow
+ok 40 - rejects invalid launch conditions, sampling times and numerical overflow
+  ---
+  duration_ms: 1.4292
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0 kg distinguishes extension from total length
+ok 41 - spring benchmark mass=0 kg distinguishes extension from total length
+  ---
+  duration_ms: 2.7867
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.025 kg distinguishes extension from total length
+ok 42 - spring benchmark mass=0.025 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.2427
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.05 kg distinguishes extension from total length
+ok 43 - spring benchmark mass=0.05 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.2183
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.075 kg distinguishes extension from total length
+ok 44 - spring benchmark mass=0.075 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.2197
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.1 kg distinguishes extension from total length
+ok 45 - spring benchmark mass=0.1 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.206
+  type: 'test'
+  ...
+# Subtest: five calculated points have independently specified slope 20 N/m
+ok 46 - five calculated points have independently specified slope 20 N/m
+  ---
+  duration_ms: 0.4119
+  type: 'test'
+  ...
+# Subtest: tray mass counts toward load; unload returns to original length
+ok 47 - tray mass counts toward load; unload returns to original length
+  ---
+  duration_ms: 0.2795
+  type: 'test'
+  ...
+# Subtest: linear and rated boundaries are inclusive; overlimits return no extrapolated length
+ok 48 - linear and rated boundaries are inclusive; overlimits return no extrapolated length
+  ---
+  duration_ms: 0.3061
+  type: 'test'
+  ...
+# Subtest: missing support, transition, invalid stiffness and invalid mass prohibit readings
+ok 49 - missing support, transition, invalid stiffness and invalid mass prohibit readings
+  ---
+  duration_ms: 1.2279
+  type: 'test'
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 191.4122

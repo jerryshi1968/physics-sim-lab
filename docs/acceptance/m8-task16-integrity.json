@@ -1,0 +1,87 @@
+{
+  "baselineFiles": 203,
+  "unchangedFiles": 188,
+  "changedFiles": [
+    "src/app/App.tsx",
+    "src/equipment/registry.ts",
+    "src/styles/workbench.css",
+    "src/equipment/optical/simulate.ts",
+    "src/app/optical/OpticalGraphic.tsx",
+    "src/app/workbench/DocumentPreview.tsx",
+    "src/app/workbench/EquipmentLibrary.tsx",
+    "src/app/workbench/InspectorEditor.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "tests/e2e/library-tabs.spec.ts",
+    "tests/e2e/optical-bench.spec.ts",
+    "scripts/package-release.py",
+    "package.json",
+    "package-lock.json",
+    "README.md"
+  ],
+  "comments": {
+    "filesChecked": 195,
+    "commentChanges": []
+  },
+  "newlineChanges": [],
+  "lockedThirdPartyPackagesUnchanged": 189,
+  "electricalWorkerUnchanged": {
+    "path": "dist/assets/electrical.worker-CKbR7Qhs.js",
+    "bytes": 127661,
+    "sha256": "076AA99733C348AE23B50F49194FD159BE45120CDF0228D3923B05F3F756B787"
+  },
+  "frozenReleaseArchives": [
+    {
+      "path": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-source.zip",
+      "sha256": "A356AD49F598251182CED3C599DBC950BDBFBB782F9694D6A0C7A906F0F3F693",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-offline.zip",
+      "sha256": "713D875FD4A57B42883872256A6DCE5EB5447D5387E748C9A4B6B51EADDDF9EF",
+      "unchanged": true
+    }
+  ],
+  "build": [
+    {
+      "path": "dist/assets/electrical.worker-CKbR7Qhs.js",
+      "bytes": 127661,
+      "sha256": "076AA99733C348AE23B50F49194FD159BE45120CDF0228D3923B05F3F756B787"
+    },
+    {
+      "path": "dist/assets/index-BMOP5K2K.css",
+      "bytes": 28697,
+      "sha256": "685A4D80C8CEE6746A45E1701ABA75D8E7884B80E5ADC0FC9AFFD1B41F69F54E"
+    },
+    {
+      "path": "dist/assets/index-BS8jeDe4.js",
+      "bytes": 735583,
+      "sha256": "3323A6D98C4E224AFB257523DED82CE469A96DDFEDF8605C706DA5057E49555E"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 567,
+      "sha256": "7DC815D52A77C8AAFD940598CF15BBBE65DB077E3E2EF581CC423DE4770302A9"
+    },
+    {
+      "path": "dist/LICENSE",
+      "bytes": 11358,
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30"
+    },
+    {
+      "path": "dist/LICENSING.md",
+      "bytes": 1956,
+      "sha256": "A23B24D0E7A495B0B6079ED674043E216E9330AECD958D3372F40B7E960BD48A"
+    },
+    {
+      "path": "dist/NOTICE",
+      "bytes": 883,
+      "sha256": "AD4EA8F53313A57B9E3A9175EAABF9C7612F76C567CC73AE0129EDFCFBB1E7C4"
+    },
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "bytes": 106234,
+      "sha256": "ACAC10B57408F54940117D0790A9F9A5A5DEB2503DA03E3DA6BDF1FCCEE099C6"
+    }
+  ],
+  "ok": true
+}

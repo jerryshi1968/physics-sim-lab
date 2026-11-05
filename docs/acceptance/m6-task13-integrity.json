@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-05",
+  "baselineFiles": 181,
+  "unchangedFiles": 162,
+  "changed": [
+    "src/app/App.tsx",
+    "src/equipment/registry.ts",
+    "src/styles/workbench.css",
+    "src/equipment/mechanical/definitions.ts",
+    "src/equipment/mechanical/simulate.ts",
+    "src/core/measurements/charts.ts",
+    "src/core/measurements/csv.ts",
+    "src/core/measurements/fit.ts",
+    "src/core/measurements/records.ts",
+    "src/core/scene/schema.ts",
+    "src/core/scene/validate.ts",
+    "src/app/measurements/MeasurementPanel.tsx",
+    "src/app/mechanical/MechanicalGraphic.tsx",
+    "src/app/workbench/DocumentPreview.tsx",
+    "src/app/workbench/EquipmentLibrary.tsx",
+    "src/app/workbench/InspectorEditor.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "tests/core/lever-experiment.test.mjs",
+    "tests/e2e/lever-experiment.spec.ts"
+  ],
+  "added": [
+    "scripts/projectile-experiment-demo.mjs",
+    "src/app/projectile/ProjectileChart.tsx",
+    "src/app/projectile/ProjectileGraphic.tsx",
+    "src/app/projectile/ProjectileOverlay.tsx",
+    "src/app/projectile/ProjectilePanel.tsx",
+    "src/app/projectile/ProjectileRecords.tsx",
+    "src/app/projectile/ProjectileStart.tsx",
+    "src/app/projectile/useProjectileSimulation.ts",
+    "src/equipment/projectile/definitions.ts",
+    "src/equipment/projectile/measure.ts",
+    "src/equipment/projectile/simulate.ts",
+    "src/experiments/projectile.ts",
+    "tests/core/projectile-experiment.test.mjs",
+    "tests/e2e/projectile-experiment.spec.ts"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "F65B5409FEE1B72F642CB005E8E241686EA6A95821486CE47105324FE82EEA1E",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "B3A9D4079ACB76C129285F4BF1666E89C65E8C7C6CB470D19690C2A9D5F1512C",
+      "unchanged": true
+    }
+  ],
+  "originalPhysicsSamplesAndTestsUnchanged": true,
+  "newDependencies": false,
+  "newThirdPartyAssets": false,
+  "originalCssPrefixPreserved": true,
+  "runtimeNoticesUnchanged": true,
+  "workerBundleChangedBecauseSharedSnapshotSchemaExtended": true,
+  "strictUtf8Texts": 609,
+  "relativeMarkdownLinks": 758,
+  "brokenLinks": [],
+  "finalE2EStats": {
+    "startTime": "2026-11-05T03:06:18.079Z",
+    "duration": 210523.616,
+    "expected": 84,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalUnitTests": {
+    "pass": 297,
+    "fail": 0,
+    "skip": 0
+  },
+  "finalScreenshotReview": [
+    "graphs",
+    "assembly",
+    "invalid",
+    "touch"
+  ]
+}

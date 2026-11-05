@@ -1,0 +1,17 @@
+[
+  {
+    "path": "src/app/App.tsx",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "src/app/friction/useFrictionSimulation.ts",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "eslint.config.mjs",
+    "originalComments": 0,
+    "missing": []
+  }
+]

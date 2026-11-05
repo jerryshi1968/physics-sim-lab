@@ -1,0 +1,16 @@
+[WebServer] (node:11744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 2 workers
+
+(node:27500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\assembly.spec.ts:150:1 › keyboard/click alternative supports placement, property validation and wires sharing apparatus posts (2.3s)
+  ok 2 [chromium] › tests\e2e\optical-bench.spec.ts:105:1 › native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry (5.9s)
+  ok 3 [chromium] › tests\e2e\persistence.spec.ts:96:1 › one drag is one history transaction; undo/redo, cancelled drag, delete restoration and export agree (7.0s)
+  ok 4 [chromium] › tests\e2e\rheostat.spec.ts:93:1 › A-B remains fixed, C-D stays a conductor and the opposite lower terminal reverses adjustment (3.4s)
+  ok 5 [chromium] › tests\e2e\weight-chain.spec.ts:46:1 › occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available (6.3s)
+
+  5 passed (19.0s)

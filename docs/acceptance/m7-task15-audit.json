@@ -1,0 +1,127 @@
+{
+  "version": "0.1.0-rc.1",
+  "license": "Apache-2.0",
+  "author": "jerryshi1968",
+  "lockedPackages": 189,
+  "runtimePackages": [
+    {
+      "name": "matter-js",
+      "version": "0.20.0",
+      "source": "https://registry.npmjs.org/matter-js/-/matter-js-0.20.0.tgz",
+      "integrity": "sha512-iC9fYR7zVT3HppNnsFsp9XOoQdQN2tUyfaKg4CHLH8bN+j6GT4Gw7IH2rP0tflAebrHFw730RR3DkVSZRX8hwA==",
+      "license": "MIT",
+      "role": "application-runtime",
+      "filesCompared": 38,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/matter-js/LICENSE",
+          "sha256": "ED182087BE5B26734AA6D4789743DE3A97417950E8C1E3FF2E3D19C6462720D3"
+        }
+      ]
+    },
+    {
+      "name": "react",
+      "version": "19.3.1",
+      "source": "https://registry.npmjs.org/react/-/react-19.3.1.tgz",
+      "integrity": "sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==",
+      "license": "MIT",
+      "role": "application-runtime",
+      "filesCompared": 27,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/react/LICENSE",
+          "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+        }
+      ]
+    },
+    {
+      "name": "react-dom",
+      "version": "19.3.1",
+      "source": "https://registry.npmjs.org/react-dom/-/react-dom-19.3.1.tgz",
+      "integrity": "sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==",
+      "license": "MIT",
+      "role": "application-runtime",
+      "filesCompared": 43,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/react-dom/LICENSE",
+          "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+        }
+      ]
+    },
+    {
+      "name": "rolldown",
+      "version": "1.2.16",
+      "source": "https://registry.npmjs.org/rolldown/-/rolldown-1.2.16.tgz",
+      "integrity": "sha512-bWvlMpFKiTfDKfnK7FC2MPgPeWCf/Kpwsq49ApdW+FQaBZb6O6dZ4MAPbPUjp7hYQrw/RobqCzn64BRrQecGHw==",
+      "license": "MIT",
+      "role": "emitted-build-helper-provider",
+      "filesCompared": 54,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/rolldown/LICENSE",
+          "sha256": "23ECFFF35A5A2E80D92142F75228912C3B1ABC4B5A8337A821FF4397E2F9F734"
+        }
+      ]
+    },
+    {
+      "name": "scheduler",
+      "version": "0.28.0",
+      "source": "https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz",
+      "integrity": "sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==",
+      "license": "MIT",
+      "role": "application-runtime",
+      "filesCompared": 15,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/scheduler/LICENSE",
+          "sha256": "DA6D3703ED11CBE42BD212C725957C98DA23CBFF1998C05FA4B3D976D1A58E93"
+        }
+      ]
+    },
+    {
+      "name": "vite",
+      "version": "8.3.5",
+      "source": "https://registry.npmjs.org/vite/-/vite-8.3.5.tgz",
+      "integrity": "sha512-z1YpjieJ9g0ebTmQpLBv/oq9E3F9EIlOe+7LahW8SrE3LTiG3udBRUXQOlYXP9b+IC2q2phHeVxj9xGlw34OEQ==",
+      "license": "MIT",
+      "role": "emitted-build-helper-provider",
+      "filesCompared": 37,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/vite/LICENSE.md",
+          "sha256": "A22152BAA1AEF74402443008E767E7C689A524C0909D19B0431D97F5AB066A13"
+        }
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "4.6.7",
+      "source": "https://registry.npmjs.org/zod/-/zod-4.6.7.tgz",
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==",
+      "license": "MIT",
+      "role": "application-runtime",
+      "filesCompared": 840,
+      "modifiedFiles": 0,
+      "licenses": [
+        {
+          "path": "node_modules/zod/LICENSE",
+          "sha256": "3F1189B28E3866E0D979968D466B78F813F76827CFDCA1FBB124CC0A5C8841F8"
+        }
+      ]
+    }
+  ],
+  "runtimeCount": 5,
+  "emittedHelperProviders": 2,
+  "externalMediaOrFontsInProduct": [],
+  "credentialPatternFindings": [],
+  "environmentFilesExcluded": [],
+  "methodLimit": "Heuristic scan plus locked-archive and complete-license comparisons; not a guarantee against every possible secret or rights claim.",
+  "ok": true
+}

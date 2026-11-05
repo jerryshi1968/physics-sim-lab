@@ -1,0 +1,4 @@
+
+> cn-physics-lab@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.tools.json --noEmit
+

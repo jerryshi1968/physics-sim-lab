@@ -1,0 +1,209 @@
+{
+  "date": "2026-11-05",
+  "version": "0.1.0-rc.1",
+  "author": "jerryshi1968",
+  "license": "Apache-2.0",
+  "baselineProjectFiles": 791,
+  "unchangedProjectFiles": 780,
+  "changedExisting": [
+    ".gitignore",
+    "package-lock.json",
+    "package.json",
+    "README.md",
+    "docs/CHANGELOG.md",
+    "docs/PROGRESS.md",
+    "docs/THIRD_PARTY.md",
+    "docs/models/README.md",
+    "public/THIRD_PARTY_NOTICES.txt",
+    "scripts/dependency-inventory.mjs",
+    "scripts/m7-audit.mjs"
+  ],
+  "codeFilesBefore": 195,
+  "unchangedCodeFiles": 193,
+  "changedExistingCode": [
+    "scripts/dependency-inventory.mjs",
+    "scripts/m7-audit.mjs"
+  ],
+  "newCodeTools": [
+    "scripts/package-release.py",
+    "scripts/release-audit.py"
+  ],
+  "applicationAndTestsUnchanged": true,
+  "originalPhysicsUnchanged": true,
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    }
+  ],
+  "lockedDependencyEntriesUnchanged": 189,
+  "newDependencies": false,
+  "allOriginalFiveRuntimeNoticesRetained": true,
+  "emittedHelperProvidersAddedToNotices": [
+    "vite@8.3.5",
+    "rolldown@1.2.16"
+  ],
+  "buildFiles": [
+    {
+      "path": "dist/assets/electrical.worker-CKbR7Qhs.js",
+      "bytes": 127661,
+      "sha256": "076AA99733C348AE23B50F49194FD159BE45120CDF0228D3923B05F3F756B787"
+    },
+    {
+      "path": "dist/assets/index-BOc16lfK.js",
+      "bytes": 705650,
+      "sha256": "4BC9E1F720AEF17A13326B0B00C94030DD59CA11EDA691C44A466FE88D6AC1C4"
+    },
+    {
+      "path": "dist/assets/index-DjYLqZL-.css",
+      "bytes": 27482,
+      "sha256": "5E80A01C499BC5EB0060D166C8559FA73D981B06087465FDCB8F8D401381347A"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 567,
+      "sha256": "78174B450D932DDB487844E00E95DA450EF930934F38C2AD8707D47CF7F24641"
+    },
+    {
+      "path": "dist/LICENSE",
+      "bytes": 11358,
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30"
+    },
+    {
+      "path": "dist/LICENSING.md",
+      "bytes": 1956,
+      "sha256": "A23B24D0E7A495B0B6079ED674043E216E9330AECD958D3372F40B7E960BD48A"
+    },
+    {
+      "path": "dist/NOTICE",
+      "bytes": 883,
+      "sha256": "AD4EA8F53313A57B9E3A9175EAABF9C7612F76C567CC73AE0129EDFCFBB1E7C4"
+    },
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "bytes": 106234,
+      "sha256": "ACAC10B57408F54940117D0790A9F9A5A5DEB2503DA03E3DA6BDF1FCCEE099C6"
+    }
+  ],
+  "browserChecks": {
+    "edge": {
+      "startTime": "2026-11-05T07:12:00.697Z",
+      "duration": 213530.748,
+      "expected": 86,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chrome": {
+      "startTime": "2026-11-05T07:16:19.461Z",
+      "duration": 207374.665,
+      "expected": 86,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "unitTests": {
+    "pass": 302,
+    "fail": 0,
+    "skip": 0
+  },
+  "sourceRebuild": {
+    "ok": true,
+    "install": "npm ci --ignore-scripts --prefer-offline (164 packages)",
+    "tests": {
+      "pass": 302,
+      "fail": 0,
+      "skip": 0
+    },
+    "allBuildFilesIdentical": true,
+    "files": [
+      {
+        "path": "dist/assets/electrical.worker-CKbR7Qhs.js",
+        "sha256": "076AA99733C348AE23B50F49194FD159BE45120CDF0228D3923B05F3F756B787",
+        "bytes": 127661
+      },
+      {
+        "path": "dist/assets/index-BOc16lfK.js",
+        "sha256": "4BC9E1F720AEF17A13326B0B00C94030DD59CA11EDA691C44A466FE88D6AC1C4",
+        "bytes": 705650
+      },
+      {
+        "path": "dist/assets/index-DjYLqZL-.css",
+        "sha256": "5E80A01C499BC5EB0060D166C8559FA73D981B06087465FDCB8F8D401381347A",
+        "bytes": 27482
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "78174B450D932DDB487844E00E95DA450EF930934F38C2AD8707D47CF7F24641",
+        "bytes": 567
+      },
+      {
+        "path": "dist/LICENSE",
+        "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+        "bytes": 11358
+      },
+      {
+        "path": "dist/LICENSING.md",
+        "sha256": "A23B24D0E7A495B0B6079ED674043E216E9330AECD958D3372F40B7E960BD48A",
+        "bytes": 1956
+      },
+      {
+        "path": "dist/NOTICE",
+        "sha256": "AD4EA8F53313A57B9E3A9175EAABF9C7612F76C567CC73AE0129EDFCFBB1E7C4",
+        "bytes": 883
+      },
+      {
+        "path": "dist/THIRD_PARTY_NOTICES.txt",
+        "sha256": "ACAC10B57408F54940117D0790A9F9A5A5DEB2503DA03E3DA6BDF1FCCEE099C6",
+        "bytes": 106234
+      }
+    ],
+    "nodeModulesNotShipped": true,
+    "finalApplicationAndTestsStillIdentical": true,
+    "applicationAndTestFilesCompared": 181
+  },
+  "packages": {
+    "ok": true,
+    "deterministicAcrossTwoRuns": true,
+    "archives": [
+      {
+        "kind": "source",
+        "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-source.zip",
+        "sha256": "A356AD49F598251182CED3C599DBC950BDBFBB782F9694D6A0C7A906F0F3F693",
+        "bytes": 669867,
+        "files": 275,
+        "codeFilesByteIdentical": 197,
+        "crc": true,
+        "allFileHashes": true,
+        "relativeMarkdownLinksValid": true,
+        "brokenLinks": [],
+        "extracted": "artifacts/release-0.1.0-rc.1/verify-final-source/cn-physics-lab-0.1.0-rc.1-source"
+      },
+      {
+        "kind": "offline",
+        "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-offline.zip",
+        "sha256": "713D875FD4A57B42883872256A6DCE5EB5447D5387E748C9A4B6B51EADDDF9EF",
+        "bytes": 295699,
+        "files": 19,
+        "codeFilesByteIdentical": 1,
+        "crc": true,
+        "allFileHashes": true,
+        "relativeMarkdownLinksValid": true,
+        "brokenLinks": [],
+        "extracted": "artifacts/release-0.1.0-rc.1/verify-final-offline/cn-physics-lab-0.1.0-rc.1-offline"
+      }
+    ],
+    "noRemoteActions": true
+  },
+  "noRemotePublish": true,
+  "strictUtf8Texts": 709,
+  "relativeMarkdownLinks": 914,
+  "brokenLinks": []
+}

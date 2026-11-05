@@ -1,0 +1,3166 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "35DEDDA7DBCBECE913AD25E19833954032E872935B6B888370090A03C641C26B"
+  },
+  {
+    "path": "AGENTS.md",
+    "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E"
+  },
+  {
+    "path": "eslint.config.mjs",
+    "sha256": "024047FE6A9834C99E22FF37EB37EE509A7B7A8455C088F8BE88B84E9985CAF0"
+  },
+  {
+    "path": "index.html",
+    "sha256": "0988B170C8B22647BD2D9771FFFB7C6990C9E9716FE611B0E2C3115A8D94C7CE"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "B3A9D4079ACB76C129285F4BF1666E89C65E8C7C6CB470D19690C2A9D5F1512C"
+  },
+  {
+    "path": "package.json",
+    "sha256": "F65B5409FEE1B72F642CB005E8E241686EA6A95821486CE47105324FE82EEA1E"
+  },
+  {
+    "path": "playwright.config.ts",
+    "sha256": "4275691699A141B9D70893D69328481E0D6028646907A6BAAE56E20510B78FD6"
+  },
+  {
+    "path": "README.md",
+    "sha256": "D525107F99546DD3BC0D3C715FCAC3050E7460A71FCD4E467FFC39D935C128F5"
+  },
+  {
+    "path": "tsconfig.app.json",
+    "sha256": "FB8CBB9FCC9E0F8414AF39AAFE7157983D74FE83944A857F2B05716F4820BB85"
+  },
+  {
+    "path": "tsconfig.json",
+    "sha256": "F333528E1900C90ECBF85616DB254724DB0C4282C342D0A5FEB14FE77C7F4F49"
+  },
+  {
+    "path": "tsconfig.tools.json",
+    "sha256": "FB6746200E7F7D17F0D6B5EEB9466BAAAD65A2910BB425D811A9B93BD6940B88"
+  },
+  {
+    "path": "vite.config.ts",
+    "sha256": "896F83818404D0374A975072C3EBD6153AEFCED5C6F56164DAB49D5F744BDD0F"
+  },
+  {
+    "path": "docs/CHANGELOG.md",
+    "sha256": "488DBBC566E1732209344BE53E0268571E104D8ED16BEC90F64C31386BD41FC2"
+  },
+  {
+    "path": "docs/implementation-plan.md",
+    "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD"
+  },
+  {
+    "path": "docs/OFFLINE.md",
+    "sha256": "6675519E4E0B83F3FAECD1C44CA7E2121798528F28FDCDA15B5E7A08C809CBDF"
+  },
+  {
+    "path": "docs/PROGRESS.md",
+    "sha256": "110B72B0C1DF17863709F5B4CB3A601691FA385008DCF78594EA0E7F30763E70"
+  },
+  {
+    "path": "docs/THIRD_PARTY.md",
+    "sha256": "37AD68FB4A98DB86DD1303B6045E59971CBDC915A613453782F8206E28FA9619"
+  },
+  {
+    "path": "docs/acceptance/BASELINE.md",
+    "sha256": "74B30DCA7B5DE7E56AFD8A367457D5C59DC58C873009BBDE098F1213159E2241"
+  },
+  {
+    "path": "docs/acceptance/m0-task01-samples.json",
+    "sha256": "7A619E54515AE13A5CCBF789AECB8FA0009CC326BA4BC1EB20434C7CDD94C171"
+  },
+  {
+    "path": "docs/acceptance/m0-task01-tests.tap",
+    "sha256": "43F08FB4CD68AF1FED71B895744605823FE44F9F889C1965152B2D64A82ECEAF"
+  },
+  {
+    "path": "docs/acceptance/m0-task01-typecheck.txt",
+    "sha256": "8756C0F63F088C107C0BFF88D4A9497DE0BEA188593C097D38F933F988F5A2EB"
+  },
+  {
+    "path": "docs/acceptance/M0-TASK01.md",
+    "sha256": "4F3EAD903ABD05DCFB00DC7732EFD092FEF30BD7FDD83524F8B1D8F7887D95A8"
+  },
+  {
+    "path": "docs/acceptance/m1-battery-voltage-e2e.json",
+    "sha256": "AB0B150482F81E9ED0A970135FD4B4378D2853F678C0F1CDD334F37CAFFA2DD4"
+  },
+  {
+    "path": "docs/acceptance/m1-battery-voltage.png",
+    "sha256": "A01FE303989ED7B08965BED4536FA07ACA0AD76ABD3589D65D35188D30DB3A4D"
+  },
+  {
+    "path": "docs/acceptance/m1-delete-confirmation.png",
+    "sha256": "0C77B587506F0AF5DAF3972F51895596757F793D0EB6081984293E033BEB4D62"
+  },
+  {
+    "path": "docs/acceptance/m1-delete-save-e2e.json",
+    "sha256": "876DA43432C48E8615AF3A5A869E387D0DE9B279A2AEF46085726E78A69B0EA8"
+  },
+  {
+    "path": "docs/acceptance/m1-delete-save-e2e.txt",
+    "sha256": "7E30C6E74F71F521F88BC15D30BA11F72D3745CE815EBFCF1221A5398D8A5E29"
+  },
+  {
+    "path": "docs/acceptance/M1-DELETE-SAVE.md",
+    "sha256": "F35DFB859065CF841158E5A9DB3B21D78C4421D915BD66D1A6C10437F74A6F9B"
+  },
+  {
+    "path": "docs/acceptance/m1-multi-save-e2e.json",
+    "sha256": "3EE403CD3038DA418C6131F4056BE71741C1C336564A7060C73117D8BE86257D"
+  },
+  {
+    "path": "docs/acceptance/m1-multi-save-e2e.txt",
+    "sha256": "F3F87648A844926F2E3C645226C9AB9D61CD6B3B86EABE16F960E06389B6E616"
+  },
+  {
+    "path": "docs/acceptance/M1-MULTI-SAVE.md",
+    "sha256": "58445947C90317304BAC6FD47AB4BDBFD10A18E6CCD5EBD0784AA7EBA154FD21"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-before.json",
+    "sha256": "A3A1E2C7AFD20ABEF6DF253933520C53C5543FA1755612B1CB1F3D879CF0D65F"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-build-manifest.json",
+    "sha256": "FCDCB36B334D223D6A292FAC8EF06B8439BB64119697C447EEED2B876F2622A4"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-circuit.png",
+    "sha256": "4437E77D7323B5BCD7467E63C02F9B561DA6782EB6BC3E863CBCBD6E15E75B9B"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-e2e.json",
+    "sha256": "5AF1C03E2F3EFB706B2862F7ABB5E4C954635656D4ED579F37C91444FC6AA3E3"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-e2e.txt",
+    "sha256": "5A4502FA2A308D2791E955FD607163656037A4CA379F9EEB317015FD3CED896C"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-narrow.png",
+    "sha256": "79196DC35DE0F960FE667ADC814B1E2EDB6F2CAB0A240D51103FF462F4B28989"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-tests.tap",
+    "sha256": "7180A57C89DAD7028FB80C9297A6531992B5B2B3B76DD1C1C857A0D86B42F704"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-touch.png",
+    "sha256": "6F32F6D67FCB994877A74D4C6668C1A28EC01E34A47711B8345095A7F76871DF"
+  },
+  {
+    "path": "docs/acceptance/m1-realistic-wire.png",
+    "sha256": "01FE73583C564D796027991D1BF2AF26CD9015746C93C1E750852B7121944FF4"
+  },
+  {
+    "path": "docs/acceptance/M1-REALISTIC-WIRES.md",
+    "sha256": "D9A3E8E45944EA39B4C7CDCF470E99939D089F0DBDE4EFA0AE92ACFC0DFA6225"
+  },
+  {
+    "path": "docs/acceptance/m1-rename-e2e.json",
+    "sha256": "8B910D4AAE6D4633A4A663E4D4D3B968200F593E6D285632F9B667904C0E11D3"
+  },
+  {
+    "path": "docs/acceptance/m1-rename-e2e.txt",
+    "sha256": "C7EFB85F0C07DB81E1B0EEF47023006BB581B726236F5BFB42F07972CE681963"
+  },
+  {
+    "path": "docs/acceptance/m1-rename-tests.tap",
+    "sha256": "4BFB4C975B3E02CA45E9682E06B22F1C353359FF272194CAC5F3EB38A211052A"
+  },
+  {
+    "path": "docs/acceptance/m1-renamed-experiment.png",
+    "sha256": "1851A8F0C285CA112FEAECF9449798EEDA7125EDD2DE77BB4A89F1542969BF8B"
+  },
+  {
+    "path": "docs/acceptance/m1-saved-experiments.png",
+    "sha256": "B0CA966156D4B8380B37BCB7F63D3DC33C5BFD41F826E8A1B1AE1037F1796C54"
+  },
+  {
+    "path": "docs/acceptance/m1-single-cell-battery.png",
+    "sha256": "5AA64C641AA1ADEE3E02E8E8D4E3CA086B1232106EFF2BF06C78569809B41F2A"
+  },
+  {
+    "path": "docs/acceptance/m1-single-cell-e2e.json",
+    "sha256": "EF7331C69683BFD034AF7955CE6E8C1EA90D617FFC1ED0B7B613857A9B3B9B51"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-build-manifest.json",
+    "sha256": "B501878847184E998EA5C10E28FF6FB7399BDEC53EA25F99640D17020DB5401F"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-build.txt",
+    "sha256": "EE4598F496E88CDF1A5BB8BA7E8BCC9F7D842A3135CD53DC603442ACA54693AC"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-desktop.png",
+    "sha256": "E797CA7BBE4C613D82A4AA712B24B3A56BF4E229B88008E44F6CAED0285EFBC8"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-e2e.json",
+    "sha256": "C383A3DB9D6F1B8D56D3AA9333497B5DA15D44573AF47AF03ACAEB5A681AAD49"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-e2e.txt",
+    "sha256": "B269D52AD7BC616E3A5CC3704269419B38E5B0EEC350EF5104DE40BA165962BE"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-large.png",
+    "sha256": "5FA27ED68EAE35CA3F7E74D85E9987EC9D2C271DD7FAF4EFDA2E838BAA9732F1"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-narrow.png",
+    "sha256": "FDA6497E25D9E9154BDCC7C9408BF326AD203E638CFC529A69D82F21419BC900"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-tests.tap",
+    "sha256": "F9F345F23F1702366C7B4F0109077D1653DF8A0B0780AE3A90A633417BB55D86"
+  },
+  {
+    "path": "docs/acceptance/m1-task02-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M1-TASK02.md",
+    "sha256": "81ED4680FB96553AB8594C0109A4723C5BF5AA277E063D2237C0F70E1478B6F1"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-before.json",
+    "sha256": "E73DDF41C047ADE6D4B869E2A16237BE1A7DA53B9EFA460B193368379F8A0F08"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-build-manifest.json",
+    "sha256": "BA00AB83596468C751C65F3C23504732432A026B349EB5D871153EBC85D5B134"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-circuit.png",
+    "sha256": "2E5DDBBA905F07EDA0C22551A4B02ED5418667E2544AA99011983418672213EA"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-e2e.json",
+    "sha256": "F095F226287AD99959601147507060E9D30B1E58B223BE092C42C4AA202B9210"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-narrow.png",
+    "sha256": "C75209CF37324F6F4A72B5E0C6822A6DFE5F23D0F92D3DC465277BE256C21DE5"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-tests.tap",
+    "sha256": "5A1A9F24DDFD79AC23B481B568E9ACD67111191F042712C627D17869B56F1E4C"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-touch.png",
+    "sha256": "59236B508632E7184FF3D9A98D8ACC97FF1C80B3F09E2B400CFBC200349A2D66"
+  },
+  {
+    "path": "docs/acceptance/m1-task03-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M1-TASK03.md",
+    "sha256": "E121B74D1F81D1B9A775625DF0A8A782FAA41085895CD7466E82802D22AAFE33"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-before.json",
+    "sha256": "B45DF8A18E28BA24D9DA11A598A074C32C2E82EDF049701E9792FCB9905C212B"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-build-manifest.json",
+    "sha256": "756FA1884F81BC570D32ECB4C8D96FC35DD8DE7640291B40920943A84F739149"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-build.txt",
+    "sha256": "444A9CE7D8707234A9543FF028644592F91BAE144B794180140EB79728C593C0"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-e2e.json",
+    "sha256": "D1539E732E6394C0C9ACFC83D4251D4C28D9D2CAF2581810B3E5957E18C99E50"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-e2e.txt",
+    "sha256": "A6561270086F6DCFB94D3A6C2C1BFAD65CBB170CFA60028A26D53ADEC98EDA3E"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-import-narrow.png",
+    "sha256": "D984AA363456547617E4439D253B86C685F0A70ECE5D905EDD01A79168C6FB6C"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-narrow.png",
+    "sha256": "337D0C5A9398129970A5AFEFCAA6AE97C6C11EECCAE664E442B8532E97E60B27"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-saved.png",
+    "sha256": "910EE98CE98719BC602C72779C3F26CFB198F1BE2920BF363B1F7962FBC05B07"
+  },
+  {
+    "path": "docs/acceptance/m1-task04-tests.tap",
+    "sha256": "46543F32CC4EB8EBBDB6A2FC22F784425C2B8137E097FE74FEA038BB337C3C6D"
+  },
+  {
+    "path": "docs/acceptance/M1-TASK04.md",
+    "sha256": "777D039A13A9079F8DF7306C443A56098334E6CB84F9440CAF907A97BF3417F9"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-before.json",
+    "sha256": "15A4F046387F74F208986A8412F72160B921459EFABB41AB512333C8DA0859C7"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-build-manifest.json",
+    "sha256": "A8D063409BE7057335D5369641AA98BC1A5D9C14A8B1C65A5AA998E4B565BDBD"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-build.txt",
+    "sha256": "B6CB7615B9C6D82DA7377F8A8C89A0786699AA2A3B596BF15970E575A5CD0B40"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-e2e.json",
+    "sha256": "6DFC0ED2E556C433C409FB828A64E9EB7FC5196D52458FC75BA99D5E3A6977A1"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-e2e.txt",
+    "sha256": "C256C145E505BD36FF350F9F2925C810F3BFBFE4742F139092A81A12ED5B57C7"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-integrity.json",
+    "sha256": "EDB3F6B13994B9AB41708C425759B91240E786451816E275E1CF2F85CD536B0E"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-series.png",
+    "sha256": "67BD60AACEF8889590006BF9C5A3D20D46A68274BC80367A58EE61EDA53CB528"
+  },
+  {
+    "path": "docs/acceptance/m2-auto-update-touch.png",
+    "sha256": "73BAC9DA61AFBB7C04B67A1B91CA32C0C55528A0C671D7F95DAA24E35679EC5A"
+  },
+  {
+    "path": "docs/acceptance/M2-AUTO-UPDATE.md",
+    "sha256": "04D9910EFDE577894911AE415DC229137F574C2B0101D114061B8DE43D79AE38"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-before.json",
+    "sha256": "4464FE6901D36764A4C76F6BD5DF101962A067630B3B214579E3D617139452EC"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-build-manifest.json",
+    "sha256": "D3ABD886F5C6B6D23849A859972A4C76BBEC7F885D374D02926DE0E30C114A37"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-build.txt",
+    "sha256": "35EFC769C43878533EEFF1C10906CAA21D4765FB46A66BA3F434E333BB1689CE"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-comparison.png",
+    "sha256": "B8EC3EF0F9C71F5CB2CED91BCC9DD05E53746086431E0B365051D7E4F5D87A8E"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-e2e.json",
+    "sha256": "66A8934D063B734D8934BBE02AB9C149208D507886FF850E4C94A1233D0DBEAC"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-e2e.txt",
+    "sha256": "8DC7ED8298B89683A17A3BFE02F89798321557B5D7EFC5801A4B3D478FA7A031"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-integrity.json",
+    "sha256": "FEC5C0D9A8378B2C75E090F50E37467F6803391823C2FEFFBC9F6E860354A8AB"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-tests.txt",
+    "sha256": "351587E20B5FA3428BC9B9015BFDE67560E45A3330C6A373456C640EEEC1FB6B"
+  },
+  {
+    "path": "docs/acceptance/m2-lamp-brightness-touch.png",
+    "sha256": "FE6D1AF7D83C1DA92940729B4CE831D982E867D8D6888ABBF05DA387F8E759B8"
+  },
+  {
+    "path": "docs/acceptance/M2-LAMP-BRIGHTNESS.md",
+    "sha256": "AECBCCC22FF960E4ABBB78D21BF15616C8C2CC585777214788BAF769DB87ED6D"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-before.json",
+    "sha256": "98863673F668F1298C7A4256084E4B3502FFB4D1CE4DE9E51BB206F8B6EB3CD3"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-build-manifest.json",
+    "sha256": "4F1B988DC82EAEBDB0D56A6DE6BABADD42EC22B29C3488F02D1778D313215C80"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-build.txt",
+    "sha256": "AF28B6F7FB4F66C44E402314A4BCDFEF7AE1BD6A017E0683527FC32269026735"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-e2e.json",
+    "sha256": "523587CBC70CB0B16AF37319B8E72E50227F40FD6B3E2BA32C93529D17A5443A"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-e2e.txt",
+    "sha256": "577AA90CE7EE899DD2A14A8278934E327B7E2D699BB2EF70B47EFAC5292CCD80"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-integrity.json",
+    "sha256": "C010192ABA6D46E2569EEAD612F45DD95A7C539AC24AD41F7BFE933B72A3AC6B"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/M2-METER-SCALES.md",
+    "sha256": "831A644806089B21468B9F75EC7BC86CAEF0DB2406D8DC9651F5D9F0AE9FD6F9"
+  },
+  {
+    "path": "docs/acceptance/m2-meter-scales.png",
+    "sha256": "412338FEDD91450FF4D661C470B2C17DDFC5961FE5F20AF88D296E2A74775795"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-before.json",
+    "sha256": "5F3B8E17B2C5503349C8B10C3C40AE1C4077368FC02BC8767882D54026AF1635"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-build-manifest.json",
+    "sha256": "44A555F8BF3B83E78FD3A1C625CFAB3E0493A6391442F6755DBF970663B7003D"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-build.txt",
+    "sha256": "4DA4BF51712459DA3C38D9821340DAA574711D1E56001D08FC4218D477FB8226"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-e2e.json",
+    "sha256": "C415251932FD022688F52F41898F4CD566697A2C061E28BFEB2B85CC0F9D47F4"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-e2e.txt",
+    "sha256": "99FC5F5842BCED1D36B148B50F85B76C51F1344919551DCCE5D70E9113227880"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-integrity.json",
+    "sha256": "D00F3CF2270C24286544E1997ACB98968ED4C98117E249CF6D624C6F4D64F4E1"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-multiple.png",
+    "sha256": "6A3558819BFB4EDE9410D1789D68F5D926782AF12E08DD9F593140F07FB5C9E9"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-retained.png",
+    "sha256": "23E3E25FA631F069CF7DD24546ABABBA6B9A29125F79DA377CD2402EA32CE2EB"
+  },
+  {
+    "path": "docs/acceptance/m2-selection-delete-tests.txt",
+    "sha256": "8D1BEDC6665C6276AD39EAE4D0A6667A9F97DD2A7376E6B427CE3E3B1401AE4F"
+  },
+  {
+    "path": "docs/acceptance/M2-SELECTION-DELETE.md",
+    "sha256": "78C3BFCEEA2AF02A53946337A4D9E7ADB862A0C0A94536EDA4EC07A9FB395F7E"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-before.json",
+    "sha256": "4331F6F17D003FE73B37909F854C2D88E60CE08E3F2E4ABCD9196DCFF40AD5F7"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-build-manifest.json",
+    "sha256": "F4D9E2A2FBE694F75D500CB139457F507C3BF8A1D79904FF7444572C0006A490"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-build.txt",
+    "sha256": "07E7FF0807D90DB6060507966DDB509F9ECE5D0FBD1E62CE334FE421C77DC497"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-demo.json",
+    "sha256": "F564F367EB5D8E998F60851BC50CA8EEE7C82D9DDB7E1C4F7AB1099505EDD59D"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m2-task05-tests.tap",
+    "sha256": "96C32A18D05FEC468F6775591930CCACAFEEB5DD67C9AD8219A69D423DA25363"
+  },
+  {
+    "path": "docs/acceptance/M2-TASK05.md",
+    "sha256": "14BCB0F87D773AE49B605FA4C7603BBE96DF3C43F0F7163457B9231B63DF8E04"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-before.json",
+    "sha256": "CE8F0FD91462302BA0432696CB860BA0D0B72EF95420107F7A75C6E9BB1183F7"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-build-manifest.json",
+    "sha256": "D8351670C4946E4F879BE5F20E4C47BD429D669E221F6927EF7DD375173814B5"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-build.txt",
+    "sha256": "26D388B5F241BB416FC4E419CA7AF49AEDA15DB4840B0FFD816D6F5645A7FF90"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-demo.json",
+    "sha256": "8AFEB2DA4993141E316DABE125C096982D33538A2EBBAFE55A81F9C6562EBDCC"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-dev-error.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-dev.txt",
+    "sha256": "4143E20321DB157F8A1E45911B19D827EC48C6326DD2186AC363934FEC7BC39B"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-e2e.json",
+    "sha256": "687C6515C113EB9229E128636AD4D37E8FF27135CC18DB9FFA5DD855423BED6A"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-e2e.txt",
+    "sha256": "8A2DD262685E8B8FF656B6C6FD6CE97DD3037719F2B39D51F803AC25FA23DAD6"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-electrical-e2e.txt",
+    "sha256": "D95210D3F71227E918755C2502FAAC585A6930EF80C01A6CB231417A3B229E58"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-first-e2e.txt",
+    "sha256": "4D120A01AA9053FAAE24BC0B749B4127925AB17F59BCBD25846DDF9EF5D239AE"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-integrity.json",
+    "sha256": "BF4FB7AB06EF1414EE23BFEBFFD38F317D232D413C13822C6DAD0BCBA8BD2012"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-narrow.png",
+    "sha256": "9DCF5314724DB74875727FE39099DC9F956736E7312D5017FD5C6286FCA51015"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-render-debug.txt",
+    "sha256": "C00212E2C3F45890BF47CD6AF0065F44BEE8EDC58CA19866EC1FD8E429221D4A"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-series.png",
+    "sha256": "D396A8969D54DAFC8C6C3CA140F394FAA0D07CF7C1B589F971478B1613021F4E"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-tests.tap",
+    "sha256": "F86F452F9E8D58A9143EC54D30D36C29277C4110E1F78508A84D85744E1D75B6"
+  },
+  {
+    "path": "docs/acceptance/m2-task06-touch.png",
+    "sha256": "CCF5B4B7D9A364F0C7852E6BA7773722251FCC8E0119CA361ABB9E664A4CE611"
+  },
+  {
+    "path": "docs/acceptance/M2-TASK06.md",
+    "sha256": "5CC7003516E7ECFE5FCA5EE2DD1728B92C200CF1A5F61DEFC89CFDAF9C61BBCA"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-before.json",
+    "sha256": "714DBFCC3789A837CF6F77C9389C59BE11530DB6913CB8B1766CCEBD510CCBA5"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-build-manifest.json",
+    "sha256": "1B7183F4FD8853B7BE33055FB69C7EA367CCBC1C4701A7F8B1207F42B831CC2C"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-build.txt",
+    "sha256": "3C1710AB6BBE1A89952B08FD1C17F938DFBCB5F5D6A519EEE23150B1666464CA"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-demo.json",
+    "sha256": "C98B9BD1F7C2D941CF88BB85F40B679E31664763A72E1148C2E556A15356584B"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-dev-stderr.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-dev-stdout.txt",
+    "sha256": "CF373EF20B5C99481CF4AEF9FB84C06D2D2AD54B44FEDB883475C50CC875D6CA"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-dev.txt",
+    "sha256": "E64E2263EAD2E8AD4442C687C3AE818CB51769FDC10FE31840A2838BDB12370F"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-e2e-first-run.json",
+    "sha256": "B1E72A3AAF7216EEE02CB79A3AED1C1850CD8658D5FA27167B25249643D86CAF"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-e2e-first-run.txt",
+    "sha256": "914B5404A8464DC63F924325876816162A434FC8AB509BA7F0DF87EFFE5D9129"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-e2e.json",
+    "sha256": "3A81660369A48A645F81F6ABD55947453FFA86992F3967F891B8A90B01C9CBE8"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-e2e.txt",
+    "sha256": "92E1666B2395E8B73C8AB21E79C6CD305EC18673DB8517D5C22795F2A9039C73"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-four-posts.png",
+    "sha256": "5F7AF8ED34430973B049C9718FAA0FC42AE5BB3DB238E664B12513EF062C786A"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-integrity.json",
+    "sha256": "38AC45BB1F8D6B07E082438D7FA7B10FE0C2FF39B6E9CFBBA472C754CB63E342"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-lamp-and-record.png",
+    "sha256": "8DD9FE0F30E4036A6F5A96295B6831D548E460CF537A47F05BC14C6B4BB85B9D"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-tests.txt",
+    "sha256": "70419DC6BD4938F9E1F7F711EC2C873B79EC548F089876B44D8F7BCEFFCCEDE4"
+  },
+  {
+    "path": "docs/acceptance/m3-rheostat-touch-rotated.png",
+    "sha256": "81894FC426D7F5B53331B4197F9C91E9A55BCA64BF7430447A22691D2F29F215"
+  },
+  {
+    "path": "docs/acceptance/M3-RHEOSTAT.md",
+    "sha256": "4177F57EF2E1D6FA54B355855F3AA46DEE56F0B952C9996225D0C8A20372FD95"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-before.json",
+    "sha256": "11A8D8BD9D5DCB808718DFA26E3EB40DBE4797F3F0A0E7453ACEC70691E0AD43"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-build-manifest.json",
+    "sha256": "52ACD5CF9A32E0D806FFF3196B3BD83AA1B4D4562A792B607B9C48F77C7B4015"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-build.txt",
+    "sha256": "2737D5D7F0DA425AC3574CD493C9DAE75E2D238AA41962402BCC1D748D2C18A5"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-chart.png",
+    "sha256": "C16781B6B40B08EBB5B1DE14E0987AEEC5E292062A64B2FB062FAED2ADA9E704"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-demo.csv",
+    "sha256": "C5BB7CA27916C7055ED370D463FAFA44E5EA78DD4873AB35B56AC8079EC1976B"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-demo.json",
+    "sha256": "DB99FB711492B2ED58F84295008BF8144A3065983F285777DA1C2F539255DFBD"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-dev-error.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-dev.txt",
+    "sha256": "07A9238B50159D558B2BDEFF1ECFACDDA6AD0B8C28F875CF5CEC36D0917280EB"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-e2e.json",
+    "sha256": "1B72E872FA86A7717B82318048E6DF608B5CB8BCD24BF0D40CFC8D0868FEFAD7"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-e2e.txt",
+    "sha256": "8D4AA9D232CE755E6A330B245B921ECDD6C7D4314CE34C6803BD103A3DC16BCF"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-first-e2e.txt",
+    "sha256": "6A81CA0F77038D07B086DE047F90E1AEFA324B7EAD6B912AD3F338B45BCB182B"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-first-tests.txt",
+    "sha256": "38814FA00739D65B1AC8C9BC8A819FAD6766408FC9A410174D8BEE3BB883BCF4"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-integrity.json",
+    "sha256": "B2E100F675E136C0A7BC10AD9716BA966232A7803E88C0A23D23E0FDF7C56538"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-manual.png",
+    "sha256": "E8A143F4EB5DBD5030F1005D6EFC47908B4B78B57F98C08ECEE858F7EFDCE82E"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-table.png",
+    "sha256": "2EB306FB5A21CE3D0EF56899A5F1F6EC17396C7B8F12C0CA30E3A0333DFA16D8"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-tests.txt",
+    "sha256": "B977A2DE8B115026ECE4BC0F6B24DE76B1F3D75CF849A2A90A24FF192F232674"
+  },
+  {
+    "path": "docs/acceptance/m3-task07-touch.png",
+    "sha256": "CE988254E28ADD1FDFF157CD9C79DD802CA3DB2D6963689B9B8679EAFECF9401"
+  },
+  {
+    "path": "docs/acceptance/M3-TASK07.md",
+    "sha256": "CF121271770C0BEC287D2492C4082A6170417636EAE58F6F5D0AFD6F7087ABB9"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-before.json",
+    "sha256": "D80B52EC654F7E46A301772AB1FA915FAD1E45ABAC2327DC3D566B8FFD53822E"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-build-manifest.json",
+    "sha256": "F4A0BEA8CE72072CE3FB77028A689F3370057727C85823C0562B216831221AB0"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-build.txt",
+    "sha256": "2CE22BC13D8C552BFFC43FE58241158176B63DE641B0C56D607A45C0B41D87AD"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-demo.json",
+    "sha256": "1FC8135ADD16C3FB7742C19A57E9E47B3D8887D11CF38A4B840593BAC87D9CEB"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-dev-first-stdout.txt",
+    "sha256": "167C8C1D71E2F1C976D6A12B3FA31BB2ED1621C31388E4B1AA07E55DE8D142E8"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-dev-stderr.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-dev-stdout.txt",
+    "sha256": "24622A2FDD4646DBCDAE92FF62263C7593E23D0510DE19411B11E77C7EB5CEFB"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-dev.txt",
+    "sha256": "A2F48CA8D1359449EC684D382F46E33938021F563C3D60314298ED082474051E"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-e2e.json",
+    "sha256": "3CE70DB574285A36C464D21CC9B47FB238B08C8DB43CC8B564B4426228D0FB72"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-e2e.txt",
+    "sha256": "F7FB5E0FCD5D8DC33D1D247E060906BE04EEDE59E2F61111533BC1EF723B2868"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-first-e2e.json",
+    "sha256": "E3D272948566F555B54E4951F66B8D28F7C409CFBCC50C156265353CD16AFC05"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-first-e2e.txt",
+    "sha256": "09F8A0CED8BAE8141FA36DB45EE2EFDDAB695CA961FD9AF00D032F5F465D067E"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-first-tests.txt",
+    "sha256": "2CB4CB1CC31034ADA8B96D8EBA34EF79DC7672FF0F2542446F0D7D0900E39B9F"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-focused.txt",
+    "sha256": "09F8A0CED8BAE8141FA36DB45EE2EFDDAB695CA961FD9AF00D032F5F465D067E"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-integrity.json",
+    "sha256": "E7B682BCFC1DEF22D73B720A1C2AF238738635E0925875CDCF2B95EC2F597589"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-parallel.png",
+    "sha256": "369986BE8AEBC8594F1A95CE36BCFAD29173FC1C88918FC20AF0AD38D990C680"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-series.png",
+    "sha256": "AFB7AE748047BA92AE444142BCDC8424398272DCB2A967AD6A6FC4972E8BB626"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-template-guide.png",
+    "sha256": "B3BB9FC7F82685A0EE56D46AB78CF4FF206FF0B0C67125EC65D825925E51BF6D"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-tests.txt",
+    "sha256": "8B3DB35C86309DA805639D8544541FD2E33D70AE541E8E558088BAEA5C794943"
+  },
+  {
+    "path": "docs/acceptance/m3-task08-touch.png",
+    "sha256": "493B6D8E0BC23814A0FADF3B69B674CE25CDED3AD245F742F8C566C56F59FF60"
+  },
+  {
+    "path": "docs/acceptance/M3-TASK08.md",
+    "sha256": "597748CB11206729F05C320032024CA192AE7B2969B6ECBFD51DF833E58183C3"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-before.json",
+    "sha256": "B16433F78AA4C8119FA9C4F0C486240C126061001F5D61EA77B95A23635BC8A5"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-build.txt",
+    "sha256": "47E8A56129D6B2536F98CA714B50F314180564F86084E65FF56149729CBDC1EE"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-e2e.txt",
+    "sha256": "B9E7A81F6845E0C2D6F18B7C1EA4801E738B57B40D7DF8FED2586A192B830FA2"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-first-e2e.json",
+    "sha256": "1E0DEEA314AB1301B4B92C5350B4D5E890D9A530F8C08930CF566E2FC63E66B1"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-first-e2e.txt",
+    "sha256": "5977C3FD26F284DE75CD17E0D124066C74E09D3D818E282A502251140ADD5A04"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-focused.json",
+    "sha256": "356F3B8E5BB9A074B352E6ED024CB131148EE7BA7BA5EFC4E2CCAE59D3643373"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-focused.txt",
+    "sha256": "0DBCDBAB4A360A092057BF00E922CB343CD5DEB3445DD884FFB454FC00FA64C8"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-integrity.json",
+    "sha256": "5B1D87EC87E23D4ED0993F98ADF41EA3CCD329FC3A728AA83E9B80E4AA3069F4"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-mouse.png",
+    "sha256": "6BCF12B8FE7DDE3B7C2C2D3DBFE6AB485A4D21836FBF17F71CE651C370EE2D24"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-second-e2e.json",
+    "sha256": "3C8C6188A81A34FE4000FF8DE87F11D9B6C905E017B5BB31B963AF5A52B7DD5A"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-second-e2e.txt",
+    "sha256": "B9E7A81F6845E0C2D6F18B7C1EA4801E738B57B40D7DF8FED2586A192B830FA2"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-touch.png",
+    "sha256": "6BCF12B8FE7DDE3B7C2C2D3DBFE6AB485A4D21836FBF17F71CE651C370EE2D24"
+  },
+  {
+    "path": "docs/acceptance/m3-wire-layer-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M3-WIRE-LAYER.md",
+    "sha256": "B1BC318D678AF9B5A794D64EBCA8B0ABA70A76050B9E5A75660DDC3873AC2D1E"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-before.json",
+    "sha256": "565CDD666A398D8AF5D13EFFCEBFFEBF2D8AB55EE987B67AF2A6F9F6D97223BD"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-build-manifest.json",
+    "sha256": "5C735A73B107C23CF5339862614FE63E914FB11FD04FFD3D29B23506A1D9F23D"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-build.txt",
+    "sha256": "9F0F5F18BC60808939FAE6654A7FEEAD3C99BF6CF8766D050D899B7339DAFFCB"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-default.png",
+    "sha256": "3DB73A8713784367212946D8CF819D2D532A9F688D82DA6E12C458F2C0B8059B"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-e2e.json",
+    "sha256": "5E478470B059B0D40F0723D7B6C42EA6412BD0CF566AD5624793F33223E27E14"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-e2e.txt",
+    "sha256": "CD027F8D89A803EAD070EC4FD574ECE972597DE49D0DFE1E09346D95EF9783C6"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-first-e2e.json",
+    "sha256": "39B0E6719E0126D7AC4561D897BA662EDD5E67BD0F4566BCF744FCBA3163C9D6"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-first-e2e.txt",
+    "sha256": "50A1235E054981F94FB50FB5EFE391E56C52B40F667C9026D53B7F30E09ACA05"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-first-failure.md",
+    "sha256": "44AF96DB0D7D6491C2FD38BD7221535588EB78E8AF466F01C7A5584036FCDE8C"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-focused.png",
+    "sha256": "86943C30DCE657124394D5B0B5E2ECFBF011788B693422E02B6B352B830896A1"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-integrity.json",
+    "sha256": "6A3F57F855594B2017966DA7EB7C2244AD21C34492FDA246BEEE9D36A4DBC957"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-tests.txt",
+    "sha256": "E887FF226D54BDD31FD20E083E395965DEE58FA5305CDC643F371A14296FE1F1"
+  },
+  {
+    "path": "docs/acceptance/m4-library-side-screen-touch.png",
+    "sha256": "7D58E8E4E5DD2D1966330E3E678FFD210FAC6EED36E7015BE15F05F8F78F0785"
+  },
+  {
+    "path": "docs/acceptance/M4-LIBRARY-SIDE-SCREEN.md",
+    "sha256": "5F119868ADF3062BE12826357C252E56C7ECF2450BB4F11D7837647618C7C811"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-before-image-distance-e2e.json",
+    "sha256": "5E248BB2DE4C995CABFB81C24D304ACC54B3B9C27809BDB8C9224265D0AE24F0"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-before-image-distance-e2e.txt",
+    "sha256": "5C06E92F5AB9AB6855B23C981006F6D211C8F6ECE464AC8A75CE434197A3B1C0"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-before.json",
+    "sha256": "52F32A382E9372B95138F68340B25BA9AD13DA946124E6C04E798AA0FEADB400"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-blank-focused.png",
+    "sha256": "B96D08D6146203C4C3A88B78791CF9226630E8DE1F2E8DBE136BBF5A660CE54A"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-build-manifest.json",
+    "sha256": "52ED727CFF12046B533BD1CD918E32FB6A28BBE3F20F2F454D1ED78E2C8A9BB6"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-build.txt",
+    "sha256": "F5AC05BC28E019AC0FB7977766C98B4124733DF929507D239147C9AF8BEFA56F"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-demo.json",
+    "sha256": "B2BA97EFADF89F38B0721B49D40E41D2CC5988ABDECE3F63ACE1F4F71EE9C74C"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-dev-http.txt",
+    "sha256": "BFE817E201A000E75C93A9F19FA4FE861EC30C55FCF52EF0DF7E6B858E107CCA"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-dev-stderr.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-dev-stdout.txt",
+    "sha256": "8450BF18D83EB2D510E89E269A035C83A8BC45F42A8A2A91183BE9D627221F18"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-e2e.json",
+    "sha256": "57E5F45CFA8906343F434EF40DA55BE0937A45182FDF3EE07CA9749BF11877DB"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-e2e.txt",
+    "sha256": "6D217D2D7E96921156C67CD2B20688ADE23C6490FA6B86D42B5865EC4332CABE"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-first-e2e.json",
+    "sha256": "BBA996957361EFDDB49C664966F753C6DBBD68BCC43F2E30E91ED2EEB3CBA3F4"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-first-e2e.txt",
+    "sha256": "BB985115874A413B086DFE2E71981D12ECAEB36AB8B47B029653CC720AB7E794"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-five-cases-chart.png",
+    "sha256": "81BFB2EE46736CDD65520540F407E869021F4DAA4E6A268FE3EF82A031D27783"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-focused.txt",
+    "sha256": "DDFA7D8FD80C4AEEE5025B6CDD13ECE2EDC2BFB32940778AC17A7909C3A910A1"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-integrity.json",
+    "sha256": "74DC1F2240E3C169F81510D43FCB01C9C5CC5385D1E57149605376897FCF4989"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-tests.txt",
+    "sha256": "86F53D02E8024199CEBB23BDAA3F8A3DFFCA2F0576DE1B65C2E0037B3781EAC6"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-touch-focused.png",
+    "sha256": "BA1240E905466190A92B8F2611CD4F46A1857499A55CDA39B4C7123BF7742C48"
+  },
+  {
+    "path": "docs/acceptance/m4-task09-virtual-observer.png",
+    "sha256": "B63BCC9B31E27CFCD88A3FBA7A6ABEC0A7A8D1A23A8E24E243D6353F3E7293C0"
+  },
+  {
+    "path": "docs/acceptance/M4-TASK09.md",
+    "sha256": "9447CE9D0CA811DF7F90AB514CE1A2DA489F5981AD4973CF610F36BD916537FF"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-before.json",
+    "sha256": "A0F51EB05144149004B7390CE66FC9B5146541F0B2742D14D6419CCC328CD5B5"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-build-manifest.json",
+    "sha256": "E8CA77AD33EE575E2C5D882194A237EF74B47808BE7A7AE72714163490348376"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-build.txt",
+    "sha256": "8C597C50E911B118638AD1788EA80807D056F54BE638A228D9629A94961FF8C6"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-demo.json",
+    "sha256": "0649127C52902F5DC9CA1932B82924B5FDC647BCB54F56B34E807049630BDEDD"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-desktop.png",
+    "sha256": "690AF58F517845C00183980006FD2F7757166EFE1E52CC52A582FB8040E29A0E"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-e2e.json",
+    "sha256": "ACE84FA9E25284E37D91530AAA9ACB7C786C9265E42687DED924C45BB97C0CE6"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-e2e.txt",
+    "sha256": "E4BA8B9DB2AA4B48DA2942CF88E316D3D8F1D152A8BE0355274A94F8D20A6CC7"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-first-tests.txt",
+    "sha256": "6B91687C2059705DD46426184982DA1D561BD458FB58E2280228943A7185C933"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-focused.json",
+    "sha256": "B84EEA54A6B63CAD6F82FA536753B7F99352D5D0246A924A85C4AE5F66B7A5D2"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-focused.txt",
+    "sha256": "ECE0F209930122F892001D218820DA59977A9D11B1703E87D57150D80403748B"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-integrity.json",
+    "sha256": "25A8DC116EB5901C9D982819D0213B927B2E05F484A5CC125F393DE50F4DC543"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-tests.txt",
+    "sha256": "2E020788AABEA16D746853657A2153758607C89AECCE8DA0DF4C83410CEF1E50"
+  },
+  {
+    "path": "docs/acceptance/m5-end-nuts-touch.png",
+    "sha256": "C0DFABEE772C5A716CF6F115AE7481C9903D8AE6CB83F9404B4C5DE40FC90E9F"
+  },
+  {
+    "path": "docs/acceptance/M5-END-NUTS.md",
+    "sha256": "FF36716CE6B097FCD263B03A2D1323151455DC7AB0C12943D71F9ACB4EC4DB98"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-before-wording-e2e.json",
+    "sha256": "C4B9FB6344BEF0CEEED8D24AA3B2F9E4C2EF60D246DA6620880BF68223E23A4A"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-before-wording-e2e.txt",
+    "sha256": "CA0B87EF4D93FB93CAA8C0C208388A8C7B397DAD3B7DAC78764E905BD3C33A21"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-before.json",
+    "sha256": "5F0396EC4188AD78F118C641CDEE2C606ED992EA5AE8C1D6D9C446F51FE49B5D"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-build-manifest.json",
+    "sha256": "03DF7FF46F40BFA386E56B9E0410B209A66B99972A2FB22C804C91A66E8BC078"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-build.txt",
+    "sha256": "669A8CD4B5B167B94ABC39571D176DF646C9E42C2115226463C26EF3B50B320C"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-desktop.png",
+    "sha256": "DDAE10D2D26927740A2A6BF2274DD5866F4EA37D6139D320E4E2E34028CE5F1B"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-e2e.json",
+    "sha256": "A717DA250EF9FC08F40C7F97107D0746A2ADAC51A63B75F37DB180A7DCC8BE43"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-e2e.txt",
+    "sha256": "E9511C6B2C61E4D9C96B1DC8E8CC08F43A06BCD7302B37E46EAA5BC6BAC3A204"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-first-e2e.json",
+    "sha256": "174F2C9975465CA2D61CD0755D1B449AE6E2664199FF42F589B6ACC8B58B3550"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-first-e2e.txt",
+    "sha256": "1DA61CAB0A981A1F60B7DE9BEF401D787EEEFDB63E9DE85E009EB8264D9C7092"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-focused.json",
+    "sha256": "771C90964CB35C91873622FD4D8B8219293ED90E3397A942F94E10443B9AD96D"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-focused.txt",
+    "sha256": "C64C865F9BBB50BF008E29C4B1F8CF6EB4113D33B1B8BFA4414B19ED5260043F"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-integrity.json",
+    "sha256": "C3399EC6A64F95147035047BB32FB96DF649D010D5E0A4F4E73BA21CBA52F6C4"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-left.png",
+    "sha256": "516089367E11A24D70E30B030CFCD78F6D24E6CDA792F5E13653A1E7C6A274C6"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-second-e2e.json",
+    "sha256": "2315743E123FE58E0B6024CED4FD11EE14971382718672181F0611D4ABA7197A"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-second-e2e.txt",
+    "sha256": "597079F5EF7ADE085E3702AA578FFCDFDF38819843BFCC216569066B796D33A3"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-tests.txt",
+    "sha256": "D4BECCA25136CB4A59F2715C6C5FCF27488E53EB3C3438A8197BDA46559F1712"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-touch.png",
+    "sha256": "A2E0AB98CB6009F15B2B70C58D33436BE68C88E3AE00E096217E5DDD771FB131"
+  },
+  {
+    "path": "docs/acceptance/m5-lever-tilt-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M5-LEVER-TILT.md",
+    "sha256": "7728F81140DF23FAE050E9F6E716B7A6AD8561D282D93910C8C3DD7B888D6EA0"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-before.json",
+    "sha256": "A2EC1309670A3ECB20965DE4F5F4A035D85FB49062E97BC89B1A94BE3FFEDF78"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-build-manifest.json",
+    "sha256": "B6F2C8767AAAF60EBFB71060E350C4161E98BE013D6155798DCCC31C85F86FE8"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-build.txt",
+    "sha256": "CA286C3C3A58BD6E9BBE311D785A3658D9E3B0D621614B1A36010CA27093C0DD"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-desktop.png",
+    "sha256": "CE9CEF358EDEB08D2C3026E42E422441D8B02558837D6A346EFE37EB6A8AF3D4"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-after-scroll-first.json",
+    "sha256": "832A894827278402EA0709A1A3AADC239DCD1968DFED9C4302CB81F660B27C0A"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-after-scroll-first.txt",
+    "sha256": "4914A04B579C82859491FB75A4260B39667FE2339C1DFC3F24E3415AEC960761"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-first.json",
+    "sha256": "B6577008AFF6CC72778C9976FEDA550DC90AE1D1FC74D43B778021E1438E82C5"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-first.txt",
+    "sha256": "A6565E719F07CF1D4A7FD13F15827D9C69CBDAA5F41DEDEB3ABBE60A748279E5"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-targeted.json",
+    "sha256": "832A894827278402EA0709A1A3AADC239DCD1968DFED9C4302CB81F660B27C0A"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e-targeted.txt",
+    "sha256": "4914A04B579C82859491FB75A4260B39667FE2339C1DFC3F24E3415AEC960761"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e.json",
+    "sha256": "38027C4D0DF6197A965B45765B6EC5920A68BB2C11AB12A38EC834DEAA456109"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-e2e.txt",
+    "sha256": "F529705EA72C1A11FD7F0BCCBFB216AE67D4763D2BA6747B9527975BEF9F03DA"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-first-trace.zip",
+    "sha256": "9267E2620C9798BDDF38E1375BDFEAF2D6643DAFE9AB568CA356D9127862F384"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-integrity.json",
+    "sha256": "E50761E70E872CAA2794C8B67A77EFD70670CEE858F8B2BD9DA259CBE9D8C488"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-spinner-investigation.txt",
+    "sha256": "AF0748A33BDAE667000ADB2835469E7DDB0BA52BF8B5A140FCBEB8A8FFAFE4E3"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-tests.tap",
+    "sha256": "17CDCAAD6DE833219D95E4CEF1C775CCBCDB6524657495A223B2EAE3C211E175"
+  },
+  {
+    "path": "docs/acceptance/m5-live-force-touch.png",
+    "sha256": "2BE298185FF2FC01C961B69D0F70346C9A6D3884131426BF867DBCC651DF5CFD"
+  },
+  {
+    "path": "docs/acceptance/M5-LIVE-FORCE.md",
+    "sha256": "DD1A90E749DFBEB8277ECAE3FF53C196D925AACD324EA6F40861111F5C55F97D"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-before.json",
+    "sha256": "D211E7B196F351523AF2D1F9032ACC634FDB6110F5DB80E8B56F5965C055ECA4"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-build-manifest.json",
+    "sha256": "7B5432294686B62561F54243CF64436C85C9C73598B99A95A371D8C68EDFE2F0"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-build.txt",
+    "sha256": "AF073EB73DAF85C0444C5ACF8DBD056E1362AA6CC51169D0A08A3F46592DF5DE"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-desktop.png",
+    "sha256": "85A8ABBB774DB15AA290139939DBFEECF247506471F65C75542BC49941E19B00"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e-first.json",
+    "sha256": "3DA94FE95B28709D81B61E68DD9AA0D4CFF8FC1B496D7CCD11B8528D380248F9"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e-first.txt",
+    "sha256": "3FD32D077AF997419CADFF5DAA74F771A4D1BAA066E2E3AB1B5A5C9AC0E70982"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e-recheck.txt",
+    "sha256": "639C03189FA07C67529386C5BF0FD9542B9D4B6E7B8D009E4D954C159B3653B7"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e-targeted.txt",
+    "sha256": "E58DF0BD977E29CD9BF04F1B2390DC7A5E31FE1AC150BBF163691B1F047F3D01"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e.json",
+    "sha256": "A6E761D0166A81FA049961DBABBA6F0EC1AF053534E0A6CD13B1F4EC9350F8F0"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-e2e.txt",
+    "sha256": "EBC7CED3AFDC2E16262C7BC516828E87AE2272D46EF2A8776413EE81DD694DEE"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-integrity.json",
+    "sha256": "3684E636FAE1D7E69A3A16C78D5A38D5DD5CA7FD45CE5213C69D1EE8F519227C"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-tests-first.tap",
+    "sha256": "50EF5B4EF1DF4E9263485F3EEF39D7B53389342B36D6B8CEC24855619E15369D"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-tests.tap",
+    "sha256": "F14C8E13A940CAD7FD01EA195401CBC0D5B52C5BDF28894C43E2F9FEEFCB19CF"
+  },
+  {
+    "path": "docs/acceptance/m5-live-properties-touch.png",
+    "sha256": "A9F78ACD25C240845A08D34D27D476331962CB90B3CED44605831FCDEF023F7D"
+  },
+  {
+    "path": "docs/acceptance/M5-LIVE-PROPERTIES.md",
+    "sha256": "482079651A0C52766086334F2B9A667B76ACFDE44D314D382D9E2F4EEFF311D1"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-before-capacity-e2e.json",
+    "sha256": "2D20E4306035B58751641E758D42EE3F88CF9432085BFB8A0E90A9565411E3E4"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-before-capacity-e2e.txt",
+    "sha256": "492DA2B3D259C6137800002FEACA12CE4B51239E949192F9FEEEBAB22E55FAF7"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-before.json",
+    "sha256": "B9E072681C5DE311DFD780EC13049B7F3502D72C73678ED498113592B97AB30A"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-build-manifest.json",
+    "sha256": "BAE22B80AAB82F46CA5CC98A33352B2BD999FB38C768022432E747D33EEF9C46"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-build.txt",
+    "sha256": "0FFFC9F4ED7F8A746E9893BB91CC55460627422536A66C43C74A53A124BFABD8"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-demo.json",
+    "sha256": "D75F2788424264F12A84C7451BDB6B3056F9F3A18BE08E5B8E67D6EAFDE09FE0"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-dev-http.txt",
+    "sha256": "63343F9394E80393504B33CF8FC04152848EDE8357D9A8FA3B80B8B284033F18"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-e2e.json",
+    "sha256": "9AEF2D22962DF566CA11B5668170494D9329FA6661D3CB3BBDE68A91F6D6D099"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-e2e.txt",
+    "sha256": "C4F47059BDEE4C868DEFFE2DFDA7936564C7C35C02D495CB3B240E771F738D2A"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-first-e2e.json",
+    "sha256": "599A6AB816AD48D449ADD3C0081C59BE18540BD582803566293B912DDE1E3572"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-first-e2e.txt",
+    "sha256": "379AF7F7922812B9BA3BEC35FDA4BF70538D84F294C6B4F97C56CBB787A78A81"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-first-full-e2e.json",
+    "sha256": "53200BAAD08417BD28DE4B0EE9C03A01676942BC736E8B07F4A167CBBECDD63D"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-first-full-e2e.txt",
+    "sha256": "E8D328684FF93EC62257C75D5FF72ACBA15A3F8AFD9E004D0A359AFFFEDCEC5F"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-focused.json",
+    "sha256": "69EB0E36F4F4715E48D8E08A70AA9D4C5EA0E209478B077ACA636E42A5F10FB5"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-focused.txt",
+    "sha256": "B5A2F09F0F0416972E85F350FF696BEB1A2963756AD210F8B6540D7742DD065A"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-inclined-records.png",
+    "sha256": "D9F2986493689E275EE3DB396D62969695AA6248356B899AD7B61C9F9623DC30"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-integrity.json",
+    "sha256": "6B0ED37CAEAE99A3C57F308C906FBA6B590A8397F6D04A9ED2F27E22E6BC8386"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-invalid-support.png",
+    "sha256": "BE83C0C272BE261C0A6AD874ED3378CE66CCE55B5F24B4086EBEA26F4C2FFCF2"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-library.png",
+    "sha256": "7EBAD6C259837FFF3E6AC460785E5B4CCFBE59A877832DB73E33521465D9AB7F"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-second-e2e.json",
+    "sha256": "D9B1411A9EA280DF91F420596E6511E8C27A420B4C1054159922E1DCD1DB879A"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-second-e2e.txt",
+    "sha256": "DCC56FA99404C5A5F71ACD6B3FEE3BA692FDAA5FCABD152AA99FD08416855AD0"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-tests.txt",
+    "sha256": "F1B5508813DC2346F40D19EE0F2EC3E1300E76BACB86C6B6763E98D8FDBD5BCB"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-touch.png",
+    "sha256": "122321F77CDEE9D56E83A283C83E6507CC1014DB6613AF4979B68EE1086ED1F0"
+  },
+  {
+    "path": "docs/acceptance/m5-task10-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M5-TASK10.md",
+    "sha256": "BD125C7CB7FB8BFD677B6EEB177FE1CF8B9F618D73FEB92A8F74A4DE42A54BD1"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-before.json",
+    "sha256": "1746F9AEC0D8265A5BE263E496776956112476074BC03C596ABC0DCFC47ABE73"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-build-first.txt",
+    "sha256": "8C4D3807C15A70FC9406E2EC0728A06C77C784A73D16084E818A60A254626EA0"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-build-manifest.json",
+    "sha256": "C476BA8AB13B347725C4A5CA00D74F3957BACFA886AE21D87D445A41B281C43E"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-build.txt",
+    "sha256": "3A1DA07EDC8A42B2774305C678BAD89F0221B806B650E7D99B25FCF00CDD621B"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-comparisons.png",
+    "sha256": "34848C68FF6682B66B80728EE052A8A991AB62C0F9C9F591F431EFD8E16934A1"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-demo.json",
+    "sha256": "DDE4335E5A6DBF43E28DD2912F62EE3C3F1152D8E9B5A5A5F1035F074136E60C"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-dependencies.json",
+    "sha256": "9EDA08F5647BC714FDBFF0609FAB217F73D5F78DAC72BE282EEFBE42C48FD4B1"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-final-ui.json",
+    "sha256": "8B08B2B1909E336F3F722A00672FAE4E8572C80E50AD183719D318E12F66A32E"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-final-ui.txt",
+    "sha256": "B0E7A4820595D0F66DEE68CE84F6879336F8315C952B3FABCC974817D82FFA09"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-first.json",
+    "sha256": "84C74F08250E39AD5C4DDBC6EE484EF6C37EF89F7B572F64A28078842ED98C97"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-first.txt",
+    "sha256": "2CC4BAEDAD43C51B3DA348D447FDEC6E5AA592091E40B13A24873C65758CACE3"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-label-first.json",
+    "sha256": "E4623F3CF698E744AF5FB6BA2224676303439F69C64EFFCF74E615172470C63E"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-label-first.txt",
+    "sha256": "3F733204D520128886F9D533A05ACC1C6DB4DA5D42D2479033A8A7D67DEE4F58"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-targeted.json",
+    "sha256": "D6E305CD6AD23D8C0608EAEFAE12EBBB6D03B88B1913FBD99A6B0A0416AC53C6"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e-targeted.txt",
+    "sha256": "D0E5A25F20304556157B1B99CBEB009069A0F83AA14FB1D7380D361B9A14EC2E"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e.json",
+    "sha256": "0E0C403A41262A33D421C5926303468DDA3D379E4988A3346E2E4B1AB4965744"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-e2e.txt",
+    "sha256": "F825FD3BFAD956DE431C7C5E8BC71D02426B9AEF2DBED7BDA780DBA65C0E1A4A"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-friction-first.tap",
+    "sha256": "F46DF34DF741736B0DCCB549E385B60DBFBE2C0DD18812EF91A21A96B3AA5332"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-friction.tap",
+    "sha256": "CF15DA7107D7802652FE69687020DC3F6B1A1E8FCEE361063E062321AAD9AD48"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-integrity.json",
+    "sha256": "DF342CB4E94397E308F8DFEB8DD05587414F7FB983B78301A75EE615CBBF5850"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-invalid-angle.png",
+    "sha256": "44200236D835630B561077B2DAA62B1692C4CF63A393A17CC3534C87B5EB5A4F"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-label-failure.png",
+    "sha256": "791C0D5393CE37A515928FE1FB5EC11516321A9FF2231F21C223B1E6CA035967"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-lint-first.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-running.png",
+    "sha256": "420833DDDE1EAC43848974E82C5CD7CE06D70206473B3D908D7918A59D285956"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-tests-first.tap",
+    "sha256": "3CEC7076716071EF840D5D4A21280900D68FB7BD84CC0C136ED7C08CDBDC6F92"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-tests.tap",
+    "sha256": "49086B4A6316FDADED685A31BDED6A16500DAF174CA30E4F48E58225B6237809"
+  },
+  {
+    "path": "docs/acceptance/m5-task11-touch.png",
+    "sha256": "E876284D600FF24B0A4F0FC489A1F9055CA28DE4D2BC3C8D7A29F9BFAE9199D1"
+  },
+  {
+    "path": "docs/acceptance/M5-TASK11.md",
+    "sha256": "7B03382FA47F5D8DC59312B2511CBCBE0126643CC9BD88D679F1B27A3F8A1242"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-assertion-context.md",
+    "sha256": "D26BBFE58FA7E8A22D12A8C7E7666D21181A80E4A92F07102AE2C0D7164AC79E"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-assertion-trace.zip",
+    "sha256": "FE548203FC0980CDF58602340C7D6B248DD0585DC164C675D12FA3241BAC5A3A"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-before.json",
+    "sha256": "4092FB86D6A5E2FEA298C3B381912179411CA88934A0CCFDE23A9B761AD12AA6"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-build-manifest.json",
+    "sha256": "195FB1A8CD3F9ACE4C09357EF475E278B57CF3BFED1343F881C719A0FC2D9105"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-build.txt",
+    "sha256": "50B36D3F35B13BFCA5824ADFA4F1A7A0E31AC23EC50A7916DE446C7CFFC5805A"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-desktop.png",
+    "sha256": "427EDF52A2B52C08EC4884CF241531F6D652E5175740AFB050341580FBC9C2DC"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-final-mechanical.json",
+    "sha256": "3596B4398255ED11D2F0AE0AD1FDA1EA82C8DC21E8F8E80334578AFECB2A7C38"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-final-mechanical.txt",
+    "sha256": "9C7C2E47404E5D13CA823A270FB87A3EB225D369B6347B2BD1A9926976D5154D"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-first.txt",
+    "sha256": "A3BCA9D216C908E3B392850B88756CA2CE210B703E4EE1AB1305572C52FEF0FD"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-full-first.json",
+    "sha256": "3A502A11C66BA3EDF38D21F2AF31330FB21658AE39DBE85D0A01E9B820A21667"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-full-first.txt",
+    "sha256": "9F758BD2E792E969D6444590FC77B7FDEA99433E5A7C5EC3B785D50BFEDFA02C"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-targeted-first.json",
+    "sha256": "E46B8D5FB15DE44B4D63A1AA7142FA82FF4B4968864EE978C2FE037E0948B8B5"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-targeted-first.txt",
+    "sha256": "928EFF67A0E581E5F4407AF619E6D92BAAA0427F08E37267126A357B75FF833D"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-targeted.json",
+    "sha256": "E46B8D5FB15DE44B4D63A1AA7142FA82FF4B4968864EE978C2FE037E0948B8B5"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e-targeted.txt",
+    "sha256": "928EFF67A0E581E5F4407AF619E6D92BAAA0427F08E37267126A357B75FF833D"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e.json",
+    "sha256": "C5EE62B167730CE1556D6AD05D1752184AE9724D0E9F10F98D906E97CEC5B2C4"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-e2e.txt",
+    "sha256": "EFD79FF8EF65E40799ED7B67AA5AB690C1F659545F840345862515B3F3A80DB6"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-integrity.json",
+    "sha256": "A4865246E9BD07F5E9BD768BD59DB06D1E18CA5832C016BA96D1B2B881DA4810"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-tests.tap",
+    "sha256": "6CE386626A186605EC01F6E21B6381457564B24976EA5C8AB4B9C92BDB7C49AD"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-touch.png",
+    "sha256": "C9A70F9D476CFDCC46E24D511D0ACEC1772A0C8C9F7A29D1606F7EA93FFF46F9"
+  },
+  {
+    "path": "docs/acceptance/m5-weight-chain-unit-first.tap",
+    "sha256": "751A24FB12F96C8D198780B5FAC66AF1324710024C12A0EF151C485F49EE68E0"
+  },
+  {
+    "path": "docs/acceptance/M5-WEIGHT-CHAIN.md",
+    "sha256": "33EFD23800321E3D28AB3D098704B34FC46121778212ED1E2DB58B620C6A95E9"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-1366-45.png",
+    "sha256": "51662E43EC8648F7307962F9C0726900432013ABCA827C39293E631BD8B69F7D"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-1920-45.png",
+    "sha256": "739ADFEB1D11753C0DE209032616C08859440C2410F6D636AFB9FD3386F457A5"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-390-45.png",
+    "sha256": "04B74915B5363C5312489310C65D9EFC577F8D5061099D713D251073C5C13317"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-390-overview.png",
+    "sha256": "FA5C773C90CD2414A655975833D871DD99CBB46C8F4BEC7C9DB61CFCB120545C"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-before.json",
+    "sha256": "B892FA394CC56ABD87A261A3F8363BC5AE158CE948303E5D9C876B5A03AD9C13"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-before.zip",
+    "sha256": "EF9A3746CA835692367F54B8E302434EF360DACFDF5237480254FE3CC981AEB9"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-build-manifest.json",
+    "sha256": "E07A9CAF04EEEBC31E7ABC134ED1C01F13699B6D2BD34C3D12F8ECB275A7512B"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-build.txt",
+    "sha256": "2085A86042FECFBD23B177AA4CA856DAD421DFB6227E76B12668FDA753215B91"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-diff.txt",
+    "sha256": "CE14524842D3FA1D696CC93AF169656DDDB428D2C07E5C5DB83650D6AEC6ECEC"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-e2e-first.json",
+    "sha256": "A1EBB5D7B3EB9105D21466DAB073E163E22D2181A53241A418AC6F5842D4B80B"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-e2e-first.txt",
+    "sha256": "54EC5A521DE72A1491BEBAAE6DBBB5ED60AA430F18F8B91DBE6BEFAE51D7FF8F"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-e2e.json",
+    "sha256": "9D6744E18CD7B21A12E844EBCA83C07DC24DCD4E9FC1A214CC6B3DD56098FE80"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-e2e.txt",
+    "sha256": "112BCB155C30CD3FF8A6FFEF0BEC8E4D0C6CAC2C0D9FB35181425BFCC36B3F85"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-integrity.json",
+    "sha256": "6A906592098FC4854329A48E163B88210B59F1A416148278FB91D9C7C1891C09"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-layout-first.json",
+    "sha256": "C0B62F5284094CFE1C6926B0C9ABB4F31D6CD5D76F2681D31A3E95C4B308A90B"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-layout.json",
+    "sha256": "74B1617E412367BA17D0BEF9B8A996B6BF8DA4DBE23BF23ED307F422174ABD6F"
+  },
+  {
+    "path": "docs/acceptance/m6-projectile-labels-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/M6-PROJECTILE-LABELS.md",
+    "sha256": "F093FBC4B9694EC9FEB8883D86B06A30772F586CB17DB9B61B4166F969666704"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-assembly.png",
+    "sha256": "A6EB665AC476BC83893962ED8208B4A3C586B974B4F69106B3B2CA140572054D"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-before.json",
+    "sha256": "59F4B9C91554D3AD0A648648DB966548B6BB95D38D5ED7025EA98427A8EF21E8"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-before.zip",
+    "sha256": "C93F6B52A5754C8D16FBFA1F5A5DE923F7BDC64B6C5E464E449E1DACA7C6EE94"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-build-manifest.json",
+    "sha256": "A2544BEC280D75F5A47899AA636C0E2B9A1C6E38B4DCE6069BD0842456E7DCA8"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-build.txt",
+    "sha256": "81DD8EADD3621E28494A0145F2284A0F45EA94E8A7B14C49B85419A74B615989"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-comments.json",
+    "sha256": "6CED9435E666BE6D4D7A06DD1A699DC4D7905C3419CBD48461A43C8B103D4AAF"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-demo.json",
+    "sha256": "39BC47FA9AE9A25198B3B54160E062B8E869F71B05AB1F6B0AB2C2C8454CA478"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e-final-ui.json",
+    "sha256": "EBBEF1DDF9CF8858590E2711CF55D9BF25A3AE233CF704D016CF5DBC4FEDB261"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e-final-ui.txt",
+    "sha256": "998044221A606E42BF182610B97FA607BCF20AB3870446FBC758095E15CB310E"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e-first.json",
+    "sha256": "7FAF37187FBF1382E40B4072832AF7E750F67C65A490FE2BE1E844364A8E02F2"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e-first.txt",
+    "sha256": "6E1E3DB2485258DE4BED91DCDCD60C22353A4EF6D83412D11E5037B0BC31C841"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e.json",
+    "sha256": "D390BE10655D17B6D2E821C92B254C927C37E43639018FCDF5E074F499670E87"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-e2e.txt",
+    "sha256": "3D72E6DB466A44F85084845C795C948F44FB9CEED98513199B5A9151813D4058"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-fit.png",
+    "sha256": "B874C85FD0B312F378A82746A08562E51A8016DEBB55E6CF125D5AE22C552032"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-integrity.json",
+    "sha256": "E5645AE95BE9D2119E35E810DAFFE2398F8B54FC416252930C1D8C275B563F69"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-invalid.png",
+    "sha256": "EF5F4544A2CDCE8019AD340A0A224558375876129A25C6DB358E0937D5BD0A55"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-tests-first.tap",
+    "sha256": "4D7C5F8D713040DD77BCEECA00E1892CB36C529C68CE8089BA2E59047A6196F1"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-tests.tap",
+    "sha256": "080ED8E77086CB13DFCAC6F3705E38D3DD4FD58C37E0A86105A7C912229A545F"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-touch.png",
+    "sha256": "7A3178DDEACB6C50784C04ACDDB95E36CCC2F64A76BD34EEDEE726DCBB71D6BC"
+  },
+  {
+    "path": "docs/acceptance/m6-task12-typecheck.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M6-TASK12.md",
+    "sha256": "85D5D671C2AD8A1114A81A91F88CF7F5EA8A8E6D9892159F6772A556891608AB"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-assembly.png",
+    "sha256": "0363095D1AAA4A6374535501ADD0A4CA58BF5A6457F5CAF9C4C3B12A8EEBCDB9"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-before.json",
+    "sha256": "ED1EA9C1B7A527AB51A1BDD289E20705ADB362EE29853A165D5C64943D9B3D6E"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-before.zip",
+    "sha256": "5E3C759EC1DE4187D4306424507BD86D629284140B0169238821D91FAC0F8F3F"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-build-manifest.json",
+    "sha256": "1BC4AFE2D42F63F81E0EC9D4F5F23F637B8A88EB76E453706950E966745EB2A3"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-build.txt",
+    "sha256": "ACA8FF00F2B58E7778B1B26EFF309469A32B5817038AC8C3809862FAEE47446C"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-comments.json",
+    "sha256": "CD9A05CE3708603FFE66D322EDA2F1413AC0E94E968080060B91D52860F1D058"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-demo.json",
+    "sha256": "8455BCA82E29971D376222DAB401295D407EDA848DD8A696EEEE083B096788CA"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-first.json",
+    "sha256": "F34F821FFCA93DA563ED89EF92F0A5F94337741C54FD974F00F4EDD9DE14F153"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-first.txt",
+    "sha256": "657ECD5CBF339757AEE499BBB23469C8C452AD96232DCDC180CF805C2411604E"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-height.json",
+    "sha256": "F64D015CE0956F7C864A2A2CA6265F5954F3C32A3C6BE8E7389C4DD71D4698C5"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-height.txt",
+    "sha256": "23E4B171E6755BB18959333FABA0FAE2B58F80706DA33E7F81A4CB15C9C6382F"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-pre-height.json",
+    "sha256": "EDF25D11B46ED56E6AE41C06D7F0276F75CE332109F2151EE10160D985CBC616"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e-pre-height.txt",
+    "sha256": "B9133394B7F878C0B651CF64F8D0A1FF26152A1368A8003E5CFD7FD20743CA32"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e.json",
+    "sha256": "E89748A359273C0DDEDF5BC4D99CD79B3D90757321F9A2EA54CB65F3B7726996"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-e2e.txt",
+    "sha256": "A05BAD6A2CA83113B906247481C3C023B6025B536FF3C371214D245EEAA52FE6"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-graphs.png",
+    "sha256": "3AFD02FF4D3A93F8B514984D7BDE68569B082B5D5F8E62912D01759AC7706C06"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-integrity.json",
+    "sha256": "2CD4667477154B1EA1B3BD3AB0A9DFB05D534764EA505EE6BEB6C9A5546C7238"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-invalid.png",
+    "sha256": "73A35F120B281660FD7BDC2493B1CA24D0686EB3B7892711B3A3B1749B2A4D13"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-lint-first.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-tests-first.tap",
+    "sha256": "FE83F25E5F116A4BA651969AA58B200CE7F1079056E2225B5BA19709879B8C0F"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-tests.tap",
+    "sha256": "7CB1EA9ADC70B83A20DE50342B1FBD02C5F5E37CAFB9C9B07E0410BCA17AE753"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-touch.png",
+    "sha256": "005DED1E16E6960D20821053CE5C0EB017FAED7FB3E7FE1CB53FEE486C901F8E"
+  },
+  {
+    "path": "docs/acceptance/m6-task13-typecheck-first.txt",
+    "sha256": "6CE7CB1F28AA17C5720433498A9F9AD144D021A9FD760162E52F1877EFB1ABB1"
+  },
+  {
+    "path": "docs/acceptance/M6-TASK13.md",
+    "sha256": "78701E9D9DB504E3A328D06D42B3944DA1289871F099F09A7AD02599D2F4373C"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-01-1366.png",
+    "sha256": "B643DA7623E3A2A157381F67231791079D7A4D03C6146FCB981D25B68E673CD6"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-01-1920.png",
+    "sha256": "9996CA82BAEFA80CC0DE13422B63B4A791C73F33AE2E5C3071438C79DED65E52"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-01-820.png",
+    "sha256": "138CAA0F0454301672641BA6B321145CBFE4F7847DBA27F8F1AE1BC754CCA3C6"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-02-1366.png",
+    "sha256": "0A6F074ED48C979C100F2F39AD1FA5B12C55C9D22389050598B49400C70F78A6"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-02-1920.png",
+    "sha256": "A3C7DF74460FD252E5FAF5FB6F31D0A7BEA751E36000237A603FEEDEE963A5D8"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-H-MECH-02-820.png",
+    "sha256": "DF6ACA7D310411388DF5684B7A5C49B4A48229D63B484C7526989BE108DE76C1"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-ELEC-01-1366.png",
+    "sha256": "72712F797A86CABC513C660BCD9D2F0744FC9CD651059606EC706D6AD64FDA97"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-ELEC-01-1920.png",
+    "sha256": "22B77B53A9A7EEC8D44347FC63286B622C6D7B3A5AFEDAC003D7F757D93C8F88"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-ELEC-01-820.png",
+    "sha256": "B7B0724C4DBCA2A26FDAACE10CD3E064414CC54121E05BDBFF62F2611024B6E8"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-01-1366.png",
+    "sha256": "20847B0826D4CF557AD1E3B40D57F67787808ABCA228F9A9014876BEF949EB95"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-01-1920.png",
+    "sha256": "318454D53C4FE1DC944722A6A0DF231CA85EFB48D58040205F7B6178A5358518"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-01-820.png",
+    "sha256": "CE6F02F64DBBB71D91FF1E99B0112FF11347FD274C0E7C9825494EF015218F2F"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-02-1366.png",
+    "sha256": "BB1A590D7154D721E09BF601733B5ED64962ED8106384EE1D9E9CFE9C0520FA4"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-02-1920.png",
+    "sha256": "4CA0865557D48D2693379C5A0AE45EE76B6AA7B88E9B91D6B37994AB0D53EF69"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-MECH-02-820.png",
+    "sha256": "0A8958EBB5BFABF1877BD4FE4E6761FEF2EFC8183F5720EE7E7F69753E2C91E3"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-OPT-02-1366.png",
+    "sha256": "54D666DD64991FB626618E88E456534180169BF75D1B4982166C181845122ED3"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-OPT-02-1920.png",
+    "sha256": "2C438640816DDB6CAA6138B0440CB846D7387C7D45B1CF1D4A716F3755DCE276"
+  },
+  {
+    "path": "docs/acceptance/m7-chrome-J-OPT-02-820.png",
+    "sha256": "8B3288FD17EF3E048A8ED91DD59C64599A3BBD68C7F2740C84B6220809D66872"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-01-1366.png",
+    "sha256": "17BBB1918D39A7E2A153FB0A5E40CBA38F687B7A9EBED1077D18F7EF16991A3E"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-01-1920.png",
+    "sha256": "F8487E2B89A73660766DF63611E26504C08BA3A55E33FF324363AA40CA5B1435"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-01-820.png",
+    "sha256": "743718ABC280525FDDEC43F78067B7F287927578524B92BF782C4668917FA3BC"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-02-1366.png",
+    "sha256": "152FA92B043999412486ED0BBAB1B4C4A99853F8B90EAA4F4080DBD6B89EADE7"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-02-1920.png",
+    "sha256": "FFD132392F50ADD27D816972BC887FC2FB25DE11C9D4C8011F961504AA2B48C5"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-H-MECH-02-820.png",
+    "sha256": "E59F1C3AA93B136FBDB22D40C0758266A32C6AF4E29625AFE7C1A968E9906261"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-ELEC-01-1366.png",
+    "sha256": "FD163F9E2302C0A4CB9B52A91527D043E229DED5BD073499AB37DDE6703A6652"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-ELEC-01-1920.png",
+    "sha256": "2C61674977AC2394C6A777635C4106628DD057DC444198DAA12E641C2129430B"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-ELEC-01-820.png",
+    "sha256": "DD891E5BC4882B29758FAFA67055D796A84D2FAF5BD196BD236FD9F3E97B3582"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-01-1366.png",
+    "sha256": "8382852231A16B64CE8C0CB750D6C18A0CF96869224C0F24463CC70FFD667DF0"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-01-1920.png",
+    "sha256": "F8B1476DF3DC3334DF91E01D780F7FD0D4F83FCC35F53FECAA6D433ED2C2C3FD"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-01-820.png",
+    "sha256": "23CBB8FD85DFD05FDC84A648FD456A105EFBBEB12699DAE5052E38F727EEC3CB"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-02-1366.png",
+    "sha256": "70CFE140F95583C406466F188775E4219772E68AEDB460626C3E7BDBBA07EDBC"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-02-1920.png",
+    "sha256": "69B1EB2F6098A27BA12FD361B2660C877C68832DD6A9FEF8A4EBBB0207652BA5"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-MECH-02-820.png",
+    "sha256": "CC17AE24AAA74599125A21A269CC510C66705847FF0EE21E2E580AC9614E3B1C"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-OPT-02-1366.png",
+    "sha256": "527721F899A80FF064B4A8A41E728208A235E1E2BDCAE9BBF930B03560D1AF07"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-OPT-02-1920.png",
+    "sha256": "CE1C1C487A22E022E4B5CC9898C9AC2E32086EB8F6ECFB51C148D30FF6FD2EAF"
+  },
+  {
+    "path": "docs/acceptance/m7-msedge-J-OPT-02-820.png",
+    "sha256": "8B3288FD17EF3E048A8ED91DD59C64599A3BBD68C7F2740C84B6220809D66872"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-before-normalized.zip",
+    "sha256": "CFB544D4D0B49F3BEF2387A8B734138E8562A6831C89A335CDE20F21E21F787D"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-before.json",
+    "sha256": "D6B5CD6DF2DB745A28A4A1E13B90756AFDA7F8F8AC1F7EB6E4434E33B017EADF"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-before.zip",
+    "sha256": "B0F12DC95B50BC635E57162A5482E6865EC0AABF30E5A6A793F9D3C22D7E4619"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-build-first.txt",
+    "sha256": "85A596DAF4348DDE131C72DACAB6923E3216D5DD17558AA079467C0ABAE2D9B1"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-build-manifest.json",
+    "sha256": "E0F245F3CAEB19B027B9290C35E13DA2E6DC5DE5CA46EFD5BADB8FF30316DFF4"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-build.txt",
+    "sha256": "4C70AAAB00D5D0D3D70312ABF253F517C28B8791A3F0477DD35ED1B3C771FD43"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-chrome-before-fix.json",
+    "sha256": "B2AC5A5870C5BB62D8E085B5EB86C36765E4BEFAAEA7CFCC2B2CE709A396280F"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-chrome-before-fix.txt",
+    "sha256": "2CAB63C427962C554DF0588A352BC1497875405D5B137FF00D7AF5240FE205FC"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-chrome.json",
+    "sha256": "05AAC00BEB7A335A3A79268133D7FFDC72211108A6BEA1C21B00C78F7DCF1328"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-chrome.txt",
+    "sha256": "1D4C8C26E4A85572D0AC38321D29A7EAD93C3D40C465AD08420943260DA0DDBF"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-comments.json",
+    "sha256": "C758CD541F2C76ABC93E7C0D238F72101C688A77B66DCA7DB515C5BAC27DEF56"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-diff.txt",
+    "sha256": "FD772753490737162141EE936F22DE6169CB58EAA15E44AAFA80A7B6E474E7AF"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-edge-before-fix.json",
+    "sha256": "8EBE47BC21DBE1490A33E19298966A7471B97F1F6EECCB72EF98D36FBFD4AF4C"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-edge-before-fix.txt",
+    "sha256": "8BD8C93934D86DD84935A84CB870EBA476CF8004BA0E6C615149B8914A731EA1"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-edge.json",
+    "sha256": "A9E2191A4794352489ED20214046F193857584F4F3855DE2E57F33BBBE774088"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-edge.txt",
+    "sha256": "7185C72C949E62301963082A0F68A0540AB13A749BC308A298B94249A515EDAD"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-endurance-msedge.json",
+    "sha256": "6E615484EA7B0B5936AC79F48F1DA8217C599000E6963222004282D4334EE550"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-endurance-msedge.txt",
+    "sha256": "10F13DEEA40BAA3E04C4A5F4131DE9E6A4811ABD0EA1846D151D3118EC619F79"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-endurance-progress.json",
+    "sha256": "41D7FC2F062652B319EDEF60D9AA2331FFC0F6A9133C321B331069C37A0F3A0B"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-integrity.json",
+    "sha256": "66E15D20FF58A9A377D46ECEE79201182F152679C0EAEA06BCD3ED40EB346EEC"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-lifecycle.json",
+    "sha256": "ED190BDD7F3A83927E7ECE45AD455757E0832D6772A7460B92DAB5D2F81F6337"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-lifecycle.txt",
+    "sha256": "A7061B97667F79106C2DD7312FE58C0D40FCA6606D2AD964CB4FCC6B204A35D9"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-lint-artifact.txt",
+    "sha256": "FD9BA796B67650C61309933F2ACED3E1422BDCA0179ED28EEE4AB3EACD80914A"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-lint-first.txt",
+    "sha256": "612196C0498F2EE79506FC58436AF3651B74AC1B3256D1B85D8CF7F81B242C11"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-lint.txt",
+    "sha256": "3C9BA295A900A2B51B806C383BDFBFC592349047C911C59D32D1F27FB41ED198"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-offline-cli.json",
+    "sha256": "BDB9E3023ADCA0CBB161638DA09B26AE11218BF64053A8D8A11515B77912BC67"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-offline-package.json",
+    "sha256": "051C2C55D115D9F65089C3B9E976D71C4769A505A14054FCD8904721DBE5E93B"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-preflight-first-msedge.json",
+    "sha256": "00930BB83CDD969CA017B30A48375EF257131CE9EAB4375D96C3CD0BA1693B70"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-preflight-first-msedge.txt",
+    "sha256": "2BCA56BA7FF66C64532CCA68017D01EF3202102492F4313CB0FD144C85E8B90E"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-preflight-msedge.json",
+    "sha256": "7856F2B1D4A0F5817F579AACCB6288C8E588D8426AB9552920BC1C1EF039DE80"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-preflight-msedge.txt",
+    "sha256": "A0948FBC12D076DFD91A3386F55C2E840A6E0DD258D9D435EA494A4BB1272C4D"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-smoke-chrome.json",
+    "sha256": "C040D0BFE8658CA9E08031B8FE03DF46BD44FED1BE273663E6F673FAF439CCB7"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-smoke-chrome.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-smoke-msedge.json",
+    "sha256": "321A67B95049E9DF3DA2B13E7C7466744C1ECD81F16B50DE63A0129B4F49CFEB"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-smoke-msedge.txt",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-tests-final.tap",
+    "sha256": "B9B0E0ADAE0873DF851C0A24647CFE25CD631AC5E142A7BC212FD46F0E0C0E96"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-tests-sandbox.tap",
+    "sha256": "42F8CEA8BBC183A4ABDE6A64C414A5CF011E9C365381A159185357D88D7A0392"
+  },
+  {
+    "path": "docs/acceptance/m7-task14-tests.tap",
+    "sha256": "7EB10E99A8062BE0D0FC731B403A2EB1BD5A6CA250462CC76B8E55B72A48A763"
+  },
+  {
+    "path": "docs/acceptance/M7-TASK14.md",
+    "sha256": "17165FB832A52412C2692D6F4C72B124B814F94E84DD93C7FE3FAB2079057114"
+  },
+  {
+    "path": "docs/acceptance/TEACHER-TRIAL.md",
+    "sha256": "DC19B9D460D24C07516D3143AE930988B9F76B4D8C6943A6B66173601EFB7607"
+  },
+  {
+    "path": "docs/decisions/0001-m0-project-baseline.md",
+    "sha256": "325D732E5518073B59918F7C54B9906A36698A9AFE1304B60FCEDA7493F51012"
+  },
+  {
+    "path": "docs/decisions/0002-m0-sample-toolchain.md",
+    "sha256": "FEC7E8BA4CAEF06E9FB898764D4371ECA1C6025F3FB12477F75F1F4E02675CEB"
+  },
+  {
+    "path": "docs/decisions/0003-m1-scene-and-workbench.md",
+    "sha256": "544B9612B7DEE79CD8B1209235720A6218FAC967742B4F23EC701FA23453DB4C"
+  },
+  {
+    "path": "docs/decisions/0004-m1-svg-assembly.md",
+    "sha256": "B4D7CB0BC2843736F561CDEA661E9053BD3356C836799D325CAB1A38218640A0"
+  },
+  {
+    "path": "docs/decisions/0005-m1-physical-apparatus-and-loose-wires.md",
+    "sha256": "FCE89863D4C106A41B0A7D74728F43A32B7B80AEC7DF257F3A698BA175C4E4B7"
+  },
+  {
+    "path": "docs/decisions/0006-m1-history-and-persistence.md",
+    "sha256": "DBC418DDBB9FC9D1B7DED13DEF1B647E669A8DCC98F1ABA1C2CCA1CF60EA260E"
+  },
+  {
+    "path": "docs/decisions/0007-m2-independent-dc-mna.md",
+    "sha256": "C2DE0916DCE33B5066B53DEF5D56C7F6356AD6112A1EDAFA2814388FE7DD6F6D"
+  },
+  {
+    "path": "docs/decisions/0008-m2-lamps-meters-and-scheduling.md",
+    "sha256": "874DF030E2E4B365755B67329F10B7063DFA3DFAB9FF727860593151D8D89143"
+  },
+  {
+    "path": "docs/decisions/0009-m3-measurements-and-export.md",
+    "sha256": "9E123300AB1B12BE3088DE37C2524DB6CFE3E79E1855F33BCD4A5B828C0DD166"
+  },
+  {
+    "path": "docs/decisions/0010-m3-four-post-rheostat.md",
+    "sha256": "66CD4C13EE6E25B4E69626C8125EFB07D2CFDE74690FB603545E9C698D773476"
+  },
+  {
+    "path": "docs/decisions/0011-m3-lamp-circuit-experiment.md",
+    "sha256": "75BF8B8329DE65E217A19BBDBACD4F0EB84067BEF84162DDFA11CB8101B15088"
+  },
+  {
+    "path": "docs/decisions/0012-m4-optical-bench.md",
+    "sha256": "550E07AAFD6F6745F3E3870D74F696F27D68A6460B28A91ED1C459AE40C29D13"
+  },
+  {
+    "path": "docs/decisions/0013-m5-lever-experiment.md",
+    "sha256": "639BA5C599B2856E133309AB2740C051E842273C8CAB47C5E5A347F1A639C93C"
+  },
+  {
+    "path": "docs/decisions/0014-m5-friction-matter-adapter.md",
+    "sha256": "FDE34F29C0B4691E86E48B3A9678480CE438AE29994192F4C94E7A17DFFABDC8"
+  },
+  {
+    "path": "docs/decisions/0015-m6-static-spring-and-ruler.md",
+    "sha256": "18AAE30283DED7349A74244D4AF5BBEBD7731D7AE42B3FE95F29705E8E3D02D3"
+  },
+  {
+    "path": "docs/decisions/0016-m6-projectile-clock-and-frozen-launch.md",
+    "sha256": "38827B59A8215E5120E279576E99C6AA7BCD6B31C2514FE3E42223EEFD6D0C2E"
+  },
+  {
+    "path": "docs/decisions/0017-m7-validation-and-local-http.md",
+    "sha256": "1B6D7E903C9932E2A2D2DD3822A77FC73D65CB97296E758469D6E7B220945A50"
+  },
+  {
+    "path": "docs/models/dc-mna.md",
+    "sha256": "697FEA608E01BE56021544FEF741DDA9C7D10011A90A07277540787C7C0FA545"
+  },
+  {
+    "path": "docs/models/electrical.md",
+    "sha256": "775A8B297B6CDEA16DC968E0B18ECCD57564D45F188BE8179CA6B88D68E295A8"
+  },
+  {
+    "path": "docs/models/friction-experiment.md",
+    "sha256": "42B4675C4B8F29B85B1642956A1F828FD28B322FF86FB3870CBDF985ABAE3F43"
+  },
+  {
+    "path": "docs/models/friction.md",
+    "sha256": "9FD13741DE83A8C2E4F8C92C5327A24A669C64576A351210CA52F585F771C522"
+  },
+  {
+    "path": "docs/models/history-and-persistence.md",
+    "sha256": "42AAB97400FE6FE71372D2AB6166A0D351281CA98AFE1FF1C56676D88E809488"
+  },
+  {
+    "path": "docs/models/lamp-circuit-experiment.md",
+    "sha256": "41A58764BCCCA2071DAA0BDB38B77B61A46D244B5695E0A6144E0AAA4852CA5F"
+  },
+  {
+    "path": "docs/models/lamps-and-meters.md",
+    "sha256": "0537F4C49D708A64D0BD48539E00EDCA0D93824270BF5A09EE7D568873FD1577"
+  },
+  {
+    "path": "docs/models/lever-end-nuts.md",
+    "sha256": "65E913224430AAAC8196774CA4C9D921D6859AA89F6A9F40CFC9AA89DD1EEBD3"
+  },
+  {
+    "path": "docs/models/lever-experiment.md",
+    "sha256": "202F9D5512231560BED2463DF48A92CE52FE7C4A3E64004FA1CEFE4FE613ADF5"
+  },
+  {
+    "path": "docs/models/lever-tilt.md",
+    "sha256": "652BCE8F9ED4D10BAD3708426B49F6736CE528E888A1C3EED8EEDBAA58D45FDF"
+  },
+  {
+    "path": "docs/models/lever.md",
+    "sha256": "38AE859FF31647DB48593C62099F6D81268BD0B616D44F2858CEFB43CCB085D9"
+  },
+  {
+    "path": "docs/models/measurements-and-export.md",
+    "sha256": "DC73458318767740BF539913D1E3F0A11A457A7A24516587260F8794F166D43E"
+  },
+  {
+    "path": "docs/models/optical-bench.md",
+    "sha256": "0BBABE0547217A537EED177AE317307614CD7B46DD0C2F154AA1BC4468320FA5"
+  },
+  {
+    "path": "docs/models/optical.md",
+    "sha256": "ADE3241C396E3E01AF50240BD24F8E43F4BCCC5DB37F78B74D4C1EAF5D2B3D79"
+  },
+  {
+    "path": "docs/models/projectile-experiment.md",
+    "sha256": "B4F11571EF5B32F5FC29F5C7CE7C9D0E37892C7A29F5A8DD55C44FD09ACDEDF9"
+  },
+  {
+    "path": "docs/models/projectile.md",
+    "sha256": "A59404731B53FEAE3EA674D44AABA63209E73607AF96AA78D99BD314430FF5B8"
+  },
+  {
+    "path": "docs/models/README.md",
+    "sha256": "077BD12D5D3BFC339147B7799FB269D778BB1F79CEA56CF358DBEEF23BB15191"
+  },
+  {
+    "path": "docs/models/rheostat.md",
+    "sha256": "B0C267DF82764A85F8C7E87460C8FDD0C50A74FC0B7196025883101949913FFB"
+  },
+  {
+    "path": "docs/models/scene-document.md",
+    "sha256": "7562EFBC58271BD6C906B5440A5519AA9EFBE10AA57738D004E45467B9E55372"
+  },
+  {
+    "path": "docs/models/spring-experiment.md",
+    "sha256": "55413E0492EEEE1384423A17B3EE41EAE28C41010341CC5B29B209242FEF03E1"
+  },
+  {
+    "path": "docs/models/spring.md",
+    "sha256": "C677FB258B4DE25D4319B4DA110177BA8BB597DC12DA1EBADA54679727C0640B"
+  },
+  {
+    "path": "docs/models/weight-chain.md",
+    "sha256": "DEB7C36480198D9210D3997C4E990188C06025478505BC6E27C814EECC7214DF"
+  },
+  {
+    "path": "docs/models/workbench.md",
+    "sha256": "9B6503CECCF10B7C90F23DD36E4C68D3E62113D0792A1C6CDC49B752450EE886"
+  },
+  {
+    "path": "docs/requirements/H-MECH-01.md",
+    "sha256": "CDE18DF6C237F7A8638D80C3E16AAF88F692AB13D0174BA4985DD252556C378D"
+  },
+  {
+    "path": "docs/requirements/H-MECH-02.md",
+    "sha256": "6149024C837043874E5ACBD7672AB65962DA43A47B30FD73C0059A27525421EA"
+  },
+  {
+    "path": "docs/requirements/J-ELEC-01.md",
+    "sha256": "88E9B870D6F9AB75D023C105054D69A4B87914FE6271A5707B68BCFF30F15438"
+  },
+  {
+    "path": "docs/requirements/J-MECH-01.md",
+    "sha256": "4D719356268CA4C878C9264238F3216C5A18B6AB7D3D59CBB66BD3A4D64B72BB"
+  },
+  {
+    "path": "docs/requirements/J-MECH-02.md",
+    "sha256": "2D54519A1E36009DF10828BC3D2D7F8CC96BE946F401FCFFFB5B6D54734DDC83"
+  },
+  {
+    "path": "docs/requirements/J-OPT-02.md",
+    "sha256": "E95D89CB0FA276DCA163A2F1EFD76514CBEC03899841ED269D4CD87EE97A0666"
+  },
+  {
+    "path": "docs/third-party/DEPENDENCIES.md",
+    "sha256": "DD8227AB53230A17EB0F55859A9C29F218E0CC6CF57F54EDCCDF17EB74144967"
+  },
+  {
+    "path": "public/THIRD_PARTY_NOTICES.txt",
+    "sha256": "78CB054108C54D5B8C96C1B60527ACE43F9FE21BE68F56A0F90DCD7B079F302F"
+  },
+  {
+    "path": "scripts/dc-mna-demo.mjs",
+    "sha256": "196CC0F2C1CA122BB7CEF984ECD255FA89EFEC7F350188E1B8B1D63096CFDE7B"
+  },
+  {
+    "path": "scripts/dependency-inventory.mjs",
+    "sha256": "9E0AB8C36E5FA019E32CBDF70B82B24F82599F504DF62D3F53F70C9A291012BD"
+  },
+  {
+    "path": "scripts/electrical-demo.mjs",
+    "sha256": "C2FEA7577F65F07B0F99C12EE411BD9B22C040C61485339E804CA699F6020FBE"
+  },
+  {
+    "path": "scripts/friction-demo.mjs",
+    "sha256": "8BCB449C3B493E55E30B32D7412810A1222994655415E2C7E1E28F2D254B9B0C"
+  },
+  {
+    "path": "scripts/lamp-experiment-demo.mjs",
+    "sha256": "ED681AF9C8F44F7FD84FD76EA68FB06D4B1616B12CE37BD3F5E01C0173FCEB9C"
+  },
+  {
+    "path": "scripts/lever-experiment-demo.mjs",
+    "sha256": "8E2E9C47268C71C48EFDBB668C68468EB07D5FE7971D7B232F7080380D19EFB3"
+  },
+  {
+    "path": "scripts/m7-audit.mjs",
+    "sha256": "D1DA99752F1213F5298389EB45AD8A6D7EFA0382B109FC96D6DEFA6D818725D3"
+  },
+  {
+    "path": "scripts/measurement-demo.mjs",
+    "sha256": "E332E15DF5909289F569694A3BC1532890C1A9073E679431A41332B02F66CC17"
+  },
+  {
+    "path": "scripts/optical-bench-demo.mjs",
+    "sha256": "380DE8BE2C18F384E14B19ADE1AF29FA475DB69A16D786A4ADABDADD9213015D"
+  },
+  {
+    "path": "scripts/physics-samples.mjs",
+    "sha256": "8E09E5EF0ED9F29DCE2D3E900750DF8ED28F8CBD4A27207AC4AFA6A2A318A1C0"
+  },
+  {
+    "path": "scripts/projectile-experiment-demo.mjs",
+    "sha256": "A57E1A8C559A6F6F266E852C894A9BDC79FF98EF6779415248150EFCE70CF090"
+  },
+  {
+    "path": "scripts/rheostat-demo.mjs",
+    "sha256": "523CAF7A0DC445CB240C1A16BF52F9A71BF86D3D17D6D0BC8D5B867FACE1A3C4"
+  },
+  {
+    "path": "scripts/serve-dist.mjs",
+    "sha256": "5A2F47AD722054BE5BA501A14F8C091C086079ECB717AAED53B1289B32CBE209"
+  },
+  {
+    "path": "scripts/spring-experiment-demo.mjs",
+    "sha256": "5BD99DFB40B4B63068FE812C3125C635AD36B0938B77A8470336AF7787E7A19C"
+  },
+  {
+    "path": "src/app/App.tsx",
+    "sha256": "99F598A64A3FDDB8E6C9966BAC6A57BFAAE904FDAE60AED6A36B7D235657C0FD"
+  },
+  {
+    "path": "src/app/main.tsx",
+    "sha256": "B4A4D6B9C93F6A2E7F9C4BFEECED1AE2A59F3F997C9C76CEC0F64062DC8CE410"
+  },
+  {
+    "path": "src/app/experiments/LampCircuitGuide.tsx",
+    "sha256": "C64920DF344897B2346A0EC2D54008FF3AF204C6470162D8CC9EF10EF15390AD"
+  },
+  {
+    "path": "src/app/experiments/LampCircuitStart.tsx",
+    "sha256": "3AC288FA0D91F6386D268D75AC72B935F3DE373B356CE39C9B2C3B757DDD8961"
+  },
+  {
+    "path": "src/app/friction/FrictionGraphic.tsx",
+    "sha256": "804C7686D879D3DB511BA4B2C872AE881AA7259F0FCF9B3668E9CF4DF17E1F7B"
+  },
+  {
+    "path": "src/app/friction/FrictionPanel.tsx",
+    "sha256": "D1B498E2DC8B1BE2E6AA341CAD2584F219FC490069F3C9F22C9BF97D1D6AA223"
+  },
+  {
+    "path": "src/app/friction/FrictionRecords.tsx",
+    "sha256": "575DFC9348C45DC0B3474169D8AF95626FDDFA9B825ED24F8F995025B9271EE9"
+  },
+  {
+    "path": "src/app/friction/FrictionStart.tsx",
+    "sha256": "56E000617FE64D8F1D6EE66D3A95FC9286E2B6272D9F3C1E8799966C2E3F5BC8"
+  },
+  {
+    "path": "src/app/friction/useFrictionSimulation.ts",
+    "sha256": "F625DEA2A4563E8AB6BEA95BBB86F28A66D315228A0D279C53E91E289B9C0D04"
+  },
+  {
+    "path": "src/app/measurements/MeasurementChart.tsx",
+    "sha256": "DC56B12F276A0E9494BED57E620EF0D64C3B2F3D092EB83935ABAEE79F5FA5F9"
+  },
+  {
+    "path": "src/app/measurements/MeasurementPanel.tsx",
+    "sha256": "14B8DF86369173F503FFC4EDBDFB245F7F662DF255D34BC047E536A021591A83"
+  },
+  {
+    "path": "src/app/mechanical/AppliedForceInput.tsx",
+    "sha256": "D450A12AD59BABBE14365ECD51E06CB2ADC7EFFC5B49D4BCFD07F1BF8F6E5249"
+  },
+  {
+    "path": "src/app/mechanical/BalanceNutControls.tsx",
+    "sha256": "C488F1DD8C23CAB7F4F42637812DB7FED332FCDEEBA23940BE3DAF816E755DB2"
+  },
+  {
+    "path": "src/app/mechanical/LeverForces.tsx",
+    "sha256": "6399CC70A6D9DA61AC1EE04A884584239D351AF05ED93B429AE55B89448BEA86"
+  },
+  {
+    "path": "src/app/mechanical/LeverPanel.tsx",
+    "sha256": "94C5D085100544C31A495EAE478A6EDEDDF788597F3039595B8851BC9CDE1031"
+  },
+  {
+    "path": "src/app/mechanical/leverPresentation.ts",
+    "sha256": "AE99EA79989A51A0A2A6FAD882C6C024A6CF15E0C9E31E264BA42778FF6C1768"
+  },
+  {
+    "path": "src/app/mechanical/LeverRecords.tsx",
+    "sha256": "29FA5EAEF87A295E075ADB8D587F8272BDBE9A232AF24569836DEE7E29F7F92A"
+  },
+  {
+    "path": "src/app/mechanical/LeverStart.tsx",
+    "sha256": "1D56CF6DF123D48FC642D2ADB6E306B119D0EC8DD168CD2C7B9BE4EAA455FBE3"
+  },
+  {
+    "path": "src/app/mechanical/MechanicalGraphic.tsx",
+    "sha256": "DAF40422A10BDB04A06261356D4F9368B6BAAD3A1CB72EAAA45F52BBCF3A2DCC"
+  },
+  {
+    "path": "src/app/optical/OpticalGraphic.tsx",
+    "sha256": "02BE58C996665AC997C574B312BDECB892F325E30C91286B46E5374B8A9DA66A"
+  },
+  {
+    "path": "src/app/optical/OpticalPanel.tsx",
+    "sha256": "1CF4118A0E73B8E212F93D077CE8814C7C88E30BDF6D39C8D80BD8BD1E7B5BFF"
+  },
+  {
+    "path": "src/app/optical/OpticalProjection.tsx",
+    "sha256": "7510C5302144E6B592FC501F9752C5C532C0AD61A751615A9CAF1C6ABC969E92"
+  },
+  {
+    "path": "src/app/optical/OpticalRays.tsx",
+    "sha256": "81F4EBF25F65516A9CE63800E8E0B6C370028FB970606951C58C9A719DC9C115"
+  },
+  {
+    "path": "src/app/optical/OpticalRecords.tsx",
+    "sha256": "8A4EDDFC075F1CD040C67823ECFAF1EBBD29AF497701C0FD95FDFA1FB64A71F8"
+  },
+  {
+    "path": "src/app/optical/OpticalStart.tsx",
+    "sha256": "5187BBE8C6B14B9A17AA546E8766B16D56AA3DFB786DE42DFDDC35C6F0F64F14"
+  },
+  {
+    "path": "src/app/persistence/localSceneStore.ts",
+    "sha256": "CDCA3374A3D08A8F88ACBE6744A7823004AF6270DDF4077405C1CB92455CB451"
+  },
+  {
+    "path": "src/app/projectile/ProjectileChart.tsx",
+    "sha256": "AC433987E10533ADD60BA3B32AA6A052385AEDA93AE28FE430FA56BC13FD2B19"
+  },
+  {
+    "path": "src/app/projectile/ProjectileGraphic.tsx",
+    "sha256": "BA59B9FCBDC0BA938017D37928960A87264C9EEA5363DAAB77A0DECF2F07AA44"
+  },
+  {
+    "path": "src/app/projectile/ProjectileOverlay.tsx",
+    "sha256": "DFF29E635341EFF765EA35A7B744D5E48C71C25674B3EA5A9E12BEBEFDA1C99A"
+  },
+  {
+    "path": "src/app/projectile/ProjectilePanel.tsx",
+    "sha256": "26886E9D9E7319B6DDC6DFE69C115FAE7E05DB53FFF359D608DFC579D2353510"
+  },
+  {
+    "path": "src/app/projectile/ProjectileRecords.tsx",
+    "sha256": "10F42C192E9085EF57A41D5F19F271FC27843EDE4DEBDF5AF4A59DC422C48C1D"
+  },
+  {
+    "path": "src/app/projectile/ProjectileStart.tsx",
+    "sha256": "A7C2DBB1A3D8D99F1E7DE662BA8EE9D3FA3420325DEA0259E63D788E82B1624C"
+  },
+  {
+    "path": "src/app/projectile/useProjectileSimulation.ts",
+    "sha256": "19B1A07D1C89DB3C76EEB6A6A8D5BD94162EC72B6A84F7C7E916261DE61EEE86"
+  },
+  {
+    "path": "src/app/simulation/electrical.worker.ts",
+    "sha256": "882926943722FC75B7D26A9972FF798B9F548E95D9966E52AA1779012DEBE780"
+  },
+  {
+    "path": "src/app/simulation/useElectricalSimulation.ts",
+    "sha256": "0F9F8748A241FDE21AD91AC4DEA74E2EC7BB3E8A6286FD251BA96C17975A7FAC"
+  },
+  {
+    "path": "src/app/spring/SpringChart.tsx",
+    "sha256": "8FEE8E14260DAA2D8FE5D6A8EC1085821362331CEC15FDE2C381B4B1DE8E9CD2"
+  },
+  {
+    "path": "src/app/spring/SpringGraphic.tsx",
+    "sha256": "9357A11EA67F6D8D6BE400037E024188B7CB95285A169FD7B195EB13BF15A130"
+  },
+  {
+    "path": "src/app/spring/SpringPanel.tsx",
+    "sha256": "A8C58D2F9EEFCDF81FF2FA495B7BFF9CDA51AFC9ADE72B01F400E068C0C2C4FA"
+  },
+  {
+    "path": "src/app/spring/SpringRecords.tsx",
+    "sha256": "B3F0C616A2CDF79FEE00975F002524B53964E3698A9A15FE55CE581E3D87912D"
+  },
+  {
+    "path": "src/app/spring/SpringStart.tsx",
+    "sha256": "22372F65B0EE0FECC649C3D0523F18F00804950E33173E18AB02F3D6FABAFC01"
+  },
+  {
+    "path": "src/app/workbench/DocumentPreview.tsx",
+    "sha256": "32413EE0C2F84023E89C64625FD2FFBE9D03E79319A599E9FDBA621B01773BF5"
+  },
+  {
+    "path": "src/app/workbench/EquipmentGraphic.tsx",
+    "sha256": "68CE3804B23F0C08A1D1B5312778A43E21A0C929CE4E2D7D3E53975464C53BA7"
+  },
+  {
+    "path": "src/app/workbench/EquipmentLibrary.tsx",
+    "sha256": "4B6458912303F4D6A22B2018D8F0F8D230AC107DB9DC8CFEFE7A5EC99DB13401"
+  },
+  {
+    "path": "src/app/workbench/InspectorEditor.tsx",
+    "sha256": "34372B13BBB4DA36ED1DC7B44E0B87CA32CB5EFF3C0446D5D1E965A61F5DCE9F"
+  },
+  {
+    "path": "src/app/workbench/LiveProperties.tsx",
+    "sha256": "B5C4206D79D182C34289369061634FB8A78FF5B105DA3B8D1387650B56E3BEB6"
+  },
+  {
+    "path": "src/app/workbench/MeterGraphic.tsx",
+    "sha256": "10CB74416BFA1E27CC93BF45C57D3466C9AA4BDBD2B0388E20622396BAC6B935"
+  },
+  {
+    "path": "src/app/workbench/RenameExperiment.tsx",
+    "sha256": "371FD13966A745601EAF5B9D626F98ABE47E82DC774A0C1F862EF6C810CDAEFA"
+  },
+  {
+    "path": "src/app/workbench/RheostatGraphic.tsx",
+    "sha256": "9922C5342BC6F2996256EFB79C07AF0006B6922746C52CEC6EE84B2088E43F9A"
+  },
+  {
+    "path": "src/app/workbench/SavedExperiments.tsx",
+    "sha256": "4815D0C41A68805B9132678F766CC0F465B4B14FC9C2445CE52AA478029B6E13"
+  },
+  {
+    "path": "src/app/workbench/SceneBoard.tsx",
+    "sha256": "DAF10F6CFE20398295F9C90DD39767425F994510E27D098600606CADC0FAF695"
+  },
+  {
+    "path": "src/app/workbench/shared.ts",
+    "sha256": "5BB7D3FA9419FE848B766E0DF963834AF6FFF5F5E87A90D7C0DF913C1809562B"
+  },
+  {
+    "path": "src/app/workbench/SimulationPanel.tsx",
+    "sha256": "04B18F94532C56BA8A09B48A0777FED7D529B2F99997A623C347ACD8FBA9D072"
+  },
+  {
+    "path": "src/core/connections/schema.ts",
+    "sha256": "D807D39DA79DB4B838D33BEA6971F88803DA0E243EEB018441FB9BDC6E5BE7CA"
+  },
+  {
+    "path": "src/core/diagnostics/diagnostic.ts",
+    "sha256": "FBD2AF404018D054559D0333C74943AE23D49822D5031F248CBFB03D42302CE1"
+  },
+  {
+    "path": "src/core/electrical/compile.ts",
+    "sha256": "047DCBEC864F9A7F5DDEF2F1226CE7948E479DEFB25BE0A0FAA01D951E9AE5C9"
+  },
+  {
+    "path": "src/core/electrical/instruments.ts",
+    "sha256": "B5EDF4014ADC4E68A06571CF94DCD6762EEE4E0F392FAFB71904987481D45393"
+  },
+  {
+    "path": "src/core/electrical/lamp.ts",
+    "sha256": "F6A62BC754E01492E7FCB4E7D2122199CC2DBBB56A9820B51B30B4082F92AEDA"
+  },
+  {
+    "path": "src/core/electrical/linear.ts",
+    "sha256": "CEF06E69DF214E2DF54F9F84E77E0E607D7AFEB0DAE33F10373200DC45293053"
+  },
+  {
+    "path": "src/core/electrical/netlist.ts",
+    "sha256": "219508E8BF1848DDDFA47BD815FFF48532BCDC62799BD2BD42259495E0B58DC0"
+  },
+  {
+    "path": "src/core/electrical/rheostat.ts",
+    "sha256": "9D42A45C674D2B512CA1C65901D6A18EC623981FC7A7D9B9CC5000A12091EC6B"
+  },
+  {
+    "path": "src/core/electrical/solve.ts",
+    "sha256": "AA762B49DB1D51A443700465640557E723F09655DDA8418AA4F80D0A662B3836"
+  },
+  {
+    "path": "src/core/electrical/topology.ts",
+    "sha256": "FD0BCBC8FDE368127CE3D9FB65A7337D0BEB103304E8FA4159F9F7EE80D690EE"
+  },
+  {
+    "path": "src/core/equipment/registry.ts",
+    "sha256": "58B8ACB18D4D80E8A04227322F54F1045BE58463FF983F55AE4F4C85A4916387"
+  },
+  {
+    "path": "src/core/equipment/schema.ts",
+    "sha256": "97D85B79182E95DB3C4F50C437694FD768982310D70530AB2C39EC9081DF81EA"
+  },
+  {
+    "path": "src/core/measurements/charts.ts",
+    "sha256": "9ECA3AA31ACB694023126760CBE8A4C1743BFF2E62189D3AC41A6D6ADF95EE6D"
+  },
+  {
+    "path": "src/core/measurements/csv.ts",
+    "sha256": "AD3F8D2D864511B05E75A38C31B8781682F83F02AF3CC94C43AD119E22FEB91A"
+  },
+  {
+    "path": "src/core/measurements/fit.ts",
+    "sha256": "0E35780351F2B1E045640FEC1A63023708DAB741A01AA199D7EBBE7608F01782"
+  },
+  {
+    "path": "src/core/measurements/records.ts",
+    "sha256": "8649E33E74068909617B4CC92F6193661E227F3E883A17227A30581B84C052E4"
+  },
+  {
+    "path": "src/core/measurements/table.ts",
+    "sha256": "A985933FE8CF659CDB7EA8F31DB3AAC1045B964B39CF7B5918F60870C9128C21"
+  },
+  {
+    "path": "src/core/mechanical/lever.ts",
+    "sha256": "2D61EF709FBEBD4BD3ACD8FA355AED67F41C42FD6914B8908FB8EF1A54303194"
+  },
+  {
+    "path": "src/core/mechanical/friction/matterAdapter.ts",
+    "sha256": "9F8BF13F26B6DF699010D5E1FAFDB48005C6B5731AED3C7021822197689FDF9B"
+  },
+  {
+    "path": "src/core/mechanical/friction/model.ts",
+    "sha256": "B4E06864917FA8FAC1CFF3CAD7CBDE6FEE31A84411E469676BE36CE9EB0C0E5B"
+  },
+  {
+    "path": "src/core/optical/bench.ts",
+    "sha256": "F60B8C86E7BB2BDD84344EE3602454585C7916A1C209279BF55AC2CEB894E903"
+  },
+  {
+    "path": "src/core/scene/create.ts",
+    "sha256": "A77C9E53B07BEA453B3BF5383B36F6DEDF27186A0C7EB99D166ADF468017D11E"
+  },
+  {
+    "path": "src/core/scene/migrate.ts",
+    "sha256": "047D8E85A4D85CB064E6B70A1EA4DEB28C9BA0BD1179CBDBB945E686A3AD7B19"
+  },
+  {
+    "path": "src/core/scene/schema.ts",
+    "sha256": "9C57B7561DCB618CB1546F8C5CF516E12A54B570C290154758CB3C5A467DE983"
+  },
+  {
+    "path": "src/core/scene/transfer.ts",
+    "sha256": "0F5B827600316AC596181A896DA5F0C5D7336E9A7326DB49ECB0421329048A46"
+  },
+  {
+    "path": "src/core/scene/validate.ts",
+    "sha256": "3200435EA3810199B780C87C0B0BCA5E55AD7361E2C6FC6DDC07C8DBDC0D0C0E"
+  },
+  {
+    "path": "src/core/simulation/protocol.ts",
+    "sha256": "1CAF5DFF3090F6CC4ABE394472D6799E24D3882A934BA6F3616EC91BAA14F0F1"
+  },
+  {
+    "path": "src/core/units/units.ts",
+    "sha256": "B76B5DEC75152CB44E182AC529768C8ECAED414813B1CABAC22A35ACF1EC9954"
+  },
+  {
+    "path": "src/core/workbench/edit.ts",
+    "sha256": "DDFF1AC096669B3C24FCE6B5D32F1CC8B7BB861180AE28EE812873DE95861678"
+  },
+  {
+    "path": "src/core/workbench/geometry.ts",
+    "sha256": "31C98338C26D3239B215DFA77901C4235A72B55567342C72D8D1DE4BD70491BB"
+  },
+  {
+    "path": "src/core/workbench/graph.ts",
+    "sha256": "804A78A41A060AF572434B7AC9C236F1FAC3A993D22524C52A697F758FA40D42"
+  },
+  {
+    "path": "src/core/workbench/history.ts",
+    "sha256": "744AFB88EC11F2FC6AB7A6ED685F7557797438E15892317FBA619CC58CCC8170"
+  },
+  {
+    "path": "src/core/workbench/properties.ts",
+    "sha256": "58D19E1A2928B78104ED71E2EAB6C9B1976BB33E62E54203D4E5FE4E8FA5C4F2"
+  },
+  {
+    "path": "src/core/workbench/rheostat.ts",
+    "sha256": "9E1E95E94992DA64529C4679342830A2918E2C3926E218FE3C6CB9CC7170F3EF"
+  },
+  {
+    "path": "src/core/workbench/wire.ts",
+    "sha256": "E631006BAD47FE8D82535B0B44C668270B2679CF3717C193CBEF9656DBAFB2A2"
+  },
+  {
+    "path": "src/equipment/registry.ts",
+    "sha256": "8165385A66F1A62F6316232A0989B695131A99AC34053400E5B8EFFD6C6F16BF"
+  },
+  {
+    "path": "src/equipment/electrical/dcAdapters.ts",
+    "sha256": "D90DDAE3909D7760A03AAC4DD40133410B273CABF2E7FD4B04C5F2BC6E195842"
+  },
+  {
+    "path": "src/equipment/electrical/definitions.ts",
+    "sha256": "834EE31273B978107AF708AA31AE535EBBD8EDBE24BAD593FB6DEC73D67E80B7"
+  },
+  {
+    "path": "src/equipment/electrical/measure.ts",
+    "sha256": "5A243E778F34666DF157AD7BC5C8D52FAB1017EE5F34CB029D375AAE1B64B2F6"
+  },
+  {
+    "path": "src/equipment/electrical/simulate.ts",
+    "sha256": "162671E7D4B3AA3DE154B6151A6D703CEF331477095518EBA69E384D23F8A5DD"
+  },
+  {
+    "path": "src/equipment/mechanical/definitions.ts",
+    "sha256": "149818FBC9700ECAC6F28C2A5CCC5BD9B88663164DB84DBA5464FFD15C396E87"
+  },
+  {
+    "path": "src/equipment/mechanical/frictionDefinitions.ts",
+    "sha256": "0571E07F28E22F8298DA0FEA0392AD821964859881FD28825B7C86533990EF9A"
+  },
+  {
+    "path": "src/equipment/mechanical/frictionMeasure.ts",
+    "sha256": "32AF020FDFD1D2D5C918D600FA0CA7459176FCCDAF7D65BA5990CB78573591A8"
+  },
+  {
+    "path": "src/equipment/mechanical/frictionScene.ts",
+    "sha256": "F7FBE34D444EFD1C0C9D0E1D5F2863399F68353D5FD05A300630EDC4BBF61321"
+  },
+  {
+    "path": "src/equipment/mechanical/measure.ts",
+    "sha256": "9609A70485A5192AE9AFFB22045237A8FB330F4C4F8F162E46DA5017724678C0"
+  },
+  {
+    "path": "src/equipment/mechanical/simulate.ts",
+    "sha256": "D171116AA9DDC2073762A9D6AC9F271B0C8B29763580F62B7FCAB35C51442FC5"
+  },
+  {
+    "path": "src/equipment/mechanical/weightChain.ts",
+    "sha256": "4FC337E9F384C928F4DEBD34C0F197574E6217E6591FAC07CDC21CE32EB68592"
+  },
+  {
+    "path": "src/equipment/optical/definitions.ts",
+    "sha256": "E5D8B560AFA9802C7C3830F725AF5E333B0E648AE527DE40B542CCD398307881"
+  },
+  {
+    "path": "src/equipment/optical/measure.ts",
+    "sha256": "E40130F43ACCD26C66B878ABD45CB99FED1B1A266F3F842FEDC3FCE245007302"
+  },
+  {
+    "path": "src/equipment/optical/simulate.ts",
+    "sha256": "A94B87C1667A5FB1B9C8482849A513A52D51EA1F1BF2BAB18EE2758C675D4249"
+  },
+  {
+    "path": "src/equipment/projectile/definitions.ts",
+    "sha256": "9F0AF91FFFC2D70B5C1C6CF8E7C9B9366D160CD0FD480C636E8D5D14D5E3961D"
+  },
+  {
+    "path": "src/equipment/projectile/measure.ts",
+    "sha256": "49E28639E92257734AE71AC56A143337718837CECDC677EB33599238AF8118C9"
+  },
+  {
+    "path": "src/equipment/projectile/simulate.ts",
+    "sha256": "792A83460CB737DF991EB97DFBEA243C01912462C4AAF2AF29FB53E962ED8BA2"
+  },
+  {
+    "path": "src/equipment/spring/definitions.ts",
+    "sha256": "108A4AC539471838D6FB03C9D8B160F96A23C8F4FA6AD9F7FCB2F2F2541C28DE"
+  },
+  {
+    "path": "src/equipment/spring/measure.ts",
+    "sha256": "F2066ECFCC0A5B0FDFB100FBFA42A51F46D562A525660D9E4D1E7A7A48775212"
+  },
+  {
+    "path": "src/equipment/spring/simulate.ts",
+    "sha256": "7F6D886E3BDE5DA74EDE945419ECC2B9F45DBF700FBFF2C70BC3CC293ADFB681"
+  },
+  {
+    "path": "src/experiments/friction.ts",
+    "sha256": "2C0A2D8EA0664886A0EB93360A3CA84959A901004A8626BC9A08D5E5C374E59D"
+  },
+  {
+    "path": "src/experiments/lamp-circuits.ts",
+    "sha256": "BA399851C25924209EBF8F7B961FF036EBF284D7BC5FA3387C9F080F44B76CC2"
+  },
+  {
+    "path": "src/experiments/lever.ts",
+    "sha256": "8FFE1ED224AABCA57FD9247A69D8DA44D1F792C6C3143C55F97CB9D443A2D9D1"
+  },
+  {
+    "path": "src/experiments/optical-bench.ts",
+    "sha256": "060A9076EE82EA28D26465C610FDD40C0C6DE779F3B4788193C20B737ED050FA"
+  },
+  {
+    "path": "src/experiments/projectile.ts",
+    "sha256": "43EE69B64741C39B220468F2BE3AFF66071E8C493E6D6C880BC0F3CC64A7A519"
+  },
+  {
+    "path": "src/experiments/spring.ts",
+    "sha256": "509AF05C2DD4131378B2EC3CAF8B3223687A008BA6EE4D22D4F94E47E5317EDD"
+  },
+  {
+    "path": "src/physics/samples/electrical.ts",
+    "sha256": "FB903E81902BAF6F9C22F17A463486D136C3647588D2E35C4350D6CB6651EC26"
+  },
+  {
+    "path": "src/physics/samples/friction.ts",
+    "sha256": "0B08CC4FDE98C60FB53CD703CAE50F2B6E667127B52604EDC8E23B6BE0602D11"
+  },
+  {
+    "path": "src/physics/samples/lever.ts",
+    "sha256": "05AE855F36E7E9D96FB11FDF271CF5B68388FB2DAF5D89C2AD54D1C669872EA9"
+  },
+  {
+    "path": "src/physics/samples/optical.ts",
+    "sha256": "F512430F220CFD030D67D5944958F930AB089AE509254FFF3EDD2D8001BB06FF"
+  },
+  {
+    "path": "src/physics/samples/projectile.ts",
+    "sha256": "E24E081E9F249E661B0C0ABEAD39C86D9E85B0EA9B407B5A20830EC248795E15"
+  },
+  {
+    "path": "src/physics/samples/result.ts",
+    "sha256": "0B92BC289E4F4114EA7B662B0E4DD26079E92C73BE424EC10E9E948BC0B80E7E"
+  },
+  {
+    "path": "src/physics/samples/spring.ts",
+    "sha256": "32BD02F16D3741769152DD6B866A4FEBAFAAC8B0694A8A73EE3C6E96B32617F2"
+  },
+  {
+    "path": "src/styles/workbench.css",
+    "sha256": "F46EB29C66A876A931060F08A2B2394E19D002C2F28B52850EE300B328819589"
+  },
+  {
+    "path": "tests/core/balance-nuts.test.mjs",
+    "sha256": "7FFC38445626EC4221D77B85FEBFE339C6FA98985CDAC7BCB1C8E1228A976E0D"
+  },
+  {
+    "path": "tests/core/dc-compile.test.mjs",
+    "sha256": "0CE72D0C2FE9DE8B9519BE478CE95A7B087972FE20FC5BDB3AD373B53475F1C9"
+  },
+  {
+    "path": "tests/core/dc-fixtures.mjs",
+    "sha256": "2D77DFA82D63D6A9E80C718D13374D67ACF97554B7E5106FE979D72390E36043"
+  },
+  {
+    "path": "tests/core/dc-linear.test.mjs",
+    "sha256": "127A5C13EF1C27A6A031FD9C6C306894BEBE6B6E8B0D46CAD02074726E3A56A2"
+  },
+  {
+    "path": "tests/core/dc-mna.test.mjs",
+    "sha256": "AEE6889A75634FD460679946DF79F8C1936DAD69E29366695B164D7A3D0DB43A"
+  },
+  {
+    "path": "tests/core/fixtures.mjs",
+    "sha256": "9D9A9BCE97EF7113EDBA5BF29D5C1AD34434A82752D996BD4015AC4932F5779D"
+  },
+  {
+    "path": "tests/core/flip.test.mjs",
+    "sha256": "E7BE263A98CA3D43D6D32FB6D86777EC486382B451E783415BEA903CBF8D1A79"
+  },
+  {
+    "path": "tests/core/friction-experiment.test.mjs",
+    "sha256": "C4C66B5BB17F1B97C3D31B1B5D73A8EC85162359F8D093CC462546EF6B4A7EAB"
+  },
+  {
+    "path": "tests/core/history.test.mjs",
+    "sha256": "BEDC9FFE78518219691C2C232CF9E98B145B47ABB1C50F74B4ED9EA3EC5CF87F"
+  },
+  {
+    "path": "tests/core/lamp-experiment.test.mjs",
+    "sha256": "56F34C14814BE6D418C019CB5FF95EC4FF90B8D8EEFFE94EA38A2E4D8E9BA35A"
+  },
+  {
+    "path": "tests/core/lamp-instruments.test.mjs",
+    "sha256": "B7B353FD667AD6EA851491E9F3FE4AD97D7C68F27B8FE028EFBAF18C32457B8B"
+  },
+  {
+    "path": "tests/core/lever-experiment.test.mjs",
+    "sha256": "67A3582E9AAE1C9CA8DAA48EA2C27988B023A064B9F65463E02936E2B0DA4A41"
+  },
+  {
+    "path": "tests/core/lever-presentation.test.mjs",
+    "sha256": "5E7F92705D076E5762D01E7BE78D2DA2443BD0FED8D3084DACFDC25B86032FE6"
+  },
+  {
+    "path": "tests/core/live-properties.test.mjs",
+    "sha256": "D972DE89996112EB1DF0393F6640C4553288BFC03B473560E040F40817027FA3"
+  },
+  {
+    "path": "tests/core/loose-wire.test.mjs",
+    "sha256": "38B66423294CD4235A88E3C68BD5C041E871B837FC2409EEE2BCB83A7B43005B"
+  },
+  {
+    "path": "tests/core/measurements.test.mjs",
+    "sha256": "5070960199AB84D6113DF712038005CE553E9F32BDE0BC16E03C87BCA550B580"
+  },
+  {
+    "path": "tests/core/optical-bench.test.mjs",
+    "sha256": "C5AD029E0D50A991B14DFAA822C5FCD10570FFCE6C1B06A4D958F551C3AA8B74"
+  },
+  {
+    "path": "tests/core/projectile-experiment.test.mjs",
+    "sha256": "1966D4776E8510D0753F7E27307C65ADCC9C379BD889C957791BCE247BC69990"
+  },
+  {
+    "path": "tests/core/registry.test.mjs",
+    "sha256": "B2C961D78DA657674D1864C8832B58FFDE29A8099156B034E0AFAC4E61346B98"
+  },
+  {
+    "path": "tests/core/rheostat.test.mjs",
+    "sha256": "2E65C06D22CB1562EBE631E88A682857D2269FC1541CAC45D95B9F1A0571B5B0"
+  },
+  {
+    "path": "tests/core/scene.test.mjs",
+    "sha256": "48E4A7E853D0E37F3A68B7BB5DD370F4AC0174C795941ED7C5248F28761C778D"
+  },
+  {
+    "path": "tests/core/selection-delete.test.mjs",
+    "sha256": "67F421BACD208DBA0FCE965CDF125058E82B5D1A7C25F887975D6E1737BCA8F0"
+  },
+  {
+    "path": "tests/core/simulation-protocol.test.mjs",
+    "sha256": "CF08D202D4E414F7CB5A17E680BCBBC4AB22D8C89DA1D2EE2FE35060F3C7646D"
+  },
+  {
+    "path": "tests/core/spring-experiment.test.mjs",
+    "sha256": "6501D6E3BFABF23047A4BFB3AC29864CCC2D908619BD83017056DB01FBBF9515"
+  },
+  {
+    "path": "tests/core/static-server.test.mjs",
+    "sha256": "D294CA3829F5B1A14490A8E67974E3ACA21385F62BFD12CB690FF60E241AB5E7"
+  },
+  {
+    "path": "tests/core/transfer.test.mjs",
+    "sha256": "4D426BC8E95CC99B1CC85E953BCF8BDF9E4612D4F79E68BDC33B758DF542D84F"
+  },
+  {
+    "path": "tests/core/units.test.mjs",
+    "sha256": "DF4C4E5A0C0D95B53DC8AA72AF6C704AA98B9ADE776BDCAB87DD286F3D808FBC"
+  },
+  {
+    "path": "tests/core/weight-chain.test.mjs",
+    "sha256": "F8F01390787DBD0C2FFBE95A742A807889D773066457E78EA2BAEF27195B0352"
+  },
+  {
+    "path": "tests/core/workbench.test.mjs",
+    "sha256": "DE7C35ED6F98AA71A7D2215C4D3A005647DD1CFA817D086D4488F324A79D167E"
+  },
+  {
+    "path": "tests/e2e/assembly.spec.ts",
+    "sha256": "1A0AF8C779AEB07067BD8F074C03A3D9501C198D1CB28CFA82A44B25754B4B5E"
+  },
+  {
+    "path": "tests/e2e/balance-nuts.spec.ts",
+    "sha256": "E55D2D74FF08A6CDB1DDAF48A8A2CFC216574473CE6A6AD166EF28451338EEB1"
+  },
+  {
+    "path": "tests/e2e/electrical.spec.ts",
+    "sha256": "3086C37AEB95AB23C0A005B2D67C9F58585B6C914AEE17928F51474FD7D5B390"
+  },
+  {
+    "path": "tests/e2e/friction-experiment.spec.ts",
+    "sha256": "E0397ECAF16D19E4EEC189E080B08C348A24480FF3F6C4FA691ED8D0CF0B09D1"
+  },
+  {
+    "path": "tests/e2e/friction-lifecycle.spec.ts",
+    "sha256": "35ACCA42E2FF633CF6A4E826F2E209499C3F6AE8918335ECCBCBCF4893F98F75"
+  },
+  {
+    "path": "tests/e2e/lamp-experiment.spec.ts",
+    "sha256": "788B7DA23768418C28B5ADBA002543D7E0CBFA38E2CE6EEECA0F8DD3390F41DA"
+  },
+  {
+    "path": "tests/e2e/lever-experiment.spec.ts",
+    "sha256": "E5BB1A36BB0BE8F06526DD3E4848027E498901BB05ADAC421C6C884087EDF29A"
+  },
+  {
+    "path": "tests/e2e/lever-tilt.spec.ts",
+    "sha256": "12CF7F7EA3E4EEC45F827CF0A23E892E12262507C4511F72E216ED798D53D5FD"
+  },
+  {
+    "path": "tests/e2e/library-tabs.spec.ts",
+    "sha256": "69AD545A9FD2051E22BC811EF0FF89CAD90D9A5436F053788BA2FE073A12005F"
+  },
+  {
+    "path": "tests/e2e/live-force.spec.ts",
+    "sha256": "13BDC49F8C5D7CCC8F17F1CEE0EDBC9B2E58EC45417AAA552A38D903911181A7"
+  },
+  {
+    "path": "tests/e2e/live-properties.spec.ts",
+    "sha256": "3F213653A21FEC015147CF9F1CF0EED74BDB94C8580B31BA61BAAEDAF3DB07D4"
+  },
+  {
+    "path": "tests/e2e/loose-wire.spec.ts",
+    "sha256": "B10E5245C917A9675BC91F04AC1E4642161C62CD1FC799B7F2E1A877CA2C4B8E"
+  },
+  {
+    "path": "tests/e2e/measurements.spec.ts",
+    "sha256": "BE946471D0776F94FFA3B0264C0CD62DA29750F6EABC6E8096B0CACC50299E9D"
+  },
+  {
+    "path": "tests/e2e/optical-bench.spec.ts",
+    "sha256": "41A34407D03F563DEC9C94D18FC3EF6B6659EA956B302BDB8B4CC9CD1CAACBB1"
+  },
+  {
+    "path": "tests/e2e/persistence.spec.ts",
+    "sha256": "21C0C604C642EF155CD3B1E4C35E6B699819E21F125774901689BDC744A62967"
+  },
+  {
+    "path": "tests/e2e/projectile-experiment.spec.ts",
+    "sha256": "4CDB9000A2C28D43046A23533D7ABDF1AD454EF66640158E5001C5C88F58DD66"
+  },
+  {
+    "path": "tests/e2e/rheostat.spec.ts",
+    "sha256": "89DB424A6821AB57E15374A8AE546BBDECAC42082DDC5413A3317DA464E7084C"
+  },
+  {
+    "path": "tests/e2e/saved-experiments.spec.ts",
+    "sha256": "D1A7C2B8907B80FC14AF6DDDFCF3F276978C8D489BA059155F9E30BDE0E3E3A5"
+  },
+  {
+    "path": "tests/e2e/selection-delete.spec.ts",
+    "sha256": "9C3F91AEB439847A29D6DC030CD729ADE1A596D2FDDB2253872051E08D60D6C3"
+  },
+  {
+    "path": "tests/e2e/spring-experiment.spec.ts",
+    "sha256": "DA674132B7CB9891B1350A0A1E44574B4B0F9A8933B0AC52996A166B5AEFEE90"
+  },
+  {
+    "path": "tests/e2e/weight-chain.spec.ts",
+    "sha256": "B55C35DD0F272F3653E331595D1E9D2A886FDC2CAF91C67C98178A94BEABEBD1"
+  },
+  {
+    "path": "tests/e2e/wire-layer.spec.ts",
+    "sha256": "A928D5DAAA6C02795F9C4C8B5752F59D906B2DC354C18DF5B943F85B2CBAB099"
+  },
+  {
+    "path": "tests/e2e/workbench.spec.ts",
+    "sha256": "194005FB4F820416B2480D33E15EB5D686DBCCB3A42AE6DB0E2114340782FCEB"
+  },
+  {
+    "path": "tests/physics/electrical.test.mjs",
+    "sha256": "E63DB1D758ACD582DE7BB6F2AFAA5B2CC0EAEBD204260ECD75D9DE24B5EE602A"
+  },
+  {
+    "path": "tests/physics/friction.test.mjs",
+    "sha256": "8D736A3EAAE7EBE5A5363E0BD4C223A3B14A3A1DA04DF8A37EB477070EBE10D8"
+  },
+  {
+    "path": "tests/physics/helpers.mjs",
+    "sha256": "1AD69D3A00195811AD9597C5B92A536B16D4B01675395CDDB6D0CA64560D9F53"
+  },
+  {
+    "path": "tests/physics/lever.test.mjs",
+    "sha256": "197CAAA5E3FF71EC87A444B0C765F8422711501F49024DF024C4E586CE02A777"
+  },
+  {
+    "path": "tests/physics/optical.test.mjs",
+    "sha256": "0100ACD456F713579AA37A90644ABE1DD68BE73DF8D8D99CB1CF139BA7319267"
+  },
+  {
+    "path": "tests/physics/projectile.test.mjs",
+    "sha256": "2F898C48528D518A8FCAC6A63672BC3F7D32C5295711A379886394DBAABC6B70"
+  },
+  {
+    "path": "tests/physics/spring.test.mjs",
+    "sha256": "3C7BD67E1F201834E1559614C4707D334629FCF5542FF1822DF88171DC0B367A"
+  }
+]

@@ -1,0 +1,475 @@
+
+> cn-physics-lab@0.0.0 lint
+> eslint . --max-warnings 0
+
+
+G:\physics-sim-lab\artifacts\m7-offline-check\dist\assets\electrical.worker-CKbR7Qhs.js
+    1:116    error  'n' is defined but never used                                   no-unused-vars
+    1:147    error  'e' is defined but never used                                   no-unused-vars
+    1:1797   error  'e' is defined but never used                                   no-unused-vars
+    1:1932   error  'navigator' is not defined                                      no-undef
+    3:6420   error  Unnecessary escape character: \-                                no-useless-escape
+    3:6441   error  Unnecessary escape character: \-                                no-useless-escape
+    3:6484   error  Unnecessary escape character: \-                                no-useless-escape
+    5:1812   error  Empty block statement                                           no-empty
+    5:1955   error  'r' is defined but never used                                   no-unused-vars
+    5:2005   error  Empty block statement                                           no-empty
+    5:2609   error  'URL' is not defined                                            no-undef
+    5:2634   error  'URL' is not defined                                            no-undef
+    5:2655   error  'URL' is not defined                                            no-undef
+    5:2908   error  'URL' is not defined                                            no-undef
+    5:2974   error  'URL' is not defined                                            no-undef
+    5:5825   error  'atob' is not defined                                           no-undef
+    5:6614   error  'atob' is not defined                                           no-undef
+    5:6981   error  'r' is defined but never used                                   no-unused-vars
+    5:7031   error  Empty block statement                                           no-empty
+    5:7470   error  'r' is defined but never used                                   no-unused-vars
+    5:7514   error  Empty block statement                                           no-empty
+    5:7774   error  'n' is defined but never used                                   no-unused-vars
+   55:7658   error  'n' is defined but never used                                   no-unused-vars
+   55:8028   error  'i' is defined but never used                                   no-unused-vars
+   55:12631  error  't' is defined but never used                                   no-unused-vars
+  113:1929   error  The value assigned to 'r' is not used in subsequent statements  no-useless-assignment
+  113:7641   error  'r' is defined but never used                                   no-unused-vars
+  113:8906   error  'r' is defined but never used                                   no-unused-vars
+  113:8939   error  'r' is defined but never used                                   no-unused-vars
+  113:8964   error  'i' is defined but never used                                   no-unused-vars
+  113:11858  error  'o' is assigned a value but never used                          no-unused-vars
+  113:11868  error  's' is assigned a value but never used                          no-unused-vars
+  113:11887  error  'c' is assigned a value but never used                          no-unused-vars
+  113:11906  error  'l' is assigned a value but never used                          no-unused-vars
+  113:11919  error  'u' is assigned a value but never used                          no-unused-vars
+  113:11928  error  'd' is assigned a value but never used                          no-unused-vars
+  113:11933  error  'f' is assigned a value but never used                          no-unused-vars
+  113:23967  error  'e' is defined but never used                                   no-unused-vars
+  113:23969  error  't' is defined but never used                                   no-unused-vars
+  113:23971  error  'n' is defined but never used                                   no-unused-vars
+
+G:\physics-sim-lab\artifacts\m7-offline-check\dist\assets\index-BOc16lfK.js
+   1:596     error  'document' is not defined                                                  no-undef
+   1:701     error  'document' is not defined                                                  no-undef
+   1:765     error  'MutationObserver' is not defined                                          no-undef
+   1:911     error  'document' is not defined                                                  no-undef
+   1:1227    error  'fetch' is not defined                                                     no-undef
+   1:5105    error  'reportError' is not defined                                               no-undef
+   1:5164    error  'window' is not defined                                                    no-undef
+   1:5205    error  'window' is not defined                                                    no-undef
+   1:5357    error  'window' is not defined                                                    no-undef
+   1:5429    error  'process' is not defined                                                   no-undef
+   1:5455    error  'process' is not defined                                                   no-undef
+   1:5498    error  'console' is not defined                                                   no-undef
+   1:9685    error  'performance' is not defined                                               no-undef
+   1:9720    error  'performance' is not defined                                               no-undef
+   1:9925    error  'setTimeout' is not defined                                                no-undef
+   1:9975    error  'clearTimeout' is not defined                                              no-undef
+   1:10019   error  'setImmediate' is not defined                                              no-undef
+   1:10856   error  Unreachable code                                                           no-unreachable
+   1:10982   error  'MessageChannel' is not defined                                            no-undef
+   1:11419   error  'console' is not defined                                                   no-undef
+   1:16244   error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+   1:16300   error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+   1:16352   error  'console' is not defined                                                   no-undef
+   1:21110   error  Empty block statement                                                      no-empty
+   6:202     error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:541     error  Empty block statement                                                      no-empty
+   8:3859    error  'window' is not defined                                                    no-undef
+   8:4310    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:4357    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:4457    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:4540    error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:5387    error  Unexpected combined character in character class                           no-misleading-character-class
+   8:6575    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:8654    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:10752   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:10782   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:10906   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:10974   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:13962   error  Unexpected control character(s) in regular expression: \x00, \x1f          no-control-regex
+   8:14292   error  'window' is not defined                                                    no-undef
+   8:15860   error  'window' is not defined                                                    no-undef
+   8:15886   error  'window' is not defined                                                    no-undef
+   8:15987   error  Expected to return a value in method 'get'                                 getter-return
+   8:16011   error  'window' is not defined                                                    no-undef
+   8:16049   error  'window' is not defined                                                    no-undef
+   8:16673   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:17015   error  Invalid typeof comparison value                                            valid-typeof
+   8:17189   error  Invalid typeof comparison value                                            valid-typeof
+   8:18204   error  'window' is not defined                                                    no-undef
+   8:19024   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:20318   error  'window' is not defined                                                    no-undef
+   8:20354   error  'document' is not defined                                                  no-undef
+   8:20368   error  'document' is not defined                                                  no-undef
+   8:20416   error  'window' is not defined                                                    no-undef
+   8:21900   error  'document' is not defined                                                  no-undef
+   8:21924   error  'document' is not defined                                                  no-undef
+   8:22050   error  'document' is not defined                                                  no-undef
+   8:22075   error  'document' is not defined                                                  no-undef
+   8:22956   error  'document' is not defined                                                  no-undef
+   8:23638   error  'window' is not defined                                                    no-undef
+   8:24081   error  'document' is not defined                                                  no-undef
+   8:24095   error  'document' is not defined                                                  no-undef
+   8:24385   error  'window' is not defined                                                    no-undef
+   8:25139   error  'document' is not defined                                                  no-undef
+   8:25194   error  'window' is not defined                                                    no-undef
+   8:25331   error  'window' is not defined                                                    no-undef
+   8:25461   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:26961   error  'reportError' is not defined                                               no-undef
+   8:27020   error  'window' is not defined                                                    no-undef
+   8:27061   error  'window' is not defined                                                    no-undef
+   8:27213   error  'window' is not defined                                                    no-undef
+   8:27285   error  'process' is not defined                                                   no-undef
+   8:27311   error  'process' is not defined                                                   no-undef
+   8:27354   error  'console' is not defined                                                   no-undef
+   8:36075   error  'AbortController' is not defined                                           no-undef
+   8:42104   error  The value assigned to 'g' is not used in subsequent statements             no-useless-assignment
+   8:42766   error  The value assigned to '_' is not used in subsequent statements             no-useless-assignment
+   8:46992   error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:47451   error  Unexpected constant condition                                              no-constant-condition
+   8:60349   error  Empty block statement                                                      no-empty
+   8:65827   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:65950   error  'console' is not defined                                                   no-undef
+   8:66078   error  'setTimeout' is not defined                                                no-undef
+   8:66242   error  'setTimeout' is not defined                                                no-undef
+   8:70816   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:73715   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:74813   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:76482   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:83735   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:89058   error  Unnecessary escape character: \/                                           no-useless-escape
+   8:101476  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:102609  error  'window' is not defined                                                    no-undef
+   8:103830  error  The value assigned to 'n' is not used in subsequent statements             no-useless-assignment
+   8:105141  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:105650  error  Expected a 'break' statement before 'default'                              no-fallthrough
+   8:105970  error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   8:107060  error  Empty block statement                                                      no-empty
+   8:107379  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:110438  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:110856  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:113643  error  Expected a 'break' statement before 'default'                              no-fallthrough
+   8:116227  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:116533  error  Expected a 'break' statement before 'default'                              no-fallthrough
+   8:117115  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:117601  error  Expected a 'break' statement before 'default'                              no-fallthrough
+   8:124117  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:124451  error  Unexpected constant condition                                              no-constant-condition
+   8:126849  error  The value assigned to 'o' is not used in subsequent statements             no-useless-assignment
+   8:127126  error  Unexpected constant condition                                              no-constant-condition
+   8:127738  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:128053  error  Unexpected constant condition                                              no-constant-condition
+   8:128532  error  Expected a 'break' statement before 'default'                              no-fallthrough
+   8:130757  error  'document' is not defined                                                  no-undef
+   8:130786  error  'window' is not defined                                                    no-undef
+   8:131272  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:132104  error  Empty block statement                                                      no-empty
+   8:133015  error  Empty block statement                                                      no-empty
+   8:136643  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:136875  error  'FormData' is not defined                                                  no-undef
+   8:137001  error  'FormData' is not defined                                                  no-undef
+   8:140370  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:140557  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:141785  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:141834  error  'window' is not defined                                                    no-undef
+   8:142402  error  'window' is not defined                                                    no-undef
+   8:142670  error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   8:142731  error  'window' is not defined                                                    no-undef
+   8:142983  error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   8:144493  error  Unexpected control character(s) in regular expression: \x00                no-control-regex
+   9:497     error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   9:5145    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:5730    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:6068    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:6462    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:6578    error  Expected a 'break' statement before 'default'                              no-fallthrough
+   9:6739    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:7002    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:7485    error  Expected a 'break' statement before 'case'                                 no-fallthrough
+   9:7624    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:7802    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:7884    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8155    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8253    error  Expected a 'break' statement before 'default'                              no-fallthrough
+   9:8263    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8341    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8813    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8887    error  Expected a 'break' statement before 'default'                              no-fallthrough
+   9:8897    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:8965    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9125    error  Expected a 'break' statement before 'default'                              no-fallthrough
+   9:9301    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9332    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9456    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9758    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9789    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:9909    error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10278   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10309   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10377   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10589   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10623   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10691   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10789   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10820   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:10886   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:11101   error  'performance' is not defined                                               no-undef
+   9:11161   error  'performance' is not defined                                               no-undef
+   9:11552   error  'navigator' is not defined                                                 no-undef
+   9:11577   error  'navigator' is not defined                                                 no-undef
+   9:12350   error  'window' is not defined                                                    no-undef
+   9:12461   error  'setTimeout' is not defined                                                no-undef
+   9:12514   error  'clearTimeout' is not defined                                              no-undef
+   9:12623   error  'requestAnimationFrame' is not defined                                     no-undef
+   9:12685   error  'queueMicrotask' is not defined                                            no-undef
+   9:12785   error  'setTimeout' is not defined                                                no-undef
+   9:13873   error  'CSS' is not defined                                                       no-undef
+   9:13898   error  'btoa' is not defined                                                      no-undef
+   9:13995   error  'getComputedStyle' is not defined                                          no-undef
+   9:14343   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:14403   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:14557   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:14619   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:14899   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:15005   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:15498   error  'getComputedStyle' is not defined                                          no-undef
+   9:15574   error  'DOMRect' is not defined                                                   no-undef
+   9:15622   error  'getComputedStyle' is not defined                                          no-undef
+   9:16433   error  'setTimeout' is not defined                                                no-undef
+   9:17110   error  'getComputedStyle' is not defined                                          no-undef
+   9:17975   error  'document' is not defined                                                  no-undef
+   9:18457   error  'getComputedStyle' is not defined                                          no-undef
+   9:19863   error  'AbortSignal' is not defined                                               no-undef
+   9:20387   error  'document' is not defined                                                  no-undef
+   9:22573   error  'Node' is not defined                                                      no-undef
+   9:22974   error  'Node' is not defined                                                      no-undef
+   9:23008   error  'Node' is not defined                                                      no-undef
+   9:23067   error  'Node' is not defined                                                      no-undef
+   9:23146   error  'Node' is not defined                                                      no-undef
+   9:23179   error  'Node' is not defined                                                      no-undef
+   9:23212   error  'Node' is not defined                                                      no-undef
+   9:23247   error  The value assigned to 'i' is not used in subsequent statements             no-useless-assignment
+   9:23250   error  'Node' is not defined                                                      no-undef
+   9:23391   error  'Node' is not defined                                                      no-undef
+   9:23458   error  'Node' is not defined                                                      no-undef
+   9:23525   error  'Node' is not defined                                                      no-undef
+   9:23631   error  'Node' is not defined                                                      no-undef
+   9:23670   error  'Node' is not defined                                                      no-undef
+   9:23723   error  'Node' is not defined                                                      no-undef
+   9:23759   error  'Node' is not defined                                                      no-undef
+   9:23819   error  'Node' is not defined                                                      no-undef
+   9:23876   error  'Node' is not defined                                                      no-undef
+   9:23927   error  'Node' is not defined                                                      no-undef
+   9:23966   error  'Node' is not defined                                                      no-undef
+   9:24063   error  'Node' is not defined                                                      no-undef
+   9:24151   error  'Node' is not defined                                                      no-undef
+   9:24191   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:24299   error  'Node' is not defined                                                      no-undef
+   9:24550   error  'Node' is not defined                                                      no-undef
+   9:24675   error  'Node' is not defined                                                      no-undef
+   9:24908   error  'window' is not defined                                                    no-undef
+   9:24924   error  'window' is not defined                                                    no-undef
+   9:24948   error  'window' is not defined                                                    no-undef
+   9:24969   error  'window' is not defined                                                    no-undef
+   9:24993   error  'window' is not defined                                                    no-undef
+   9:29339   error  'HTMLElement' is not defined                                               no-undef
+   9:29795   error  Do not access Object.prototype method 'hasOwnProperty' from target object  no-prototype-builtins
+   9:30418   error  'document' is not defined                                                  no-undef
+   9:32249   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:33320   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:33914   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:34769   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:35929   error  Expected a conditional expression and instead saw an assignment            no-cond-assign
+   9:38195   error  'devicePixelRatio' is not defined                                          no-undef
+   9:38451   error  'matchMedia' is not defined                                                no-undef
+   9:39208   error  'setTimeout' is not defined                                                no-undef
+   9:39373   error  'setTimeout' is not defined                                                no-undef
+   9:39599   error  'clearTimeout' is not defined                                              no-undef
+   9:39615   error  'clearTimeout' is not defined                                              no-undef
+   9:48268   error  'setTimeout' is not defined                                                no-undef
+   9:48306   error  'navigation' is not defined                                                no-undef
+   9:48335   error  'navigation' is not defined                                                no-undef
+   9:48375   error  'navigation' is not defined                                                no-undef
+   9:48521   error  'navigation' is not defined                                                no-undef
+   9:48563   error  'navigation' is not defined                                                no-undef
+   9:48612   error  'navigation' is not defined                                                no-undef
+   9:48659   error  'setTimeout' is not defined                                                no-undef
+   9:48693   error  'navigation' is not defined                                                no-undef
+   9:48738   error  'navigation' is not defined                                                no-undef
+   9:48790   error  'navigation' is not defined                                                no-undef
+   9:49933   error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+   9:50031   error  Empty block statement                                                      no-empty
+   9:50532   error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+   9:50588   error  '__REACT_DEVTOOLS_GLOBAL_HOOK__' is not defined                            no-undef
+   9:50640   error  'console' is not defined                                                   no-undef
+   9:50782   error  'n' is defined but never used                                              no-unused-vars
+   9:50813   error  'e' is defined but never used                                              no-unused-vars
+   9:52470   error  'e' is defined but never used                                              no-unused-vars
+   9:52592   error  'navigator' is not defined                                                 no-undef
+   9:66236   error  Unnecessary escape character: \-                                           no-useless-escape
+   9:66257   error  Unnecessary escape character: \-                                           no-useless-escape
+   9:66300   error  Unnecessary escape character: \-                                           no-useless-escape
+  11:1797    error  Empty block statement                                                      no-empty
+  11:1927    error  'r' is defined but never used                                              no-unused-vars
+  11:1977    error  Empty block statement                                                      no-empty
+  11:2525    error  'URL' is not defined                                                       no-undef
+  11:2550    error  'URL' is not defined                                                       no-undef
+  11:2571    error  'URL' is not defined                                                       no-undef
+  11:2824    error  'URL' is not defined                                                       no-undef
+  11:2890    error  'URL' is not defined                                                       no-undef
+  11:5517    error  'atob' is not defined                                                      no-undef
+  11:6263    error  'atob' is not defined                                                      no-undef
+  11:6603    error  'r' is defined but never used                                              no-unused-vars
+  11:6653    error  Empty block statement                                                      no-empty
+  11:7065    error  'r' is defined but never used                                              no-unused-vars
+  11:7109    error  Empty block statement                                                      no-empty
+  11:7343    error  'n' is defined but never used                                              no-unused-vars
+  61:7525    error  'i' is defined but never used                                              no-unused-vars
+  61:7884    error  'i' is defined but never used                                              no-unused-vars
+  61:12314   error  't' is defined but never used                                              no-unused-vars
+  63:1897    error  The value assigned to 'r' is not used in subsequent statements             no-useless-assignment
+  63:7562    error  'r' is defined but never used                                              no-unused-vars
+  63:8814    error  'r' is defined but never used                                              no-unused-vars
+  63:8847    error  'r' is defined but never used                                              no-unused-vars
+  63:8872    error  'r' is defined but never used                                              no-unused-vars
+  63:11778   error  'o' is assigned a value but never used                                     no-unused-vars
+  63:11788   error  's' is assigned a value but never used                                     no-unused-vars
+  63:11807   error  'c' is assigned a value but never used                                     no-unused-vars
+  63:11826   error  'l' is assigned a value but never used                                     no-unused-vars
+  63:11839   error  'u' is assigned a value but never used                                     no-unused-vars
+  63:11848   error  'd' is assigned a value but never used                                     no-unused-vars
+  63:11853   error  'f' is assigned a value but never used                                     no-unused-vars
+  63:22285   error  'e' is defined but never used                                              no-unused-vars
+  63:22287   error  't' is defined but never used                                              no-unused-vars
+  63:22289   error  'n' is defined but never used                                              no-unused-vars
+  63:82763   error  'window' is not defined                                                    no-undef
+  63:82854   error  'window' is not defined                                                    no-undef
+  63:82899   error  Empty block statement                                                      no-empty
+  63:82937   error  'indexedDB' is not defined                                                 no-undef
+  63:124658  error  'document' is not defined                                                  no-undef
+  63:151000  error  'clearTimeout' is not defined                                              no-undef
+  63:151091  error  'ResizeObserver' is not defined                                            no-undef
+  63:151808  error  'clearTimeout' is not defined                                              no-undef
+  63:152415  error  'clearTimeout' is not defined                                              no-undef
+  63:152608  error  'setTimeout' is not defined                                                no-undef
+  63:180325  error  'document' is not defined                                                  no-undef
+  63:180501  error  'window' is not defined                                                    no-undef
+  63:188477  error  'crypto' is not defined                                                    no-undef
+  63:188968  error  'window' is not defined                                                    no-undef
+  63:189101  error  'window' is not defined                                                    no-undef
+  63:189134  error  'Worker' is not defined                                                    no-undef
+  63:189145  error  'URL' is not defined                                                       no-undef
+  63:189153  error  'URL' is not defined                                                       no-undef
+  63:189333  error  'window' is not defined                                                    no-undef
+  63:189449  error  'window' is not defined                                                    no-undef
+  63:189472  error  'window' is not defined                                                    no-undef
+  63:190159  error  'crypto' is not defined                                                    no-undef
+  63:190251  error  'crypto' is not defined                                                    no-undef
+  63:207016  error  'ResizeObserver' is not defined                                            no-undef
+  63:212852  error  Irregular whitespace not allowed                                           no-irregular-whitespace
+  65:17096   error  'define' is not defined                                                    no-undef
+  65:17107   error  'define' is not defined                                                    no-undef
+  65:18108   error  't' is defined but never used                                              no-unused-vars
+  65:19269   error  'HTMLElement' is not defined                                               no-undef
+  65:19717   error  'window' is not defined                                                    no-undef
+  65:19740   error  'window' is not defined                                                    no-undef
+  65:19770   error  'window' is not defined                                                    no-undef
+  65:19798   error  'window' is not defined                                                    no-undef
+  65:19834   error  'window' is not defined                                                    no-undef
+  65:20261   error  'console' is not defined                                                   no-undef
+  65:20299   error  'console' is not defined                                                   no-undef
+  65:20317   error  'console' is not defined                                                   no-undef
+  65:20406   error  'console' is not defined                                                   no-undef
+  65:20444   error  'console' is not defined                                                   no-undef
+  65:20463   error  'console' is not defined                                                   no-undef
+  65:20552   error  'console' is not defined                                                   no-undef
+  65:20590   error  'console' is not defined                                                   no-undef
+  65:20609   error  'console' is not defined                                                   no-undef
+  65:22032   error  'window' is not defined                                                    no-undef
+  65:22073   error  'global' is not defined                                                    no-undef
+  65:22129   error  't' is defined but never used                                              no-unused-vars
+  65:22945   error  't' is defined but never used                                              no-unused-vars
+  65:38833   error  's' is already defined                                                     no-redeclare
+  65:53839   error  The value assigned to 'p' is not used in subsequent statements             no-useless-assignment
+  65:54242   error  'p' is already defined                                                     no-redeclare
+  65:54284   error  'x' is already defined                                                     no-redeclare
+  65:54374   error  'C' is already defined                                                     no-redeclare
+  65:54837   error  'document' is not defined                                                  no-undef
+  65:57319   error  'document' is not defined                                                  no-undef
+  65:57345   error  'document' is not defined                                                  no-undef
+  65:57371   error  'document' is not defined                                                  no-undef
+  65:57387   error  'window' is not defined                                                    no-undef
+  65:57428   error  'window' is not defined                                                    no-undef
+  65:57449   error  'window' is not defined                                                    no-undef
+  65:57489   error  'window' is not defined                                                    no-undef
+  65:61228   error  't' is defined but never used                                              no-unused-vars
+  65:77972   error  'window' is not defined                                                    no-undef
+  65:78002   error  'window' is not defined                                                    no-undef
+  65:78038   error  'window' is not defined                                                    no-undef
+  65:78071   error  'window' is not defined                                                    no-undef
+  65:78115   error  'window' is not defined                                                    no-undef
+  65:78167   error  'window' is not defined                                                    no-undef
+  65:78196   error  'window' is not defined                                                    no-undef
+  65:78228   error  'window' is not defined                                                    no-undef
+  65:78263   error  'window' is not defined                                                    no-undef
+  65:81806   error  't' is defined but never used                                              no-unused-vars
+  65:83488   error  'n' is defined but never used                                              no-unused-vars
+  65:94612   error  'document' is not defined                                                  no-undef
+  65:94796   error  'window' is not defined                                                    no-undef
+  65:95038   error  'Image' is not defined                                                     no-undef
+  65:97715   error  'window' is not defined                                                    no-undef
+  65:97761   error  'window' is not defined                                                    no-undef
+  65:97960   error  'window' is not defined                                                    no-undef
+  65:97988   error  'window' is not defined                                                    no-undef
+  65:98537   error  'window' is not defined                                                    no-undef
+  65:102793  error  'queueMicrotask' is not defined                                            no-undef
+  65:102955  error  'crypto' is not defined                                                    no-undef
+  65:103730  error  'requestAnimationFrame' is not defined                                     no-undef
+  65:103764  error  'requestAnimationFrame' is not defined                                     no-undef
+  65:103793  error  'cancelAnimationFrame' is not defined                                      no-undef
+  65:104226  error  'crypto' is not defined                                                    no-undef
+  65:140237  error  'queueMicrotask' is not defined                                            no-undef
+  65:140541  error  'crypto' is not defined                                                    no-undef
+  65:141010  error  'requestAnimationFrame' is not defined                                     no-undef
+  65:141044  error  'requestAnimationFrame' is not defined                                     no-undef
+  65:141073  error  'cancelAnimationFrame' is not defined                                      no-undef
+  65:150317  error  'crypto' is not defined                                                    no-undef
+  65:155157  error  'crypto' is not defined                                                    no-undef
+  65:155217  error  'window' is not defined                                                    no-undef
+  65:155349  error  'crypto' is not defined                                                    no-undef
+  65:155397  error  'window' is not defined                                                    no-undef
+  65:155525  error  'crypto' is not defined                                                    no-undef
+  65:155573  error  'window' is not defined                                                    no-undef
+  65:155756  error  'crypto' is not defined                                                    no-undef
+  65:156289  error  'crypto' is not defined                                                    no-undef
+  65:156337  error  'window' is not defined                                                    no-undef
+  65:156503  error  'crypto' is not defined                                                    no-undef
+  65:156722  error  'crypto' is not defined                                                    no-undef
+  65:156770  error  'window' is not defined                                                    no-undef
+  65:156896  error  'crypto' is not defined                                                    no-undef
+  65:156944  error  'window' is not defined                                                    no-undef
+  65:157969  error  'crypto' is not defined                                                    no-undef
+  65:158257  error  'crypto' is not defined                                                    no-undef
+  65:159108  error  'crypto' is not defined                                                    no-undef
+  65:159375  error  'URL' is not defined                                                       no-undef
+  65:159399  error  'Blob' is not defined                                                      no-undef
+  65:159438  error  'document' is not defined                                                  no-undef
+  65:159567  error  'window' is not defined                                                    no-undef
+  65:159589  error  'URL' is not defined                                                       no-undef
+  65:160097  error  'crypto' is not defined                                                    no-undef
+  65:160199  error  'crypto' is not defined                                                    no-undef
+  65:160348  error  'window' is not defined                                                    no-undef
+  65:160468  error  'URL' is not defined                                                       no-undef
+  65:160492  error  'Blob' is not defined                                                      no-undef
+  65:160541  error  'document' is not defined                                                  no-undef
+  65:160674  error  'window' is not defined                                                    no-undef
+  65:160696  error  'URL' is not defined                                                       no-undef
+  65:160863  error  'crypto' is not defined                                                    no-undef
+  65:160999  error  'crypto' is not defined                                                    no-undef
+  65:161150  error  'document' is not defined                                                  no-undef
+  65:163469  error  'crypto' is not defined                                                    no-undef
+  65:163975  error  'window' is not defined                                                    no-undef
+  65:164008  error  'document' is not defined                                                  no-undef
+  65:165071  error  'document' is not defined                                                  no-undef
+  65:178051  error  'document' is not defined                                                  no-undef
+
+✖ 464 problems (464 errors, 0 warnings)
+

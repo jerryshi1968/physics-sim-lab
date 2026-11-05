@@ -1,0 +1,59 @@
+[WebServer] (node:31016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:25972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document (6.0s)
+  ok 3 [chromium] › tests\e2e\reflection-experiment.spec.ts:68:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample (2.7s)
+  x  1 [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated (9.7s)
+  ok 4 [chromium] › tests\e2e\reflection-experiment.spec.ts:83:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page (2.1s)
+
+
+  1) [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '凸透镜成像实验', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '凸透镜成像实验', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '凸透镜成像实验', exact: true })
+
+
+      61 |   expect((await exported(page)).equipment.find(e=>e.type===EMITTER)!.pose).toEqual(aligned.equipment.find(e=>e.type===EMITTER)!.pose);
+      62 |   await page.getByLabel('选择器材',{exact:true}).selectOption(ids[EMITTER]!);await page.getByLabel('打开光源',{exact:true}).uncheck();await expect(status(page)).toContainText('光源已关闭');await expect(reflected(page)).toHaveCount(0);await page.getByLabel('打开光源',{exact:true}).check();await expect(reflected(page)).toHaveCount(1);
+    > 63 |   await page.locator('[data-library-type="optical.convex-lens"]').click();await expect(page.getByRole('dialog',{name:'凸透镜成像实验',exact:true})).toBeVisible();await page.getByRole('button',{name:'取消',exact:true}).click();await expect(board.locator('[data-equipment-id]')).toHaveCount(5);
+         |                                                                                                                                              ^
+      64 |   await page.getByLabel('选择器材',{exact:true}).selectOption(ids[PAPER]!);await page.getByRole('button',{name:'删除器材',exact:true}).click();await expect(board.locator('[data-equipment-id]')).toHaveCount(4);await expect(status(page)).toContainText('各放置一件');
+      65 |   await page.getByRole('button',{name:/^撤销/}).click();await expect(board.locator('[data-equipment-id]')).toHaveCount(5);await expect(reflected(page)).toHaveCount(1);await page.screenshot({path:info.outputPath('reflection-blank-assembled.png'),fullPage:true});
+      66 | });
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:63:142
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+  3 passed (14.1s)

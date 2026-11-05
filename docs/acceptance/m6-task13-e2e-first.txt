@@ -1,0 +1,16 @@
+[WebServer] (node:28612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 2 workers
+
+(node:30164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\projectile-experiment.spec.ts:23:1 › edits configure the next launch without changing current timer or trajectory, captures preserve both states, and relaunch changes speed and height independently (4.7s)
+  ok 2 [chromium] › tests\e2e\projectile-experiment.spec.ts:13:1 › three pre-impact readings and exact landing share the timer, position, marks, two graphs, CSV and saved JSON while reload prepares a fresh run (7.3s)
+  ok 4 [chromium] › tests\e2e\projectile-experiment.spec.ts:41:1 › controlled 30 and 60 FPS browser frames keep one clock, pause/resume and equal marks, then clamp a crossing frame exactly at landing (3.0s)
+  ok 5 [chromium] › tests\e2e\projectile-experiment.spec.ts:51:3 › touch projectile experiment › native touch loads and cancels a real ball, steps the common timer and records scaled positions without page overflow (7.1s)
+  ok 3 [chromium] › tests\e2e\projectile-experiment.spec.ts:30:1 › blank placement, real ball drag and cancellation, ruler zero movement and current-flight ball protection use the same apparatus (12.7s)
+
+  5 passed (20.9s)

@@ -1,0 +1,30 @@
+{
+  "task": "02",
+  "stage": "M1",
+  "mode": "production",
+  "node": "v24.14.1",
+  "npm": "11.11.0",
+  "lockSha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131",
+  "files": [
+    {
+      "path": "dist\\index.html",
+      "bytes": 567,
+      "sha256": "944E43D4F9DFA93EDDF08ED98EA763112F92EAB785E4A7069D0D2378E84C2690"
+    },
+    {
+      "path": "dist\\THIRD_PARTY_NOTICES.txt",
+      "bytes": 5022,
+      "sha256": "CD764E74D45A5A4C8AD5E20888E6A06FC9A62A480E8BB1D869E2DE0345BD012C"
+    },
+    {
+      "path": "dist\\assets\\index-BN6qylv9.css",
+      "bytes": 7948,
+      "sha256": "8ED60121990EF2352954280F86B8D51969C6B9A3BCC28DDEF023EBC4D41448D7"
+    },
+    {
+      "path": "dist\\assets\\index-DXhnTan_.js",
+      "bytes": 326667,
+      "sha256": "FD0E2626323287011CBDEBCE7934A28BD39949E54678FA27D3533862C41A7B1C"
+    }
+  ]
+}

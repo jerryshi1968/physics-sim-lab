@@ -1,0 +1,195 @@
+{
+  "sourceVoltageV": 6,
+  "loadResistanceOhm": 10,
+  "maxResistanceOhm": 20,
+  "series": [
+    {
+      "pair": "a-c",
+      "readings": [
+        {
+          "position": 0,
+          "currentA": 0.6,
+          "loadVoltageV": 6,
+          "residuals": {
+            "kclA": 1.1102230246251565e-16,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -8.881784197001252e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 0.5,
+          "currentA": 0.3,
+          "loadVoltageV": 3,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -4.440892098500626e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 1,
+          "currentA": 0.2,
+          "loadVoltageV": 2,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 1.3877787807814454e-16,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -3.3306690738754696e-16,
+            "normalizedPower": 1.3877787807814454e-16,
+            "linear": 0
+          }
+        }
+      ]
+    },
+    {
+      "pair": "b-d",
+      "readings": [
+        {
+          "position": 0,
+          "currentA": 0.2,
+          "loadVoltageV": 2,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 1.3877787807814454e-16,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -3.3306690738754696e-16,
+            "normalizedPower": 1.3877787807814454e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 0.5,
+          "currentA": 0.3,
+          "loadVoltageV": 3,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -4.440892098500626e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 1,
+          "currentA": 0.6,
+          "loadVoltageV": 6,
+          "residuals": {
+            "kclA": 1.1102230246251565e-16,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -8.881784197001252e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        }
+      ]
+    },
+    {
+      "pair": "a-b",
+      "readings": [
+        {
+          "position": 0,
+          "currentA": 0.2,
+          "loadVoltageV": 2,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 1.3877787807814454e-16,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -3.3306690738754696e-16,
+            "normalizedPower": 1.3877787807814454e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 0.5,
+          "currentA": 0.2,
+          "loadVoltageV": 2,
+          "residuals": {
+            "kclA": 2.7755575615628914e-17,
+            "normalizedKcl": 6.938893903907228e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -1.1102230246251565e-16,
+            "normalizedPower": 4.625929269271486e-17,
+            "linear": 3.469446951953614e-17
+          }
+        },
+        {
+          "position": 1,
+          "currentA": 0.2,
+          "loadVoltageV": 2,
+          "residuals": {
+            "kclA": 5.551115123125783e-17,
+            "normalizedKcl": 1.3877787807814454e-16,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -3.3306690738754696e-16,
+            "normalizedPower": 1.3877787807814454e-16,
+            "linear": 0
+          }
+        }
+      ]
+    },
+    {
+      "pair": "c-d",
+      "readings": [
+        {
+          "position": 0,
+          "currentA": 0.6,
+          "loadVoltageV": 6,
+          "residuals": {
+            "kclA": 1.1102230246251565e-16,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -8.881784197001252e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 0.5,
+          "currentA": 0.6,
+          "loadVoltageV": 6,
+          "residuals": {
+            "kclA": 1.1102230246251565e-16,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -8.881784197001252e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        },
+        {
+          "position": 1,
+          "currentA": 0.6,
+          "loadVoltageV": 6,
+          "residuals": {
+            "kclA": 1.1102230246251565e-16,
+            "normalizedKcl": 9.25185853854297e-17,
+            "normalizedConstitutive": 0,
+            "powerBalanceW": -8.881784197001252e-16,
+            "normalizedPower": 1.2335811384723962e-16,
+            "linear": 0
+          }
+        }
+      ]
+    }
+  ],
+  "loadedDivider": {
+    "currentA": 0.32727272727272727,
+    "loadVoltageV": 3.2727272727272725,
+    "residuals": {
+      "kclA": 1.942890293094024e-16,
+      "normalizedKcl": 1.7809827686695218e-16,
+      "normalizedConstitutive": 0,
+      "powerBalanceW": -7.771561172376096e-16,
+      "normalizedPower": 1.187321845779681e-16,
+      "linear": 9.25185853854297e-17
+    }
+  }
+}

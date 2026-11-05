@@ -1,0 +1,101 @@
+[WebServer] (node:20428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:22244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\friction-experiment.spec.ts:46:1 › controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit (4.6s)
+  x  3 [chromium] › tests\e2e\friction-experiment.spec.ts:60:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest (16.0s)
+(node:28448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [chromium] › tests\e2e\friction-experiment.spec.ts:78:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel (2.9s)
+  x  2 [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses (25.1s)
+
+
+  1) [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses 
+
+    TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event "download"
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       5 |
+       6 | async function download(page: Page, name = '导出') {
+    >  7 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');
+         |                        ^
+       8 | }
+       9 | const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await download(page)) as SceneDocument;
+      10 | const status = (page: Page) => page.getByTestId('friction-status');
+        at download (G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:7:24)
+        at G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:39:150
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '导出 CSV', exact: true })
+
+
+       5 |
+       6 | async function download(page: Page, name = '导出') {
+    >  7 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');
+         |                                                                                                        ^
+       8 | }
+       9 | const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await download(page)) as SceneDocument;
+      10 | const status = (page: Page) => page.getByTestId('friction-status');
+        at download (G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:7:104)
+        at G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:39:150
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\friction-experiment.spec.ts:60:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '器材库', exact: true }).locator('[data-library-type="mechanical.friction-surface"]')
+
+
+      61 |   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await open(page, true);
+      62 |   const library = page.getByRole('region', { name: '器材库', exact: true });
+    > 63 |   for (const type of ['mechanical.friction-surface', 'mechanical.friction-block', 'mechanical.friction-drive', 'mechanical.force-meter', 'mechanical.friction-load']) { await library.locator(`[data-library-type="${type}"]`).click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click(); }
+         |                                                                                                                                                                                                                                ^
+      64 |   const source = await exported(page), id = (type: string) => source.equipment.find(item => item.type === type)!.id;
+      65 |   const block = id('mechanical.friction-block'), surface = id('mechanical.friction-surface'), meter = id('mechanical.force-meter'), drive = id('mechanical.friction-drive'), load = id('mechanical.friction-load');
+      66 |   await page.getByLabel('选择器材', { exact: true }).selectOption(block); await page.getByLabel('木块接触面').selectOption(surface); await page.getByLabel('木块牵引器').selectOption(drive); await page.getByLabel('木块测力计').selectOption(meter); await page.getByRole('button', { name: '应用水平连接', exact: true }).click(); await page.getByRole('button', { name: '放到接触面上', exact: true }).click();
+        at G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:63:224
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses 
+    [chromium] › tests\e2e\friction-experiment.spec.ts:60:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest 
+  2 passed (28.4s)

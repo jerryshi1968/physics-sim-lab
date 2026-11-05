@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-05",
+  "baselineFiles": 160,
+  "unchangedFiles": 141,
+  "changed": [
+    "src/app/App.tsx",
+    "src/app/friction/FrictionPanel.tsx",
+    "src/app/mechanical/LeverPanel.tsx",
+    "src/app/workbench/InspectorEditor.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "tests/e2e/assembly.spec.ts",
+    "tests/e2e/balance-nuts.spec.ts",
+    "tests/e2e/electrical.spec.ts",
+    "tests/e2e/friction-experiment.spec.ts",
+    "tests/e2e/lamp-experiment.spec.ts",
+    "tests/e2e/lever-experiment.spec.ts",
+    "tests/e2e/lever-tilt.spec.ts",
+    "tests/e2e/live-force.spec.ts",
+    "tests/e2e/loose-wire.spec.ts",
+    "tests/e2e/measurements.spec.ts",
+    "tests/e2e/optical-bench.spec.ts",
+    "tests/e2e/persistence.spec.ts",
+    "tests/e2e/rheostat.spec.ts",
+    "tests/e2e/weight-chain.spec.ts"
+  ],
+  "added": [
+    "src/app/workbench/LiveProperties.tsx",
+    "src/core/workbench/properties.ts",
+    "tests/core/live-properties.test.mjs",
+    "tests/e2e/live-properties.spec.ts"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    }
+  ],
+  "packageFiles": [
+    {
+      "path": "package.json",
+      "sha256": "F65B5409FEE1B72F642CB005E8E241686EA6A95821486CE47105324FE82EEA1E",
+      "editedByThisTask": false
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "B3A9D4079ACB76C129285F4BF1666E89C65E8C7C6CB470D19690C2A9D5F1512C",
+      "editedByThisTask": false
+    }
+  ],
+  "originalUnitAndPhysicsTestsUnchanged": true,
+  "physicalModelsUnchanged": true,
+  "workerAndCssUnchangedFromTask11": true,
+  "runtimeNoticesUnchangedFromTask11": true,
+  "strictUtf8Texts": 542,
+  "relativeMarkdownLinks": 676,
+  "brokenLinks": []
+}

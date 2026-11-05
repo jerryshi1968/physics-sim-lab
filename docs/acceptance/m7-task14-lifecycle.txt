@@ -1,0 +1,17 @@
+[WebServer] (node:18448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 2 workers
+
+(node:25144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\friction-experiment.spec.ts:48:1 › controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit (3.6s)
+  ok 3 [chromium] › tests\e2e\friction-experiment.spec.ts:62:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest (7.1s)
+  ok 1 [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses (13.7s)
+  ok 4 [chromium] › tests\e2e\friction-experiment.spec.ts:84:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel (4.1s)
+  ok 5 [chromium] › tests\e2e\friction-lifecycle.spec.ts:18:1 › reimporting a running friction document and revisiting it after another experiment prepare an idle initial state (1.9s)
+  ok 6 [chromium] › tests\e2e\friction-lifecycle.spec.ts:28:1 › changing physical initial conditions while running and undoing them cannot revive an earlier friction timer (1.3s)
+
+  6 passed (22.5s)

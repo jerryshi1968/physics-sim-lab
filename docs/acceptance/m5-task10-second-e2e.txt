@@ -1,0 +1,70 @@
+[WebServer] (node:18204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:16740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\lever-experiment.spec.ts:31:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (2.9s)
+  ok 3 [chromium] › tests\e2e\lever-experiment.spec.ts:74:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (3.7s)
+  ok 4 [chromium] › tests\e2e\lever-experiment.spec.ts:94:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (3.2s)
+  x  2 [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (2.0m)
+
+
+  1) [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 120000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      24 |   await properties(page, 'lever', { '转角（°）': '0', '调平螺母位置（m）': '0' }); await page.getByRole('button', { name: '确认空载调平', exact: true }).click();
+      25 | }
+    > 26 | async function download(page: Page, name = '导出') {
+         |                        ^
+      27 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');
+      28 | }
+      29 | async function exported(page: Page): Promise<SceneDocument> { return JSON.parse(await download(page)) as SceneDocument; }
+        at download (G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:26:24)
+        at G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:66:21
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '导出 CSV', exact: true })
+
+
+      24 |   await properties(page, 'lever', { '转角（°）': '0', '调平螺母位置（m）': '0' }); await page.getByRole('button', { name: '确认空载调平', exact: true }).click();
+      25 | }
+    > 26 | async function download(page: Page, name = '导出') {
+         |                                                   ^
+      27 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');
+      28 | }
+      29 | async function exported(page: Page): Promise<SceneDocument> { return JSON.parse(await download(page)) as SceneDocument; }
+        at download (G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:26:104)
+        at G:\physics-sim-lab\tests\e2e\lever-experiment.spec.ts:66:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lever-experiment-three-gro-24498--and-reload-stay-consistent-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\lever-experiment.spec.ts:44:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent 
+  3 passed (2.1m)

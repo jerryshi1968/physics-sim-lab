@@ -1,0 +1,15 @@
+✔ two serial 0.1 kg weights at +2 balance 0.1 kg at -4 with exactly 3 N support reaction (10.3633ms)
+✔ chains keep vertical separation through tilt, mass changes, parent moves and arbitrary equipment order (3.6116ms)
+✔ drag to a lower hook or occupied lever hook appends at the tail, while dragging a child away detaches its subtree (3.0168ms)
+✔ old same-hook documents display a serial stack without rewriting stored references or double counting (2.9055ms)
+✔ invalid parent types, dangling references, dual mounts, cycles and forked chains yield no normal solution (12.8044ms)
+✔ deleting a parent preserves its children at their visible positions atomically and undo restores the complete chain (4.9885ms)
+✔ chain references survive JSON and snapshots; each individual weight contributes one independent recorded force and moment (7.0403ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 348.8455

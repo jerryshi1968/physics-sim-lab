@@ -1,0 +1,56 @@
+[WebServer] (node:4868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 2 workers
+
+(node:2180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\balance-nuts.spec.ts:36:3 › touch balance nuts › touch cancellation restores nut position, step adjustment levels the rod and saved zero survives refresh (3.4s)
+  ok 1 [chromium] › tests\e2e\balance-nuts.spec.ts:12:1 › two end nuts actually level the empty lever; mouse preview cancels, release commits once, keyboard and undo preserve setup (5.7s)
+  ok 3 [chromium] › tests\e2e\lever-experiment.spec.ts:33:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (3.8s)
+  ok 5 [chromium] › tests\e2e\lever-experiment.spec.ts:77:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (5.0s)
+  ok 4 [chromium] › tests\e2e\lever-experiment.spec.ts:46:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (10.4s)
+  ok 6 [chromium] › tests\e2e\lever-experiment.spec.ts:97:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (4.2s)
+  ok 8 [chromium] › tests\e2e\lever-tilt.spec.ts:41:3 › touch tilted lever › touch hooks a load, shows the left end sinking and keeps the trend explanation on the canvas (3.2s)
+  x  7 [chromium] › tests\e2e\lever-tilt.spec.ts:21:1 › a left-heavy lever visibly lowers the left end, reverses with load and returns level at balance without changing stored poses (8.1s)
+
+
+  1) [chromium] › tests\e2e\lever-tilt.spec.ts:21:1 › a left-heavy lever visibly lowers the left end, reverses with load and returns level at balance without changing stored poses 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 6
+    Received: 2
+
+      34 |   const outer = (await board.locator('[data-equipment-id="lever"] [data-lever-hook="6"] circle').boundingBox())!;
+      35 |   await page.mouse.move(outer.x + outer.width / 2, outer.y + outer.height / 2, { steps: 5 }); await page.mouse.up();
+    > 36 |   expect((await exported(page)).equipment.find(item => item.id === 'right')!.parameters.hookIndex).toBe(6); await expect(banner).toContainText('右端下沉');
+         |                                                                                                    ^
+      37 |   await page.locator('.inspector').evaluate(element => { element.scrollTop = 0; }); await page.screenshot({ path: info.outputPath('lever-loaded-tilt.png'), fullPage: true });
+      38 | });
+      39 | test.describe('touch tilted lever', () => {
+        at G:\physics-sim-lab\tests\e2e\lever-tilt.spec.ts:36:100
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lever-tilt-a-left-heavy-le-c9bb2-thout-changing-stored-poses-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\lever-tilt.spec.ts:21:1 › a left-heavy lever visibly lowers the left end, reverses with load and returns level at balance without changing stored poses 
+  7 passed (29.2s)

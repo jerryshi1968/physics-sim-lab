@@ -1,0 +1,3225 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "assembly.spec.ts",
+      "file": "assembly.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "blank assembly forms a source/resistor/closed-switch loop, follows movement and supports route/color/deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3335,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:15.468Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d88d8e7e612b907d803e-8887079df3af0befd35e",
+          "file": "assembly.spec.ts",
+          "line": 40,
+          "column": 1
+        },
+        {
+          "title": "pointer library drag creates one item, equipment drag commits once, cancel rolls back and pan preserves metres",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2332,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:15.462Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d88d8e7e612b907d803e-482bde046f95e79cc67e",
+          "file": "assembly.spec.ts",
+          "line": 94,
+          "column": 1
+        },
+        {
+          "title": "keyboard/click alternative supports placement, property validation and wires sharing apparatus posts",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 6263,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"电阻须大于 0 Ω\"\u001b[39m\nReceived string:    \u001b[31m\"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\u001b[2m    14 × locator resolved to <p role=\"alert\">同一接线柱不能连接到自己，请选择另一个接线柱。</p>\u001b[22m\n\u001b[2m       - unexpected value \"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"电阻须大于 0 Ω\"\u001b[39m\nReceived string:    \u001b[31m\"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\u001b[2m    14 × locator resolved to <p role=\"alert\">同一接线柱不能连接到自己，请选择另一个接线柱。</p>\u001b[22m\n\u001b[2m       - unexpected value \"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\assembly.spec.ts:175:41",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\assembly.spec.ts",
+                      "column": 41,
+                      "line": 175
+                    },
+                    "snippet": "  173 |   await page.getByLabel('电阻（Ω）', { exact: true }).fill('0');\n  174 |   \n> 175 |   await expect(page.getByRole('alert')).toContainText('电阻须大于 0 Ω');\n      |                                         ^\n  176 |   await select.selectOption(ids[0]!);\n  177 |   await select.selectOption(ids[1]!);\n  178 |   await expect(page.getByLabel('电阻（Ω）', { exact: true })).toHaveValue('10');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\assembly.spec.ts",
+                        "column": 41,
+                        "line": 175
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"电阻须大于 0 Ω\"\u001b[39m\nReceived string:    \u001b[31m\"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\u001b[2m    14 × locator resolved to <p role=\"alert\">同一接线柱不能连接到自己，请选择另一个接线柱。</p>\u001b[22m\n\u001b[2m       - unexpected value \"同一接线柱不能连接到自己，请选择另一个接线柱。\"\u001b[22m\n\n\n  173 |   await page.getByLabel('电阻（Ω）', { exact: true }).fill('0');\n  174 |   \n> 175 |   await expect(page.getByRole('alert')).toContainText('电阻须大于 0 Ω');\n      |                                         ^\n  176 |   await select.selectOption(ids[0]!);\n  177 |   await select.selectOption(ids[1]!);\n  178 |   await expect(page.getByLabel('电阻（Ω）', { exact: true })).toHaveValue('10');\n    at G:\\physics-sim-lab\\tests\\e2e\\assembly.spec.ts:175:41"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:18.366Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\assembly-keyboard-click-al-e59fa-res-sharing-apparatus-posts-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\assembly-keyboard-click-al-e59fa-res-sharing-apparatus-posts-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\assembly-keyboard-click-al-e59fa-res-sharing-apparatus-posts-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\assembly.spec.ts",
+                    "column": 41,
+                    "line": 175
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d88d8e7e612b907d803e-3cec7e4a9e939ba0fb66",
+          "file": "assembly.spec.ts",
+          "line": 150,
+          "column": 1
+        },
+        {
+          "title": "low zoom keeps terminals distinct and Escape cancels from the inspector",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1363,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:20.523Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d88d8e7e612b907d803e-6c33c1ee8e88b00f0605",
+          "file": "assembly.spec.ts",
+          "line": 238,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch pointer interaction",
+          "file": "assembly.spec.ts",
+          "line": 203,
+          "column": 6,
+          "specs": [
+            {
+              "title": "tap placement, real touch drag and tap-to-connect work",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1164,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:05:19.350Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d88d8e7e612b907d803e-d6d0253fb2521ad320fb",
+              "file": "assembly.spec.ts",
+              "line": 205,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "balance-nuts.spec.ts",
+      "file": "balance-nuts.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "two end nuts actually level the empty lever; mouse preview cancels, release commits once, keyboard and undo preserve setup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3243,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:21.911Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "42b54449020070a4417b-21292ff52feeb7ddb0ac",
+          "file": "balance-nuts.spec.ts",
+          "line": 12,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch balance nuts",
+          "file": "balance-nuts.spec.ts",
+          "line": 34,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch cancellation restores nut position, step adjustment levels the rod and saved zero survives refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3081,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:05:25.684Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "42b54449020070a4417b-cf2eda0f4dd1963d7a86",
+              "file": "balance-nuts.spec.ts",
+              "line": 36,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "electrical.spec.ts",
+      "file": "electrical.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "blank wiring automatically runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:25.281Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "681a7b28ba790a8cc023-cad5a4f3aadc3ff06a1a",
+          "file": "electrical.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2126,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:29.357Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "681a7b28ba790a8cc023-50b14c52cbfc2d805de5",
+          "file": "electrical.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "both meter scales stay visible with independent divisions, active-range highlighting and no attached wire letters on the dial",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1870,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:31.493Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "681a7b28ba790a8cc023-092424a2f4b553d2e8f7",
+          "file": "electrical.spec.ts",
+          "line": 164,
+          "column": 1
+        },
+        {
+          "title": "delayed old Worker messages after reset cannot overwrite a newer run or leave extra workers active",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:31.638Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "681a7b28ba790a8cc023-616668fe4b18f6f9af95",
+          "file": "electrical.spec.ts",
+          "line": 209,
+          "column": 1
+        },
+        {
+          "title": "lamp glass, filament and halo follow actual power continuously without a rated-power plateau",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1447,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:33.373Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "681a7b28ba790a8cc023-929b40ff025464f5b884",
+          "file": "electrical.spec.ts",
+          "line": 241,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch lamp and meter",
+          "file": "electrical.spec.ts",
+          "line": 287,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch places and connects a real lamp and the correct meter terminals",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2478,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:05:33.906Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "switch-style",
+                          "contentType": "application/json",
+                          "body": "eyJmb2N1c2VkIjpmYWxzZSwib3V0bGluZSI6InJnYig0OCwgOTMsIDg1KSBub25lIDNweCIsInRhcEhpZ2hsaWdodCI6InJnYmEoMCwgMCwgMCwgMCkiLCJhY3RpdmUiOiI8ZyBjbGFzcz1cImVxdWlwbWVudC1ib2R5IGlzLXNlbGVjdGVkIFwiIGRhdGEtZmxpcHBlZC14PVwiZmFsc2VcIiBkYXRhLXNlbGVjdGVkPVwidHJ1ZVwiIHJvbGU9XCJncm91cFwiIHRhYmluZGV4PVwiMFwiIGFyaWEtbGFiZWw9XCLpgInmi6nlvIDlhbMgNFwiIHRyYW5zZm9ybT1cInRyYW5zbGF0ZSgyOTYgMzg3LjUpIHJvdGF0ZSgwKSBzY2FsZSg2MDAgNjAwKVwiPjxyZWN0IGNsYXNzPVwiZXF1aXBtZW50LWJhY2tkcm9wXCIgeD1cIi0wLjA4OFwiIHk9XCItMC4wNlwiIHdpZHRoPVwiMC4xNzZcIiBoZWlnaHQ9XCIwLjEyXCIgcng9XCIuMDA4XCI+PC9yZWN0PjxnIGNsYXNzPVwicmVhbCIsImFjdGl2ZU91dGxpbmUiOiJyZ2IoNDgsIDkzLCA4NSkgbm9uZSAzcHgifQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681a7b28ba790a8cc023-f8c2b64812f92c1d85c2",
+              "file": "electrical.spec.ts",
+              "line": 289,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "friction-experiment.spec.ts",
+      "file": "friction-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 10270,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:34.842Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-9955a7d549dfa96a1f56",
+          "file": "friction-experiment.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:36.416Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-ed4f617f5aa0ab3f5321",
+          "file": "friction-experiment.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6513,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:38.881Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-c8f26c67987699c4631b",
+          "file": "friction-experiment.spec.ts",
+          "line": 62,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch friction experiment",
+          "file": "friction-experiment.spec.ts",
+          "line": 82,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3072,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:05:45.125Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f86993a2350ea3138749-ac59142deec2bb90d13d",
+              "file": "friction-experiment.spec.ts",
+              "line": 84,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lamp-experiment.spec.ts",
+      "file": "lamp-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "experiment chooser previews and cancels without replacing work; four editable open templates solve real same/different lamp circuits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9482,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:45.418Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e6cbd00e93e2d7029f-d4d4def4d1cef7877100",
+          "file": "lamp-experiment.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "series from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 10174,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:48.223Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e6cbd00e93e2d7029f-5a3c755d639cf64d4539",
+          "file": "lamp-experiment.spec.ts",
+          "line": 71,
+          "column": 39
+        },
+        {
+          "title": "parallel from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12869,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:05:54.911Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e6cbd00e93e2d7029f-3183ff22e306cb2ebfd7",
+          "file": "lamp-experiment.spec.ts",
+          "line": 71,
+          "column": 39
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch experiment entry",
+          "file": "lamp-experiment.spec.ts",
+          "line": 129,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch chooses and edits a formal template; guidance and blank plan fit without page horizontal overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2247,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:05:58.412Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30e6cbd00e93e2d7029f-a2ab7b711f34a4f5444b",
+              "file": "lamp-experiment.spec.ts",
+              "line": 131,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lever-experiment.spec.ts",
+      "file": "lever-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "mechanical category is always available with a physical independent ruler and cancellable formal experiment entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4056,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:00.688Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-f73498edad291face5ae",
+          "file": "lever-experiment.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5857,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:04.755Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-7809eb593d8813307e8f",
+          "file": "lever-experiment.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3302,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:07.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "538bf497795e5e83f1e2-c9f5eb21c18051e0954e",
+          "file": "lever-experiment.spec.ts",
+          "line": 77,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch lever assembly",
+          "file": "lever-experiment.spec.ts",
+          "line": 95,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3348,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:10.625Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "538bf497795e5e83f1e2-1496f8a222736e477e7a",
+              "file": "lever-experiment.spec.ts",
+              "line": 97,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lever-tilt.spec.ts",
+      "file": "lever-tilt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a left-heavy lever visibly lowers the left end, reverses with load and returns level at balance without changing stored poses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:11.131Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c13b6010308b60afec1f-9d561e55ab0df136a87e",
+          "file": "lever-tilt.spec.ts",
+          "line": 21,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch tilted lever",
+          "file": "lever-tilt.spec.ts",
+          "line": 40,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch hooks a load, shows the left end sinking and keeps the trend explanation on the canvas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1364,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:13.990Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c13b6010308b60afec1f-166ccad53cab4ad7659a",
+              "file": "lever-tilt.spec.ts",
+              "line": 42,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "library-tabs.spec.ts",
+      "file": "library-tabs.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "default library exposes both tabs without changing work; optical apparatus can be placed directly and domain replacement is cancellable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3318,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:15.379Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3e88ce2b30d70cf84d44-0eb8f3a4e3dc63772723",
+          "file": "library-tabs.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch library categories",
+          "file": "library-tabs.spec.ts",
+          "line": 49,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch switches categories, cancels pending placement and keeps the two libraries within the page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 989,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:15.432Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e88ce2b30d70cf84d44-05f74b1c4df6d9f61c99",
+              "file": "library-tabs.spec.ts",
+              "line": 51,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "live-force.spec.ts",
+      "file": "live-force.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3070,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:16.437Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fb416e2a3c3e9c77b903-7604f524cf498fcaa724",
+          "file": "live-force.spec.ts",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "pointer reflects applied force before zero confirmation; invalid drafts, zero-arm, over-range and invalid apparatus never become normal measurements",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3496,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:18.715Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fb416e2a3c3e9c77b903-fc435332ac0a29d0593b",
+          "file": "live-force.spec.ts",
+          "line": 45,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch live force",
+          "file": "live-force.spec.ts",
+          "line": 55,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch text edits apply without a separate submit and persist after leaving the input",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1742,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:19.516Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fb416e2a3c3e9c77b903-d42fccd4a954368a48be",
+              "file": "live-force.spec.ts",
+              "line": 57,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "live-properties.spec.ts",
+      "file": "live-properties.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "friction apparatus clicks show foreground padded outlines and all properties, including attachment selects, apply immediately",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2457,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:21.276Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "799552c960e381abe34f-1b145abf359aea767563",
+          "file": "live-properties.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "electrical controls apply typed values, native arrows and checkboxes without a submit while invalid drafts never replace the circuit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2363,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:22.235Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "799552c960e381abe34f-7058d66e7f7ac131242b",
+          "file": "live-properties.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "optical and lever controls update immediately without remounting focused fields",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:23.743Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "799552c960e381abe34f-278cc8269c6b7d3584f4",
+          "file": "live-properties.spec.ts",
+          "line": 31,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch live editing",
+          "file": "live-properties.spec.ts",
+          "line": 38,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch selection outline and numeric edits remain available on narrow screens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:24.610Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "799552c960e381abe34f-7ab1e95151a39cff3c8f",
+              "file": "live-properties.spec.ts",
+              "line": 40,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "loose-wire.spec.ts",
+      "file": "loose-wire.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "physical apparatus and single-cell battery preview replace symbols; loose wire can be dropped, moved, bent and rewired",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2765,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:26.340Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e78551187af78b28ad1-31f5916ea238abf123b6",
+          "file": "loose-wire.spec.ts",
+          "line": 40,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch wire editing",
+          "file": "loose-wire.spec.ts",
+          "line": 106,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch can move a loose wire, bend it and attach both ends to actual posts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1761,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:26.618Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5e78551187af78b28ad1-16606cef9274b45e4880",
+              "file": "loose-wire.spec.ts",
+              "line": 108,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "measurements.spec.ts",
+      "file": "measurements.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "series multi-point acquisition, table, current/voltage chart, CSV and reload use the same frozen snapshots",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4223,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:28.402Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bfef4e47573f58d2402e-19e0297572ca2d2ff5b5",
+          "file": "measurements.spec.ts",
+          "line": 64,
+          "column": 1
+        },
+        {
+          "title": "hand-copied estimates, missing values and explicit corrections never get overwritten by model truth",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3179,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:29.124Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bfef4e47573f58d2402e-99769b503c4c67191a5f",
+          "file": "measurements.spec.ts",
+          "line": 100,
+          "column": 1
+        },
+        {
+          "title": "over-range and model-failure samples stay blank, stale paused samples are blocked and corrupt snapshots cannot replace work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6574,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:32.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bfef4e47573f58d2402e-a210be37bb41acde8f0f",
+          "file": "measurements.spec.ts",
+          "line": 125,
+          "column": 1
+        },
+        {
+          "title": "different parallel lamps record real branch currents and equal branch voltages; CSV neutralizes text formulas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2905,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:32.637Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bfef4e47573f58d2402e-3805b0ef45c343dfbd6a",
+          "file": "measurements.spec.ts",
+          "line": 145,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch measurement and narrow table",
+          "file": "measurements.spec.ts",
+          "line": 158,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch acquisition and chart controls remain usable without page horizontal overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1235,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:35.554Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bfef4e47573f58d2402e-5f63b0ba9927bb092777",
+              "file": "measurements.spec.ts",
+              "line": 160,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "optical-bench.spec.ts",
+      "file": "optical-bench.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "five object distances use real screen rays; preview/undo preserves apparatus and auxiliary virtual observer never becomes a screen image",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6325,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:36.817Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-757cece37246270b84d9",
+          "file": "optical-bench.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8846,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:38.911Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-ab10da86c16a1852a6cb",
+          "file": "optical-bench.spec.ts",
+          "line": 66,
+          "column": 1
+        },
+        {
+          "title": "native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7091,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"光学属性无效\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"光学属性无效\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts:115:94",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts",
+                      "column": 94,
+                      "line": 115
+                    },
+                    "snippet": "  113 |   }\n  114 |   await expect(status(page)).toContainText('清晰实像'); const before = await exported(page); expect(before.connections).toEqual([]);\n> 115 |   await properties(page, ids.lens!, { '焦距（m）': '0' }); await expect(page.getByRole('alert')).toContainText('光学属性无效'); expect(await exported(page)).toEqual(before);\n      |                                                                                              ^\n  116 |   await properties(page, ids.screen!, { '光心或基准高度（m）': '.2' }); await expect(status(page)).toContainText('未落入光屏'); await expect(projection(page)).toHaveAttribute('data-captured-fraction', '0');\n  117 |   await properties(page, ids.screen!, { '光心或基准高度（m）': '.06', '位置 x（m）': '.4' }); await expect(status(page)).toContainText('透镜左侧');\n  118 |   await properties(page, ids.candle!, { '位置 x（m）': '.5' }); await expect(status(page)).toContainText('不能重合'); await expect(projection(page)).toHaveCount(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts",
+                        "column": 94,
+                        "line": 115
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"光学属性无效\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n\n  113 |   }\n  114 |   await expect(status(page)).toContainText('清晰实像'); const before = await exported(page); expect(before.connections).toEqual([]);\n> 115 |   await properties(page, ids.lens!, { '焦距（m）': '0' }); await expect(page.getByRole('alert')).toContainText('光学属性无效'); expect(await exported(page)).toEqual(before);\n      |                                                                                              ^\n  116 |   await properties(page, ids.screen!, { '光心或基准高度（m）': '.2' }); await expect(status(page)).toContainText('未落入光屏'); await expect(projection(page)).toHaveAttribute('data-captured-fraction', '0');\n  117 |   await properties(page, ids.screen!, { '光心或基准高度（m）': '.06', '位置 x（m）': '.4' }); await expect(status(page)).toContainText('透镜左侧');\n  118 |   await properties(page, ids.candle!, { '位置 x（m）': '.5' }); await expect(status(page)).toContainText('不能重合'); await expect(projection(page)).toHaveCount(0);\n    at G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts:115:94"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:43.151Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-native-blank-30971--missed-or-invalid-geometry-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-native-blank-30971--missed-or-invalid-geometry-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-native-blank-30971--missed-or-invalid-geometry-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\optical-bench-native-blank-30971--missed-or-invalid-geometry-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\optical-bench.spec.ts",
+                    "column": 94,
+                    "line": 115
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "0e41afa2b16484ab773a-257d38527c2a1f511494",
+          "file": "optical-bench.spec.ts",
+          "line": 105,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch optical bench",
+          "file": "optical-bench.spec.ts",
+          "line": 126,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch moves the screen to focus once and pointer cancellation restores it without horizontal page overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2204,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:06:47.770Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0e41afa2b16484ab773a-1d753eb8903f21b63739",
+              "file": "optical-bench.spec.ts",
+              "line": 128,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "persistence.spec.ts",
+      "file": "persistence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "experiment rename validates and cancels, supports undo/redo, persists and names the exported file",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5780,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:49.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-15d4cac0002cb4be4d32",
+          "file": "persistence.spec.ts",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "one drag is one history transaction; undo/redo, cancelled drag, delete restoration and export agree",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13549,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board')\nExpected: \u001b[32m\"1\u001b[7m0\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m2\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board')\u001b[22m\n\u001b[2m    14 × locator resolved to <svg role=\"group\" tabindex=\"0\" aria-label=\"实验画布\" data-revision=\"12\" viewBox=\"0 0 822 260\" data-testid=\"scene-board\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board')\nExpected: \u001b[32m\"1\u001b[7m0\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m2\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board')\u001b[22m\n\u001b[2m    14 × locator resolved to <svg role=\"group\" tabindex=\"0\" aria-label=\"实验画布\" data-revision=\"12\" viewBox=\"0 0 822 260\" data-testid=\"scene-board\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\persistence.spec.ts:137:49",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\persistence.spec.ts",
+                      "column": 49,
+                      "line": 137
+                    },
+                    "snippet": "  135 |   await voltage.fill('9');\n  136 |   await voltage.press('Control+z');\n> 137 |   await expect(page.getByTestId('scene-board')).toHaveAttribute('data-revision', String(revision));\n      |                                                 ^\n  138 |   await voltage.fill('9');\n  139 |   \n  140 |   await expect(page.getByRole('button', { name: '重做', exact: true })).toBeDisabled();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\persistence.spec.ts",
+                        "column": 49,
+                        "line": 137
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('scene-board')\nExpected: \u001b[32m\"1\u001b[7m0\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m2\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('scene-board') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('scene-board')\u001b[22m\n\u001b[2m    14 × locator resolved to <svg role=\"group\" tabindex=\"0\" aria-label=\"实验画布\" data-revision=\"12\" viewBox=\"0 0 822 260\" data-testid=\"scene-board\">…</svg>\u001b[22m\n\u001b[2m       - unexpected value \"12\"\u001b[22m\n\n\n  135 |   await voltage.fill('9');\n  136 |   await voltage.press('Control+z');\n> 137 |   await expect(page.getByTestId('scene-board')).toHaveAttribute('data-revision', String(revision));\n      |                                                 ^\n  138 |   await voltage.fill('9');\n  139 |   \n  140 |   await expect(page.getByRole('button', { name: '重做', exact: true })).toBeDisabled();\n    at G:\\physics-sim-lab\\tests\\e2e\\persistence.spec.ts:137:49"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:52.897Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\persistence-one-drag-is-on-d6901-estoration-and-export-agree-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\persistence-one-drag-is-on-d6901-estoration-and-export-agree-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\persistence-one-drag-is-on-d6901-estoration-and-export-agree-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\persistence-one-drag-is-on-d6901-estoration-and-export-agree-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\persistence.spec.ts",
+                    "column": 49,
+                    "line": 137
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-dd1645c2acd35fea88c0",
+          "file": "persistence.spec.ts",
+          "line": 96,
+          "column": 1
+        },
+        {
+          "title": "blank assembly saves to IndexedDB, refresh restores exact structure, editing and explicit load continue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:06:55.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-d6646aee798eb940847e",
+          "file": "persistence.spec.ts",
+          "line": 144,
+          "column": 1
+        },
+        {
+          "title": "bad and oversized imports preserve current work; supported v1 migrates after a cancellable inert preview",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7959,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:00.471Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-e364ba3c60e5998961c4",
+          "file": "persistence.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "blocked local storage still allows editing and JSON export without claiming saved",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2055,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:08.918Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-2b25a7204d797c7e1481",
+          "file": "persistence.spec.ts",
+          "line": 224,
+          "column": 1
+        },
+        {
+          "title": "failed save leaves the last committed IndexedDB snapshot intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3410,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:08.439Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-ec0a9982ea4ad86fc03b",
+          "file": "persistence.spec.ts",
+          "line": 237,
+          "column": 1
+        },
+        {
+          "title": "corrupt local data does not replace current work and JSON backup can recover after refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3788,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:11.455Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5ef73a4e2a1baaea746-e672d34b4e4c64d29702",
+          "file": "persistence.spec.ts",
+          "line": 260,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "rheostat.spec.ts",
+      "file": "rheostat.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "library drag creates a physical four-post rheostat; live wiper preview drives lamp/meters without saving or sampling until one committed move",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8325,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:11.882Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ef098857deaabc2e96d-7161b7a758ec28045b5e",
+          "file": "rheostat.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "A-B remains fixed, C-D stays a conductor and the opposite lower terminal reverses adjustment",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8203,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"变阻器最大电阻\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"变阻器最大电阻\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\rheostat.spec.ts:104:41",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\rheostat.spec.ts",
+                      "column": 41,
+                      "line": 104
+                    },
+                    "snippet": "  102 |   await page.getByLabel('选择器材', { exact: true }).selectOption('RH');\n  103 |   const before = await exported(page); await page.getByLabel('最大电阻（Ω）', { exact: true }).fill('-1'); \n> 104 |   await expect(page.getByRole('alert')).toContainText('变阻器最大电阻'); expect(await exported(page)).toEqual(before);\n      |                                         ^\n  105 | });\n  106 |\n  107 | test('low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions', async ({ page }, testInfo) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\rheostat.spec.ts",
+                        "column": 41,
+                        "line": 104
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected substring: \u001b[32m\"变阻器最大电阻\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n\n  102 |   await page.getByLabel('选择器材', { exact: true }).selectOption('RH');\n  103 |   const before = await exported(page); await page.getByLabel('最大电阻（Ω）', { exact: true }).fill('-1'); \n> 104 |   await expect(page.getByRole('alert')).toContainText('变阻器最大电阻'); expect(await exported(page)).toEqual(before);\n      |                                         ^\n  105 | });\n  106 |\n  107 | test('low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions', async ({ page }, testInfo) => {\n    at G:\\physics-sim-lab\\tests\\e2e\\rheostat.spec.ts:104:41"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:15.289Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\rheostat-A-B-remains-fixed-531f2-erminal-reverses-adjustment-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\rheostat-A-B-remains-fixed-531f2-erminal-reverses-adjustment-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\rheostat-A-B-remains-fixed-531f2-erminal-reverses-adjustment-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\rheostat-A-B-remains-fixed-531f2-erminal-reverses-adjustment-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\rheostat.spec.ts",
+                    "column": 41,
+                    "line": 104
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5ef098857deaabc2e96d-93721d540e0a5b3b5f53",
+          "file": "rheostat.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5665,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:20.217Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5ef098857deaabc2e96d-80f7913a2e83dadbd932",
+          "file": "rheostat.spec.ts",
+          "line": 107,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "rotated touch rheostat",
+          "file": "rheostat.spec.ts",
+          "line": 129,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch slides a rotated flipped wiper, commits once and rolls pointer cancellation back",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3470,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:07:26.011Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5ef098857deaabc2e96d-87fc6e10a7672c271f36",
+              "file": "rheostat.spec.ts",
+              "line": 131,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "saved-experiments.spec.ts",
+      "file": "saved-experiments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "saving a second experiment preserves the first; loading, renaming and resaving update only the selected document",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7579,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:25.889Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-b23d3433f20c003ccaeb",
+          "file": "saved-experiments.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "different experiments with identical names remain separate by document ID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3471,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:29.970Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-03df0deda8a8191bfa8f",
+          "file": "saved-experiments.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "upgrading a v1 single-slot database preserves its remaining snapshot and adds it to the experiment list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2121,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:33.460Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-694b61c48e6148cee427",
+          "file": "saved-experiments.spec.ts",
+          "line": 121,
+          "column": 1
+        },
+        {
+          "title": "delete requires confirmation, targets the selected ID and leaves current work and other saved experiments intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2966,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:33.478Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-2a59240ef79e3b4f8505",
+          "file": "saved-experiments.spec.ts",
+          "line": 183,
+          "column": 1
+        },
+        {
+          "title": "deleting the current latest save preserves the board, selects another startup save, and deleting all never resurrects old data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4247,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:35.593Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-a30b3586c78e318c4f1b",
+          "file": "saved-experiments.spec.ts",
+          "line": 216,
+          "column": 1
+        },
+        {
+          "title": "a deletion failure rolls back both experiment and latest snapshot and keeps the saved marker",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2785,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:36.456Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "28b8ecdf9cf5733d4d98-31ddba2e149106eb1f04",
+          "file": "saved-experiments.spec.ts",
+          "line": 254,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "selection-delete.spec.ts",
+      "file": "selection-delete.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Delete keeps all wires at the deleted rotated apparatus posts; text editing is safe, undo and reload preserve exact structure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4258,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:39.261Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "379c412b0cb1009c8139-a51fc1e981cc91a7b0db",
+          "file": "selection-delete.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "Shift toggles multi-selection including switch handles and keyboard; Delete and inspector remove the group as one undo step",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3429,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:39.867Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "379c412b0cb1009c8139-db4a17f5eb0d6b92a77e",
+          "file": "selection-delete.spec.ts",
+          "line": 79,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "weight-chain.spec.ts",
+      "file": "weight-chain.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "mouse chains weights on lower hooks, restores balance, follows parent moves and preserves children when deleting a parent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5902,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:43.327Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cbcbba10ca41957f9676-3d471c4d45a12852eb47",
+          "file": "weight-chain.spec.ts",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8144,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts:50:42",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                      "column": 42,
+                      "line": 50
+                    },
+                    "snippet": "  48 |   const before = await exported(page), grip = (await group(page, id).locator('[data-weight-grip]').boundingBox())!, occupied = (await group(page, 'right').locator('[data-weight-grip]').boundingBox())!;\n  49 |   await page.mouse.move(grip.x + grip.width / 2, grip.y + 3); await page.mouse.down(); await page.mouse.move(occupied.x + occupied.width / 2, occupied.y + 3, { steps: 5 }); await page.mouse.up();\n> 50 |   await expect(page.getByRole('status')).toContainText('该挂点已有钩码'); expect(await exported(page)).toEqual(before);\n     |                                          ^\n  51 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('right');  expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('right');\n  52 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('left'); \n  53 |   expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('left');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                        "column": 42,
+                        "line": 50
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n\n\n  48 |   const before = await exported(page), grip = (await group(page, id).locator('[data-weight-grip]').boundingBox())!, occupied = (await group(page, 'right').locator('[data-weight-grip]').boundingBox())!;\n  49 |   await page.mouse.move(grip.x + grip.width / 2, grip.y + 3); await page.mouse.down(); await page.mouse.move(occupied.x + occupied.width / 2, occupied.y + 3, { steps: 5 }); await page.mouse.up();\n> 50 |   await expect(page.getByRole('status')).toContainText('该挂点已有钩码'); expect(await exported(page)).toEqual(before);\n     |                                          ^\n  51 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('right');  expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('right');\n  52 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('left'); \n  53 |   expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('left');\n    at G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts:50:42"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:43.538Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                    "column": 42,
+                    "line": 50
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cbcbba10ca41957f9676-5dc49e2717270f3754ab",
+          "file": "weight-chain.spec.ts",
+          "line": 46,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch weight chains",
+          "file": "weight-chain.spec.ts",
+          "line": 58,
+          "column": 6,
+          "specs": [
+            {
+              "title": "native touch cancels without changing references then hangs a new weight below the existing one",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3486,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:07:49.243Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cbcbba10ca41957f9676-8fd471b4c6cc9e55aa1e",
+              "file": "weight-chain.spec.ts",
+              "line": 60,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "wire-layer.spec.ts",
+      "file": "wire-layer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "mouse foreground wires",
+          "file": "wire-layer.spec.ts",
+          "line": 18,
+          "column": 41,
+          "specs": [
+            {
+              "title": "wire crossing a meter stays visible and selectable while actual terminal centres remain connectable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1825,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:07:54.534Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "80f711f026fab7dfbb9c-03a80946e2a58a777744",
+              "file": "wire-layer.spec.ts",
+              "line": 20,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "touch foreground wires",
+          "file": "wire-layer.spec.ts",
+          "line": 18,
+          "column": 41,
+          "specs": [
+            {
+              "title": "wire crossing a meter stays visible and selectable while actual terminal centres remain connectable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1240,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T01:07:52.748Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "80f711f026fab7dfbb9c-7bc56a74819ae66d9795",
+              "file": "wire-layer.spec.ts",
+              "line": 20,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "workbench.spec.ts",
+      "file": "workbench.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "empty workbench fits a 1366px classroom display",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 594,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:54.015Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "921e070f285a8b470d11-878a2bfbf4caf0870c3e",
+          "file": "workbench.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "empty workbench fits a 1920px classroom display",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 852,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:54.617Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "921e070f285a8b470d11-0bc876d2ec27ca30520e",
+          "file": "workbench.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "record tabs work with keyboard and creating a blank document resets the view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 756,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:55.480Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "921e070f285a8b470d11-67a2fb98429090ea8f02",
+          "file": "workbench.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "narrow viewport keeps primary controls visible without horizontal scrolling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 722,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T01:07:56.246Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "921e070f285a8b470d11-2b002f178ef4c6d92b22",
+          "file": "workbench.spec.ts",
+          "line": 43,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-05T01:05:13.294Z",
+    "duration": 165959.51299999998,
+    "expected": 70,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

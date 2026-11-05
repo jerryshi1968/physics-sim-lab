@@ -1,0 +1,20 @@
+import { useState } from 'react';
+import type { SceneDocument } from '../../core/scene/schema.ts';
+import { LAUNCHER,GROUND } from '../../equipment/projectile/definitions.ts';
+import { projectileMessage } from '../../equipment/projectile/simulate.ts';
+import type { ProjectileSimulation } from './useProjectileSimulation.ts';
+export function ProjectilePanel({scene,simulation,marks,onMarks,onHeight,onLevel}:{scene:SceneDocument;simulation:ProjectileSimulation;marks:boolean;onMarks:(value:boolean)=>void;onHeight:(id:string,height:number)=>void;onLevel:(id:string)=>void}){
+  const [auxiliary,setAuxiliary]=useState(false),[draft,setDraft]=useState<{text:string;applied:number}|null>(null);
+  const launcher=scene.equipment.find(item=>item.type===LAUNCHER),ground=scene.equipment.find(item=>item.type===GROUND),height=launcher&&ground?Number((launcher.pose.yM-ground.pose.yM).toPrecision(12)):null;
+  const text=draft&&draft.applied===height?draft.text:height===null?'':String(height),{flight,next}=simulation;
+  return <section className="projectile-panel"><h3>平抛发射与计时</h3><div className="projectile-controls"><button disabled={!next?.ok} onClick={simulation.launch}>发射 / 重新发射</button><button disabled={!simulation.running} onClick={simulation.pause}>暂停平抛</button><button disabled={!flight||simulation.running||flight.point.state==='landed'} onClick={simulation.resume}>继续平抛</button><button disabled={!flight&&!next?.ok||flight?.point.state==='landed'} onClick={simulation.step}>单步 Δt</button><button onClick={simulation.reset}>重置平抛</button></div>
+    <p data-testid="projectile-status">{simulation.error?projectileMessage(simulation.error):flight?`第 ${flight.launchNumber} 次发射 · ${flight.point.state==='landed'?'已落地':simulation.running?'飞行中':'已暂停'}${simulation.staged?'；已改下次初态，本次轨迹保持':''}`:next?.ok?'已就绪，请校准、读尺后发射':projectileMessage(next?.code??'PROJECTILE_APPARATUS')}</p>
+    {flight?<p className="projectile-clock" data-testid="projectile-clock" data-time-s={flight.point.timeS}>计时 {Number((Math.round(flight.point.timeS/flight.rig.resolutionS)*flight.rig.resolutionS).toPrecision(12))} s；本次 Δt={flight.rig.intervalS} s</p>:<p>计时器尚未开始；单步可从初态前进一个等时间隔。</p>}
+    {simulation.staged&&<p>当前小球、计时与标记仍按发射时初态运行；参数修改和器材移动只用于下一次。需用新参数时重新发射。</p>}
+    {next&&!next.ok&&flight&&<p>下次装置：{projectileMessage(next.code)}</p>}
+    {launcher&&ground&&<><label>下次发射高度（距地面，m）<input aria-label="下次发射高度（距地面，m）" type="number" step="any" value={text} aria-invalid={text.trim()===''||!Number.isFinite(Number(text))} onChange={event=>{const text=event.currentTarget.value,value=event.currentTarget.valueAsNumber;setDraft({text,applied:Number.isFinite(value)?value:height!});if(Number.isFinite(value))onHeight(launcher.id,value);}} onBlur={()=>setDraft(null)}/></label><button onClick={()=>onLevel(launcher.id)}>将下次发射器校准为水平</button></>}
+    <label className="checkbox-field"><input type="checkbox" checked={marks} onChange={event=>onMarks(event.target.checked)}/>显示等时位置标记</label><label className="checkbox-field"><input type="checkbox" checked={auxiliary} onChange={event=>setAuxiliary(event.target.checked)}/>显示平抛模型值与理论（可关闭）</label>
+    {auxiliary&&flight&&<div data-testid="projectile-theory"><p>x=v0t，ydrop=gt²/2；世界 y 向上，向下位移 ydrop=y0−y。</p><p>本次 v0={flight.rig.initial.speedMPerS} m/s，h={Number((flight.rig.initial.y0M-flight.rig.initial.groundYM).toPrecision(8))} m，g={flight.rig.initial.gravityMPerS2} m/s²。</p><p>模型 x={Number(flight.point.horizontalDisplacementM.toPrecision(8))} m，ydrop={Number(flight.point.dropM.toPrecision(8))} m；落地 t={Number(flight.point.impactTimeS.toPrecision(8))} s，射程 {Number(flight.point.rangeM.toPrecision(8))} m。</p></div>}
+    <details><summary>平抛实验步骤与范围</summary><ol><li>将小球放入发射器，地面水平；自行调平发射器并设置距地面的高度，二维标尺按横向向右、竖向向下摆放。</li><li>设置初速，发射后暂停或单步，用计时器和标尺读取至少三组落地前位置。读尺窗只标位置，不代填答案。</li><li>记录 x、ydrop 与 t，比较 x–t、ydrop–t²；固定高度改初速、固定初速改高度，分别重新发射对照。</li></ol><p>无空气阻力、恒定重力、质点模型；图形半径不作为碰撞半径。落地按事件时间截断，不穿地续跑。保存初态与已记数据，不恢复飞行时刻；教材条目待教师核验。</p></details>
+  </section>;
+}

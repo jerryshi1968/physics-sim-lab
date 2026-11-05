@@ -1,0 +1,50 @@
+{
+  "kind": "calculated_demo_not_student_measurements",
+  "rows": [
+    {
+      "massKg": 0,
+      "result": {
+        "totalMassKg": 0,
+        "forceN": 0,
+        "extensionM": 0,
+        "lengthM": 0.1
+      }
+    },
+    {
+      "massKg": 0.025,
+      "result": {
+        "totalMassKg": 0.025,
+        "forceN": 0.25,
+        "extensionM": 0.0125,
+        "lengthM": 0.1125
+      }
+    },
+    {
+      "massKg": 0.05,
+      "result": {
+        "totalMassKg": 0.05,
+        "forceN": 0.5,
+        "extensionM": 0.025,
+        "lengthM": 0.125
+      }
+    },
+    {
+      "massKg": 0.075,
+      "result": {
+        "totalMassKg": 0.075,
+        "forceN": 0.75,
+        "extensionM": 0.0375,
+        "lengthM": 0.1375
+      }
+    },
+    {
+      "massKg": 0.1,
+      "result": {
+        "totalMassKg": 0.1,
+        "forceN": 1,
+        "extensionM": 0.05,
+        "lengthM": 0.15000000000000002
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-04",
+  "changedRuntimeFile": "src/app/workbench/SceneBoard.tsx",
+  "beforeSha256": "90794ca3cc6f88be82889eb1da94ac915c3dc60efd8c59129ece31046c6373d2",
+  "afterSha256": "94769C4D9F18C162C2F6B255A10D5EA469DA21ABE95045B74C2C1D6C9BB41324",
+  "commentsPreserved": true,
+  "originalCommentCount": 0,
+  "buildArtifacts": [
+    {
+      "path": "dist\\assets\\electrical.worker-C8w6w4-p.js",
+      "sha256": "822718DDA72FA10AC96D47DF7E9A20638C4096991B6CFCA61D98B19AC4D4B633",
+      "bytes": 126833
+    },
+    {
+      "path": "dist\\assets\\index-DtszG-6e.js",
+      "sha256": "AFC0A141AAB77DBF2609A2908629D208A0ACF434048587C71E4C08406A0C03FA",
+      "bytes": 430148
+    },
+    {
+      "path": "dist\\assets\\index-DW-IVVXi.css",
+      "sha256": "C4CC8995962AC2939C69C3E6F8B408F396832B7C384EA8FE077D87BB3FCB5BF0",
+      "bytes": 19532
+    },
+    {
+      "path": "dist\\index.html",
+      "sha256": "20F4BDD5C16D0E203F3D614D9F692F93141CD5CD7FC9720468FA094FF3ACCAFC",
+      "bytes": 567
+    },
+    {
+      "path": "dist\\THIRD_PARTY_NOTICES.txt",
+      "sha256": "CD764E74D45A5A4C8AD5E20888E6A06FC9A62A480E8BB1D869E2DE0345BD012C",
+      "bytes": 5022
+    }
+  ],
+  "fullRun": {
+    "startTime": "2026-11-04T04:38:28.949Z",
+    "duration": 97782.54000000001,
+    "expected": 41,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "focusedRun": {
+    "startTime": "2026-11-04T04:40:34.092Z",
+    "duration": 4979.432,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "existing41Passed": true,
+  "focused2Passed": true,
+  "noticesMatch": true,
+  "unitTestsRerun": false
+}

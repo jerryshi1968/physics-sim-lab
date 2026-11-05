@@ -1,0 +1,26 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:27056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 11 tests using 2 workers
+
+(node:8684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\assembly.spec.ts:94:1 › pointer library drag creates one item, equipment drag commits once, cancel rolls back and pan preserves metres (1.8s)
+  ok  2 [chromium] › tests\e2e\assembly.spec.ts:40:1 › blank assembly forms a source/resistor/closed-switch loop, follows movement and supports route/color/deletion (2.7s)
+  ok  3 [chromium] › tests\e2e\assembly.spec.ts:150:1 › keyboard/click alternative supports placement, property validation and wires sharing apparatus posts (1.3s)
+  ok  4 [chromium] › tests\e2e\assembly.spec.ts:205:3 › touch pointer interaction › tap placement, real touch drag and tap-to-connect work (1.0s)
+  ok  5 [chromium] › tests\e2e\assembly.spec.ts:238:1 › low zoom keeps terminals distinct and Escape cancels from the inspector (1.2s)
+  ok  6 [chromium] › tests\e2e\loose-wire.spec.ts:40:1 › physical apparatus and correct cell icon replace symbols; loose wire can be dropped, moved, bent and rewired (2.0s)
+  ok  7 [chromium] › tests\e2e\loose-wire.spec.ts:99:3 › touch wire editing › touch can move a loose wire, bend it and attach both ends to actual posts (1.4s)
+  ok  8 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (534ms)
+  ok  9 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (564ms)
+  ok 10 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (551ms)
+  ok 11 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (536ms)
+
+  11 passed (10.0s)

@@ -1,0 +1,89 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test tests/e2e/lamp-experiment.spec.ts
+
+[WebServer] (node:28464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:6672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\lamp-experiment.spec.ts:47:1 › experiment chooser previews and cancels without replacing work; four editable open templates solve real same/different lamp circuits (12.5s)
+  ok 2 [chromium] › tests\e2e\lamp-experiment.spec.ts:71:39 › series from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload (13.1s)
+  ok 4 [chromium] › tests\e2e\lamp-experiment.spec.ts:131:3 › touch experiment entry › touch chooses and edits a formal template; guidance and blank plan fit without page horizontal overflow (2.4s)
+  x  3 [chromium] › tests\e2e\lamp-experiment.spec.ts:71:39 › parallel from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload (2.0m)
+
+
+  1) [chromium] › tests\e2e\lamp-experiment.spec.ts:71:39 › parallel from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Browser logs:
+
+    <launching> C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\Users\JERRYS~1\AppData\Local\Temp\playwright_chromiumdev_profile-NS1ubT --remote-debugging-pipe --no-startup-window
+    <launched> pid=16504
+    [pid=16504][err] [16504:23260:1104/125819.523:ERROR:chrome\browser\importer\edge_china_browsers\edge_qqbrowser_importer_utils_win.cc:165] QQBrowser user data path not found.
+    [pid=16504][err] [16504:28500:1104/125831.835:ERROR:chrome\browser\importer\edge_china_browsers\edge_qqbrowser_importer_utils_win.cc:165] QQBrowser user data path not found.
+    [pid=16504] <gracefully close start>
+    Call log:
+      - waiting for getByTestId('scene-board').locator('[data-equipment-id="item-4f3af20e-a455-4ce6-bc20-3a9173bd9312"]').locator('[data-port-id="common"]')
+        - locator resolved to <g tabindex="0" role="button" id="_r_8_-post-4-0" aria-pressed="false" data-port-id="common" class="equipment-port " aria-label="电流表 5 · 公共负端 −" transform="translate(409 403.6)">…</g>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-b0053697-ffe4-4d91-9088-d80704958b4d">…</g> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-b0053697-ffe4-4d91-9088-d80704958b4d">…</g> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        217 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-b0053697-ffe4-4d91-9088-d80704958b4d">…</g> subtree intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      86 |   ];
+      87 |   pairs.push(['V0', 'high', 'E', 'positive'], ['V0', 'common', 'E', 'negative'], ['V1', 'low', 'L1', 'a'], ['V1', 'common', 'L1', 'b'], ['V2', 'high', 'L2', 'a'], ['V2', 'common', 'L2', 'b']);
+    > 88 |   for (const [a, ap, b, bp] of pairs) { await page.getByLabel('选择器材', { exact: true }).selectOption(devices[a!]!.id); await devices[a!]!.item.locator(`[data-port-id="${ap}"]`).click(); await devices[b!]!.item.locator(`[data-port-id="${bp}"]`).click(); }
+         |                                                                                                   ^
+      89 |   await properties(page, devices.S!.id, { '闭合开关': true });
+      90 |   await expect(page.locator(`[data-meter-reading="${devices.A0!.id}"] strong`)).toHaveText(parallel ? '0.6 A' : '0.3 A');
+      91 |   await page.getByRole('button', { name: '展开记录区', exact: true }).click();
+        at G:\physics-sim-lab\tests\e2e\lamp-experiment.spec.ts:88:99
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lamp-experiment-parallel-f-cbb2c-records-CSV-JSON-and-reload-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\lamp-experiment-parallel-f-cbb2c-records-CSV-JSON-and-reload-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\lamp-experiment-parallel-f-cbb2c-records-CSV-JSON-and-reload-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lamp-experiment-parallel-f-cbb2c-records-CSV-JSON-and-reload-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lamp-experiment-parallel-f-cbb2c-records-CSV-JSON-and-reload-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\lamp-experiment.spec.ts:71:39 › parallel from formal blank: real assembly, same/different lamps, six-point records, CSV/JSON and reload 
+  3 passed (2.3m)

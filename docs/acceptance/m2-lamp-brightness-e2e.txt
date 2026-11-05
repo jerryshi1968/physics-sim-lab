@@ -1,0 +1,44 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:28484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 29 tests using 2 workers
+
+(node:27624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [chromium] › tests\e2e\assembly.spec.ts:94:1 › pointer library drag creates one item, equipment drag commits once, cancel rolls back and pan preserves metres (1.9s)
+  ok  1 [chromium] › tests\e2e\assembly.spec.ts:40:1 › blank assembly forms a source/resistor/closed-switch loop, follows movement and supports route/color/deletion (2.7s)
+  ok  3 [chromium] › tests\e2e\assembly.spec.ts:150:1 › keyboard/click alternative supports placement, property validation and wires sharing apparatus posts (1.6s)
+  ok  4 [chromium] › tests\e2e\assembly.spec.ts:205:3 › touch pointer interaction › tap placement, real touch drag and tap-to-connect work (1.0s)
+  ok  5 [chromium] › tests\e2e\assembly.spec.ts:238:1 › low zoom keeps terminals distinct and Escape cancels from the inspector (1.4s)
+  ok  7 [chromium] › tests\e2e\electrical.spec.ts:131:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings (2.0s)
+  ok  8 [chromium] › tests\e2e\electrical.spec.ts:164:1 › delayed old Worker messages after reset cannot overwrite a newer run or leave extra workers active (2.1s)
+  ok  6 [chromium] › tests\e2e\electrical.spec.ts:54:1 › blank wiring automatically runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state (5.5s)
+  ok  9 [chromium] › tests\e2e\electrical.spec.ts:196:1 › lamp glass, filament and halo follow actual power continuously without a rated-power plateau (1.6s)
+  ok 10 [chromium] › tests\e2e\electrical.spec.ts:244:3 › touch lamp and meter › touch places and connects a real lamp and the correct meter terminals (2.4s)
+  ok 11 [chromium] › tests\e2e\loose-wire.spec.ts:40:1 › physical apparatus and single-cell battery preview replace symbols; loose wire can be dropped, moved, bent and rewired (2.3s)
+  ok 12 [chromium] › tests\e2e\loose-wire.spec.ts:107:3 › touch wire editing › touch can move a loose wire, bend it and attach both ends to actual posts (1.5s)
+  ok 13 [chromium] › tests\e2e\persistence.spec.ts:58:1 › experiment rename validates and cancels, supports undo/redo, persists and names the exported file (2.7s)
+  ok 14 [chromium] › tests\e2e\persistence.spec.ts:96:1 › one drag is one history transaction; undo/redo, cancelled drag, delete restoration and export agree (5.1s)
+  ok 15 [chromium] › tests\e2e\persistence.spec.ts:144:1 › blank assembly saves to IndexedDB, refresh restores exact structure, editing and explicit load continue (3.9s)
+  ok 17 [chromium] › tests\e2e\persistence.spec.ts:224:1 › blocked local storage still allows editing and JSON export without claiming saved (1.3s)
+  ok 18 [chromium] › tests\e2e\persistence.spec.ts:237:1 › failed save leaves the last committed IndexedDB snapshot intact (1.9s)
+  ok 19 [chromium] › tests\e2e\persistence.spec.ts:260:1 › corrupt local data does not replace current work and JSON backup can recover after refresh (1.7s)
+  ok 16 [chromium] › tests\e2e\persistence.spec.ts:184:1 › bad and oversized imports preserve current work; supported v1 migrates after a cancellable inert preview (6.4s)
+  ok 21 [chromium] › tests\e2e\saved-experiments.spec.ts:101:1 › different experiments with identical names remain separate by document ID (2.3s)
+  ok 22 [chromium] › tests\e2e\saved-experiments.spec.ts:121:1 › upgrading a v1 single-slot database preserves its remaining snapshot and adds it to the experiment list (2.1s)
+  ok 20 [chromium] › tests\e2e\saved-experiments.spec.ts:50:1 › saving a second experiment preserves the first; loading, renaming and resaving update only the selected document (6.0s)
+  ok 23 [chromium] › tests\e2e\saved-experiments.spec.ts:183:1 › delete requires confirmation, targets the selected ID and leaves current work and other saved experiments intact (3.3s)
+  ok 25 [chromium] › tests\e2e\saved-experiments.spec.ts:254:1 › a deletion failure rolls back both experiment and latest snapshot and keeps the saved marker (2.3s)
+  ok 24 [chromium] › tests\e2e\saved-experiments.spec.ts:216:1 › deleting the current latest save preserves the board, selects another startup save, and deleting all never resurrects old data (4.6s)
+  ok 26 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (701ms)
+  ok 27 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (678ms)
+  ok 28 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (590ms)
+  ok 29 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (592ms)
+
+  29 passed (39.6s)

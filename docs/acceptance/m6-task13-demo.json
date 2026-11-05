@@ -1,0 +1,70 @@
+{
+  "kind": "calculated_demo_not_student_measurements",
+  "rows": [
+    {
+      "requestedTimeS": 0.1,
+      "timeS": 0.1,
+      "impactTimeS": 0.5,
+      "rangeM": 1,
+      "xM": 0.2,
+      "yM": 1.2,
+      "horizontalDisplacementM": 0.2,
+      "dropM": 0.05,
+      "vxMPerS": 2,
+      "vyMPerS": -1,
+      "state": "flying"
+    },
+    {
+      "requestedTimeS": 0.2,
+      "timeS": 0.2,
+      "impactTimeS": 0.5,
+      "rangeM": 1,
+      "xM": 0.4,
+      "yM": 1.05,
+      "horizontalDisplacementM": 0.4,
+      "dropM": 0.2,
+      "vxMPerS": 2,
+      "vyMPerS": -2,
+      "state": "flying"
+    },
+    {
+      "requestedTimeS": 0.3,
+      "timeS": 0.3,
+      "impactTimeS": 0.5,
+      "rangeM": 1,
+      "xM": 0.6,
+      "yM": 0.8,
+      "horizontalDisplacementM": 0.6,
+      "dropM": 0.44999999999999996,
+      "vxMPerS": 2,
+      "vyMPerS": -3,
+      "state": "flying"
+    },
+    {
+      "requestedTimeS": 0.5,
+      "timeS": 0.5,
+      "impactTimeS": 0.5,
+      "rangeM": 1,
+      "xM": 1,
+      "yM": 0,
+      "horizontalDisplacementM": 1,
+      "dropM": 1.25,
+      "vxMPerS": 2,
+      "vyMPerS": -5,
+      "state": "landed"
+    },
+    {
+      "requestedTimeS": 0.73,
+      "timeS": 0.5,
+      "impactTimeS": 0.5,
+      "rangeM": 1,
+      "xM": 1,
+      "yM": 0,
+      "horizontalDisplacementM": 1,
+      "dropM": 1.25,
+      "vxMPerS": 2,
+      "vyMPerS": -5,
+      "state": "landed"
+    }
+  ]
+}

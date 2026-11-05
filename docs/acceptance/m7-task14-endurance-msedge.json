@@ -1,0 +1,166 @@
+{
+  "mode": "endurance",
+  "channel": "msedge",
+  "date": "2026-11-05T06:38:51.827Z",
+  "environment": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+    "logicalCpus": 12,
+    "memoryBytes": 16850874368,
+    "os": "win32 10.0.26340",
+    "node": "v24.14.1",
+    "buildMode": "Vite production, local HTTP, headless browser",
+    "browser": "158.0.4370.1"
+  },
+  "stress": {
+    "equipment": 50,
+    "connections": 100,
+    "nodes": 50,
+    "note": "100 connections include parallel duplicate wires for drawing/union load; not a 100-unknown claim.",
+    "residuals": {
+      "kclA": 1.4137996329210978e-16,
+      "normalizedKcl": 1.0462308521874209e-14,
+      "normalizedConstitutive": 1.0008745850147114e-12,
+      "powerBalanceW": -2.6812319725566525e-16,
+      "normalizedPower": 6.613826424998681e-15,
+      "linear": 2.0678531787842992e-16
+    }
+  },
+  "results": [
+    {
+      "experiment": "J-ELEC-01",
+      "title": "串联 · 相同灯泡",
+      "equipment": 6,
+      "connections": 7,
+      "actions": 62,
+      "seconds": 45.03840000000596,
+      "averageRafFps": 59.993250204262196,
+      "inputToTwoFramesP95Ms": 31.69999998807907,
+      "workerRoundtripP95Ms": 33.5,
+      "responseSamples": 124,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-OPT-02",
+      "title": "探究凸透镜成像规律",
+      "equipment": 5,
+      "connections": 0,
+      "actions": 62,
+      "seconds": 45.41569999998808,
+      "averageRafFps": 60.02329590869932,
+      "inputToTwoFramesP95Ms": 31,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 124,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-MECH-02",
+      "title": "探究杠杆平衡条件",
+      "equipment": 6,
+      "connections": 0,
+      "actions": 62,
+      "seconds": 45.12940000000596,
+      "averageRafFps": 60.00522940698619,
+      "inputToTwoFramesP95Ms": 30.80000001192093,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 124,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-MECH-01",
+      "title": "探究滑动摩擦力",
+      "equipment": 6,
+      "connections": 0,
+      "actions": 62,
+      "seconds": 45.11030000001192,
+      "averageRafFps": 60.008468132539235,
+      "inputToTwoFramesP95Ms": 30.30000001192093,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 124,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "H-MECH-01",
+      "title": "探究弹簧弹力与形变量",
+      "equipment": 4,
+      "connections": 0,
+      "actions": 62,
+      "seconds": 45.06619999998808,
+      "averageRafFps": 60.00062130822469,
+      "inputToTwoFramesP95Ms": 29.599999994039536,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 124,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "H-MECH-02",
+      "title": "探究平抛运动",
+      "equipment": 5,
+      "connections": 0,
+      "actions": 59,
+      "seconds": 45.57740000000596,
+      "averageRafFps": 60.0078108887221,
+      "inputToTwoFramesP95Ms": 30.799999982118607,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 118,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-ELEC-01",
+      "title": "性能基准：50器材100连接",
+      "equipment": 50,
+      "connections": 100,
+      "actions": 61,
+      "seconds": 45.4335,
+      "averageRafFps": 60.021790088811116,
+      "inputToTwoFramesP95Ms": 32.30000001192093,
+      "workerRoundtripP95Ms": 47.19999998807907,
+      "responseSamples": 122,
+      "pendingRaf": 0
+    }
+  ],
+  "externalRequests": [],
+  "errors": [],
+  "switching": {
+    "replacements": 60,
+    "before": {
+      "documents": 1,
+      "nodes": 4815,
+      "jsEventListeners": 226,
+      "usedSize": 6955980,
+      "totalSize": 8003584,
+      "embedderHeapUsedSize": 6566680,
+      "backingStorageSize": 683841,
+      "activeRaf": 0,
+      "workers": 0,
+      "createdWorkers": 0
+    },
+    "after": {
+      "documents": 1,
+      "nodes": 4816,
+      "jsEventListeners": 226,
+      "usedSize": 10175924,
+      "totalSize": 11935744,
+      "embedderHeapUsedSize": 7810912,
+      "backingStorageSize": 691926,
+      "activeRaf": 0,
+      "workers": 0,
+      "createdWorkers": 20
+    },
+    "delayedReplies": 10,
+    "note": "Forced GC only for same-scene before/after retention checks; not proof of unlimited absence of leaks."
+  },
+  "continuousSeconds": 317.86163569999997,
+  "finalMemory": {
+    "documents": 1,
+    "nodes": 4816,
+    "jsEventListeners": 226,
+    "usedSize": 11617624,
+    "totalSize": 13856768,
+    "embedderHeapUsedSize": 7523528,
+    "backingStorageSize": 694314,
+    "activeRaf": 0,
+    "workers": 0,
+    "createdWorkers": 145
+  },
+  "ok": true
+}

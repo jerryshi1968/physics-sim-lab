@@ -1,0 +1,29 @@
+
+> cn-physics-lab@0.0.0 build
+> npm run typecheck && npm run licenses && vite build
+
+
+> cn-physics-lab@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.tools.json --noEmit
+
+
+> cn-physics-lab@0.0.0 licenses
+> node scripts/dependency-inventory.mjs
+
+Recorded 189 locked packages; retained complete notices for 5 runtime packages.
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 221 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.56 kB │ gzip:   0.40 kB
+dist/assets/electrical.worker-CKbR7Qhs.js  127.66 kB
+dist/assets/index-DjYLqZL-.css              27.48 kB │ gzip:   6.27 kB
+dist/assets/index-C1kTCSVS.js              705.56 kB │ gzip: 220.23 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 273ms

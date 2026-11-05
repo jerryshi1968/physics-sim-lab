@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 81,
+  "unchangedFiles": 77,
+  "changed": [
+    "src\\app\\App.tsx",
+    "src\\app\\simulation\\useElectricalSimulation.ts",
+    "src\\app\\workbench\\SimulationPanel.tsx",
+    "tests\\e2e\\electrical.spec.ts"
+  ],
+  "protectedFiles": 3,
+  "protectedChanged": [],
+  "textFiles": 200,
+  "strictUtf8Errors": [],
+  "relativeLinks": 262,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "badArtifacts": [],
+  "noticesMatch": true,
+  "e2e": {
+    "startTime": "2026-11-04T01:11:59.315Z",
+    "duration": 50152.518,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": []
+}

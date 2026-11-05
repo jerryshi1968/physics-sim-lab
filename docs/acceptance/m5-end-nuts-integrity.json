@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 135,
+  "unchangedFiles": 121,
+  "changed": [
+    "src\\app\\App.tsx",
+    "src\\app\\mechanical\\LeverPanel.tsx",
+    "src\\app\\mechanical\\MechanicalGraphic.tsx",
+    "src\\app\\workbench\\EquipmentLibrary.tsx",
+    "src\\app\\workbench\\InspectorEditor.tsx",
+    "src\\core\\mechanical\\lever.ts",
+    "src\\equipment\\mechanical\\definitions.ts",
+    "src\\equipment\\mechanical\\measure.ts",
+    "src\\equipment\\mechanical\\simulate.ts",
+    "src\\experiments\\lever.ts",
+    "src\\styles\\workbench.css",
+    "tests\\core\\lever-experiment.test.mjs",
+    "tests\\e2e\\lever-experiment.spec.ts",
+    "scripts\\lever-experiment-demo.mjs"
+  ],
+  "newSourceTestScripts": [
+    "src\\app\\mechanical\\BalanceNutControls.tsx",
+    "tests\\core\\balance-nuts.test.mjs",
+    "tests\\e2e\\balance-nuts.spec.ts"
+  ],
+  "protectedChanged": [],
+  "oldSamplesElectricalOpticalUnchanged": true,
+  "textFiles": 419,
+  "strictUtf8Errors": [],
+  "relativeLinks": 538,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "artifactHashErrors": [],
+  "noticesMatch": true,
+  "electricalWorkerUnchanged": true,
+  "unit238Passed": true,
+  "e2e": {
+    "startTime": "2026-11-04T09:55:10.099Z",
+    "duration": 113985.057,
+    "expected": 59,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": [],
+  "newDependencies": 0,
+  "existingCommentsPreserved": true,
+  "codegraphExists": false,
+  "gitExists": false
+}

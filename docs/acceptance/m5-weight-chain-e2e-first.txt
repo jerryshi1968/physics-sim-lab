@@ -1,0 +1,14 @@
+[WebServer] (node:27728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 2 workers
+
+(node:26344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\weight-chain.spec.ts:46:1 › choosing an occupied lever hook automatically appends to the tail and explicit attachment supports free chains and release (4.0s)
+  ok 1 [chromium] › tests\e2e\weight-chain.spec.ts:29:1 › mouse chains weights on lower hooks, restores balance, follows parent moves and preserves children when deleting a parent (5.6s)
+  ok 3 [chromium] › tests\e2e\weight-chain.spec.ts:56:3 › touch weight chains › native touch cancels without changing references then hangs a new weight below the existing one (3.8s)
+
+  3 passed (10.8s)

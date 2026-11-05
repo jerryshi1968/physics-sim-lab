@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 138,
+  "unchangedFiles": 132,
+  "changed": [
+    "src\\app\\App.tsx",
+    "src\\app\\mechanical\\LeverPanel.tsx",
+    "src\\app\\mechanical\\MechanicalGraphic.tsx",
+    "src\\app\\workbench\\SceneBoard.tsx",
+    "src\\equipment\\mechanical\\simulate.ts",
+    "src\\styles\\workbench.css"
+  ],
+  "newSourceTestScripts": [
+    "src\\app\\mechanical\\leverPresentation.ts",
+    "tests\\core\\lever-presentation.test.mjs",
+    "tests\\e2e\\lever-tilt.spec.ts"
+  ],
+  "protectedChanged": [],
+  "coreSolversAndMeasurementsUnchanged": true,
+  "textFiles": 441,
+  "strictUtf8Errors": [],
+  "relativeLinks": 566,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "artifactHashErrors": [],
+  "noticesMatch": true,
+  "electricalWorkerUnchanged": true,
+  "unit241Passed": true,
+  "e2e": {
+    "startTime": "2026-11-04T11:43:08.207Z",
+    "duration": 134471.155,
+    "expected": 61,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": [],
+  "newDependencies": 0,
+  "existingCommentsPreserved": true,
+  "codegraphExists": false,
+  "gitExists": false
+}

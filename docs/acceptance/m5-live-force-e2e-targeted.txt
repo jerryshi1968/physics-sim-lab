@@ -1,0 +1,58 @@
+[WebServer] (node:24804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 2 workers
+
+(node:18824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\live-force.spec.ts:45:1 › pointer reflects applied force before zero confirmation; invalid drafts, zero-arm, over-range and invalid apparatus never become normal measurements (4.6s)
+  ok 3 [chromium] › tests\e2e\live-force.spec.ts:57:3 › touch live force › touch text edits apply without a separate submit and persist after leaving the input (1.8s)
+  x  2 [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save (9.2s)
+
+
+  1) [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('施加拉力（N）', { exact: true })
+    Expected: "4"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('施加拉力（N）', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('施加拉力（N）', { exact: true })
+
+
+      36 |   await page.getByRole('heading', { name: '探究杠杆平衡条件', exact: true }).click(); await page.getByLabel('选择器材', { exact: true }).selectOption(''); await page.getByLabel('选择器材', { exact: true }).selectOption('meter'); await expect(force(page)).toHaveValue('3');
+      37 |   expect((await exported(page)).equipment.find(item => item.id === 'meter')!.parameters.forceN).toBe(3);
+    > 38 |   await page.getByRole('button', { name: '撤销', exact: true }).click(); await expect(force(page)).toHaveValue('4'); await indication(page, 4); await page.getByRole('button', { name: '重做', exact: true }).click(); await expect(force(page)).toHaveValue('3');
+         |                                                                                                  ^
+      39 |   await page.getByRole('button', { name: '保存', exact: true }).click(); await expect(page.getByTestId('save-state')).toHaveText('已保存'); await page.reload(); await page.getByLabel('选择器材', { exact: true }).selectOption('meter'); await expect(force(page)).toHaveValue('3'); await indication(page, 3);
+      40 |   await page.locator('.inspector').evaluate(element => { element.scrollTop = 0; }); await page.screenshot({ path: info.outputPath('live-force-pointer.png'), fullPage: true });
+      41 |   await force(page).fill('6'); await indication(page, 6, 1); await expect(page.locator('[data-force-reading="meter"]')).toContainText('超量程');
+        at G:\physics-sim-lab\tests\e2e\live-force.spec.ts:38:98
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\live-force-typing-keyboard-c9308-blur-reselect-undo-and-save-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\live-force.spec.ts:26:1 › typing, keyboard arrows and native mouse spinners update force, balance and pointer immediately and survive blur, reselect, undo and save 
+  2 passed (12.1s)

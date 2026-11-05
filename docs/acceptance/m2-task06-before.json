@@ -1,0 +1,282 @@
+[
+  {
+    "sha256": "3C7BD67E1F201834E1559614C4707D334629FCF5542FF1822DF88171DC0B367A",
+    "path": "tests\\physics\\spring.test.mjs"
+  },
+  {
+    "sha256": "FF478B10442A8D1C128D89B76348139113F24AB3303F34DA3757F4A7908E1011",
+    "path": "src\\styles\\workbench.css"
+  },
+  {
+    "sha256": "2F898C48528D518A8FCAC6A63672BC3F7D32C5295711A379886394DBAABC6B70",
+    "path": "tests\\physics\\projectile.test.mjs"
+  },
+  {
+    "sha256": "0100ACD456F713579AA37A90644ABE1DD68BE73DF8D8D99CB1CF139BA7319267",
+    "path": "tests\\physics\\optical.test.mjs"
+  },
+  {
+    "sha256": "197CAAA5E3FF71EC87A444B0C765F8422711501F49024DF024C4E586CE02A777",
+    "path": "tests\\physics\\lever.test.mjs"
+  },
+  {
+    "sha256": "1AD69D3A00195811AD9597C5B92A536B16D4B01675395CDDB6D0CA64560D9F53",
+    "path": "tests\\physics\\helpers.mjs"
+  },
+  {
+    "sha256": "8D736A3EAAE7EBE5A5363E0BD4C223A3B14A3A1DA04DF8A37EB477070EBE10D8",
+    "path": "tests\\physics\\friction.test.mjs"
+  },
+  {
+    "sha256": "E63DB1D758ACD582DE7BB6F2AFAA5B2CC0EAEBD204260ECD75D9DE24B5EE602A",
+    "path": "tests\\physics\\electrical.test.mjs"
+  },
+  {
+    "sha256": "7B252549752DDF134341A0105201BD281F0FC89A2A19FB393A9CE0099943AB48",
+    "path": "tests\\e2e\\workbench.spec.ts"
+  },
+  {
+    "sha256": "D1A7C2B8907B80FC14AF6DDDFCF3F276978C8D489BA059155F9E30BDE0E3E3A5",
+    "path": "tests\\e2e\\saved-experiments.spec.ts"
+  },
+  {
+    "sha256": "90811271D8A73E094115AC7BD261A4F7BF35DA892628321D1430E58D7AAB4A05",
+    "path": "tests\\e2e\\persistence.spec.ts"
+  },
+  {
+    "sha256": "8F90E462A88910863E34B812C9A839B2F16C4CDC35A589D0B727845BF2EDEA8C",
+    "path": "tests\\e2e\\loose-wire.spec.ts"
+  },
+  {
+    "sha256": "C40EDCAEB40CA8D16EACBA8D1766D50739EDB22FBDD1B73708996344CEFD71BE",
+    "path": "tests\\e2e\\assembly.spec.ts"
+  },
+  {
+    "sha256": "32BD02F16D3741769152DD6B866A4FEBAFAAC8B0694A8A73EE3C6E96B32617F2",
+    "path": "src\\physics\\samples\\spring.ts"
+  },
+  {
+    "sha256": "0B92BC289E4F4114EA7B662B0E4DD26079E92C73BE424EC10E9E948BC0B80E7E",
+    "path": "src\\physics\\samples\\result.ts"
+  },
+  {
+    "sha256": "E24E081E9F249E661B0C0ABEAD39C86D9E85B0EA9B407B5A20830EC248795E15",
+    "path": "src\\physics\\samples\\projectile.ts"
+  },
+  {
+    "sha256": "F512430F220CFD030D67D5944958F930AB089AE509254FFF3EDD2D8001BB06FF",
+    "path": "src\\physics\\samples\\optical.ts"
+  },
+  {
+    "sha256": "05AE855F36E7E9D96FB11FDF271CF5B68388FB2DAF5D89C2AD54D1C669872EA9",
+    "path": "src\\physics\\samples\\lever.ts"
+  },
+  {
+    "sha256": "0B08CC4FDE98C60FB53CD703CAE50F2B6E667127B52604EDC8E23B6BE0602D11",
+    "path": "src\\physics\\samples\\friction.ts"
+  },
+  {
+    "sha256": "FB903E81902BAF6F9C22F17A463486D136C3647588D2E35C4350D6CB6651EC26",
+    "path": "src\\physics\\samples\\electrical.ts"
+  },
+  {
+    "sha256": "215412E725F423632A302F6231E3CA3CC2AD1857AE4B4BDC03ADEB590D4F3248",
+    "path": "tests\\core\\workbench.test.mjs"
+  },
+  {
+    "sha256": "DF4C4E5A0C0D95B53DC8AA72AF6C704AA98B9ADE776BDCAB87DD286F3D808FBC",
+    "path": "tests\\core\\units.test.mjs"
+  },
+  {
+    "sha256": "4D426BC8E95CC99B1CC85E953BCF8BDF9E4612D4F79E68BDC33B758DF542D84F",
+    "path": "tests\\core\\transfer.test.mjs"
+  },
+  {
+    "sha256": "48E4A7E853D0E37F3A68B7BB5DD370F4AC0174C795941ED7C5248F28761C778D",
+    "path": "tests\\core\\scene.test.mjs"
+  },
+  {
+    "sha256": "B2C961D78DA657674D1864C8832B58FFDE29A8099156B034E0AFAC4E61346B98",
+    "path": "tests\\core\\registry.test.mjs"
+  },
+  {
+    "sha256": "38B66423294CD4235A88E3C68BD5C041E871B837FC2409EEE2BCB83A7B43005B",
+    "path": "tests\\core\\loose-wire.test.mjs"
+  },
+  {
+    "sha256": "DE7FD22904F8777AB3578C5D83D2FA28CA2448CBD23F280B949BA490E948E3DD",
+    "path": "tests\\core\\history.test.mjs"
+  },
+  {
+    "sha256": "9D9A9BCE97EF7113EDBA5BF29D5C1AD34434A82752D996BD4015AC4932F5779D",
+    "path": "tests\\core\\fixtures.mjs"
+  },
+  {
+    "sha256": "AEE6889A75634FD460679946DF79F8C1936DAD69E29366695B164D7A3D0DB43A",
+    "path": "tests\\core\\dc-mna.test.mjs"
+  },
+  {
+    "sha256": "127A5C13EF1C27A6A031FD9C6C306894BEBE6B6E8B0D46CAD02074726E3A56A2",
+    "path": "tests\\core\\dc-linear.test.mjs"
+  },
+  {
+    "sha256": "2D77DFA82D63D6A9E80C718D13374D67ACF97554B7E5106FE979D72390E36043",
+    "path": "tests\\core\\dc-fixtures.mjs"
+  },
+  {
+    "sha256": "0CE72D0C2FE9DE8B9519BE478CE95A7B087972FE20FC5BDB3AD373B53475F1C9",
+    "path": "tests\\core\\dc-compile.test.mjs"
+  },
+  {
+    "sha256": "E631006BAD47FE8D82535B0B44C668270B2679CF3717C193CBEF9656DBAFB2A2",
+    "path": "src\\core\\workbench\\wire.ts"
+  },
+  {
+    "sha256": "2329DBB0DC8F0FAB232BEA4555FDEE96F823F98FFD97EAC907EE496F3A08DAC0",
+    "path": "src\\core\\workbench\\history.ts"
+  },
+  {
+    "sha256": "804A78A41A060AF572434B7AC9C236F1FAC3A993D22524C52A697F758FA40D42",
+    "path": "src\\core\\workbench\\graph.ts"
+  },
+  {
+    "sha256": "A3B9D2C3AAD28ACCAEE9053F990E2A29F657FA643B669179E61F0D004541BD18",
+    "path": "src\\core\\workbench\\geometry.ts"
+  },
+  {
+    "sha256": "317A201259A0ACCB78E7D8691EAF106CC1179C930B2D4323296ED82B7D1C65A8",
+    "path": "src\\core\\workbench\\edit.ts"
+  },
+  {
+    "sha256": "66D81E2CF61B95AE8F1C062BD4BB9200C125341DCAD7513A11235A5246BE42DE",
+    "path": "src\\app\\workbench\\shared.ts"
+  },
+  {
+    "sha256": "5249C5FBFF564C1749B1391F7EB70B7C02F317C0FAE1E9DCECFB67A48CC05909",
+    "path": "src\\app\\workbench\\SceneBoard.tsx"
+  },
+  {
+    "sha256": "4815D0C41A68805B9132678F766CC0F465B4B14FC9C2445CE52AA478029B6E13",
+    "path": "src\\app\\workbench\\SavedExperiments.tsx"
+  },
+  {
+    "sha256": "371FD13966A745601EAF5B9D626F98ABE47E82DC774A0C1F862EF6C810CDAEFA",
+    "path": "src\\app\\workbench\\RenameExperiment.tsx"
+  },
+  {
+    "sha256": "E9B80239411D575097C0414957B16B42E75C9BCDEC06D9613D16C23E5961706F",
+    "path": "src\\app\\workbench\\InspectorEditor.tsx"
+  },
+  {
+    "sha256": "B8600BBDCBD49EA4706B5B4AA67D59EC2E03E974F0A6BDEEB04F8D0983EFD6C2",
+    "path": "src\\app\\workbench\\EquipmentLibrary.tsx"
+  },
+  {
+    "sha256": "E1999797C58B6737967435300C847D010BEA1842F3DB9B7B55D709FD9D9EA95C",
+    "path": "src\\app\\workbench\\EquipmentGraphic.tsx"
+  },
+  {
+    "sha256": "F44660857A13137BC8F85FF00F3C35A54CDE03064450877F27C6AF17AE17C42B",
+    "path": "src\\app\\workbench\\DocumentPreview.tsx"
+  },
+  {
+    "sha256": "6AA3037ADEF329842FD0EEC9F1EC8096B410FF76ADCB07A1785B64D0CE6311BA",
+    "path": "src\\equipment\\electrical\\definitions.ts"
+  },
+  {
+    "sha256": "A284581156401F2F0D9C3B1B98AF372D410099344168310471B118B083FF0141",
+    "path": "src\\equipment\\electrical\\dcAdapters.ts"
+  },
+  {
+    "sha256": "B76B5DEC75152CB44E182AC529768C8ECAED414813B1CABAC22A35ACF1EC9954",
+    "path": "src\\core\\units\\units.ts"
+  },
+  {
+    "sha256": "CDCA3374A3D08A8F88ACBE6744A7823004AF6270DDF4077405C1CB92455CB451",
+    "path": "src\\app\\persistence\\localSceneStore.ts"
+  },
+  {
+    "sha256": "B4A4D6B9C93F6A2E7F9C4BFEECED1AE2A59F3F997C9C76CEC0F64062DC8CE410",
+    "path": "src\\app\\main.tsx"
+  },
+  {
+    "sha256": "1BD9AAF3A821E65549A776277BE2039760412D318D0CD91C21DBAC4F69D09EE7",
+    "path": "src\\app\\App.tsx"
+  },
+  {
+    "sha256": "D475365ABD662A4D904D1D4A651B708FAD71076A64E7863CE3A58FE34832CC4E",
+    "path": "src\\core\\scene\\validate.ts"
+  },
+  {
+    "sha256": "A936E7CFB7A6BF9842B8D3365A2B84300FFE6C1C4037B31AAC8EC82936801E3B",
+    "path": "src\\core\\scene\\transfer.ts"
+  },
+  {
+    "sha256": "EBACB60C5385A32371BB9E37580A0E19971F9C78B3F74C65FFD02B3F74DA58EC",
+    "path": "src\\core\\scene\\schema.ts"
+  },
+  {
+    "sha256": "A6E034000BED920AB8C47B0B95313560304E0C810EF49C5C199CCDC1D73D4B66",
+    "path": "src\\core\\scene\\migrate.ts"
+  },
+  {
+    "sha256": "A77C9E53B07BEA453B3BF5383B36F6DEDF27186A0C7EB99D166ADF468017D11E",
+    "path": "src\\core\\scene\\create.ts"
+  },
+  {
+    "sha256": "FD0BCBC8FDE368127CE3D9FB65A7337D0BEB103304E8FA4159F9F7EE80D690EE",
+    "path": "src\\core\\electrical\\topology.ts"
+  },
+  {
+    "sha256": "1C0EE38710CDB8248C04D4C57C4D678956A8B223D7BEE409F796E73210C638DF",
+    "path": "src\\core\\electrical\\solve.ts"
+  },
+  {
+    "sha256": "E4088E8C8FDB0DC0B9DC2202530B4D30D70EF53477AE747560020AEA00E8BB9F",
+    "path": "src\\core\\electrical\\netlist.ts"
+  },
+  {
+    "sha256": "CEF06E69DF214E2DF54F9F84E77E0E607D7AFEB0DAE33F10373200DC45293053",
+    "path": "src\\core\\electrical\\linear.ts"
+  },
+  {
+    "sha256": "498803BCAAA96ACC5319469D0786C1AC231B19DF3ABCA6A7DE93CA039CB762D3",
+    "path": "src\\core\\electrical\\compile.ts"
+  },
+  {
+    "sha256": "D807D39DA79DB4B838D33BEA6971F88803DA0E243EEB018441FB9BDC6E5BE7CA",
+    "path": "src\\core\\connections\\schema.ts"
+  },
+  {
+    "sha256": "FBD2AF404018D054559D0333C74943AE23D49822D5031F248CBFB03D42302CE1",
+    "path": "src\\core\\diagnostics\\diagnostic.ts"
+  },
+  {
+    "sha256": "27F7D04F83835A463E1C6095D684DA689A8638D8E0C7D52882A4E0176B290D26",
+    "path": "src\\core\\equipment\\schema.ts"
+  },
+  {
+    "sha256": "58B8ACB18D4D80E8A04227322F54F1045BE58463FF983F55AE4F4C85A4916387",
+    "path": "src\\core\\equipment\\registry.ts"
+  },
+  {
+    "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+    "path": "AGENTS.md"
+  },
+  {
+    "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+    "path": "docs/implementation-plan.md"
+  },
+  {
+    "sha256": "FD5C16315A72E07B6694F1C9E9DB01248DF004F6073E1148724EB4A24D80E96A",
+    "path": "package.json"
+  },
+  {
+    "sha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131",
+    "path": "package-lock.json"
+  },
+  {
+    "sha256": "F333528E1900C90ECBF85616DB254724DB0C4282C342D0A5FEB14FE77C7F4F49",
+    "path": "tsconfig.json"
+  }
+]

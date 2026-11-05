@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "node": "v24.14.1",
+  "command": "node scripts/serve-dist.mjs --port <available-port>",
+  "cwd": "extracted offline package",
+  "usesNpmOrNodeModules": false,
+  "stdout": "Physics lab: http://127.0.0.1:50062/\nLocal files only; no npm or Internet needed. Ctrl+C stops the server.",
+  "checks": [
+    {
+      "path": "dist/assets/electrical.worker-CKbR7Qhs.js",
+      "status": 200,
+      "bytes": 127661,
+      "mime": "text/javascript; charset=utf-8"
+    },
+    {
+      "path": "dist/assets/index-BOc16lfK.js",
+      "status": 200,
+      "bytes": 705650,
+      "mime": "text/javascript; charset=utf-8"
+    },
+    {
+      "path": "dist/assets/index-DjYLqZL-.css",
+      "status": 200,
+      "bytes": 27482,
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "path": "dist/index.html",
+      "status": 200,
+      "bytes": 567,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "dist/THIRD_PARTY_NOTICES.txt",
+      "status": 200,
+      "bytes": 6273,
+      "mime": "text/plain; charset=utf-8"
+    }
+  ]
+}

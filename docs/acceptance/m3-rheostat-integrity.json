@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 93,
+  "unchangedFiles": 81,
+  "changed": [
+    "src\\app\\App.tsx",
+    "src\\app\\simulation\\useElectricalSimulation.ts",
+    "src\\app\\workbench\\EquipmentGraphic.tsx",
+    "src\\app\\workbench\\InspectorEditor.tsx",
+    "src\\app\\workbench\\SceneBoard.tsx",
+    "src\\core\\electrical\\netlist.ts",
+    "src\\core\\workbench\\edit.ts",
+    "src\\equipment\\electrical\\dcAdapters.ts",
+    "src\\equipment\\electrical\\definitions.ts",
+    "src\\styles\\workbench.css",
+    "tests\\core\\workbench.test.mjs",
+    "tests\\e2e\\loose-wire.spec.ts"
+  ],
+  "newSourceTestScripts": [
+    "src\\app\\workbench\\RheostatGraphic.tsx",
+    "src\\core\\electrical\\rheostat.ts",
+    "src\\core\\workbench\\rheostat.ts",
+    "tests\\core\\rheostat.test.mjs",
+    "tests\\e2e\\rheostat.spec.ts",
+    "scripts\\rheostat-demo.mjs"
+  ],
+  "protectedFiles": 4,
+  "protectedChanged": [],
+  "textFiles": 269,
+  "strictUtf8Errors": [],
+  "relativeLinks": 364,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "noticesMatch": true,
+  "unit203Passed": true,
+  "e2e": {
+    "startTime": "2026-11-04T03:40:10.259Z",
+    "duration": 78021.775,
+    "expected": 41,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": [],
+  "lockFiles": [
+    "package-lock.json"
+  ],
+  "devHttp200": true,
+  "demoSeries": [
+    {
+      "pair": "a-c",
+      "currentA": [
+        0.6,
+        0.3,
+        0.2
+      ]
+    },
+    {
+      "pair": "b-d",
+      "currentA": [
+        0.2,
+        0.3,
+        0.6
+      ]
+    },
+    {
+      "pair": "a-b",
+      "currentA": [
+        0.2,
+        0.2,
+        0.2
+      ]
+    },
+    {
+      "pair": "c-d",
+      "currentA": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    }
+  ],
+  "loadedDivider": {
+    "currentA": 0.32727272727272727,
+    "loadVoltageV": 3.2727272727272725,
+    "residuals": {
+      "kclA": 1.942890293094024e-16,
+      "normalizedKcl": 1.7809827686695218e-16,
+      "normalizedConstitutive": 0,
+      "powerBalanceW": -7.771561172376096e-16,
+      "normalizedPower": 1.187321845779681e-16,
+      "linear": 9.25185853854297e-17
+    }
+  },
+  "codegraphExists": false,
+  "gitExists": false
+}

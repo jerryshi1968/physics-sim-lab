@@ -1,0 +1,54 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test tests/e2e/optical-bench.spec.ts
+
+[WebServer] (node:17044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:21888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\optical-bench.spec.ts:28:1 › five object distances use real screen rays; preview/undo preserves apparatus and auxiliary virtual observer never becomes a screen image (5.3s)
+  ok 3 [chromium] › tests\e2e\optical-bench.spec.ts:100:1 › native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry (3.7s)
+  ok 4 [chromium] › tests\e2e\optical-bench.spec.ts:123:3 › touch optical bench › touch moves the screen to focus once and pointer cancellation restores it without horizontal page overflow (1.6s)
+  x  1 [chromium] › tests\e2e\optical-bench.spec.ts:63:1 › five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment (2.0m)
+
+
+  1) [chromium] › tests\e2e\optical-bench.spec.ts:63:1 › five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByLabel('观察：虚实', { exact: true })
+
+
+      76 |     for (const [slot, label] of ['蜡烛位置读数（m）', '透镜位置读数（m）', '光屏位置读数（m）'].entries()) await page.getByLabel(label, { exact: true }).fill(readings[slot]!);
+      77 |     await page.getByLabel('组别', { exact: true }).fill(`五类物距第${index + 1}组`);
+    > 78 |     for (const [label, value] of [['观察：虚实', nature], ['观察：正倒', orientation], ['观察：大小', size], ['观察：清晰度', clarity]]) await page.getByLabel(label!, { exact: true }).selectOption(value!);
+         |                                                                                                                                                                    ^
+      79 |     await page.getByLabel('观察备注', { exact: true }).fill('手工读尺，自己判断像的特点');
+      80 |     await page.getByRole('button', { name: '保存读尺与观察', exact: true }).click(); await expect(page.locator('[data-measurement-id]')).toHaveCount((index + 1) * 5);
+      81 |     if (index === 0) first = await exported(page);
+        at G:\physics-sim-lab\tests\e2e\optical-bench.spec.ts:78:164
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\optical-bench-five-classes-c465e-form-one-optical-experiment-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\optical-bench.spec.ts:63:1 › five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment 
+  3 passed (2.1m)

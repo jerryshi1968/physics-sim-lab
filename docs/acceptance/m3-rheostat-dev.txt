@@ -1,0 +1,2 @@
+HTTP 200 URL http://127.0.0.1:5175/ Owned process 24228 HTML contains Vite entry: True
+Owned development server stopped after check.

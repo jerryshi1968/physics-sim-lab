@@ -1,0 +1,322 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/reflection-experiment.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "reflection-experiment.spec.ts",
+      "file": "reflection-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6304,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T09:08:32.597Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "71244934bed116474a94-0cba74a08db448783326",
+          "file": "reflection-experiment.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "native blank assembly, independent calibration, immediate attributes and old optics are isolated",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 11026,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('光源圆周方位角（°）', { exact: true })\nExpected: \u001b[32m\"1\u001b[7m20\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m48.7401\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('光源圆周方位角（°）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('光源圆周方位角（°）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"5\" step=\"5\" max=\"175\" type=\"number\" value=\"148.7401\" aria-invalid=\"false\" aria-label=\"光源圆周方位角（°）\"/>\u001b[22m\n\u001b[2m       - unexpected value \"148.7401\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('光源圆周方位角（°）', { exact: true })\nExpected: \u001b[32m\"1\u001b[7m20\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m48.7401\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('光源圆周方位角（°）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('光源圆周方位角（°）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"5\" step=\"5\" max=\"175\" type=\"number\" value=\"148.7401\" aria-invalid=\"false\" aria-label=\"光源圆周方位角（°）\"/>\u001b[22m\n\u001b[2m       - unexpected value \"148.7401\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\reflection-experiment.spec.ts:67:182",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\reflection-experiment.spec.ts",
+                      "column": 182,
+                      "line": 67
+                    },
+                    "snippet": "  65 |   expect((await exported(page)).equipment.find(e=>e.type===EMITTER)!.pose).toEqual(aligned.equipment.find(e=>e.type===EMITTER)!.pose);\n  66 |   const orbit=page.getByLabel('光源圆周方位角（°）',{exact:true}),beforeDraft=await exported(page);\n> 67 |   await orbit.fill('0');await expect(orbit).toHaveAttribute('aria-invalid','true');expect(await exported(page)).toEqual(beforeDraft);await orbit.press('Escape');await expect(orbit).toHaveValue('120');\n     |                                                                                                                                                                                      ^\n  68 |   await orbit.fill('');await orbit.pressSequentially('135');await expect(orbit).toHaveValue('135');await expect(status(page)).toContainText('有连续反射光迹');await page.getByRole('heading',{name:'反射与共面观察',exact:true}).click();await expect(orbit).toHaveValue('135');\n  69 |   await orbit.fill('');await orbit.pressSequentially('120');await expect(orbit).toHaveValue('120');\n  70 |   await property(page,ids['optical.protractor']!,'量角器半径（m）','.05');await expect(status(page)).toContainText('有连续反射光迹');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\reflection-experiment.spec.ts",
+                        "column": 182,
+                        "line": 67
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('光源圆周方位角（°）', { exact: true })\nExpected: \u001b[32m\"1\u001b[7m20\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"1\u001b[7m48.7401\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('光源圆周方位角（°）', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('光源圆周方位角（°）', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"5\" step=\"5\" max=\"175\" type=\"number\" value=\"148.7401\" aria-invalid=\"false\" aria-label=\"光源圆周方位角（°）\"/>\u001b[22m\n\u001b[2m       - unexpected value \"148.7401\"\u001b[22m\n\n\n  65 |   expect((await exported(page)).equipment.find(e=>e.type===EMITTER)!.pose).toEqual(aligned.equipment.find(e=>e.type===EMITTER)!.pose);\n  66 |   const orbit=page.getByLabel('光源圆周方位角（°）',{exact:true}),beforeDraft=await exported(page);\n> 67 |   await orbit.fill('0');await expect(orbit).toHaveAttribute('aria-invalid','true');expect(await exported(page)).toEqual(beforeDraft);await orbit.press('Escape');await expect(orbit).toHaveValue('120');\n     |                                                                                                                                                                                      ^\n  68 |   await orbit.fill('');await orbit.pressSequentially('135');await expect(orbit).toHaveValue('135');await expect(status(page)).toContainText('有连续反射光迹');await page.getByRole('heading',{name:'反射与共面观察',exact:true}).click();await expect(orbit).toHaveValue('135');\n  69 |   await orbit.fill('');await orbit.pressSequentially('120');await expect(orbit).toHaveValue('120');\n  70 |   await property(page,ids['optical.protractor']!,'量角器半径（m）','.05');await expect(status(page)).toContainText('有连续反射光迹');\n    at G:\\physics-sim-lab\\tests\\e2e\\reflection-experiment.spec.ts:67:182"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T09:08:32.610Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\reflection-experiment.spec.ts",
+                    "column": 182,
+                    "line": 67
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "71244934bed116474a94-4ae9c268f6d0c7c9aa12",
+          "file": "reflection-experiment.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "fold preview cancels, releases one history entry, and normal incidence is a real counterexample",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4045,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-05T09:08:39.549Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "71244934bed116474a94-0a0d0f8bd5e291d11731",
+          "file": "reflection-experiment.spec.ts",
+          "line": 82,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "reflection touch",
+          "file": "reflection-experiment.spec.ts",
+          "line": 95,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch places apparatus, folds receiving sheet, and keeps controls within narrow page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2248,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-05T09:08:43.607Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "71244934bed116474a94-fa46194b65327c443e20",
+              "file": "reflection-experiment.spec.ts",
+              "line": 97,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-05T09:08:30.868Z",
+    "duration": 16232.270999999999,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

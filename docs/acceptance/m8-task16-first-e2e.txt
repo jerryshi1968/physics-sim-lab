@@ -1,0 +1,188 @@
+[WebServer] (node:22484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:6588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document (6.8s)
+(node:13268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated (7.8s)
+(node:31460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [chromium] › tests\e2e\reflection-experiment.spec.ts:68:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample (7.4s)
+  x  4 [chromium] › tests\e2e\reflection-experiment.spec.ts:83:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page (8.1s)
+
+
+  1) [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]') with timeout 5000ms
+      - waiting for getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      23 |   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+      24 |   await page.addInitScript(()=>{const original=window.Worker;(window as Window&{reflectionWorkers:number}).reflectionWorkers=0;window.Worker=class extends original{constructor(url:string|URL,options?:WorkerOptions){super(url,options);(window as Window&{reflectionWorkers:number}).reflectionWorkers++;}};});
+    > 25 |   await ready(page);await expect(page.locator('[data-library-type]')).toHaveCount(10);await expect(reflected(page)).toHaveCount(1);await expect(page.getByTestId('reflection-theory')).toHaveCount(0);
+         |                                                                                                                     ^
+      26 |   await expect(page.getByTestId('scene-board').locator('[data-optical-rays]')).toHaveCount(0);await expect(page.locator('[data-screen-projection]')).toHaveCount(0);
+      27 |   await page.getByRole('button',{name:'展开记录区',exact:true}).click();
+      28 |   let first:SceneDocument|null=null;
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:25:117
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-refl-e8e00--JSON-save-are-one-document-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-refl-e8e00--JSON-save-are-one-document-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-refl-e8e00--JSON-save-are-one-document-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-refl-e8e00--JSON-save-are-one-document-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]') with timeout 5000ms
+      - waiting for getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      56 |   await property(page,ids[EMITTER]!,'位置 x（m）','-.24');await property(page,ids[EMITTER]!,'位置 y（m）',String(.24*Math.sqrt(3)));await property(page,ids[EMITTER]!,'转角（°）','-60');
+      57 |   await expect(status(page)).toContainText('未校准');for(const name of ['将纸板折轴对齐法线','将量角器对齐入射点','将法线标记对齐镜面'])await page.getByRole('button',{name,exact:true}).click();
+    > 58 |   await expect(status(page)).toContainText('有连续反射光迹');await expect(reflected(page)).toHaveCount(1);
+         |                                                                                     ^
+      59 |   const aligned=await exported(page);await property(page,ids['optical.protractor']!,'位置 x（m）','.02');await expect(status(page)).toContainText('未校准');
+      60 |   await page.getByRole('button',{name:'将量角器对齐入射点',exact:true}).click();await expect(status(page)).toContainText('有连续反射光迹');
+      61 |   expect((await exported(page)).equipment.find(e=>e.type===EMITTER)!.pose).toEqual(aligned.equipment.find(e=>e.type===EMITTER)!.pose);
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:58:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-nati-0a291-and-old-optics-are-isolated-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\reflection-experiment.spec.ts:68:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]') with timeout 5000ms
+      - waiting for getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      70 |   const range=page.getByLabel('右纸板折角（°）',{exact:true});await range.scrollIntoViewIfNeeded();const box=(await range.boundingBox())!,before=await exported(page),board=page.getByTestId('scene-board');
+      71 |   await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width*.8,box.y+box.height/2,{steps:8});await expect(reflected(page)).toHaveCount(0);await expect(board).toHaveAttribute('data-revision',String(before.revision));await expect(page.getByRole('button',{name:'保存反射记录',exact:true})).toBeDisabled();
+    > 72 |   await page.keyboard.press('Escape');await page.mouse.up();await expect(reflected(page)).toHaveCount(1);expect(await exported(page)).toEqual(before);
+         |                                                                                           ^
+      73 |   await range.scrollIntoViewIfNeeded();const next=(await range.boundingBox())!;await page.mouse.move(next.x+next.width/2,next.y+next.height/2);await page.mouse.down();await page.mouse.move(next.x+next.width*.8,next.y+next.height/2,{steps:8});await page.mouse.up();await expect(board).toHaveAttribute('data-revision',String(before.revision+1));
+      74 |   await page.getByRole('button',{name:/^撤销/}).click();expect(await exported(page)).toEqual({...before,revision:before.revision+2,provenance:{...before.provenance,updatedAt:expect.any(String)}});
+      75 |   await page.getByLabel('光源圆周方位角（°）',{exact:true}).fill('90');await page.getByRole('button',{name:'折起纸板 90°',exact:true}).click();await expect(status(page)).toContainText('不能证明共面');await expect(reflected(page)).toHaveCount(1);await expect(page.getByTestId('reflection-fold-view')).toHaveAttribute('data-evidence','hinge');
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:72:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-fold-3c874-ce-is-a-real-counterexample-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-fold-3c874-ce-is-a-real-counterexample-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-fold-3c874-ce-is-a-real-counterexample-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-fold-3c874-ce-is-a-real-counterexample-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-fold-3c874-ce-is-a-real-counterexample-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests\e2e\reflection-experiment.spec.ts:83:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]') with timeout 5000ms
+      - waiting for getByTestId('scene-board').locator('[data-paper-ray="reflected"][data-paper-side="right"]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      89 |     await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:box.x+box.width*.82,y}]});await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      90 |     await expect(page.getByTestId('reflection-fold-view')).toHaveAttribute('data-evidence','off-sheet');const folded=await exported(page);expect(Number(folded.equipment.find(e=>e.type===PAPER)!.parameters.foldRad)).toBeGreaterThan(.5);
+    > 91 |     await page.getByRole('button',{name:'展开纸板 0°',exact:true}).tap();await expect(reflected(page)).toHaveCount(1);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+         |                                                                                                    ^
+      92 |     await page.screenshot({path:info.outputPath('reflection-touch.png'),fullPage:true});
+      93 |   });
+      94 | });
+        at G:\physics-sim-lab\tests\e2e\reflection-experiment.spec.ts:91:100
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-refl-c23b2-controls-within-narrow-page-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reflection-experiment-refl-c23b2-controls-within-narrow-page-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reflection-experiment-refl-c23b2-controls-within-narrow-page-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\reflection-experiment-refl-c23b2-controls-within-narrow-page-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\reflection-experiment-refl-c23b2-controls-within-narrow-page-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document 
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:50:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated 
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:68:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample 
+    [chromium] › tests\e2e\reflection-experiment.spec.ts:83:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page 

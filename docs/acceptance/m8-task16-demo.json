@@ -1,0 +1,197 @@
+{
+  "method": "Independent angle and signed-plane-distance expectations; output is model demonstration, not classroom observation.",
+  "rows": [
+    {
+      "inputIncidenceDeg": 0,
+      "inputFoldDeg": 0,
+      "actualIncidenceRad": 0,
+      "actualReflectionRad": 0,
+      "expectedAngleRad": 0,
+      "angleErrorRad": 0,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 0,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "hinge",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 0,
+      "inputFoldDeg": 30,
+      "actualIncidenceRad": 0,
+      "actualReflectionRad": 0,
+      "expectedAngleRad": 0,
+      "angleErrorRad": 0,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 3.99804084992374e-17,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "hinge",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 0,
+      "inputFoldDeg": 90,
+      "actualIncidenceRad": 0,
+      "actualReflectionRad": 0,
+      "expectedAngleRad": 0,
+      "angleErrorRad": 0,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 7.996081699847481e-17,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "hinge",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 30,
+      "inputFoldDeg": 0,
+      "actualIncidenceRad": 0.5235987755982987,
+      "actualReflectionRad": 0.5235987755982987,
+      "expectedAngleRad": 0.5235987755982988,
+      "angleErrorRad": 1.1102230246251565e-16,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 0,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "on-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 30,
+      "inputFoldDeg": 30,
+      "actualIncidenceRad": 0.5235987755982987,
+      "actualReflectionRad": 0.5235987755982987,
+      "expectedAngleRad": 0.5235987755982988,
+      "angleErrorRad": 1.1102230246251565e-16,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.05000000000000002,
+      "expectedPlaneDistanceM": 0.04999999999999999,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    },
+    {
+      "inputIncidenceDeg": 30,
+      "inputFoldDeg": 90,
+      "actualIncidenceRad": 0.5235987755982987,
+      "actualReflectionRad": 0.5235987755982987,
+      "expectedAngleRad": 0.5235987755982988,
+      "angleErrorRad": 1.1102230246251565e-16,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.10000000000000003,
+      "expectedPlaneDistanceM": 0.09999999999999999,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    },
+    {
+      "inputIncidenceDeg": 45,
+      "inputFoldDeg": 0,
+      "actualIncidenceRad": 0.7853981633974483,
+      "actualReflectionRad": 0.7853981633974483,
+      "expectedAngleRad": 0.7853981633974483,
+      "angleErrorRad": 0,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 0,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "on-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 45,
+      "inputFoldDeg": 30,
+      "actualIncidenceRad": 0.7853981633974483,
+      "actualReflectionRad": 0.7853981633974483,
+      "expectedAngleRad": 0.7853981633974483,
+      "angleErrorRad": 0,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.07071067811865474,
+      "expectedPlaneDistanceM": 0.07071067811865474,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    },
+    {
+      "inputIncidenceDeg": 45,
+      "inputFoldDeg": 90,
+      "actualIncidenceRad": 0.7853981633974483,
+      "actualReflectionRad": 0.7853981633974483,
+      "expectedAngleRad": 0.7853981633974483,
+      "angleErrorRad": 0,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.1414213562373095,
+      "expectedPlaneDistanceM": 0.1414213562373095,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    },
+    {
+      "inputIncidenceDeg": 60,
+      "inputFoldDeg": 0,
+      "actualIncidenceRad": 1.0471975511965979,
+      "actualReflectionRad": 1.0471975511965979,
+      "expectedAngleRad": 1.0471975511965976,
+      "angleErrorRad": 2.220446049250313e-16,
+      "rightTrace": "along",
+      "actualPlaneDistanceM": 0,
+      "expectedPlaneDistanceM": 0,
+      "evidence": "on-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": true
+      }
+    },
+    {
+      "inputIncidenceDeg": 60,
+      "inputFoldDeg": 30,
+      "actualIncidenceRad": 1.0471975511965979,
+      "actualReflectionRad": 1.0471975511965979,
+      "expectedAngleRad": 1.0471975511965976,
+      "angleErrorRad": 2.220446049250313e-16,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.08660254037844392,
+      "expectedPlaneDistanceM": 0.08660254037844385,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    },
+    {
+      "inputIncidenceDeg": 60,
+      "inputFoldDeg": 90,
+      "actualIncidenceRad": 1.0471975511965979,
+      "actualReflectionRad": 1.0471975511965979,
+      "expectedAngleRad": 1.0471975511965976,
+      "angleErrorRad": 2.220446049250313e-16,
+      "rightTrace": "point",
+      "actualPlaneDistanceM": 0.17320508075688787,
+      "expectedPlaneDistanceM": 0.17320508075688773,
+      "evidence": "off-sheet",
+      "readable": {
+        "incident": true,
+        "reflected": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-04",
+  "lockedPackages": 189,
+  "newPackages": [
+    {
+      "name": "matter-js",
+      "version": "0.20.0",
+      "license": "MIT",
+      "resolved": "https://registry.npmjs.org/matter-js/-/matter-js-0.20.0.tgz",
+      "integrity": "sha512-iC9fYR7zVT3HppNnsFsp9XOoQdQN2tUyfaKg4CHLH8bN+j6GT4Gw7IH2rP0tflAebrHFw730RR3DkVSZRX8hwA==",
+      "licensePath": "node_modules/matter-js/LICENSE",
+      "licenseSha256": "ED182087BE5B26734AA6D4789743DE3A97417950E8C1E3FF2E3D19C6462720D3",
+      "upstreamModified": false
+    },
+    {
+      "name": "@types/matter-js",
+      "version": "0.20.2",
+      "license": "MIT",
+      "resolved": "https://registry.npmjs.org/@types/matter-js/-/matter-js-0.20.2.tgz",
+      "integrity": "sha512-3PPKy3QxvZ89h9+wdBV2488I1JLVs7DEpIkPvgO8JC1mUdiVSO37ZIvVctOTD7hIq8OAL2gJ3ugGSuUip6DhCw==",
+      "licensePath": "node_modules/@types/matter-js/LICENSE",
+      "licenseSha256": "C2CFCCB812FE482101A8F04597DFC5A9991A6B2748266C47AC91B6A5AAE15383",
+      "upstreamModified": false
+    }
+  ],
+  "scriptsEnabledOnInstall": false,
+  "runtimeNoticesRetained": true
+}

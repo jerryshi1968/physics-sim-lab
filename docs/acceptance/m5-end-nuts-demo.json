@@ -1,0 +1,242 @@
+{
+  "weights": {
+    "balanced": true,
+    "calibrated": true,
+    "totalTorqueNm": 0,
+    "reactionN": {
+      "x": 0,
+      "y": 3
+    },
+    "loads": [
+      {
+        "id": "left",
+        "kind": "weight",
+        "hookIndex": -4,
+        "point": {
+          "xM": -0.2,
+          "yM": 0.32
+        },
+        "fxN": 0,
+        "fyN": -1,
+        "forceN": 1,
+        "torqueNm": 0.2,
+        "armM": 0.2
+      },
+      {
+        "id": "right",
+        "kind": "weight",
+        "hookIndex": 2,
+        "point": {
+          "xM": 0.1,
+          "yM": 0.32
+        },
+        "fxN": 0,
+        "fyN": -2,
+        "forceN": 2,
+        "torqueNm": -0.2,
+        "armM": 0.1
+      }
+    ],
+    "meters": [],
+    "target": {
+      "status": "invalid",
+      "code": "UNDERDETERMINED_FORCES"
+    }
+  },
+  "vertical": {
+    "balanced": true,
+    "calibrated": true,
+    "totalTorqueNm": 0,
+    "reactionN": {
+      "x": -1.2246467991473532e-16,
+      "y": 3
+    },
+    "loads": [
+      {
+        "id": "left",
+        "kind": "weight",
+        "hookIndex": -4,
+        "point": {
+          "xM": -0.2,
+          "yM": 0.32
+        },
+        "fxN": 0,
+        "fyN": -1,
+        "forceN": 1,
+        "torqueNm": 0.2,
+        "armM": 0.2
+      },
+      {
+        "id": "meter",
+        "kind": "meter",
+        "hookIndex": 2,
+        "point": {
+          "xM": 0.1,
+          "yM": 0.32
+        },
+        "fxN": 1.2246467991473532e-16,
+        "fyN": -2,
+        "forceN": 2,
+        "torqueNm": -0.2,
+        "armM": 0.1
+      }
+    ],
+    "meters": [
+      {
+        "id": "meter",
+        "forceN": 2,
+        "status": "valid",
+        "displayN": 2,
+        "zeroArm": false
+      }
+    ],
+    "target": {
+      "status": "ok",
+      "value": {
+        "forceN": 2,
+        "armM": 0.1,
+        "equilibrium": {
+          "torquesNm": [
+            0.2,
+            -0.2
+          ],
+          "armsM": [
+            0.2,
+            0.1
+          ],
+          "totalTorqueNm": 0,
+          "torqueToleranceNm": 1.4000000000000001e-9,
+          "balanced": true,
+          "reactionN": {
+            "x": -1.2246467991473532e-16,
+            "y": 3
+          }
+        }
+      }
+    }
+  },
+  "inclined": {
+    "balanced": true,
+    "calibrated": true,
+    "totalTorqueNm": 2.7755575615628914e-17,
+    "reactionN": {
+      "x": -3.464101615137755,
+      "y": 3
+    },
+    "loads": [
+      {
+        "id": "left",
+        "kind": "weight",
+        "hookIndex": -4,
+        "point": {
+          "xM": -0.2,
+          "yM": 0.32
+        },
+        "fxN": 0,
+        "fyN": -1,
+        "forceN": 1,
+        "torqueNm": 0.2,
+        "armM": 0.2
+      },
+      {
+        "id": "meter",
+        "kind": "meter",
+        "hookIndex": 2,
+        "point": {
+          "xM": 0.1,
+          "yM": 0.32
+        },
+        "fxN": 3.464101615137755,
+        "fyN": -1.9999999999999998,
+        "forceN": 4,
+        "torqueNm": -0.19999999999999998,
+        "armM": 0.049999999999999996
+      }
+    ],
+    "meters": [
+      {
+        "id": "meter",
+        "forceN": 4,
+        "status": "valid",
+        "displayN": 4,
+        "zeroArm": false
+      }
+    ],
+    "target": {
+      "status": "ok",
+      "value": {
+        "forceN": 4.000000000000001,
+        "armM": 0.049999999999999996,
+        "equilibrium": {
+          "torquesNm": [
+            0.2,
+            -0.2
+          ],
+          "armsM": [
+            0.2,
+            0.04999999999999999
+          ],
+          "totalTorqueNm": 0,
+          "torqueToleranceNm": 1.4000000000000001e-9,
+          "balanced": true,
+          "reactionN": {
+            "x": -3.4641016151377557,
+            "y": 3
+          }
+        }
+      }
+    }
+  },
+  "zero-arm": {
+    "balanced": false,
+    "calibrated": true,
+    "totalTorqueNm": 0.2,
+    "reactionN": {
+      "x": -2,
+      "y": 1
+    },
+    "loads": [
+      {
+        "id": "left",
+        "kind": "weight",
+        "hookIndex": -4,
+        "point": {
+          "xM": -0.2,
+          "yM": 0.32
+        },
+        "fxN": 0,
+        "fyN": -1,
+        "forceN": 1,
+        "torqueNm": 0.2,
+        "armM": 0.2
+      },
+      {
+        "id": "meter",
+        "kind": "meter",
+        "hookIndex": 2,
+        "point": {
+          "xM": 0.1,
+          "yM": 0.32
+        },
+        "fxN": 2,
+        "fyN": 0,
+        "forceN": 2,
+        "torqueNm": 0,
+        "armM": 0
+      }
+    ],
+    "meters": [
+      {
+        "id": "meter",
+        "forceN": 2,
+        "status": "disconnected",
+        "displayN": null,
+        "zeroArm": true
+      }
+    ],
+    "target": {
+      "status": "invalid",
+      "code": "ZERO_MOMENT_ARM"
+    }
+  }
+}

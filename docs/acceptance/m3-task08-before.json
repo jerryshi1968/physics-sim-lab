@@ -1,0 +1,402 @@
+[
+  {
+    "path": "src\\app\\App.tsx",
+    "sha256": "48BE08FB141EDE4B6E04CBAFCFB49D8B01337273AACD364DDC0D5844798E2B52"
+  },
+  {
+    "path": "src\\app\\main.tsx",
+    "sha256": "B4A4D6B9C93F6A2E7F9C4BFEECED1AE2A59F3F997C9C76CEC0F64062DC8CE410"
+  },
+  {
+    "path": "src\\app\\measurements\\MeasurementChart.tsx",
+    "sha256": "45002768494F07FFDE744D6B294095A9FA9D30CCCD00F9AED5AC729054540B8B"
+  },
+  {
+    "path": "src\\app\\measurements\\MeasurementPanel.tsx",
+    "sha256": "778CBBB1D602269F1B3420BBDA3000EC5DAC02C56519F131A1F33A7A83404D6F"
+  },
+  {
+    "path": "src\\app\\persistence\\localSceneStore.ts",
+    "sha256": "CDCA3374A3D08A8F88ACBE6744A7823004AF6270DDF4077405C1CB92455CB451"
+  },
+  {
+    "path": "src\\app\\simulation\\electrical.worker.ts",
+    "sha256": "882926943722FC75B7D26A9972FF798B9F548E95D9966E52AA1779012DEBE780"
+  },
+  {
+    "path": "src\\app\\simulation\\useElectricalSimulation.ts",
+    "sha256": "A832098EB721E238282D9FB4F2F3ED65B5AF82BDA76FDD149B03CAA264B5F7A0"
+  },
+  {
+    "path": "src\\app\\workbench\\DocumentPreview.tsx",
+    "sha256": "F44660857A13137BC8F85FF00F3C35A54CDE03064450877F27C6AF17AE17C42B"
+  },
+  {
+    "path": "src\\app\\workbench\\EquipmentGraphic.tsx",
+    "sha256": "68CE3804B23F0C08A1D1B5312778A43E21A0C929CE4E2D7D3E53975464C53BA7"
+  },
+  {
+    "path": "src\\app\\workbench\\EquipmentLibrary.tsx",
+    "sha256": "B8600BBDCBD49EA4706B5B4AA67D59EC2E03E974F0A6BDEEB04F8D0983EFD6C2"
+  },
+  {
+    "path": "src\\app\\workbench\\InspectorEditor.tsx",
+    "sha256": "A8DACED82F9A227A0A8E92E960E996A84770354E9203FF6B12F90AC9FC258C95"
+  },
+  {
+    "path": "src\\app\\workbench\\MeterGraphic.tsx",
+    "sha256": "10CB74416BFA1E27CC93BF45C57D3466C9AA4BDBD2B0388E20622396BAC6B935"
+  },
+  {
+    "path": "src\\app\\workbench\\RenameExperiment.tsx",
+    "sha256": "371FD13966A745601EAF5B9D626F98ABE47E82DC774A0C1F862EF6C810CDAEFA"
+  },
+  {
+    "path": "src\\app\\workbench\\RheostatGraphic.tsx",
+    "sha256": "9922C5342BC6F2996256EFB79C07AF0006B6922746C52CEC6EE84B2088E43F9A"
+  },
+  {
+    "path": "src\\app\\workbench\\SavedExperiments.tsx",
+    "sha256": "4815D0C41A68805B9132678F766CC0F465B4B14FC9C2445CE52AA478029B6E13"
+  },
+  {
+    "path": "src\\app\\workbench\\SceneBoard.tsx",
+    "sha256": "94769C4D9F18C162C2F6B255A10D5EA469DA21ABE95045B74C2C1D6C9BB41324"
+  },
+  {
+    "path": "src\\app\\workbench\\shared.ts",
+    "sha256": "5BB7D3FA9419FE848B766E0DF963834AF6FFF5F5E87A90D7C0DF913C1809562B"
+  },
+  {
+    "path": "src\\app\\workbench\\SimulationPanel.tsx",
+    "sha256": "04B18F94532C56BA8A09B48A0777FED7D529B2F99997A623C347ACD8FBA9D072"
+  },
+  {
+    "path": "src\\core\\connections\\schema.ts",
+    "sha256": "D807D39DA79DB4B838D33BEA6971F88803DA0E243EEB018441FB9BDC6E5BE7CA"
+  },
+  {
+    "path": "src\\core\\diagnostics\\diagnostic.ts",
+    "sha256": "FBD2AF404018D054559D0333C74943AE23D49822D5031F248CBFB03D42302CE1"
+  },
+  {
+    "path": "src\\core\\electrical\\compile.ts",
+    "sha256": "047DCBEC864F9A7F5DDEF2F1226CE7948E479DEFB25BE0A0FAA01D951E9AE5C9"
+  },
+  {
+    "path": "src\\core\\electrical\\instruments.ts",
+    "sha256": "B5EDF4014ADC4E68A06571CF94DCD6762EEE4E0F392FAFB71904987481D45393"
+  },
+  {
+    "path": "src\\core\\electrical\\lamp.ts",
+    "sha256": "F6A62BC754E01492E7FCB4E7D2122199CC2DBBB56A9820B51B30B4082F92AEDA"
+  },
+  {
+    "path": "src\\core\\electrical\\linear.ts",
+    "sha256": "CEF06E69DF214E2DF54F9F84E77E0E607D7AFEB0DAE33F10373200DC45293053"
+  },
+  {
+    "path": "src\\core\\electrical\\netlist.ts",
+    "sha256": "219508E8BF1848DDDFA47BD815FFF48532BCDC62799BD2BD42259495E0B58DC0"
+  },
+  {
+    "path": "src\\core\\electrical\\rheostat.ts",
+    "sha256": "9D42A45C674D2B512CA1C65901D6A18EC623981FC7A7D9B9CC5000A12091EC6B"
+  },
+  {
+    "path": "src\\core\\electrical\\solve.ts",
+    "sha256": "AA762B49DB1D51A443700465640557E723F09655DDA8418AA4F80D0A662B3836"
+  },
+  {
+    "path": "src\\core\\electrical\\topology.ts",
+    "sha256": "FD0BCBC8FDE368127CE3D9FB65A7337D0BEB103304E8FA4159F9F7EE80D690EE"
+  },
+  {
+    "path": "src\\core\\equipment\\registry.ts",
+    "sha256": "58B8ACB18D4D80E8A04227322F54F1045BE58463FF983F55AE4F4C85A4916387"
+  },
+  {
+    "path": "src\\core\\equipment\\schema.ts",
+    "sha256": "97D85B79182E95DB3C4F50C437694FD768982310D70530AB2C39EC9081DF81EA"
+  },
+  {
+    "path": "src\\core\\measurements\\charts.ts",
+    "sha256": "C4DA8E64E5599D447EE664EAF976E5D86D42ED3EEE7B18287643AFB5390152C6"
+  },
+  {
+    "path": "src\\core\\measurements\\csv.ts",
+    "sha256": "252FDF7534E66F58FC4EDF0E8C80EF0A6709C2B6E7492CE146E6E1D2B4E4B6E7"
+  },
+  {
+    "path": "src\\core\\measurements\\records.ts",
+    "sha256": "6F290A33CAC2B0EF5A1AD5CAD6B4B15E10C6F83006493ABDA6CCD7F047EDEA69"
+  },
+  {
+    "path": "src\\core\\measurements\\table.ts",
+    "sha256": "A985933FE8CF659CDB7EA8F31DB3AAC1045B964B39CF7B5918F60870C9128C21"
+  },
+  {
+    "path": "src\\core\\scene\\create.ts",
+    "sha256": "A77C9E53B07BEA453B3BF5383B36F6DEDF27186A0C7EB99D166ADF468017D11E"
+  },
+  {
+    "path": "src\\core\\scene\\migrate.ts",
+    "sha256": "047D8E85A4D85CB064E6B70A1EA4DEB28C9BA0BD1179CBDBB945E686A3AD7B19"
+  },
+  {
+    "path": "src\\core\\scene\\schema.ts",
+    "sha256": "889380C7D51164738296CC68E44E6E3FBF5978CF19E03F47CC2A8717D90C38E6"
+  },
+  {
+    "path": "src\\core\\scene\\transfer.ts",
+    "sha256": "0F5B827600316AC596181A896DA5F0C5D7336E9A7326DB49ECB0421329048A46"
+  },
+  {
+    "path": "src\\core\\scene\\validate.ts",
+    "sha256": "BA6A143E83598481779D4B061CB29744984EC36DDE1C881A016873DAEA8AE609"
+  },
+  {
+    "path": "src\\core\\simulation\\protocol.ts",
+    "sha256": "1CAF5DFF3090F6CC4ABE394472D6799E24D3882A934BA6F3616EC91BAA14F0F1"
+  },
+  {
+    "path": "src\\core\\units\\units.ts",
+    "sha256": "B76B5DEC75152CB44E182AC529768C8ECAED414813B1CABAC22A35ACF1EC9954"
+  },
+  {
+    "path": "src\\core\\workbench\\edit.ts",
+    "sha256": "8A83B0D5C8337F1D8BA38007A3AE104F3986C0CE5997A3F154F4FEC3F1E5F4C0"
+  },
+  {
+    "path": "src\\core\\workbench\\geometry.ts",
+    "sha256": "31C98338C26D3239B215DFA77901C4235A72B55567342C72D8D1DE4BD70491BB"
+  },
+  {
+    "path": "src\\core\\workbench\\graph.ts",
+    "sha256": "804A78A41A060AF572434B7AC9C236F1FAC3A993D22524C52A697F758FA40D42"
+  },
+  {
+    "path": "src\\core\\workbench\\history.ts",
+    "sha256": "E525DE21F43268FAF6354E029AF3D65DD7123BE987C5312B68AC69D1141A5F9D"
+  },
+  {
+    "path": "src\\core\\workbench\\rheostat.ts",
+    "sha256": "9E1E95E94992DA64529C4679342830A2918E2C3926E218FE3C6CB9CC7170F3EF"
+  },
+  {
+    "path": "src\\core\\workbench\\wire.ts",
+    "sha256": "E631006BAD47FE8D82535B0B44C668270B2679CF3717C193CBEF9656DBAFB2A2"
+  },
+  {
+    "path": "src\\equipment\\electrical\\dcAdapters.ts",
+    "sha256": "D90DDAE3909D7760A03AAC4DD40133410B273CABF2E7FD4B04C5F2BC6E195842"
+  },
+  {
+    "path": "src\\equipment\\electrical\\definitions.ts",
+    "sha256": "834EE31273B978107AF708AA31AE535EBBD8EDBE24BAD593FB6DEC73D67E80B7"
+  },
+  {
+    "path": "src\\equipment\\electrical\\measure.ts",
+    "sha256": "5A243E778F34666DF157AD7BC5C8D52FAB1017EE5F34CB029D375AAE1B64B2F6"
+  },
+  {
+    "path": "src\\equipment\\electrical\\simulate.ts",
+    "sha256": "162671E7D4B3AA3DE154B6151A6D703CEF331477095518EBA69E384D23F8A5DD"
+  },
+  {
+    "path": "src\\physics\\samples\\electrical.ts",
+    "sha256": "FB903E81902BAF6F9C22F17A463486D136C3647588D2E35C4350D6CB6651EC26"
+  },
+  {
+    "path": "src\\physics\\samples\\friction.ts",
+    "sha256": "0B08CC4FDE98C60FB53CD703CAE50F2B6E667127B52604EDC8E23B6BE0602D11"
+  },
+  {
+    "path": "src\\physics\\samples\\lever.ts",
+    "sha256": "05AE855F36E7E9D96FB11FDF271CF5B68388FB2DAF5D89C2AD54D1C669872EA9"
+  },
+  {
+    "path": "src\\physics\\samples\\optical.ts",
+    "sha256": "F512430F220CFD030D67D5944958F930AB089AE509254FFF3EDD2D8001BB06FF"
+  },
+  {
+    "path": "src\\physics\\samples\\projectile.ts",
+    "sha256": "E24E081E9F249E661B0C0ABEAD39C86D9E85B0EA9B407B5A20830EC248795E15"
+  },
+  {
+    "path": "src\\physics\\samples\\result.ts",
+    "sha256": "0B92BC289E4F4114EA7B662B0E4DD26079E92C73BE424EC10E9E948BC0B80E7E"
+  },
+  {
+    "path": "src\\physics\\samples\\spring.ts",
+    "sha256": "32BD02F16D3741769152DD6B866A4FEBAFAAC8B0694A8A73EE3C6E96B32617F2"
+  },
+  {
+    "path": "src\\styles\\workbench.css",
+    "sha256": "926EC99AB77CD043F5CC0C21FAA13037DE591CF03CC2B08B070BFD09F9230928"
+  },
+  {
+    "path": "tests\\core\\dc-compile.test.mjs",
+    "sha256": "0CE72D0C2FE9DE8B9519BE478CE95A7B087972FE20FC5BDB3AD373B53475F1C9"
+  },
+  {
+    "path": "tests\\core\\dc-fixtures.mjs",
+    "sha256": "2D77DFA82D63D6A9E80C718D13374D67ACF97554B7E5106FE979D72390E36043"
+  },
+  {
+    "path": "tests\\core\\dc-linear.test.mjs",
+    "sha256": "127A5C13EF1C27A6A031FD9C6C306894BEBE6B6E8B0D46CAD02074726E3A56A2"
+  },
+  {
+    "path": "tests\\core\\dc-mna.test.mjs",
+    "sha256": "AEE6889A75634FD460679946DF79F8C1936DAD69E29366695B164D7A3D0DB43A"
+  },
+  {
+    "path": "tests\\core\\fixtures.mjs",
+    "sha256": "9D9A9BCE97EF7113EDBA5BF29D5C1AD34434A82752D996BD4015AC4932F5779D"
+  },
+  {
+    "path": "tests\\core\\flip.test.mjs",
+    "sha256": "E7BE263A98CA3D43D6D32FB6D86777EC486382B451E783415BEA903CBF8D1A79"
+  },
+  {
+    "path": "tests\\core\\history.test.mjs",
+    "sha256": "BEDC9FFE78518219691C2C232CF9E98B145B47ABB1C50F74B4ED9EA3EC5CF87F"
+  },
+  {
+    "path": "tests\\core\\lamp-instruments.test.mjs",
+    "sha256": "B7B353FD667AD6EA851491E9F3FE4AD97D7C68F27B8FE028EFBAF18C32457B8B"
+  },
+  {
+    "path": "tests\\core\\loose-wire.test.mjs",
+    "sha256": "38B66423294CD4235A88E3C68BD5C041E871B837FC2409EEE2BCB83A7B43005B"
+  },
+  {
+    "path": "tests\\core\\measurements.test.mjs",
+    "sha256": "5070960199AB84D6113DF712038005CE553E9F32BDE0BC16E03C87BCA550B580"
+  },
+  {
+    "path": "tests\\core\\registry.test.mjs",
+    "sha256": "B2C961D78DA657674D1864C8832B58FFDE29A8099156B034E0AFAC4E61346B98"
+  },
+  {
+    "path": "tests\\core\\rheostat.test.mjs",
+    "sha256": "2E65C06D22CB1562EBE631E88A682857D2269FC1541CAC45D95B9F1A0571B5B0"
+  },
+  {
+    "path": "tests\\core\\scene.test.mjs",
+    "sha256": "48E4A7E853D0E37F3A68B7BB5DD370F4AC0174C795941ED7C5248F28761C778D"
+  },
+  {
+    "path": "tests\\core\\selection-delete.test.mjs",
+    "sha256": "67F421BACD208DBA0FCE965CDF125058E82B5D1A7C25F887975D6E1737BCA8F0"
+  },
+  {
+    "path": "tests\\core\\simulation-protocol.test.mjs",
+    "sha256": "CF08D202D4E414F7CB5A17E680BCBBC4AB22D8C89DA1D2EE2FE35060F3C7646D"
+  },
+  {
+    "path": "tests\\core\\transfer.test.mjs",
+    "sha256": "4D426BC8E95CC99B1CC85E953BCF8BDF9E4612D4F79E68BDC33B758DF542D84F"
+  },
+  {
+    "path": "tests\\core\\units.test.mjs",
+    "sha256": "DF4C4E5A0C0D95B53DC8AA72AF6C704AA98B9ADE776BDCAB87DD286F3D808FBC"
+  },
+  {
+    "path": "tests\\core\\workbench.test.mjs",
+    "sha256": "DE7C35ED6F98AA71A7D2215C4D3A005647DD1CFA817D086D4488F324A79D167E"
+  },
+  {
+    "path": "tests\\e2e\\assembly.spec.ts",
+    "sha256": "E2434F85B494ADA0D7EFF65E3F0D8B3D5EE212EF95CF5B4E90AFB4E07F8B6832"
+  },
+  {
+    "path": "tests\\e2e\\electrical.spec.ts",
+    "sha256": "2B511BAEB68CD32A6DCB9F9E0A46626884FF7A3496E7FCDCF6B5A66299F65E9E"
+  },
+  {
+    "path": "tests\\e2e\\loose-wire.spec.ts",
+    "sha256": "3DD23F7A345CF8820481D5823540C8C0319E1ABAD6442E0A6E05BA72F3270599"
+  },
+  {
+    "path": "tests\\e2e\\measurements.spec.ts",
+    "sha256": "0E3DD35C67ED63FB6E131950C99F3233B0C808AFA046549AC5FF6A45E7524B87"
+  },
+  {
+    "path": "tests\\e2e\\persistence.spec.ts",
+    "sha256": "A9AB9DE21B2BB3D64212F2AFAA115B34B57FA2ABB5B4A9CF018F496C33FE33D7"
+  },
+  {
+    "path": "tests\\e2e\\rheostat.spec.ts",
+    "sha256": "D686ED1DC0C0FE96E0C5F2AF10322B5F49E710861F380114E5EF236D24FC1BAF"
+  },
+  {
+    "path": "tests\\e2e\\saved-experiments.spec.ts",
+    "sha256": "D1A7C2B8907B80FC14AF6DDDFCF3F276978C8D489BA059155F9E30BDE0E3E3A5"
+  },
+  {
+    "path": "tests\\e2e\\selection-delete.spec.ts",
+    "sha256": "9C3F91AEB439847A29D6DC030CD729ADE1A596D2FDDB2253872051E08D60D6C3"
+  },
+  {
+    "path": "tests\\e2e\\wire-layer.spec.ts",
+    "sha256": "A928D5DAAA6C02795F9C4C8B5752F59D906B2DC354C18DF5B943F85B2CBAB099"
+  },
+  {
+    "path": "tests\\e2e\\workbench.spec.ts",
+    "sha256": "7B252549752DDF134341A0105201BD281F0FC89A2A19FB393A9CE0099943AB48"
+  },
+  {
+    "path": "tests\\physics\\electrical.test.mjs",
+    "sha256": "E63DB1D758ACD582DE7BB6F2AFAA5B2CC0EAEBD204260ECD75D9DE24B5EE602A"
+  },
+  {
+    "path": "tests\\physics\\friction.test.mjs",
+    "sha256": "8D736A3EAAE7EBE5A5363E0BD4C223A3B14A3A1DA04DF8A37EB477070EBE10D8"
+  },
+  {
+    "path": "tests\\physics\\helpers.mjs",
+    "sha256": "1AD69D3A00195811AD9597C5B92A536B16D4B01675395CDDB6D0CA64560D9F53"
+  },
+  {
+    "path": "tests\\physics\\lever.test.mjs",
+    "sha256": "197CAAA5E3FF71EC87A444B0C765F8422711501F49024DF024C4E586CE02A777"
+  },
+  {
+    "path": "tests\\physics\\optical.test.mjs",
+    "sha256": "0100ACD456F713579AA37A90644ABE1DD68BE73DF8D8D99CB1CF139BA7319267"
+  },
+  {
+    "path": "tests\\physics\\projectile.test.mjs",
+    "sha256": "2F898C48528D518A8FCAC6A63672BC3F7D32C5295711A379886394DBAABC6B70"
+  },
+  {
+    "path": "tests\\physics\\spring.test.mjs",
+    "sha256": "3C7BD67E1F201834E1559614C4707D334629FCF5542FF1822DF88171DC0B367A"
+  },
+  {
+    "path": "scripts\\dc-mna-demo.mjs",
+    "sha256": "196CC0F2C1CA122BB7CEF984ECD255FA89EFEC7F350188E1B8B1D63096CFDE7B"
+  },
+  {
+    "path": "scripts\\dependency-inventory.mjs",
+    "sha256": "9E0AB8C36E5FA019E32CBDF70B82B24F82599F504DF62D3F53F70C9A291012BD"
+  },
+  {
+    "path": "scripts\\electrical-demo.mjs",
+    "sha256": "C2FEA7577F65F07B0F99C12EE411BD9B22C040C61485339E804CA699F6020FBE"
+  },
+  {
+    "path": "scripts\\measurement-demo.mjs",
+    "sha256": "E332E15DF5909289F569694A3BC1532890C1A9073E679431A41332B02F66CC17"
+  },
+  {
+    "path": "scripts\\physics-samples.mjs",
+    "sha256": "8E09E5EF0ED9F29DCE2D3E900750DF8ED28F8CBD4A27207AC4AFA6A2A318A1C0"
+  },
+  {
+    "path": "scripts\\rheostat-demo.mjs",
+    "sha256": "523CAF7A0DC445CB240C1A16BF52F9A71BF86D3D17D6D0BC8D5B867FACE1A3C4"
+  }
+]

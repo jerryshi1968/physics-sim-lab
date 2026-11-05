@@ -1,0 +1,288 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/weight-chain.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "weight-chain.spec.ts",
+      "file": "weight-chain.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "mouse chains weights on lower hooks, restores balance, follows parent moves and preserves children when deleting a parent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T12:04:30.721Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cbcbba10ca41957f9676-3d471c4d45a12852eb47",
+          "file": "weight-chain.spec.ts",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "occupied lever hooks are disabled and refuse mouse drops while explicit lower-hook attachment and release remain available",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 9353,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts:50:88",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                      "column": 88,
+                      "line": 50
+                    },
+                    "snippet": "  48 |   const before = await exported(page), grip = (await group(page, id).locator('[data-weight-grip]').boundingBox())!, occupied = (await group(page, 'right').locator('[data-weight-grip]').boundingBox())!;\n  49 |   await page.mouse.move(grip.x + grip.width / 2, grip.y + 3); await page.mouse.down(); await page.mouse.move(occupied.x + occupied.width / 2, occupied.y + 3, { steps: 5 }); await page.mouse.up();\n> 50 |   expect(await exported(page)).toEqual(before); await expect(page.getByRole('status')).toContainText('该挂点已有钩码');\n     |                                                                                        ^\n  51 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('right'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click(); expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('right');\n  52 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('left'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();\n  53 |   expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('left');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                        "column": 88,
+                        "line": 50
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('status')\nExpected substring: \u001b[32m\"该挂点已有钩码\"\u001b[39m\nReceived string:    \u001b[31m\"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('status') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    14 × locator resolved to <div role=\"status\" class=\"live-notice\">已导出实验初态与记录；重新导入后从初态运行。</div>\u001b[22m\n\u001b[2m       - unexpected value \"已导出实验初态与记录；重新导入后从初态运行。\"\u001b[22m\n\n\n  48 |   const before = await exported(page), grip = (await group(page, id).locator('[data-weight-grip]').boundingBox())!, occupied = (await group(page, 'right').locator('[data-weight-grip]').boundingBox())!;\n  49 |   await page.mouse.move(grip.x + grip.width / 2, grip.y + 3); await page.mouse.down(); await page.mouse.move(occupied.x + occupied.width / 2, occupied.y + 3, { steps: 5 }); await page.mouse.up();\n> 50 |   expect(await exported(page)).toEqual(before); await expect(page.getByRole('status')).toContainText('该挂点已有钩码');\n     |                                                                                        ^\n  51 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('right'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click(); expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('right');\n  52 |   await page.getByLabel('串接到钩码', { exact: true }).selectOption('left'); await page.getByRole('button', { name: '应用挂接 / 解除', exact: true }).click();\n  53 |   expect((await exported(page)).equipment.find(item => item.id === id)!.parameters.parentWeightId).toBe('left');\n    at G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts:50:88"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T12:04:30.734Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\weight-chain-occupied-leve-e4303-nd-release-remain-available-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\weight-chain.spec.ts",
+                    "column": 88,
+                    "line": 50
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cbcbba10ca41957f9676-5dc49e2717270f3754ab",
+          "file": "weight-chain.spec.ts",
+          "line": 46,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch weight chains",
+          "file": "weight-chain.spec.ts",
+          "line": 58,
+          "column": 6,
+          "specs": [
+            {
+              "title": "native touch cancels without changing references then hangs a new weight below the existing one",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5156,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T12:04:40.908Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cbcbba10ca41957f9676-8fd471b4c6cc9e55aa1e",
+              "file": "weight-chain.spec.ts",
+              "line": 60,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T12:04:29.080Z",
+    "duration": 18522.311999999998,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

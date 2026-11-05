@@ -1,0 +1,204 @@
+
+> cn-physics-lab@0.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:20552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 41 tests using 2 workers
+
+(node:28228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\assembly.spec.ts:94:1 › pointer library drag creates one item, equipment drag commits once, cancel rolls back and pan preserves metres (2.2s)
+  ok  2 [chromium] › tests\e2e\assembly.spec.ts:40:1 › blank assembly forms a source/resistor/closed-switch loop, follows movement and supports route/color/deletion (3.3s)
+  ok  3 [chromium] › tests\e2e\assembly.spec.ts:150:1 › keyboard/click alternative supports placement, property validation and wires sharing apparatus posts (1.8s)
+  ok  4 [chromium] › tests\e2e\assembly.spec.ts:205:3 › touch pointer interaction › tap placement, real touch drag and tap-to-connect work (1.3s)
+  ok  5 [chromium] › tests\e2e\assembly.spec.ts:238:1 › low zoom keeps terminals distinct and Escape cancels from the inspector (1.5s)
+  ok  7 [chromium] › tests\e2e\electrical.spec.ts:131:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings (2.0s)
+  ok  8 [chromium] › tests\e2e\electrical.spec.ts:164:1 › both meter scales stay visible with independent divisions, active-range highlighting and no attached wire letters on the dial (2.1s)
+  ok  6 [chromium] › tests\e2e\electrical.spec.ts:54:1 › blank wiring automatically runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state (7.1s)
+  ok  9 [chromium] › tests\e2e\electrical.spec.ts:209:1 › delayed old Worker messages after reset cannot overwrite a newer run or leave extra workers active (2.3s)
+  ok 10 [chromium] › tests\e2e\electrical.spec.ts:241:1 › lamp glass, filament and halo follow actual power continuously without a rated-power plateau (1.6s)
+  ok 11 [chromium] › tests\e2e\electrical.spec.ts:289:3 › touch lamp and meter › touch places and connects a real lamp and the correct meter terminals (2.5s)
+  ok 13 [chromium] › tests\e2e\loose-wire.spec.ts:107:3 › touch wire editing › touch can move a loose wire, bend it and attach both ends to actual posts (1.6s)
+  x  12 [chromium] › tests\e2e\loose-wire.spec.ts:40:1 › physical apparatus and single-cell battery preview replace symbols; loose wire can be dropped, moved, bent and rewired (6.2s)
+  ok 14 [chromium] › tests\e2e\measurements.spec.ts:64:1 › series multi-point acquisition, table, current/voltage chart, CSV and reload use the same frozen snapshots (4.3s)
+(node:6776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 [chromium] › tests\e2e\measurements.spec.ts:100:1 › hand-copied estimates, missing values and explicit corrections never get overwritten by model truth (3.7s)
+  ok 15 [chromium] › tests\e2e\measurements.spec.ts:125:1 › over-range and model-failure samples stay blank, stale paused samples are blocked and corrupt snapshots cannot replace work (4.8s)
+  ok 18 [chromium] › tests\e2e\measurements.spec.ts:160:3 › touch measurement and narrow table › touch acquisition and chart controls remain usable without page horizontal overflow (1.6s)
+  ok 17 [chromium] › tests\e2e\measurements.spec.ts:145:1 › different parallel lamps record real branch currents and equal branch voltages; CSV neutralizes text formulas (2.4s)
+  ok 19 [chromium] › tests\e2e\persistence.spec.ts:58:1 › experiment rename validates and cancels, supports undo/redo, persists and names the exported file (2.5s)
+  ok 20 [chromium] › tests\e2e\persistence.spec.ts:96:1 › one drag is one history transaction; undo/redo, cancelled drag, delete restoration and export agree (5.5s)
+  ok 21 [chromium] › tests\e2e\persistence.spec.ts:144:1 › blank assembly saves to IndexedDB, refresh restores exact structure, editing and explicit load continue (4.3s)
+  ok 23 [chromium] › tests\e2e\persistence.spec.ts:224:1 › blocked local storage still allows editing and JSON export without claiming saved (1.1s)
+  ok 24 [chromium] › tests\e2e\persistence.spec.ts:237:1 › failed save leaves the last committed IndexedDB snapshot intact (2.1s)
+  ok 25 [chromium] › tests\e2e\persistence.spec.ts:260:1 › corrupt local data does not replace current work and JSON backup can recover after refresh (2.5s)
+  ok 22 [chromium] › tests\e2e\persistence.spec.ts:184:1 › bad and oversized imports preserve current work; supported v1 migrates after a cancellable inert preview (7.2s)
+  ok 27 [chromium] › tests\e2e\rheostat.spec.ts:93:1 › A-B remains fixed, C-D stays a conductor and the opposite lower terminal reverses adjustment (5.2s)
+  x  26 [chromium] › tests\e2e\rheostat.spec.ts:47:1 › library drag creates a physical four-post rheostat; live wiper preview drives lamp/meters without saving or sampling until one committed move (10.5s)
+(node:7428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 29 [chromium] › tests\e2e\rheostat.spec.ts:131:3 › rotated touch rheostat › touch slides a rotated flipped wiper, commits once and rolls pointer cancellation back (4.2s)
+  ok 30 [chromium] › tests\e2e\saved-experiments.spec.ts:50:1 › saving a second experiment preserves the first; loading, renaming and resaving update only the selected document (8.7s)
+  ok 31 [chromium] › tests\e2e\saved-experiments.spec.ts:101:1 › different experiments with identical names remain separate by document ID (5.4s)
+  ok 32 [chromium] › tests\e2e\saved-experiments.spec.ts:121:1 › upgrading a v1 single-slot database preserves its remaining snapshot and adds it to the experiment list (3.1s)
+  x  28 [chromium] › tests\e2e\rheostat.spec.ts:107:1 › low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions (30.3s)
+(node:22348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 33 [chromium] › tests\e2e\saved-experiments.spec.ts:183:1 › delete requires confirmation, targets the selected ID and leaves current work and other saved experiments intact (7.0s)
+  ok 35 [chromium] › tests\e2e\saved-experiments.spec.ts:254:1 › a deletion failure rolls back both experiment and latest snapshot and keeps the saved marker (3.5s)
+  ok 34 [chromium] › tests\e2e\saved-experiments.spec.ts:216:1 › deleting the current latest save preserves the board, selects another startup save, and deleting all never resurrects old data (6.3s)
+  ok 36 [chromium] › tests\e2e\selection-delete.spec.ts:36:1 › Delete keeps all wires at the deleted rotated apparatus posts; text editing is safe, undo and reload preserve exact structure (3.8s)
+  ok 37 [chromium] › tests\e2e\selection-delete.spec.ts:79:1 › Shift toggles multi-selection including switch handles and keyboard; Delete and inspector remove the group as one undo step (3.2s)
+  ok 38 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (863ms)
+  ok 39 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (837ms)
+  ok 40 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (713ms)
+  ok 41 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (752ms)
+
+
+  1) [chromium] › tests\e2e\loose-wire.spec.ts:40:1 › physical apparatus and single-cell battery preview replace symbols; loose wire can be dropped, moved, bent and rewired 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('2 件器材 · 1 根导线')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('2 件器材 · 1 根导线') with timeout 5000ms
+      - waiting for getByText('2 件器材 · 1 根导线')
+
+
+      61 |   const target = await centre(board);
+      62 |   await drag(page, await centre(page.locator(`[data-library-type="${WIRE}"]`)), { x: target.x, y: target.y + 60 });
+    > 63 |   await expect(page.getByText('2 件器材 · 1 根导线')).toBeVisible();
+         |                                                 ^
+      64 |   const wire = board.locator('[data-wire-id]');
+      65 |   const id = (await wire.getAttribute('data-wire-id'))!;
+      66 |   const ends = board.locator(`[data-wire-end-of="${id}"]`);
+        at G:\physics-sim-lab\tests\e2e\loose-wire.spec.ts:63:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\loose-wire-physical-appara-d29e5-pped-moved-bent-and-rewired-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\loose-wire-physical-appara-d29e5-pped-moved-bent-and-rewired-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\loose-wire-physical-appara-d29e5-pped-moved-bent-and-rewired-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\loose-wire-physical-appara-d29e5-pped-moved-bent-and-rewired-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\rheostat.spec.ts:47:1 › library drag creates a physical four-post rheostat; live wiper preview drives lamp/meters without saving or sampling until one committed move 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('[data-meter-reading="item-24e4c05b-3755-46b4-878e-04054b0c2f55"] strong')
+    Expected: "0.22 A"
+    Received: "0.28 A"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('[data-meter-reading="item-24e4c05b-3755-46b4-878e-04054b0c2f55"] strong') with timeout 5000ms
+      - waiting for locator('[data-meter-reading="item-24e4c05b-3755-46b4-878e-04054b0c2f55"] strong')
+        14 × locator resolved to <strong>0.28 A</strong>
+           - unexpected value "0.28 A"
+
+
+      62 |   const bounds = (await slider.boundingBox())!, x = bounds.x + bounds.width / 2, y = bounds.y + bounds.height / 2;
+      63 |   await page.mouse.move(x, y); await page.mouse.down(); await page.mouse.move(x + 27, y, { steps: 6 });
+    > 64 |   await expect(current).toHaveText('0.22 A');
+         |                         ^
+      65 |   await expect(page.getByTestId('calculation-status')).toContainText('滑片预览');
+      66 |   await expect(page.getByTestId('scene-board')).toHaveAttribute('data-revision', String(before.revision));
+      67 |   await expect(page.getByTestId('save-state')).toHaveText('已保存');
+        at G:\physics-sim-lab\tests\e2e\rheostat.spec.ts:64:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rheostat-library-drag-crea-2a009-ng-until-one-committed-move-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rheostat-library-drag-crea-2a009-ng-until-one-committed-move-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rheostat-library-drag-crea-2a009-ng-until-one-committed-move-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rheostat-library-drag-crea-2a009-ng-until-one-committed-move-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rheostat-library-drag-crea-2a009-ng-until-one-committed-move-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\rheostat.spec.ts:107:1 › low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-equipment-id="RH"]').locator('[data-port-id="a"]')
+        - locator resolved to <g tabindex="0" role="button" data-port-id="a" aria-pressed="false" class="equipment-port " aria-label="四柱滑动变阻器 3 · 端点 A" transform="translate(421.5 189.2)">…</g>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-27065341-a3ac-41e0-8cde-a1f330f37db3">…</g> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-27065341-a3ac-41e0-8cde-a1f330f37db3">…</g> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        54 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-27065341-a3ac-41e0-8cde-a1f330f37db3">…</g> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      25 | }
+      26 | const port = (item: Locator, id: string) => item.locator(`[data-port-id="${id}"]`);
+    > 27 | async function connect(a: Locator, b: Locator) { await a.click(); await b.click(); }
+         |                                                          ^
+      28 | async function setPosition(page: Page, id: string, position: string) {
+      29 |   await page.getByLabel('选择器材', { exact: true }).selectOption(id);
+      30 |   await page.getByLabel('滑片位置（0～1）', { exact: true }).fill(position); await page.getByRole('button', { name: '应用属性', exact: true }).click();
+        at connect (G:\physics-sim-lab\tests\e2e\rheostat.spec.ts:27:58)
+        at G:\physics-sim-lab\tests\e2e\rheostat.spec.ts:112:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rheostat-low-zoom-keeps-al-42aee-rheostat-endpoint-positions-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rheostat-low-zoom-keeps-al-42aee-rheostat-endpoint-positions-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rheostat-low-zoom-keeps-al-42aee-rheostat-endpoint-positions-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rheostat-low-zoom-keeps-al-42aee-rheostat-endpoint-positions-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests\e2e\loose-wire.spec.ts:40:1 › physical apparatus and single-cell battery preview replace symbols; loose wire can be dropped, moved, bent and rewired 
+    [chromium] › tests\e2e\rheostat.spec.ts:47:1 › library drag creates a physical four-post rheostat; live wiper preview drives lamp/meters without saving or sampling until one committed move 
+    [chromium] › tests\e2e\rheostat.spec.ts:107:1 › low zoom keeps all four posts distinct; wire reconnection and Delete preserve rheostat endpoint positions 
+  38 passed (1.6m)

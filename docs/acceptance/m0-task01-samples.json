@@ -1,0 +1,227 @@
+{
+  "resistorSeries": {
+    "status": "ok",
+    "value": {
+      "totalCurrentA": 0.1,
+      "branchCurrentsA": [
+        0.1,
+        0.1
+      ],
+      "branchVoltagesV": [
+        1,
+        2
+      ],
+      "branchPowersW": [
+        0.1,
+        0.2
+      ],
+      "sourcePowerW": 0.30000000000000004
+    }
+  },
+  "lampSeries6V": {
+    "status": "ok",
+    "value": {
+      "totalCurrentA": 0.3,
+      "branchCurrentsA": [
+        0.3,
+        0.3
+      ],
+      "branchVoltagesV": [
+        3,
+        3
+      ],
+      "branchPowersW": [
+        0.8999999999999999,
+        0.8999999999999999
+      ],
+      "sourcePowerW": 1.7999999999999998
+    }
+  },
+  "lampParallel3V": {
+    "status": "ok",
+    "value": {
+      "totalCurrentA": 0.6,
+      "branchCurrentsA": [
+        0.3,
+        0.3
+      ],
+      "branchVoltagesV": [
+        3,
+        3
+      ],
+      "branchPowersW": [
+        0.8999999999999999,
+        0.8999999999999999
+      ],
+      "sourcePowerW": 1.7999999999999998
+    }
+  },
+  "lens": [
+    {
+      "objectDistanceM": 0.3,
+      "result": {
+        "status": "ok",
+        "value": {
+          "kind": "real",
+          "imageDistanceM": 0.15000000000000002,
+          "magnification": -0.5000000000000001,
+          "nearFocus": false
+        }
+      }
+    },
+    {
+      "objectDistanceM": 0.2,
+      "result": {
+        "status": "ok",
+        "value": {
+          "kind": "real",
+          "imageDistanceM": 0.2,
+          "magnification": -1,
+          "nearFocus": false
+        }
+      }
+    },
+    {
+      "objectDistanceM": 0.15,
+      "result": {
+        "status": "ok",
+        "value": {
+          "kind": "real",
+          "imageDistanceM": 0.30000000000000004,
+          "magnification": -2.0000000000000004,
+          "nearFocus": false
+        }
+      }
+    },
+    {
+      "objectDistanceM": 0.1,
+      "result": {
+        "status": "ok",
+        "value": {
+          "kind": "no-finite-image",
+          "imageDistanceM": null,
+          "magnification": null,
+          "nearFocus": true
+        }
+      }
+    },
+    {
+      "objectDistanceM": 0.05,
+      "result": {
+        "status": "ok",
+        "value": {
+          "kind": "virtual",
+          "imageDistanceM": -0.1,
+          "magnification": 2,
+          "nearFocus": false
+        }
+      }
+    }
+  ],
+  "lever30Degrees": {
+    "status": "ok",
+    "value": {
+      "forceN": 4,
+      "armM": 0.05,
+      "equilibrium": {
+        "torquesNm": [
+          0.2,
+          -0.2
+        ],
+        "armsM": [
+          0.2,
+          0.05
+        ],
+        "totalTorqueNm": 0,
+        "torqueToleranceNm": 1.4000000000000001e-9,
+        "balanced": true,
+        "reactionN": {
+          "x": -3.4641016151377544,
+          "y": 3
+        }
+      }
+    }
+  },
+  "friction": {
+    "status": "ok",
+    "value": {
+      "state": "sliding-steady",
+      "normalN": 5,
+      "frictionN": -1,
+      "pullN": 1,
+      "netForceN": 0,
+      "accelerationMPerS2": 0
+    }
+  },
+  "spring": {
+    "status": "ok",
+    "value": {
+      "totalMassKg": 0.1,
+      "forceN": 1,
+      "extensionM": 0.05,
+      "lengthM": 0.15000000000000002
+    }
+  },
+  "projectile": [
+    {
+      "status": "ok",
+      "value": {
+        "timeS": 0.1,
+        "impactTimeS": 0.5,
+        "rangeM": 1,
+        "xM": 0.2,
+        "yM": 1.2,
+        "horizontalDisplacementM": 0.2,
+        "dropM": 0.05,
+        "vxMPerS": 2,
+        "vyMPerS": -1,
+        "state": "flying"
+      }
+    },
+    {
+      "status": "ok",
+      "value": {
+        "timeS": 0.2,
+        "impactTimeS": 0.5,
+        "rangeM": 1,
+        "xM": 0.4,
+        "yM": 1.05,
+        "horizontalDisplacementM": 0.4,
+        "dropM": 0.2,
+        "vxMPerS": 2,
+        "vyMPerS": -2,
+        "state": "flying"
+      }
+    },
+    {
+      "status": "ok",
+      "value": {
+        "timeS": 0.3,
+        "impactTimeS": 0.5,
+        "rangeM": 1,
+        "xM": 0.6,
+        "yM": 0.8,
+        "horizontalDisplacementM": 0.6,
+        "dropM": 0.44999999999999996,
+        "vxMPerS": 2,
+        "vyMPerS": -3,
+        "state": "flying"
+      }
+    },
+    {
+      "status": "ok",
+      "value": {
+        "timeS": 0.5,
+        "impactTimeS": 0.5,
+        "rangeM": 1,
+        "xM": 1,
+        "yM": 0,
+        "horizontalDisplacementM": 1,
+        "dropM": 1.25,
+        "vxMPerS": 2,
+        "vyMPerS": -5,
+        "state": "landed"
+      }
+    }
+  ]
+}

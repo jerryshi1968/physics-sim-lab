@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-05",
+  "baselineFiles": 168,
+  "unchangedFiles": 156,
+  "changed": [
+    "src/app/App.tsx",
+    "src/equipment/registry.ts",
+    "src/styles/workbench.css",
+    "src/equipment/mechanical/definitions.ts",
+    "src/equipment/mechanical/simulate.ts",
+    "src/app/mechanical/MechanicalGraphic.tsx",
+    "src/app/workbench/DocumentPreview.tsx",
+    "src/app/workbench/EquipmentLibrary.tsx",
+    "src/app/workbench/InspectorEditor.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "tests/core/lever-experiment.test.mjs",
+    "tests/e2e/lever-experiment.spec.ts"
+  ],
+  "added": [
+    "scripts/spring-experiment-demo.mjs",
+    "src/app/spring/SpringChart.tsx",
+    "src/app/spring/SpringGraphic.tsx",
+    "src/app/spring/SpringPanel.tsx",
+    "src/app/spring/SpringRecords.tsx",
+    "src/app/spring/SpringStart.tsx",
+    "src/core/measurements/fit.ts",
+    "src/equipment/spring/definitions.ts",
+    "src/equipment/spring/measure.ts",
+    "src/equipment/spring/simulate.ts",
+    "src/experiments/spring.ts",
+    "tests/core/spring-experiment.test.mjs",
+    "tests/e2e/spring-experiment.spec.ts"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "F65B5409FEE1B72F642CB005E8E241686EA6A95821486CE47105324FE82EEA1E",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "B3A9D4079ACB76C129285F4BF1666E89C65E8C7C6CB470D19690C2A9D5F1512C",
+      "unchanged": true
+    }
+  ],
+  "originalPhysicsSamplesAndTestsUnchanged": true,
+  "newDependencies": false,
+  "newThirdPartyAssets": false,
+  "originalCssPrefixPreserved": true,
+  "workerAndRuntimeNoticesUnchanged": true,
+  "strictUtf8Texts": 574,
+  "relativeMarkdownLinks": 708,
+  "brokenLinks": []
+}

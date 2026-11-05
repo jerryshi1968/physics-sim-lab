@@ -1,0 +1,26 @@
+{
+  "msedge": {
+    "ok": true,
+    "checks": 18,
+    "touch": {
+      "type": "software touch context, not physical tablet",
+      "width": 820,
+      "height": 1180,
+      "sixEntrypoints": true
+    },
+    "browser": "158.0.4370.1",
+    "staticRoot": "artifacts/release-0.1.0-rc.1/verify-offline/cn-physics-lab-0.1.0-rc.1-offline/dist"
+  },
+  "chrome": {
+    "ok": true,
+    "checks": 18,
+    "touch": {
+      "type": "software touch context, not physical tablet",
+      "width": 820,
+      "height": 1180,
+      "sixEntrypoints": true
+    },
+    "browser": "153.0.8010.48",
+    "staticRoot": "artifacts/release-0.1.0-rc.1/verify-offline/cn-physics-lab-0.1.0-rc.1-offline/dist"
+  }
+}

@@ -1,0 +1,17 @@
+--- src/app/workbench/SceneBoard.tsx (before)
+
++++ src/app/workbench/SceneBoard.tsx (after)
+
+@@ -317,9 +317,9 @@
+
+             else if (instance.type === DRIVE && instance.id === frictionSample.rig.drive.id) frictionCaption = { x: screen.x, y: base + 58 };
+             else if (instance.type === SURFACE && instance.id === frictionSample.rig.surface.id) frictionCaption = { x: screen.x, y: base + 78 };
+           }
+-          const projectileCaption = projectileMode ? instance.type === PROJECTILE_SCALE ? { x: screen.x + Number(instance.parameters.widthM) * view.pixelsPerM / 2, y: Math.max(12, screen.y - 36), anchor: 'middle' as const }
++          const projectileCaption = projectileMode ? instance.type === PROJECTILE_SCALE ? { x: screen.x + Number(instance.parameters.widthM) * view.pixelsPerM / 2, y: screen.y - .21 * view.pixelsPerM - 16, anchor: 'middle' as const }
+             : instance.type === PROJECTILE_GROUND ? { x: screen.x + Number(instance.parameters.lengthM) * view.pixelsPerM / 2, y: Math.min(size.height - 12, screen.y + .12 * view.pixelsPerM + 18), anchor: 'middle' as const }
+-            : instance.type === PROJECTILE_LAUNCHER ? { x: screen.x - .16 * view.pixelsPerM, y: Math.max(12, screen.y - .14 * view.pixelsPerM - 12), anchor: 'middle' as const } : null : null;
++            : instance.type === PROJECTILE_LAUNCHER ? { x: screen.x - .35 * view.pixelsPerM - 10, y: screen.y + 4, anchor: 'end' as const } : null : null;
+           const springCaption = springOutcome ? instance.type === SPRING ? { x: screen.x - .12 * view.pixelsPerM, y: screen.y + (springOutcome.ok ? springOutcome.value.lengthM : Number(instance.parameters.originalLengthM)) * .5 * view.pixelsPerM, anchor: 'end' as const }
+             : instance.type === 'mechanical.ruler' ? { x: screen.x + 12, y: screen.y - 12, anchor: 'start' as const }
+             : instance.type === WEIGHT ? { x: Math.max(screen.x + .03 * view.pixelsPerM + 6, ...equipment.filter(item => item.type === 'mechanical.ruler').map(item => worldToScreen(item.pose, view, size).x + .045 * view.pixelsPerM)), y: screen.y + .046 * view.pixelsPerM, anchor: 'start' as const } : null : null;

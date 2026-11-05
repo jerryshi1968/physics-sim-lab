@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 141,
+  "unchangedFiles": 132,
+  "changed": [
+    "src/app/App.tsx",
+    "src/app/mechanical/LeverPanel.tsx",
+    "src/app/mechanical/leverPresentation.ts",
+    "src/app/mechanical/MechanicalGraphic.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "src/core/workbench/edit.ts",
+    "src/core/workbench/history.ts",
+    "src/equipment/mechanical/definitions.ts",
+    "src/equipment/mechanical/simulate.ts"
+  ],
+  "added": [
+    "src/equipment/mechanical/weightChain.ts",
+    "tests/core/weight-chain.test.mjs",
+    "tests/e2e/weight-chain.spec.ts"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "FD5C16315A72E07B6694F1C9E9DB01248DF004F6073E1148724EB4A24D80E96A",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131",
+      "unchanged": true
+    }
+  ],
+  "electricalWorkerUnchanged": true,
+  "strictUtf8Texts": 466,
+  "relativeMarkdownLinks": 590,
+  "brokenLinks": []
+}

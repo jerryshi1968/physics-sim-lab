@@ -1,0 +1,27 @@
+[
+  {
+    "path": "dist\\index.html",
+    "sha256": "D662D55D52D162497143ABCE726C1BC6C93445B3C704315336AC359993F04FC1",
+    "bytes": 567
+  },
+  {
+    "path": "dist\\THIRD_PARTY_NOTICES.txt",
+    "sha256": "CD764E74D45A5A4C8AD5E20888E6A06FC9A62A480E8BB1D869E2DE0345BD012C",
+    "bytes": 5022
+  },
+  {
+    "path": "dist\\assets\\electrical.worker-C8w6w4-p.js",
+    "sha256": "822718DDA72FA10AC96D47DF7E9A20638C4096991B6CFCA61D98B19AC4D4B633",
+    "bytes": 126833
+  },
+  {
+    "path": "dist\\assets\\index-CoSo0uPb.css",
+    "sha256": "BF5B7FC7AF5935014C7C5391A107487F84BD4E8A6EB966C209C450B1C8C35139",
+    "bytes": 22692
+  },
+  {
+    "path": "dist\\assets\\index-ld78Sc1q.js",
+    "sha256": "B18B8FFCC661C0743132D449F5A1208A062A2761A5301AEDE2C2970A3B5A3E41",
+    "bytes": 468441
+  }
+]

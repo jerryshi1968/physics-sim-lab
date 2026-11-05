@@ -1,0 +1,40 @@
+{
+  "browserReports": {
+    "edgeFull": {
+      "startTime": "2026-11-05T08:53:07.083Z",
+      "duration": 201186.11299999998,
+      "expected": 90,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chromeFull": {
+      "startTime": "2026-11-05T09:01:42.560Z",
+      "duration": 162026.391,
+      "expected": 90,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "edgeFinalOptics": {
+      "startTime": "2026-11-05T09:11:29.949Z",
+      "duration": 29821.617,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chromeFinalOptics": {
+      "startTime": "2026-11-05T09:12:57.463Z",
+      "duration": 24938.935999999998,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "localMarkdownLinksChecked": 956,
+  "missingLocalLinks": [],
+  "textFilesDecoded": 101,
+  "ok": true
+}

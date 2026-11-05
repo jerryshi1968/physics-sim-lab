@@ -1,0 +1,21 @@
+[WebServer] (node:3592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 2 workers
+
+(node:25764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [chromium] › tests\e2e\library-tabs.spec.ts:51:3 › touch library categories › touch switches categories, cancels pending placement and keeps the two libraries within the page (1.5s)
+  ok  1 [chromium] › tests\e2e\library-tabs.spec.ts:10:1 › default library exposes both tabs without changing work; optical apparatus can be placed directly and domain replacement is cancellable (4.0s)
+  ok  3 [chromium] › tests\e2e\optical-bench.spec.ts:28:1 › five object distances use real screen rays; preview/undo preserves apparatus and auxiliary virtual observer never becomes a screen image (5.8s)
+  ok  5 [chromium] › tests\e2e\optical-bench.spec.ts:105:1 › native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry (3.4s)
+  ok  4 [chromium] › tests\e2e\optical-bench.spec.ts:66:1 › five classes of manual ruler observations, independent ruler zero, frozen snapshots, chart, CSV, save and JSON reload form one optical experiment (9.5s)
+  ok  6 [chromium] › tests\e2e\optical-bench.spec.ts:128:3 › touch optical bench › touch moves the screen to focus once and pointer cancellation restores it without horizontal page overflow (3.1s)
+  ok  7 [chromium] › tests\e2e\reflection-experiment.spec.ts:21:1 › reflection three-angle readings, folded evidence, student chart and CSV/JSON/save are one document (5.2s)
+  ok  8 [chromium] › tests\e2e\reflection-experiment.spec.ts:54:1 › native blank assembly, independent calibration, immediate attributes and old optics are isolated (6.0s)
+  ok  9 [chromium] › tests\e2e\reflection-experiment.spec.ts:83:1 › fold preview cancels, releases one history entry, and normal incidence is a real counterexample (3.1s)
+  ok 10 [chromium] › tests\e2e\reflection-experiment.spec.ts:98:3 › reflection touch › touch places apparatus, folds receiving sheet, and keeps controls within narrow page (2.1s)
+
+  10 passed (24.9s)

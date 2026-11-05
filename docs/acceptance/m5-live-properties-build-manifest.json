@@ -1,0 +1,27 @@
+[
+  {
+    "path": "dist/assets/electrical.worker-BIp-28Ye.js",
+    "sha256": "17D7074C86140FC0F5BE291E5B16A5BE99C58AC33FDC1FDE6EB274D1EDD041D0",
+    "bytes": 126884
+  },
+  {
+    "path": "dist/assets/index-B3eYCWof.js",
+    "sha256": "426F2684E9CF9ADC5E2DA784D95F46194A8817D0BD58F8A3FA081CE9E87F201F",
+    "bytes": 639964
+  },
+  {
+    "path": "dist/assets/index-BkobroM2.css",
+    "sha256": "D22F6E63DD8C72488206461033D1D7F77127E8FF733603DDE39C9AA0A370D93B",
+    "bytes": 25558
+  },
+  {
+    "path": "dist/index.html",
+    "sha256": "7C7DF34C0416D8D330B5E51DAE084B235F54DB3D8006AAEB41F147F3AB65BEAE",
+    "bytes": 567
+  },
+  {
+    "path": "dist/THIRD_PARTY_NOTICES.txt",
+    "sha256": "78CB054108C54D5B8C96C1B60527ACE43F9FE21BE68F56A0F90DCD7B079F302F",
+    "bytes": 6273
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E"
+  },
+  {
+    "path": "docs\\implementation-plan.md",
+    "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD"
+  },
+  {
+    "path": "package.json",
+    "sha256": "FD5C16315A72E07B6694F1C9E9DB01248DF004F6073E1148724EB4A24D80E96A"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "D0C21C20E32E6F745F78BE5E899B7699C19DD971016A9B9F43EF1519A0375131"
+  },
+  {
+    "path": "src\\app\\App.tsx",
+    "sha256": "5A08607FE7B1886C3AED7A8C3B5334CE3724046DAD6A02E617E740C1E1BAEFD8"
+  },
+  {
+    "path": "src\\app\\main.tsx",
+    "sha256": "B4A4D6B9C93F6A2E7F9C4BFEECED1AE2A59F3F997C9C76CEC0F64062DC8CE410"
+  },
+  {
+    "path": "src\\app\\workbench\\EquipmentGraphic.tsx",
+    "sha256": "8AD79ED8D55C64997968C15E11998859C5E8683C60CA7D64DBFE6ABBCD14CB45"
+  },
+  {
+    "path": "src\\app\\workbench\\EquipmentLibrary.tsx",
+    "sha256": "810238E24B583E5454ED7A494E0A9CB26ADCA58B88A025842AF35C8A2447BA1A"
+  },
+  {
+    "path": "src\\app\\workbench\\InspectorEditor.tsx",
+    "sha256": "9B1494B8BD3C64EAA8C0F9561CE0A63F810A31ECBD7DC1357EF564C1E4E24C81"
+  },
+  {
+    "path": "src\\app\\workbench\\SceneBoard.tsx",
+    "sha256": "88B8B32FEED3B2668EFABB42B7A05A7512B82A1FA7336BD622649C1BEC653693"
+  },
+  {
+    "path": "src\\app\\workbench\\shared.ts",
+    "sha256": "9EAD022396C818DFEEBB58F27BEF8B36C0B77C314961EC5146A3B9A1E38FA234"
+  },
+  {
+    "path": "src\\core\\connections\\schema.ts",
+    "sha256": "B8AB9C7F076AE71289B5AF20DABAD42AB568C18F749973CEA37491D388509443"
+  },
+  {
+    "path": "src\\core\\diagnostics\\diagnostic.ts",
+    "sha256": "FBD2AF404018D054559D0333C74943AE23D49822D5031F248CBFB03D42302CE1"
+  },
+  {
+    "path": "src\\core\\equipment\\registry.ts",
+    "sha256": "58B8ACB18D4D80E8A04227322F54F1045BE58463FF983F55AE4F4C85A4916387"
+  },
+  {
+    "path": "src\\core\\equipment\\schema.ts",
+    "sha256": "27F7D04F83835A463E1C6095D684DA689A8638D8E0C7D52882A4E0176B290D26"
+  },
+  {
+    "path": "src\\core\\scene\\create.ts",
+    "sha256": "A77C9E53B07BEA453B3BF5383B36F6DEDF27186A0C7EB99D166ADF468017D11E"
+  },
+  {
+    "path": "src\\core\\scene\\schema.ts",
+    "sha256": "BF88B4D180D54E9A32D4E83E71AD798B181CF61CFD124AA3FB2E9A0DD1399684"
+  },
+  {
+    "path": "src\\core\\scene\\validate.ts",
+    "sha256": "46C2410BF7B0B5933612B07ED67375B93D84CBBFCCE5E0E2E72E81B5578CA256"
+  },
+  {
+    "path": "src\\core\\units\\units.ts",
+    "sha256": "B76B5DEC75152CB44E182AC529768C8ECAED414813B1CABAC22A35ACF1EC9954"
+  },
+  {
+    "path": "src\\core\\workbench\\edit.ts",
+    "sha256": "943A6382EE09A8CD817796EB9958FCFD75F3061CF894F9FA9108508F6094E0E5"
+  },
+  {
+    "path": "src\\core\\workbench\\geometry.ts",
+    "sha256": "0CAFE7E8275DFA3254F224669CC3494CF151A4387B04AF3002734E6AD640B8AB"
+  },
+  {
+    "path": "src\\core\\workbench\\graph.ts",
+    "sha256": "EDD3BB75455ABB8FFE3216AC924F7806E4F6979EE53769E5A32E589DF820A554"
+  },
+  {
+    "path": "src\\equipment\\electrical\\definitions.ts",
+    "sha256": "4231699E1E36DD78C6B564CFE19629B98F742C6087BD858117D6D0FC6AF16683"
+  },
+  {
+    "path": "src\\physics\\samples\\electrical.ts",
+    "sha256": "FB903E81902BAF6F9C22F17A463486D136C3647588D2E35C4350D6CB6651EC26"
+  },
+  {
+    "path": "src\\physics\\samples\\friction.ts",
+    "sha256": "0B08CC4FDE98C60FB53CD703CAE50F2B6E667127B52604EDC8E23B6BE0602D11"
+  },
+  {
+    "path": "src\\physics\\samples\\lever.ts",
+    "sha256": "05AE855F36E7E9D96FB11FDF271CF5B68388FB2DAF5D89C2AD54D1C669872EA9"
+  },
+  {
+    "path": "src\\physics\\samples\\optical.ts",
+    "sha256": "F512430F220CFD030D67D5944958F930AB089AE509254FFF3EDD2D8001BB06FF"
+  },
+  {
+    "path": "src\\physics\\samples\\projectile.ts",
+    "sha256": "E24E081E9F249E661B0C0ABEAD39C86D9E85B0EA9B407B5A20830EC248795E15"
+  },
+  {
+    "path": "src\\physics\\samples\\result.ts",
+    "sha256": "0B92BC289E4F4114EA7B662B0E4DD26079E92C73BE424EC10E9E948BC0B80E7E"
+  },
+  {
+    "path": "src\\physics\\samples\\spring.ts",
+    "sha256": "32BD02F16D3741769152DD6B866A4FEBAFAAC8B0694A8A73EE3C6E96B32617F2"
+  },
+  {
+    "path": "src\\styles\\workbench.css",
+    "sha256": "839A67EAE2694F03CBFC7B5CFD74AC37C6C796E82A9846F71EAC4879BBDDE390"
+  },
+  {
+    "path": "tests\\core\\fixtures.mjs",
+    "sha256": "9D9A9BCE97EF7113EDBA5BF29D5C1AD34434A82752D996BD4015AC4932F5779D"
+  },
+  {
+    "path": "tests\\core\\registry.test.mjs",
+    "sha256": "B2C961D78DA657674D1864C8832B58FFDE29A8099156B034E0AFAC4E61346B98"
+  },
+  {
+    "path": "tests\\core\\scene.test.mjs",
+    "sha256": "13C5B1E627AB47B3A0F19E57776691140EB7AA59CB3D17804AC9AE324D169306"
+  },
+  {
+    "path": "tests\\core\\units.test.mjs",
+    "sha256": "DF4C4E5A0C0D95B53DC8AA72AF6C704AA98B9ADE776BDCAB87DD286F3D808FBC"
+  },
+  {
+    "path": "tests\\core\\workbench.test.mjs",
+    "sha256": "215412E725F423632A302F6231E3CA3CC2AD1857AE4B4BDC03ADEB590D4F3248"
+  },
+  {
+    "path": "tests\\e2e\\assembly.spec.ts",
+    "sha256": "35E828B8350818437BB6B542A9DA7978D220C21766CF6D147B0913B5E5490614"
+  },
+  {
+    "path": "tests\\e2e\\workbench.spec.ts",
+    "sha256": "D93D2FFB7119002C66D4DC34A427B4BB1E34F455C822F922CD0B693EB62936CF"
+  },
+  {
+    "path": "tests\\physics\\electrical.test.mjs",
+    "sha256": "E63DB1D758ACD582DE7BB6F2AFAA5B2CC0EAEBD204260ECD75D9DE24B5EE602A"
+  },
+  {
+    "path": "tests\\physics\\friction.test.mjs",
+    "sha256": "8D736A3EAAE7EBE5A5363E0BD4C223A3B14A3A1DA04DF8A37EB477070EBE10D8"
+  },
+  {
+    "path": "tests\\physics\\helpers.mjs",
+    "sha256": "1AD69D3A00195811AD9597C5B92A536B16D4B01675395CDDB6D0CA64560D9F53"
+  },
+  {
+    "path": "tests\\physics\\lever.test.mjs",
+    "sha256": "197CAAA5E3FF71EC87A444B0C765F8422711501F49024DF024C4E586CE02A777"
+  },
+  {
+    "path": "tests\\physics\\optical.test.mjs",
+    "sha256": "0100ACD456F713579AA37A90644ABE1DD68BE73DF8D8D99CB1CF139BA7319267"
+  },
+  {
+    "path": "tests\\physics\\projectile.test.mjs",
+    "sha256": "2F898C48528D518A8FCAC6A63672BC3F7D32C5295711A379886394DBAABC6B70"
+  },
+  {
+    "path": "tests\\physics\\spring.test.mjs",
+    "sha256": "3C7BD67E1F201834E1559614C4707D334629FCF5542FF1822DF88171DC0B367A"
+  }
+]

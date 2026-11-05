@@ -1,0 +1,12 @@
+[
+  {
+    "path": "scripts/dependency-inventory.mjs",
+    "originalComments": 0,
+    "missing": []
+  },
+  {
+    "path": "scripts/m7-audit.mjs",
+    "originalComments": 1,
+    "missing": []
+  }
+]

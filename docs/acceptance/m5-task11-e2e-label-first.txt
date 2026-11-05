@@ -1,0 +1,62 @@
+[WebServer] (node:736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 2 workers
+
+(node:22604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\friction-experiment.spec.ts:48:1 › controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit (3.5s)
+  ok  3 [chromium] › tests\e2e\friction-experiment.spec.ts:62:1 › blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest (6.7s)
+  ok  2 [chromium] › tests\e2e\friction-experiment.spec.ts:25:1 › four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses (11.4s)
+  ok  5 [chromium] › tests\e2e\lever-experiment.spec.ts:33:1 › mechanical category is always available with a physical independent ruler and cancellable formal experiment entry (2.4s)
+  x   4 [chromium] › tests\e2e\friction-experiment.spec.ts:84:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel (3.3s)
+(node:21152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [chromium] › tests\e2e\lever-experiment.spec.ts:77:1 › drag snaps to actual hooks once, cancel and undo preserve load references; wrong-side moments, zero arm, overrange and invalid support remain explicit (5.9s)
+  ok  6 [chromium] › tests\e2e\lever-experiment.spec.ts:46:1 › three groups from real hook attachments compare masses, vertical and inclined pull; snapshots, graph, CSV and reload stay consistent (9.8s)
+  ok  9 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1366px classroom display (712ms)
+  ok  8 [chromium] › tests\e2e\lever-experiment.spec.ts:97:3 › touch lever assembly › touch places all five mechanical types from blank, mounts and levels a real lever without horizontal page overflow (3.5s)
+  ok 10 [chromium] › tests\e2e\workbench.spec.ts:4:3 › empty workbench fits a 1920px classroom display (776ms)
+  ok 11 [chromium] › tests\e2e\workbench.spec.ts:28:1 › record tabs work with keyboard and creating a blank document resets the view (759ms)
+  ok 12 [chromium] › tests\e2e\workbench.spec.ts:43:1 › narrow viewport keeps primary controls visible without horizontal scrolling (1.0s)
+
+
+  1) [chromium] › tests\e2e\friction-experiment.spec.ts:84:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      90 |     for (let i = 0; i < captions.length; i++) for (let j = i + 1; j < captions.length; j++) {
+      91 |       const a = (await captions[i]!.boundingBox())!, b = (await captions[j]!.boundingBox())!;
+    > 92 |       expect(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y).toBe(true);
+         |                                                                                                              ^
+      93 |     }
+      94 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true); await page.getByTestId('scene-board').scrollIntoViewIfNeeded(); await page.screenshot({ path: info.outputPath('friction-touch.png'), fullPage: true });
+      95 |   });
+        at G:\physics-sim-lab\tests\e2e\friction-experiment.spec.ts:92:110
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\friction-experiment-touch--7954f-tal-state-changes-on-cancel-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\friction-experiment-touch--7954f-tal-state-changes-on-cancel-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\friction-experiment-touch--7954f-tal-state-changes-on-cancel-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\friction-experiment-touch--7954f-tal-state-changes-on-cancel-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\friction-experiment-touch--7954f-tal-state-changes-on-cancel-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\friction-experiment.spec.ts:84:3 › touch friction experiment › touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel 
+  11 passed (30.4s)

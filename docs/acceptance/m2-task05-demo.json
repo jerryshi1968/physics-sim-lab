@@ -1,0 +1,397 @@
+{
+  "series": {
+    "ok": true,
+    "solution": {
+      "modelVersion": "dc-mna.v1",
+      "components": [
+        {
+          "id": "[\"E\",\"negative\"]",
+          "nodes": [
+            "[\"E\",\"negative\"]",
+            "[\"E\",\"positive\"]",
+            "[\"R1\",\"b\"]"
+          ],
+          "referenceNode": "[\"E\",\"negative\"]"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "[\"E\",\"negative\"]",
+          "voltageV": 0,
+          "terminals": [
+            "[\"E\",\"negative\"]",
+            "[\"R2\",\"b\"]"
+          ],
+          "componentId": "[\"E\",\"negative\"]",
+          "isReference": true
+        },
+        {
+          "id": "[\"E\",\"positive\"]",
+          "voltageV": 3,
+          "terminals": [
+            "[\"E\",\"positive\"]",
+            "[\"R1\",\"a\"]"
+          ],
+          "componentId": "[\"E\",\"negative\"]",
+          "isReference": false
+        },
+        {
+          "id": "[\"R1\",\"b\"]",
+          "voltageV": 2,
+          "terminals": [
+            "[\"R1\",\"b\"]",
+            "[\"R2\",\"a\"]"
+          ],
+          "componentId": "[\"E\",\"negative\"]",
+          "isReference": false
+        }
+      ],
+      "branches": [
+        {
+          "id": "E",
+          "kind": "voltage-source",
+          "voltageV": 3,
+          "currentA": -0.10000000000000003,
+          "powerW": -0.3000000000000001,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true,
+          "internalLossW": 0,
+          "emfPowerW": -0.3000000000000001
+        },
+        {
+          "id": "R1",
+          "kind": "resistor",
+          "voltageV": 1,
+          "currentA": 0.1,
+          "powerW": 0.1,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true
+        },
+        {
+          "id": "R2",
+          "kind": "resistor",
+          "voltageV": 2,
+          "currentA": 0.1,
+          "powerW": 0.2,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true
+        },
+        {
+          "id": "wire-0",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        },
+        {
+          "id": "wire-1",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        },
+        {
+          "id": "wire-2",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        }
+      ],
+      "residuals": {
+        "kclA": 2.7755575615628914e-17,
+        "normalizedKcl": 1.3877787807814454e-16,
+        "normalizedConstitutive": 0,
+        "powerBalanceW": -8.326672684688674e-17,
+        "normalizedPower": 1.3877787807814454e-16,
+        "linear": 0
+      }
+    },
+    "diagnostics": [
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-0"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      },
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-1"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      },
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-2"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      }
+    ]
+  },
+  "parallel": {
+    "ok": true,
+    "solution": {
+      "modelVersion": "dc-mna.v1",
+      "components": [
+        {
+          "id": "[\"E\",\"negative\"]",
+          "nodes": [
+            "[\"E\",\"negative\"]",
+            "[\"E\",\"positive\"]"
+          ],
+          "referenceNode": "[\"E\",\"negative\"]"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "[\"E\",\"negative\"]",
+          "voltageV": 0,
+          "terminals": [
+            "[\"E\",\"negative\"]",
+            "[\"R1\",\"b\"]",
+            "[\"R2\",\"b\"]"
+          ],
+          "componentId": "[\"E\",\"negative\"]",
+          "isReference": true
+        },
+        {
+          "id": "[\"E\",\"positive\"]",
+          "voltageV": 3,
+          "terminals": [
+            "[\"E\",\"positive\"]",
+            "[\"R1\",\"a\"]",
+            "[\"R2\",\"a\"]"
+          ],
+          "componentId": "[\"E\",\"negative\"]",
+          "isReference": false
+        }
+      ],
+      "branches": [
+        {
+          "id": "E",
+          "kind": "voltage-source",
+          "voltageV": 3,
+          "currentA": -0.45000000000000007,
+          "powerW": -1.35,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true,
+          "internalLossW": 0,
+          "emfPowerW": -1.35
+        },
+        {
+          "id": "R1",
+          "kind": "resistor",
+          "voltageV": 3,
+          "currentA": 0.3,
+          "powerW": 0.8999999999999999,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true
+        },
+        {
+          "id": "R2",
+          "kind": "resistor",
+          "voltageV": 3,
+          "currentA": 0.15,
+          "powerW": 0.44999999999999996,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true
+        },
+        {
+          "id": "wire-0",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        },
+        {
+          "id": "wire-1",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        },
+        {
+          "id": "wire-2",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        },
+        {
+          "id": "wire-3",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        }
+      ],
+      "residuals": {
+        "kclA": 8.326672684688674e-17,
+        "normalizedKcl": 9.25185853854297e-17,
+        "normalizedConstitutive": 0,
+        "powerBalanceW": -2.220446049250313e-16,
+        "normalizedPower": 8.22387425648264e-17,
+        "linear": 0
+      }
+    },
+    "diagnostics": [
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-0"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      },
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-1"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      },
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-2"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      },
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "wire-3"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      }
+    ]
+  },
+  "idealShort": {
+    "ok": false,
+    "measurementUsable": false,
+    "diagnostics": [
+      {
+        "code": "IDEAL_SOURCE_SHORT",
+        "equipmentIds": [
+          "E"
+        ],
+        "severity": "error",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_SOURCE_SHORT"
+      }
+    ]
+  },
+  "finiteShort": {
+    "ok": true,
+    "solution": {
+      "modelVersion": "dc-mna.v1",
+      "components": [
+        {
+          "id": "n",
+          "nodes": [
+            "n"
+          ],
+          "referenceNode": "n"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "n",
+          "voltageV": 0,
+          "terminals": [
+            "n",
+            "p"
+          ],
+          "componentId": "n",
+          "isReference": true
+        }
+      ],
+      "branches": [
+        {
+          "id": "E",
+          "kind": "voltage-source",
+          "voltageV": 0,
+          "currentA": -6,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "valid",
+          "measurementUsable": true,
+          "internalLossW": 18,
+          "emfPowerW": -18
+        },
+        {
+          "id": "short",
+          "kind": "wire",
+          "voltageV": 0,
+          "currentA": null,
+          "powerW": 0,
+          "voltageStatus": "valid",
+          "currentStatus": "not-observable",
+          "measurementUsable": false
+        }
+      ],
+      "residuals": {
+        "kclA": 0,
+        "normalizedKcl": 0,
+        "normalizedConstitutive": 0,
+        "powerBalanceW": 0,
+        "normalizedPower": 0,
+        "linear": 0
+      }
+    },
+    "diagnostics": [
+      {
+        "code": "IDEAL_LINK_CURRENT_NOT_OBSERVABLE",
+        "equipmentIds": [
+          "short"
+        ],
+        "severity": "info",
+        "measurementUsable": false,
+        "messageKey": "electrical.IDEAL_LINK_CURRENT_NOT_OBSERVABLE"
+      }
+    ]
+  }
+}

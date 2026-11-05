@@ -1,0 +1,20 @@
+[
+  {
+    "kind": "source",
+    "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-source.zip",
+    "extracted": "artifacts/release-0.1.0-rc.1/verify-source/cn-physics-lab-0.1.0-rc.1-source",
+    "files": 274,
+    "codeFilesByteIdentical": 197,
+    "crcVerified": true,
+    "allHashesVerified": true
+  },
+  {
+    "kind": "offline",
+    "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-offline.zip",
+    "extracted": "artifacts/release-0.1.0-rc.1/verify-offline/cn-physics-lab-0.1.0-rc.1-offline",
+    "files": 19,
+    "codeFilesByteIdentical": 1,
+    "crcVerified": true,
+    "allHashesVerified": true
+  }
+]

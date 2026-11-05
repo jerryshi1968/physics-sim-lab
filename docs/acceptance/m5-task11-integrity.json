@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 146,
+  "unchangedFiles": 131,
+  "changed": [
+    "src/app/App.tsx",
+    "src/app/mechanical/MechanicalGraphic.tsx",
+    "src/app/workbench/DocumentPreview.tsx",
+    "src/app/workbench/EquipmentLibrary.tsx",
+    "src/app/workbench/InspectorEditor.tsx",
+    "src/app/workbench/SceneBoard.tsx",
+    "src/core/measurements/records.ts",
+    "src/core/scene/schema.ts",
+    "src/core/workbench/edit.ts",
+    "src/core/workbench/history.ts",
+    "src/equipment/registry.ts",
+    "src/equipment/mechanical/simulate.ts",
+    "src/styles/workbench.css",
+    "tests/core/lever-experiment.test.mjs",
+    "tests/e2e/lever-experiment.spec.ts"
+  ],
+  "added": [
+    "src/experiments/friction.ts",
+    "src/equipment/mechanical/frictionDefinitions.ts",
+    "src/equipment/mechanical/frictionMeasure.ts",
+    "src/equipment/mechanical/frictionScene.ts",
+    "src/core/mechanical/friction/matterAdapter.ts",
+    "src/core/mechanical/friction/model.ts",
+    "src/app/friction/FrictionGraphic.tsx",
+    "src/app/friction/FrictionPanel.tsx",
+    "src/app/friction/FrictionRecords.tsx",
+    "src/app/friction/FrictionStart.tsx",
+    "src/app/friction/useFrictionSimulation.ts",
+    "tests/core/friction-experiment.test.mjs",
+    "tests/e2e/friction-experiment.spec.ts",
+    "scripts/friction-demo.mjs"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD",
+      "unchanged": true
+    }
+  ],
+  "packageChanges": "Only pinned matter-js 0.20.0 and @types/matter-js 0.20.2 were installed with scripts disabled.",
+  "electricalPhysicsSourceUnchanged": true,
+  "strictUtf8Texts": 524,
+  "relativeMarkdownLinks": 655,
+  "brokenLinks": []
+}

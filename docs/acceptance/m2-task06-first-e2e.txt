@@ -1,0 +1,112 @@
+[WebServer] (node:26300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:6672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\electrical.spec.ts:96:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings (30.2s)
+  x  2 [chromium] › tests\e2e\electrical.spec.ts:53:1 › blank wiring runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state (30.2s)
+(node:23992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [chromium] › tests\e2e\electrical.spec.ts:161:3 › touch lamp and meter › touch places and connects a real lamp and the correct meter terminals (2.1s)
+  ok 3 [chromium] › tests\e2e\electrical.spec.ts:125:1 › delayed old Worker messages after reset cannot overwrite a newer run or leave extra workers active (2.8s)
+
+
+  1) [chromium] › tests\e2e\electrical.spec.ts:53:1 › blank wiring runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('scene-board').locator('[data-equipment-type="electrical.lamp"]').last().locator('[data-port-id="a"]')
+        - locator resolved to <g tabindex="0" role="button" data-port-id="a" aria-pressed="false" class="equipment-port " aria-label="小灯泡 3 · 端点 A" transform="translate(486 70)">…</g>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-1e766e2f-29f3-4e4b-bb1b-b10b3dff3582">…</g> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-1e766e2f-29f3-4e4b-bb1b-b10b3dff3582">…</g> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        52 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <circle r="18" fill="transparent" class="wire-end-hit"></circle> from <g data-wire-end-of="wire-1e766e2f-29f3-4e4b-bb1b-b10b3dff3582">…</g> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      19 | }
+      20 | async function connect(from: Locator, to: Locator, touch = false) {
+    > 21 |   if (touch) { await from.tap(); await to.tap(); } else { await from.click(); await to.click(); }
+         |                                                                                        ^
+      22 | }
+      23 | const port = (item: Locator, id: string) => item.locator(`[data-port-id="${id}"]`);
+      24 | async function exported(page: Page) {
+        at connect (G:\physics-sim-lab\tests\e2e\electrical.spec.ts:21:88)
+        at G:\physics-sim-lab\tests\e2e\electrical.spec.ts:69:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\electrical-blank-wiring-ru-5a4fd-nd-saves-only-initial-state-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\electrical-blank-wiring-ru-5a4fd-nd-saves-only-initial-state-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\electrical-blank-wiring-ru-5a4fd-nd-saves-only-initial-state-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\electrical-blank-wiring-ru-5a4fd-nd-saves-only-initial-state-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\electrical.spec.ts:96:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '小量程 +', exact: true })
+
+
+      109 |   await expect(page.locator('[data-meter-reading="A"]')).toHaveAttribute('data-meter-status', 'valid');
+      110 |   await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.9 A');
+    > 111 |   await page.getByRole('button', { name: '小量程 +', exact: true }).click();
+          |                                                                  ^
+      112 |   await page.getByLabel('选择器材', { exact: true }).selectOption('E');
+      113 |   await page.getByRole('button', { name: '正极 +', exact: true }).click();
+      114 |   await expect(page.getByRole('alert')).toContainText('两个正量程端同时接线');
+        at G:\physics-sim-lab\tests\e2e\electrical.spec.ts:111:66
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\electrical-actual-range-re-2c334--reset-clear-stale-readings-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\electrical-actual-range-re-2c334--reset-clear-stale-readings-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\electrical-actual-range-re-2c334--reset-clear-stale-readings-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\electrical-actual-range-re-2c334--reset-clear-stale-readings-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\e2e\electrical.spec.ts:53:1 › blank wiring runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state 
+    [chromium] › tests\e2e\electrical.spec.ts:96:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings 
+  2 passed (37.4s)

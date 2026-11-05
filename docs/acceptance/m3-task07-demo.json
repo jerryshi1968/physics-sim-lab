@@ -1,0 +1,1112 @@
+{
+  "document": {
+    "schemaVersion": 2,
+    "documentId": "measurement.demo",
+    "revision": 4,
+    "title": "串并联采样演示",
+    "experimentId": null,
+    "equipment": [
+      {
+        "id": "E",
+        "type": "electrical.power-supply",
+        "definitionVersion": 1,
+        "pose": {
+          "xM": 0,
+          "yM": 0,
+          "rotationRad": 0
+        },
+        "parameters": {
+          "voltageV": 3
+        }
+      },
+      {
+        "id": "L1",
+        "type": "electrical.lamp",
+        "definitionVersion": 1,
+        "pose": {
+          "xM": 0.2,
+          "yM": 0,
+          "rotationRad": 0
+        },
+        "parameters": {
+          "ratedVoltageV": 3,
+          "ratedCurrentA": 0.3,
+          "coldResistanceOhm": 2,
+          "maxCurrentA": 0.9
+        }
+      },
+      {
+        "id": "L2",
+        "type": "electrical.lamp",
+        "definitionVersion": 1,
+        "pose": {
+          "xM": 0.4,
+          "yM": 0,
+          "rotationRad": 0
+        },
+        "parameters": {
+          "ratedVoltageV": 3,
+          "ratedCurrentA": 0.2,
+          "coldResistanceOhm": 2,
+          "maxCurrentA": 0.9
+        }
+      },
+      {
+        "id": "A",
+        "type": "electrical.ammeter",
+        "definitionVersion": 1,
+        "pose": {
+          "xM": 0.6000000000000001,
+          "yM": 0,
+          "rotationRad": 0
+        },
+        "parameters": {
+          "lowRange": 0.6,
+          "highRange": 3,
+          "lowResolution": 0.02,
+          "highResolution": 0.1,
+          "resistanceOhm": 0
+        }
+      },
+      {
+        "id": "V",
+        "type": "electrical.voltmeter",
+        "definitionVersion": 1,
+        "pose": {
+          "xM": 0.8,
+          "yM": 0,
+          "rotationRad": 0
+        },
+        "parameters": {
+          "lowRange": 3,
+          "highRange": 15,
+          "lowResolution": 0.1,
+          "highResolution": 0.5,
+          "finiteInput": false,
+          "inputResistanceOhm": 1000000
+        }
+      }
+    ],
+    "connections": [
+      {
+        "id": "w0",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "E",
+          "portId": "positive"
+        },
+        "to": {
+          "equipmentId": "A",
+          "portId": "low"
+        }
+      },
+      {
+        "id": "w1",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "A",
+          "portId": "common"
+        },
+        "to": {
+          "equipmentId": "L1",
+          "portId": "a"
+        }
+      },
+      {
+        "id": "w2",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "A",
+          "portId": "common"
+        },
+        "to": {
+          "equipmentId": "L2",
+          "portId": "a"
+        }
+      },
+      {
+        "id": "w3",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "L1",
+          "portId": "b"
+        },
+        "to": {
+          "equipmentId": "E",
+          "portId": "negative"
+        }
+      },
+      {
+        "id": "w4",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "L2",
+          "portId": "b"
+        },
+        "to": {
+          "equipmentId": "E",
+          "portId": "negative"
+        }
+      },
+      {
+        "id": "w5",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "V",
+          "portId": "low"
+        },
+        "to": {
+          "equipmentId": "L1",
+          "portId": "a"
+        }
+      },
+      {
+        "id": "w6",
+        "kind": "wire",
+        "from": {
+          "equipmentId": "V",
+          "portId": "common"
+        },
+        "to": {
+          "equipmentId": "L1",
+          "portId": "b"
+        }
+      }
+    ],
+    "simulationConfig": {
+      "modelVersions": {},
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [
+      {
+        "id": "series.1.I",
+        "source": "instrument",
+        "quantity": "current",
+        "unit": "A",
+        "value": 0.3,
+        "rawInput": null,
+        "equipmentId": "A",
+        "range": {
+          "min": 0,
+          "max": 0.6,
+          "resolution": 0.02
+        },
+        "measurementStatus": "valid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 0,
+        "runId": "demo.run",
+        "sequence": 1,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "series.1",
+          "equipmentLabel": "电流表 4",
+          "pointLabel": "I总",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 0.3,
+          "physicalValue": 0.30000000000000787,
+          "originalRawInput": null,
+          "diagnosticCodes": []
+        }
+      },
+      {
+        "id": "series.1.V",
+        "source": "instrument",
+        "quantity": "voltage",
+        "unit": "V",
+        "value": 3,
+        "rawInput": null,
+        "equipmentId": "V",
+        "range": {
+          "min": 0,
+          "max": 3,
+          "resolution": 0.1
+        },
+        "measurementStatus": "valid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 0,
+        "runId": "demo.run",
+        "sequence": 1,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "series.1",
+          "equipmentLabel": "电压表 5",
+          "pointLabel": "U1",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 3,
+          "physicalValue": 3,
+          "originalRawInput": null,
+          "diagnosticCodes": []
+        }
+      },
+      {
+        "id": "parallel.2.I",
+        "source": "instrument",
+        "quantity": "current",
+        "unit": "A",
+        "value": 0.5,
+        "rawInput": null,
+        "equipmentId": "A",
+        "range": {
+          "min": 0,
+          "max": 0.6,
+          "resolution": 0.02
+        },
+        "measurementStatus": "valid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 2,
+        "runId": "demo.run",
+        "sequence": 3,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "parallel.2",
+          "equipmentLabel": "电流表 4",
+          "pointLabel": "I总",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 0.5,
+          "physicalValue": 0.5000000000000125,
+          "originalRawInput": null,
+          "diagnosticCodes": []
+        }
+      },
+      {
+        "id": "parallel.2.V",
+        "source": "instrument",
+        "quantity": "voltage",
+        "unit": "V",
+        "value": 3,
+        "rawInput": null,
+        "equipmentId": "V",
+        "range": {
+          "min": 0,
+          "max": 3,
+          "resolution": 0.1
+        },
+        "measurementStatus": "valid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 2,
+        "runId": "demo.run",
+        "sequence": 3,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "parallel.2",
+          "equipmentLabel": "电压表 5",
+          "pointLabel": "U1",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 3,
+          "physicalValue": 3,
+          "originalRawInput": null,
+          "diagnosticCodes": []
+        }
+      },
+      {
+        "id": "manual.3.I",
+        "source": "manual",
+        "quantity": "current",
+        "unit": "A",
+        "value": 0.49,
+        "rawInput": "0.49",
+        "equipmentId": "A",
+        "range": {
+          "min": 0,
+          "max": 0.6,
+          "resolution": 0.02
+        },
+        "measurementStatus": "valid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 3,
+        "runId": "demo.run",
+        "sequence": 4,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "manual.3",
+          "equipmentLabel": "电流表 4",
+          "pointLabel": "I总",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 0.5,
+          "physicalValue": 0.5000000000000125,
+          "originalRawInput": "0.49",
+          "diagnosticCodes": []
+        }
+      },
+      {
+        "id": "manual.3.V",
+        "source": "manual",
+        "quantity": "voltage",
+        "unit": "V",
+        "value": null,
+        "rawInput": "",
+        "equipmentId": "V",
+        "range": {
+          "min": 0,
+          "max": 3,
+          "resolution": 0.1
+        },
+        "measurementStatus": "invalid",
+        "recordedAt": "2026-11-04T09:00:00.000Z",
+        "documentRevision": 3,
+        "runId": "demo.run",
+        "sequence": 4,
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        },
+        "context": {
+          "sampleId": "manual.3",
+          "equipmentLabel": "电压表 5",
+          "pointLabel": "U1",
+          "instrumentStatus": "valid",
+          "instrumentDisplayValue": 3,
+          "physicalValue": 3,
+          "originalRawInput": "",
+          "diagnosticCodes": []
+        }
+      }
+    ],
+    "measurementSnapshots": [
+      {
+        "id": "series.1",
+        "documentId": "measurement.demo",
+        "documentRevision": 0,
+        "runId": "demo.run",
+        "sequence": 1,
+        "capturedAt": "2026-11-04T09:00:00.000Z",
+        "setupLabel": "串联",
+        "note": "",
+        "modelVersion": "dc-mna.v2",
+        "equipment": [
+          {
+            "id": "E",
+            "type": "electrical.power-supply",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "voltageV": 6
+            }
+          },
+          {
+            "id": "L1",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.2,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.3,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "L2",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.4,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.3,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "A",
+            "type": "electrical.ammeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.6000000000000001,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 0.6,
+              "highRange": 3,
+              "lowResolution": 0.02,
+              "highResolution": 0.1,
+              "resistanceOhm": 0
+            }
+          },
+          {
+            "id": "V",
+            "type": "electrical.voltmeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.8,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 3,
+              "highRange": 15,
+              "lowResolution": 0.1,
+              "highResolution": 0.5,
+              "finiteInput": false,
+              "inputResistanceOhm": 1000000
+            }
+          }
+        ],
+        "connections": [
+          {
+            "id": "w0",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "E",
+              "portId": "positive"
+            },
+            "to": {
+              "equipmentId": "A",
+              "portId": "low"
+            }
+          },
+          {
+            "id": "w1",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "A",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w2",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L1",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "L2",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w3",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L2",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "E",
+              "portId": "negative"
+            }
+          },
+          {
+            "id": "w4",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "low"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w5",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "b"
+            }
+          }
+        ],
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        }
+      },
+      {
+        "id": "parallel.2",
+        "documentId": "measurement.demo",
+        "documentRevision": 2,
+        "runId": "demo.run",
+        "sequence": 3,
+        "capturedAt": "2026-11-04T09:00:00.000Z",
+        "setupLabel": "并联",
+        "note": "",
+        "modelVersion": "dc-mna.v2",
+        "equipment": [
+          {
+            "id": "E",
+            "type": "electrical.power-supply",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "voltageV": 3
+            }
+          },
+          {
+            "id": "L1",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.2,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.3,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "L2",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.4,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.2,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "A",
+            "type": "electrical.ammeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.6000000000000001,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 0.6,
+              "highRange": 3,
+              "lowResolution": 0.02,
+              "highResolution": 0.1,
+              "resistanceOhm": 0
+            }
+          },
+          {
+            "id": "V",
+            "type": "electrical.voltmeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.8,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 3,
+              "highRange": 15,
+              "lowResolution": 0.1,
+              "highResolution": 0.5,
+              "finiteInput": false,
+              "inputResistanceOhm": 1000000
+            }
+          }
+        ],
+        "connections": [
+          {
+            "id": "w0",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "E",
+              "portId": "positive"
+            },
+            "to": {
+              "equipmentId": "A",
+              "portId": "low"
+            }
+          },
+          {
+            "id": "w1",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "A",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w2",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "A",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L2",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w3",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L1",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "E",
+              "portId": "negative"
+            }
+          },
+          {
+            "id": "w4",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L2",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "E",
+              "portId": "negative"
+            }
+          },
+          {
+            "id": "w5",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "low"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w6",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "b"
+            }
+          }
+        ],
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        }
+      },
+      {
+        "id": "manual.3",
+        "documentId": "measurement.demo",
+        "documentRevision": 3,
+        "runId": "demo.run",
+        "sequence": 4,
+        "capturedAt": "2026-11-04T09:00:00.000Z",
+        "setupLabel": "并联",
+        "note": "",
+        "modelVersion": "dc-mna.v2",
+        "equipment": [
+          {
+            "id": "E",
+            "type": "electrical.power-supply",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "voltageV": 3
+            }
+          },
+          {
+            "id": "L1",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.2,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.3,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "L2",
+            "type": "electrical.lamp",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.4,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "ratedVoltageV": 3,
+              "ratedCurrentA": 0.2,
+              "coldResistanceOhm": 2,
+              "maxCurrentA": 0.9
+            }
+          },
+          {
+            "id": "A",
+            "type": "electrical.ammeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.6000000000000001,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 0.6,
+              "highRange": 3,
+              "lowResolution": 0.02,
+              "highResolution": 0.1,
+              "resistanceOhm": 0
+            }
+          },
+          {
+            "id": "V",
+            "type": "electrical.voltmeter",
+            "definitionVersion": 1,
+            "pose": {
+              "xM": 0.8,
+              "yM": 0,
+              "rotationRad": 0
+            },
+            "parameters": {
+              "lowRange": 3,
+              "highRange": 15,
+              "lowResolution": 0.1,
+              "highResolution": 0.5,
+              "finiteInput": false,
+              "inputResistanceOhm": 1000000
+            }
+          }
+        ],
+        "connections": [
+          {
+            "id": "w0",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "E",
+              "portId": "positive"
+            },
+            "to": {
+              "equipmentId": "A",
+              "portId": "low"
+            }
+          },
+          {
+            "id": "w1",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "A",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w2",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "A",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L2",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w3",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L1",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "E",
+              "portId": "negative"
+            }
+          },
+          {
+            "id": "w4",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "L2",
+              "portId": "b"
+            },
+            "to": {
+              "equipmentId": "E",
+              "portId": "negative"
+            }
+          },
+          {
+            "id": "w5",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "low"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "a"
+            }
+          },
+          {
+            "id": "w6",
+            "kind": "wire",
+            "from": {
+              "equipmentId": "V",
+              "portId": "common"
+            },
+            "to": {
+              "equipmentId": "L1",
+              "portId": "b"
+            }
+          }
+        ],
+        "modelConfigSnapshot": {
+          "modelVersions": {},
+          "electricalMode": "ideal",
+          "gravityMPerS2": 10,
+          "fixedTimeStepS": 0.008333333333333333,
+          "randomError": {
+            "enabled": false,
+            "seed": 0,
+            "distribution": "none",
+            "amplitude": 0
+          }
+        }
+      }
+    ],
+    "curriculumRef": null,
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-04T09:00:00.000Z",
+      "updatedAt": "2026-11-04T09:00:00.000Z",
+      "notes": []
+    }
+  },
+  "rows": [
+    {
+      "id": "series.1.I",
+      "group": 1,
+      "setupLabel": "串联",
+      "pointLabel": "I总",
+      "source": "instrument",
+      "value": 0.3,
+      "unit": "A",
+      "status": "valid"
+    },
+    {
+      "id": "series.1.V",
+      "group": 1,
+      "setupLabel": "串联",
+      "pointLabel": "U1",
+      "source": "instrument",
+      "value": 3,
+      "unit": "V",
+      "status": "valid"
+    },
+    {
+      "id": "parallel.2.I",
+      "group": 2,
+      "setupLabel": "并联",
+      "pointLabel": "I总",
+      "source": "instrument",
+      "value": 0.5,
+      "unit": "A",
+      "status": "valid"
+    },
+    {
+      "id": "parallel.2.V",
+      "group": 2,
+      "setupLabel": "并联",
+      "pointLabel": "U1",
+      "source": "instrument",
+      "value": 3,
+      "unit": "V",
+      "status": "valid"
+    },
+    {
+      "id": "manual.3.I",
+      "group": 3,
+      "setupLabel": "并联",
+      "pointLabel": "I总",
+      "source": "manual",
+      "value": 0.49,
+      "unit": "A",
+      "status": "valid"
+    },
+    {
+      "id": "manual.3.V",
+      "group": 3,
+      "setupLabel": "并联",
+      "pointLabel": "U1",
+      "source": "manual",
+      "value": null,
+      "unit": "V",
+      "status": "invalid"
+    }
+  ],
+  "currentSeries": [
+    {
+      "id": "[\"A\",\"I总\",\"instrument\",\"串联\"]",
+      "label": "串联 · I总 · 仪表采集",
+      "points": [
+        {
+          "recordId": "series.1.I",
+          "sampleIndex": 1,
+          "x": 1,
+          "y": 0.3,
+          "status": "valid"
+        }
+      ]
+    },
+    {
+      "id": "[\"A\",\"I总\",\"instrument\",\"并联\"]",
+      "label": "并联 · I总 · 仪表采集",
+      "points": [
+        {
+          "recordId": "parallel.2.I",
+          "sampleIndex": 2,
+          "x": 2,
+          "y": 0.5,
+          "status": "valid"
+        }
+      ]
+    },
+    {
+      "id": "[\"A\",\"I总\",\"manual\",\"并联\"]",
+      "label": "并联 · I总 · 手工抄表",
+      "points": [
+        {
+          "recordId": "manual.3.I",
+          "sampleIndex": 3,
+          "x": 3,
+          "y": 0.49,
+          "status": "valid"
+        }
+      ]
+    }
+  ],
+  "csv": "﻿\"实验名称\",\"记录标识\",\"组次\",\"组别或接法\",\"测点\",\"器材名称\",\"器材标识\",\"物理量\",\"单位\",\"记录值\",\"原始抄表文本\",\"修订后抄表文本\",\"来源\",\"状态\",\"量程最小值\",\"量程最大值\",\"分度值\",\"采样时间\",\"修订时间\",\"文档标识\",\"文档版本\",\"运行标识\",\"序号\",\"采样标识\",\"模型版本\",\"仪器显示快照\",\"模型真值快照\",\"仪器状态\",\"诊断\",\"模型配置快照\",\"器材参数快照\",\"连接快照\",\"备注\"\r\n\"串并联采样演示\",\"series.1.I\",1,\"串联\",\"I总\",\"电流表 4\",\"A\",\"电流\",\"A\",0.3,\"\",\"\",\"仪表采集\",\"有效\",0,0.6,0.02,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",0,\"demo.run\",1,\"series.1\",\"dc-mna.v2\",0.3,0.30000000000000787,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"[{\"\"id\"\":\"\"E\"\",\"\"type\"\":\"\"electrical.power-supply\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"voltageV\"\":6}},{\"\"id\"\":\"\"L1\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.2,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.3,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"L2\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.4,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.3,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"A\"\",\"\"type\"\":\"\"electrical.ammeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.6000000000000001,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":0.6,\"\"highRange\"\":3,\"\"lowResolution\"\":0.02,\"\"highResolution\"\":0.1,\"\"resistanceOhm\"\":0}},{\"\"id\"\":\"\"V\"\",\"\"type\"\":\"\"electrical.voltmeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.8,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":3,\"\"highRange\"\":15,\"\"lowResolution\"\":0.1,\"\"highResolution\"\":0.5,\"\"finiteInput\"\":false,\"\"inputResistanceOhm\"\":1000000}}]\",\"[{\"\"id\"\":\"\"w0\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"positive\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"low\"\"}},{\"\"id\"\":\"\"w1\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w2\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w3\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"negative\"\"}},{\"\"id\"\":\"\"w4\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"low\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w5\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"}}]\",\"\"\r\n\"串并联采样演示\",\"series.1.V\",1,\"串联\",\"U1\",\"电压表 5\",\"V\",\"电压\",\"V\",3,\"\",\"\",\"仪表采集\",\"有效\",0,3,0.1,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",0,\"demo.run\",1,\"series.1\",\"dc-mna.v2\",3,3,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"\",\"\",\"\"\r\n\"串并联采样演示\",\"parallel.2.I\",2,\"并联\",\"I总\",\"电流表 4\",\"A\",\"电流\",\"A\",0.5,\"\",\"\",\"仪表采集\",\"有效\",0,0.6,0.02,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",2,\"demo.run\",3,\"parallel.2\",\"dc-mna.v2\",0.5,0.5000000000000125,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"[{\"\"id\"\":\"\"E\"\",\"\"type\"\":\"\"electrical.power-supply\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"voltageV\"\":3}},{\"\"id\"\":\"\"L1\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.2,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.3,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"L2\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.4,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.2,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"A\"\",\"\"type\"\":\"\"electrical.ammeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.6000000000000001,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":0.6,\"\"highRange\"\":3,\"\"lowResolution\"\":0.02,\"\"highResolution\"\":0.1,\"\"resistanceOhm\"\":0}},{\"\"id\"\":\"\"V\"\",\"\"type\"\":\"\"electrical.voltmeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.8,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":3,\"\"highRange\"\":15,\"\"lowResolution\"\":0.1,\"\"highResolution\"\":0.5,\"\"finiteInput\"\":false,\"\"inputResistanceOhm\"\":1000000}}]\",\"[{\"\"id\"\":\"\"w0\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"positive\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"low\"\"}},{\"\"id\"\":\"\"w1\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w2\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w3\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"negative\"\"}},{\"\"id\"\":\"\"w4\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"negative\"\"}},{\"\"id\"\":\"\"w5\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"low\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w6\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"}}]\",\"\"\r\n\"串并联采样演示\",\"parallel.2.V\",2,\"并联\",\"U1\",\"电压表 5\",\"V\",\"电压\",\"V\",3,\"\",\"\",\"仪表采集\",\"有效\",0,3,0.1,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",2,\"demo.run\",3,\"parallel.2\",\"dc-mna.v2\",3,3,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"\",\"\",\"\"\r\n\"串并联采样演示\",\"manual.3.I\",3,\"并联\",\"I总\",\"电流表 4\",\"A\",\"电流\",\"A\",0.49,\"0.49\",\"\",\"手工抄表\",\"有效\",0,0.6,0.02,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",3,\"demo.run\",4,\"manual.3\",\"dc-mna.v2\",0.5,0.5000000000000125,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"[{\"\"id\"\":\"\"E\"\",\"\"type\"\":\"\"electrical.power-supply\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"voltageV\"\":3}},{\"\"id\"\":\"\"L1\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.2,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.3,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"L2\"\",\"\"type\"\":\"\"electrical.lamp\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.4,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"ratedVoltageV\"\":3,\"\"ratedCurrentA\"\":0.2,\"\"coldResistanceOhm\"\":2,\"\"maxCurrentA\"\":0.9}},{\"\"id\"\":\"\"A\"\",\"\"type\"\":\"\"electrical.ammeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.6000000000000001,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":0.6,\"\"highRange\"\":3,\"\"lowResolution\"\":0.02,\"\"highResolution\"\":0.1,\"\"resistanceOhm\"\":0}},{\"\"id\"\":\"\"V\"\",\"\"type\"\":\"\"electrical.voltmeter\"\",\"\"definitionVersion\"\":1,\"\"pose\"\":{\"\"xM\"\":0.8,\"\"yM\"\":0,\"\"rotationRad\"\":0},\"\"parameters\"\":{\"\"lowRange\"\":3,\"\"highRange\"\":15,\"\"lowResolution\"\":0.1,\"\"highResolution\"\":0.5,\"\"finiteInput\"\":false,\"\"inputResistanceOhm\"\":1000000}}]\",\"[{\"\"id\"\":\"\"w0\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"positive\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"low\"\"}},{\"\"id\"\":\"\"w1\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w2\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"A\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w3\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"negative\"\"}},{\"\"id\"\":\"\"w4\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"L2\"\",\"\"portId\"\":\"\"b\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"E\"\",\"\"portId\"\":\"\"negative\"\"}},{\"\"id\"\":\"\"w5\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"low\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"a\"\"}},{\"\"id\"\":\"\"w6\"\",\"\"kind\"\":\"\"wire\"\",\"\"from\"\":{\"\"equipmentId\"\":\"\"V\"\",\"\"portId\"\":\"\"common\"\"},\"\"to\"\":{\"\"equipmentId\"\":\"\"L1\"\",\"\"portId\"\":\"\"b\"\"}}]\",\"\"\r\n\"串并联采样演示\",\"manual.3.V\",3,\"并联\",\"U1\",\"电压表 5\",\"V\",\"电压\",\"V\",\"\",\"\",\"\",\"手工抄表\",\"缺失\",0,3,0.1,\"2026-11-04T09:00:00.000Z\",\"\",\"measurement.demo\",3,\"demo.run\",4,\"manual.3\",\"dc-mna.v2\",3,3,\"valid\",\"\",\"{\"\"modelVersions\"\":{},\"\"electricalMode\"\":\"\"ideal\"\",\"\"gravityMPerS2\"\":10,\"\"fixedTimeStepS\"\":0.008333333333333333,\"\"randomError\"\":{\"\"enabled\"\":false,\"\"seed\"\":0,\"\"distribution\"\":\"\"none\"\",\"\"amplitude\"\":0}}\",\"\",\"\",\"\"\r\n"
+}

@@ -1,0 +1,670 @@
+TAP version 13
+# Subtest: a committed move is one transaction; undo and redo restore pose, parameters and increasing revision
+ok 1 - a committed move is one transaction; undo and redo restore pose, parameters and increasing revision
+  ---
+  duration_ms: 10.0047
+  type: 'test'
+  ...
+# Subtest: deleting then undoing restores exact IDs, apparatus, attached/free wire ends and bend points
+ok 2 - deleting then undoing restores exact IDs, apparatus, attached/free wire ends and bend points
+  ---
+  duration_ms: 10.7704
+  type: 'test'
+  ...
+# Subtest: wire route, free endpoints, unplug and removal are independently reversible
+ok 3 - wire route, free endpoints, unplug and removal are independently reversible
+  ---
+  duration_ms: 2.0946
+  type: 'test'
+  ...
+# Subtest: invalid and unchanged commands do not add history or clear redo; a new edit does
+ok 4 - invalid and unchanged commands do not add history or clear redo; a new edit does
+  ---
+  duration_ms: 1.724
+  type: 'test'
+  ...
+# Subtest: view changes are saved but do not create or consume history and survive undo/redo
+ok 5 - view changes are saved but do not create or consume history and survive undo/redo
+  ---
+  duration_ms: 1.2349
+  type: 'test'
+  ...
+# Subtest: history is bounded and empty traversal is harmless; replacing documents resets both stacks
+ok 6 - history is bounded and empty traversal is harmless; replacing documents resets both stacks
+  ---
+  duration_ms: 58.9835
+  type: 'test'
+  ...
+# Subtest: wire can exist independently with two finite free ends and initial bend controls
+ok 7 - wire can exist independently with two finite free ends and initial bend controls
+  ---
+  duration_ms: 25.7687
+  type: 'test'
+  ...
+# Subtest: ambiguous/missing/non-finite free-end states and free mechanical mounts are rejected
+ok 8 - ambiguous/missing/non-finite free-end states and free mechanical mounts are rejected
+  ---
+  duration_ms: 10.4529
+  type: 'test'
+  ...
+# Subtest: one attached end does not conduct; two attached ends connect actual ports; unplug breaks it
+ok 9 - one attached end does not conduct; two attached ends connect actual ports; unplug breaks it
+  ---
+  duration_ms: 1.5433
+  type: 'test'
+  ...
+# Subtest: moving the whole loose wire translates ends/control points without mutation or attachment
+ok 10 - moving the whole loose wire translates ends/control points without mutation or attachment
+  ---
+  duration_ms: 1.4706
+  type: 'test'
+  ...
+# Subtest: attached end follows its apparatus while the other end remains at its explicit free point
+ok 11 - attached end follows its apparatus while the other end remains at its explicit free point
+  ---
+  duration_ms: 2.3057
+  type: 'test'
+  ...
+# Subtest: snapping selects the nearest electrical post within the visible target radius only
+ok 12 - snapping selects the nearest electrical post within the visible target radius only
+  ---
+  duration_ms: 1.212
+  type: 'test'
+  ...
+# Subtest: same post on both ends or an unknown post is rejected without replacing the scene
+ok 13 - same post on both ends or an unknown post is rejected without replacing the scene
+  ---
+  duration_ms: 1.3019
+  type: 'test'
+  ...
+# Subtest: curved wire paths preserve terminal endpoints and bending does not create topology
+ok 14 - curved wire paths preserve terminal endpoints and bending does not create topology
+  ---
+  duration_ms: 1.414
+  type: 'test'
+  ...
+# Subtest: default registry has no fabricated apparatus or unsupported mechanical capability
+ok 15 - default registry has no fabricated apparatus or unsupported mechanical capability
+  ---
+  duration_ms: 1.9301
+  type: 'test'
+  ...
+# Subtest: definitions are retrieved by exact type and version
+ok 16 - definitions are retrieved by exact type and version
+  ---
+  duration_ms: 7.4932
+  type: 'test'
+  ...
+# Subtest: returned definition copies cannot mutate the registration or its port/default data
+ok 17 - returned definition copies cannot mutate the registration or its port/default data
+  ---
+  duration_ms: 1.4958
+  type: 'test'
+  ...
+# Subtest: reject duplicate registration and unresolved parameter schemas
+ok 18 - reject duplicate registration and unresolved parameter schemas
+  ---
+  duration_ms: 1.5906
+  type: 'test'
+  ...
+# Subtest: reject invalid defaults, duplicate local ports and malformed definitions
+ok 19 - reject invalid defaults, duplicate local ports and malformed definitions
+  ---
+  duration_ms: 1.0948
+  type: 'test'
+  ...
+# Subtest: diagnostics validate explicit severity, affected apparatus and measurement usability
+ok 20 - diagnostics validate explicit severity, affected apparatus and measurement usability
+  ---
+  duration_ms: 1.3365
+  type: 'test'
+  ...
+# Subtest: parameter validation never strips extra fields, coerces text or repairs a negative value
+ok 21 - parameter validation never strips extra fields, coerces text or repairs a negative value
+  ---
+  duration_ms: 2.6661
+  type: 'test'
+  ...
+# Subtest: empty scene is valid with explicit SI defaults, null references and no measurements
+ok 22 - empty scene is valid with explicit SI defaults, null references and no measurements
+  ---
+  duration_ms: 11.775
+  type: 'test'
+  ...
+# Subtest: registered scene and route geometry round trip without modifying input
+ok 23 - registered scene and route geometry round trip without modifying input
+  ---
+  duration_ms: 7.2783
+  type: 'test'
+  ...
+# Subtest: independent empty documents do not share mutable defaults
+ok 24 - independent empty documents do not share mutable defaults
+  ---
+  duration_ms: 2.0015
+  type: 'test'
+  ...
+# Subtest: missing required data, unknown versions and unknown fields are never silently stripped
+ok 25 - missing required data, unknown versions and unknown fields are never silently stripped
+  ---
+  duration_ms: 5.2845
+  type: 'test'
+  ...
+# Subtest: non-finite geometry, scalar parameters and viewport zoom are invalid
+ok 26 - non-finite geometry, scalar parameters and viewport zoom are invalid
+  ---
+  duration_ms: 3.45
+  type: 'test'
+  ...
+# Subtest: duplicate apparatus and cross-collection IDs are rejected
+ok 27 - duplicate apparatus and cross-collection IDs are rejected
+  ---
+  duration_ms: 1.5955
+  type: 'test'
+  ...
+# Subtest: unknown apparatus versions and invalid domain parameters are explicit diagnostics
+ok 28 - unknown apparatus versions and invalid domain parameters are explicit diagnostics
+  ---
+  duration_ms: 3.8669
+  type: 'test'
+  ...
+# Subtest: dangling endpoint and missing port are rejected
+ok 29 - dangling endpoint and missing port are rejected
+  ---
+  duration_ms: 1.2115
+  type: 'test'
+  ...
+# Subtest: wire cannot connect an optical mount; rope is disabled even if both endpoint IDs exist
+ok 30 - wire cannot connect an optical mount; rope is disabled even if both endpoint IDs exist
+  ---
+  duration_ms: 1.5515
+  type: 'test'
+  ...
+# Subtest: manual input retains original text and separate validated SI value
+ok 31 - manual input retains original text and separate validated SI value
+  ---
+  duration_ms: 3.0477
+  type: 'test'
+  ...
+# Subtest: invalid readings carry null; non-steady readings can retain their explicit value
+ok 32 - invalid readings carry null; non-steady readings can retain their explicit value
+  ---
+  duration_ms: 7.5687
+  type: 'test'
+  ...
+# Subtest: measurements reject dimension mismatch, missing manual text, reversed range and broken references
+ok 33 - measurements reject dimension mismatch, missing manual text, reversed range and broken references
+  ---
+  duration_ms: 4.1907
+  type: 'test'
+  ...
+# Subtest: pending textbook metadata stays null and cannot claim verified without review evidence
+ok 34 - pending textbook metadata stays null and cannot claim verified without review evidence
+  ---
+  duration_ms: 4.0381
+  type: 'test'
+  ...
+# Subtest: document limits, seed bounds, invalid error configuration and unsafe parameter keys are rejected
+ok 35 - document limits, seed bounds, invalid error configuration and unsafe parameter keys are rejected
+  ---
+  duration_ms: 2.2689
+  type: 'test'
+  ...
+# Subtest: JSON round-trip preserves all initial state, free wires, metadata, records and viewport
+ok 36 - JSON round-trip preserves all initial state, free wires, metadata, records and viewport
+  ---
+  duration_ms: 16.6104
+  type: 'test'
+  ...
+# Subtest: UTF-8 byte limit includes Chinese and surrogate pairs, rejects over 5 MiB and accepts exact byte boundary
+ok 37 - UTF-8 byte limit includes Chinese and surrogate pairs, rejects over 5 MiB and accepts exact byte boundary
+  ---
+  duration_ms: 98.7359
+  type: 'test'
+  ...
+# Subtest: malformed JSON, wrong top-level values and unknown schema versions fail without mutation
+ok 38 - malformed JSON, wrong top-level values and unknown schema versions fail without mutation
+  ---
+  duration_ms: 0.5994
+  type: 'test'
+  ...
+# Subtest: limits of 200 apparatus, 500 connections and 10000 records are enforced before migration
+ok 39 - limits of 200 apparatus, 500 connections and 10000 records are enforced before migration
+  ---
+  duration_ms: 7.3598
+  type: 'test'
+  ...
+# Subtest: duplicate IDs, missing references, invalid ports, parameters and self-connections are rejected
+ok 40 - duplicate IDs, missing references, invalid ports, parameters and self-connections are rejected
+  ---
+  duration_ms: 2.9358
+  type: 'test'
+  ...
+# Subtest: unknown equipment, definition versions and connection kinds are never silently discarded
+ok 41 - unknown equipment, definition versions and connection kinds are never silently discarded
+  ---
+  duration_ms: 1.129
+  type: 'test'
+  ...
+# Subtest: v1 migration preserves IDs, connections, routes, parameters and original metadata without mutating input
+ok 42 - v1 migration preserves IDs, connections, routes, parameters and original metadata without mutating input
+  ---
+  duration_ms: 1.5991
+  type: 'test'
+  ...
+# Subtest: v1 cannot smuggle v2 free ends or unknown fields, and migrated unknown apparatus still fails
+ok 43 - v1 cannot smuggle v2 free ends or unknown fields, and migrated unknown apparatus still fails
+  ---
+  duration_ms: 0.8167
+  type: 'test'
+  ...
+# Subtest: a known historical junction is retained by migration without adding a library entry
+ok 44 - a known historical junction is retained by migration without adding a library entry
+  ---
+  duration_ms: 1.21
+  type: 'test'
+  ...
+# Subtest: HTML remains inert text; code-like input and prototype fields are never executed or accepted as extra keys
+ok 45 - HTML remains inert text; code-like input and prototype fields are never executed or accepted as extra keys
+  ---
+  duration_ms: 0.4571
+  type: 'test'
+  ...
+# Subtest: missing or ambiguous free endpoint positions and overlong routes cannot be loaded
+ok 46 - missing or ambiguous free endpoint positions and overlong routes cannot be loaded
+  ---
+  duration_ms: 1.2507
+  type: 'test'
+  ...
+# Subtest: display length converts to SI without changing physical magnitude
+ok 47 - display length converts to SI without changing physical magnitude
+  ---
+  duration_ms: 2.2874
+  type: 'test'
+  ...
+# Subtest: mass, time, current, resistance and angle conversions have independent expected values
+ok 48 - mass, time, current, resistance and angle conversions have independent expected values
+  ---
+  duration_ms: 0.4286
+  type: 'test'
+  ...
+# Subtest: signed values and zero survive SI conversion
+ok 49 - signed values and zero survive SI conversion
+  ---
+  duration_ms: 0.2811
+  type: 'test'
+  ...
+# Subtest: cross-dimension, unknown, non-finite and overflowing conversions are rejected
+ok 50 - cross-dimension, unknown, non-finite and overflowing conversions are rejected
+  ---
+  duration_ms: 0.7964
+  type: 'test'
+  ...
+# Subtest: production registry provides three apparatus and an explicit junction with SI defaults
+ok 51 - production registry provides three apparatus and an explicit junction with SI defaults
+  ---
+  duration_ms: 2.9984
+  type: 'test'
+  ...
+# Subtest: from a blank document the source/resistor/closed-switch form the intended connection graph
+ok 52 - from a blank document the source/resistor/closed-switch form the intended connection graph
+  ---
+  duration_ms: 27.8334
+  type: 'test'
+  ...
+# Subtest: world/screen coordinates use upward world y and invert independently at varied sizes
+ok 53 - world/screen coordinates use upward world y and invert independently at varied sizes
+  ---
+  duration_ms: 0.5018
+  type: 'test'
+  ...
+# Subtest: zoom preserves the world anchor, clamps scale, and pan changes only viewport values
+ok 54 - zoom preserves the world anchor, clamps scale, and pan changes only viewport values
+  ---
+  duration_ms: 0.9052
+  type: 'test'
+  ...
+# Subtest: rotating apparatus transforms physical ports and connected wire endpoints
+ok 55 - rotating apparatus transforms physical ports and connected wire endpoints
+  ---
+  duration_ms: 3.038
+  type: 'test'
+  ...
+# Subtest: movement, zoom, route bends and duplicate wires do not invent electrical nodes
+ok 56 - movement, zoom, route bends and duplicate wires do not invent electrical nodes
+  ---
+  duration_ms: 3.9401
+  type: 'test'
+  ...
+# Subtest: visually crossing routes stay separate until explicitly wired to a junction
+ok 57 - visually crossing routes stay separate until explicitly wired to a junction
+  ---
+  duration_ms: 3.4377
+  type: 'test'
+  ...
+# Subtest: delete apparatus removes only its wires; delete one wire preserves other connections
+ok 58 - delete apparatus removes only its wires; delete one wire preserves other connections
+  ---
+  duration_ms: 2.2852
+  type: 'test'
+  ...
+# Subtest: invalid edits return explanations, preserve input and carry no partial document
+ok 59 - invalid edits return explanations, preserve input and carry no partial document
+  ---
+  duration_ms: 4.7143
+  type: 'test'
+  ...
+# Subtest: wrong-type port gets an actionable explanation instead of a silently corrected wire
+ok 60 - wrong-type port gets an actionable explanation instead of a silently corrected wire
+  ---
+  duration_ms: 5.2929
+  type: 'test'
+  ...
+# Subtest: accepted placement/update changes revision once and keeps unrelated scene state
+ok 61 - accepted placement/update changes revision once and keeps unrelated scene state
+  ---
+  duration_ms: 0.4617
+  type: 'test'
+  ...
+# Subtest: resistors: 3 V, 10/20 ohm series benchmark
+ok 62 - resistors: 3 V, 10/20 ohm series benchmark
+  ---
+  duration_ms: 2.5488
+  type: 'test'
+  ...
+# Subtest: resistors: parallel benchmark and independent branch currents
+ok 63 - resistors: parallel benchmark and independent branch currents
+  ---
+  duration_ms: 0.4872
+  type: 'test'
+  ...
+# Subtest: lamps: same lamps series at 6 V and parallel at 3 V
+ok 64 - lamps: same lamps series at 6 V and parallel at 3 V
+  ---
+  duration_ms: 1.1482
+  type: 'test'
+  ...
+# Subtest: different series lamps share current but do not share voltage equally
+ok 65 - different series lamps share current but do not share voltage equally
+  ---
+  duration_ms: 0.4153
+  type: 'test'
+  ...
+# Subtest: different parallel lamps share voltage but have different currents
+ok 66 - different parallel lamps share voltage but have different currents
+  ---
+  duration_ms: 0.6116
+  type: 'test'
+  ...
+# Subtest: off-rated mixed lamp network satisfies independent cubic and conservation checks
+ok 67 - off-rated mixed lamp network satisfies independent cubic and conservation checks
+  ---
+  duration_ms: 1.6863
+  type: 'test'
+  ...
+# Subtest: zero voltage, reversed polarity and linear limiting lamp
+ok 68 - zero voltage, reversed polarity and linear limiting lamp
+  ---
+  duration_ms: 0.8419
+  type: 'test'
+  ...
+# Subtest: rejects invalid resistor parameters instead of inventing ideal zero-ohm behavior
+ok 69 - rejects invalid resistor parameters instead of inventing ideal zero-ohm behavior
+  ---
+  duration_ms: 0.4269
+  type: 'test'
+  ...
+# Subtest: lamp parameters, range and iteration failures return no partial readings
+ok 70 - lamp parameters, range and iteration failures return no partial readings
+  ---
+  duration_ms: 0.4091
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=0.5, muk=0.2
+ok 71 - steady horizontal friction: mass=0.5, muk=0.2
+  ---
+  duration_ms: 2.1215
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=1, muk=0.2
+ok 72 - steady horizontal friction: mass=1, muk=0.2
+  ---
+  duration_ms: 0.2925
+  type: 'test'
+  ...
+# Subtest: steady horizontal friction: mass=0.5, muk=0.4
+ok 73 - steady horizontal friction: mass=0.5, muk=0.4
+  ---
+  duration_ms: 0.2266
+  type: 'test'
+  ...
+# Subtest: static friction matches demand instead of always taking its maximum
+ok 74 - static friction matches demand instead of always taking its maximum
+  ---
+  duration_ms: 0.2304
+  type: 'test'
+  ...
+# Subtest: exact static threshold holds; exceeding it starts sliding with kinetic friction
+ok 75 - exact static threshold holds; exceeding it starts sliding with kinetic friction
+  ---
+  duration_ms: 0.2238
+  type: 'test'
+  ...
+# Subtest: friction opposes velocity even when applied pull reverses
+ok 76 - friction opposes velocity even when applied pull reverses
+  ---
+  duration_ms: 0.2312
+  type: 'test'
+  ...
+# Subtest: nonzero near-zero velocity remains sliding; exact rest can stick
+ok 77 - nonzero near-zero velocity remains sliding; exact rest can stick
+  ---
+  duration_ms: 0.2196
+  type: 'test'
+  ...
+# Subtest: invalid physical parameters and arithmetic overflow are rejected
+ok 78 - invalid physical parameters and arithmetic overflow are rejected
+  ---
+  duration_ms: 0.3799
+  type: 'test'
+  ...
+# Subtest: opposite 0.20 N m moments and 3 N support reaction
+ok 79 - opposite 0.20 N m moments and 3 N support reaction
+  ---
+  duration_ms: 2.4315
+  type: 'test'
+  ...
+# Subtest: vertical pull requires 2 N; downward 30 degree pull requires 4 N and 0.05 m arm
+ok 80 - vertical pull requires 2 N; downward 30 degree pull requires 4 N and 0.05 m arm
+  ---
+  duration_ms: 0.5368
+  type: 'test'
+  ...
+# Subtest: same-direction moments remain unbalanced, optional self-weight is an explicit force
+ok 81 - same-direction moments remain unbalanced, optional self-weight is an explicit force
+  ---
+  duration_ms: 0.3402
+  type: 'test'
+  ...
+# Subtest: force line through pivot has zero moment; inverse problem diagnoses zero arm
+ok 82 - force line through pivot has zero moment; inverse problem diagnoses zero arm
+  ---
+  duration_ms: 0.4107
+  type: 'test'
+  ...
+# Subtest: translated and rotated apparatus preserve the 0.20 N m torque
+ok 83 - translated and rotated apparatus preserve the 0.20 N m torque
+  ---
+  duration_ms: 0.3158
+  type: 'test'
+  ...
+# Subtest: missing support, bad direction and non-finite geometry have no reading
+ok 84 - missing support, bad direction and non-finite geometry have no reading
+  ---
+  duration_ms: 0.2447
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.3 m: independent image distance and magnification
+ok 85 - f=0.10 m, u=0.3 m: independent image distance and magnification
+  ---
+  duration_ms: 2.1275
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.2 m: independent image distance and magnification
+ok 86 - f=0.10 m, u=0.2 m: independent image distance and magnification
+  ---
+  duration_ms: 0.3164
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.15 m: independent image distance and magnification
+ok 87 - f=0.10 m, u=0.15 m: independent image distance and magnification
+  ---
+  duration_ms: 0.2226
+  type: 'test'
+  ...
+# Subtest: f=0.10 m, u=0.05 m: independent image distance and magnification
+ok 88 - f=0.10 m, u=0.05 m: independent image distance and magnification
+  ---
+  duration_ms: 0.1823
+  type: 'test'
+  ...
+# Subtest: at focus uses an explicit no-finite-image state and JSON nulls
+ok 89 - at focus uses an explicit no-finite-image state and JSON nulls
+  ---
+  duration_ms: 0.2657
+  type: 'test'
+  ...
+# Subtest: both sides near focus preserve image classification without clamping to focus
+ok 90 - both sides near focus preserve image classification without clamping to focus
+  ---
+  duration_ms: 0.2853
+  type: 'test'
+  ...
+# Subtest: rejects coincident object and invalid or non-finite parameters
+ok 91 - rejects coincident object and invalid or non-finite parameters
+  ---
+  duration_ms: 0.3535
+  type: 'test'
+  ...
+# Subtest: extreme finite inputs do not silently convert an overflowed ratio into a zero image
+ok 92 - extreme finite inputs do not silently convert an overflowed ratio into a zero image
+  ---
+  duration_ms: 0.1887
+  type: 'test'
+  ...
+# Subtest: projectile at 0.1 s matches independent position and velocity
+ok 93 - projectile at 0.1 s matches independent position and velocity
+  ---
+  duration_ms: 2.8445
+  type: 'test'
+  ...
+# Subtest: projectile at 0.2 s matches independent position and velocity
+ok 94 - projectile at 0.2 s matches independent position and velocity
+  ---
+  duration_ms: 0.4235
+  type: 'test'
+  ...
+# Subtest: projectile at 0.3 s matches independent position and velocity
+ok 95 - projectile at 0.3 s matches independent position and velocity
+  ---
+  duration_ms: 0.2297
+  type: 'test'
+  ...
+# Subtest: impact exactly at 0.5 s and range 1 m; a frame beyond impact is truncated
+ok 96 - impact exactly at 0.5 s and range 1 m; a frame beyond impact is truncated
+  ---
+  duration_ms: 0.4528
+  type: 'test'
+  ...
+# Subtest: zero horizontal speed permits free-fall control and translated ground
+ok 97 - zero horizontal speed permits free-fall control and translated ground
+  ---
+  duration_ms: 0.2968
+  type: 'test'
+  ...
+# Subtest: initial sample is at launch position with zero drop and round-trippable velocity
+ok 98 - initial sample is at launch position with zero drop and round-trippable velocity
+  ---
+  duration_ms: 0.3025
+  type: 'test'
+  ...
+# Subtest: launch copies its initial parameters; changing next launch does not rewrite old trajectory
+ok 99 - launch copies its initial parameters; changing next launch does not rewrite old trajectory
+  ---
+  duration_ms: 0.425
+  type: 'test'
+  ...
+# Subtest: 30 and 60 FPS schedules share analytic samples and the same impact event
+ok 100 - 30 and 60 FPS schedules share analytic samples and the same impact event
+  ---
+  duration_ms: 0.3509
+  type: 'test'
+  ...
+# Subtest: rejects invalid launch conditions, sampling times and numerical overflow
+ok 101 - rejects invalid launch conditions, sampling times and numerical overflow
+  ---
+  duration_ms: 1.573
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0 kg distinguishes extension from total length
+ok 102 - spring benchmark mass=0 kg distinguishes extension from total length
+  ---
+  duration_ms: 2.344
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.025 kg distinguishes extension from total length
+ok 103 - spring benchmark mass=0.025 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.3825
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.05 kg distinguishes extension from total length
+ok 104 - spring benchmark mass=0.05 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.3683
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.075 kg distinguishes extension from total length
+ok 105 - spring benchmark mass=0.075 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.1757
+  type: 'test'
+  ...
+# Subtest: spring benchmark mass=0.1 kg distinguishes extension from total length
+ok 106 - spring benchmark mass=0.1 kg distinguishes extension from total length
+  ---
+  duration_ms: 0.209
+  type: 'test'
+  ...
+# Subtest: five calculated points have independently specified slope 20 N/m
+ok 107 - five calculated points have independently specified slope 20 N/m
+  ---
+  duration_ms: 0.3682
+  type: 'test'
+  ...
+# Subtest: tray mass counts toward load; unload returns to original length
+ok 108 - tray mass counts toward load; unload returns to original length
+  ---
+  duration_ms: 0.1946
+  type: 'test'
+  ...
+# Subtest: linear and rated boundaries are inclusive; overlimits return no extrapolated length
+ok 109 - linear and rated boundaries are inclusive; overlimits return no extrapolated length
+  ---
+  duration_ms: 0.2057
+  type: 'test'
+  ...
+# Subtest: missing support, transition, invalid stiffness and invalid mass prohibit readings
+ok 110 - missing support, transition, invalid stiffness and invalid mass prohibit readings
+  ---
+  duration_ms: 0.2279
+  type: 'test'
+  ...
+1..110
+# tests 110
+# suites 0
+# pass 110
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 531.2103

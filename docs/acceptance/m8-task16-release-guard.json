@@ -1,0 +1,7 @@
+{
+  "developmentVersion": "0.2.0-dev.1",
+  "expectedRejection": true,
+  "exitCode": 1,
+  "reason": "RuntimeError: This packager is gated by frozen task-15 evidence for 0.1.0-rc.1; prepare new release evidence before packaging a later version.",
+  "developmentReleaseDirectoryCreated": false
+}

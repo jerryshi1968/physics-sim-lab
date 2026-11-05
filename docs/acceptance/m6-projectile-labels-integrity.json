@@ -1,0 +1,348 @@
+{
+  "date": "2026-11-05",
+  "changedCode": [
+    "src/app/workbench/SceneBoard.tsx"
+  ],
+  "changedCodeLines": 2,
+  "originalCommentsUnchanged": true,
+  "physicsAndPersistenceUnchanged": true,
+  "projectileGraphicUnchanged": true,
+  "protectedFilesUnchanged": true,
+  "layout": {
+    "browser": "158.0.4370.1",
+    "results": [
+      {
+        "width": 1920,
+        "zoom": "45%",
+        "scaleTitleGapPx": 18.600006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "17%",
+        "scaleTitleGapPx": 15,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "21%",
+        "scaleTitleGapPx": 16,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "26%",
+        "scaleTitleGapPx": 16.5,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "33%",
+        "scaleTitleGapPx": 16.625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "41%",
+        "scaleTitleGapPx": 18.531219482421875,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "51%",
+        "scaleTitleGapPx": 19.4140625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "64%",
+        "scaleTitleGapPx": 20.517578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "79%",
+        "scaleTitleGapPx": 23.14697265625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "99%",
+        "scaleTitleGapPx": 25.6837158203125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "124%",
+        "scaleTitleGapPx": 28.604637145996094,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "155%",
+        "scaleTitleGapPx": 32.50579833984375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "194%",
+        "scaleTitleGapPx": 37.13226318359375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "243%",
+        "scaleTitleGapPx": 43.415313720703125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "303%",
+        "scaleTitleGapPx": 50.519134521484375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "379%",
+        "scaleTitleGapPx": 59.89892578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63.00006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1920,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63.00006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "45%",
+        "scaleTitleGapPx": 18.600006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "17%",
+        "scaleTitleGapPx": 15,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "21%",
+        "scaleTitleGapPx": 16,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "26%",
+        "scaleTitleGapPx": 16.5,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "33%",
+        "scaleTitleGapPx": 16.625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "41%",
+        "scaleTitleGapPx": 18.531219482421875,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "51%",
+        "scaleTitleGapPx": 19.4140625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "64%",
+        "scaleTitleGapPx": 20.517578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "79%",
+        "scaleTitleGapPx": 23.14697265625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "99%",
+        "scaleTitleGapPx": 25.6837158203125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "124%",
+        "scaleTitleGapPx": 28.604637145996094,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "155%",
+        "scaleTitleGapPx": 32.50579833984375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "194%",
+        "scaleTitleGapPx": 37.13226318359375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "243%",
+        "scaleTitleGapPx": 43.415313720703125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "303%",
+        "scaleTitleGapPx": 50.519134521484375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "379%",
+        "scaleTitleGapPx": 59.89892578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63.00006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 1366,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63.00006103515625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "45%",
+        "scaleTitleGapPx": 18.60003662109375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "17%",
+        "scaleTitleGapPx": 15,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "21%",
+        "scaleTitleGapPx": 16,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "26%",
+        "scaleTitleGapPx": 16.5,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "33%",
+        "scaleTitleGapPx": 16.625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "41%",
+        "scaleTitleGapPx": 18.53125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "51%",
+        "scaleTitleGapPx": 19.4140625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "64%",
+        "scaleTitleGapPx": 20.517578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "79%",
+        "scaleTitleGapPx": 23.14697265625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "99%",
+        "scaleTitleGapPx": 25.6837158203125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "124%",
+        "scaleTitleGapPx": 28.60467529296875,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "155%",
+        "scaleTitleGapPx": 32.50579833984375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "194%",
+        "scaleTitleGapPx": 37.13226318359375,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "243%",
+        "scaleTitleGapPx": 43.41534423828125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "303%",
+        "scaleTitleGapPx": 50.5191650390625,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "379%",
+        "scaleTitleGapPx": 59.89892578125,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63,
+        "launcherRulerTextCollisions": 0
+      },
+      {
+        "width": 390,
+        "zoom": "400%",
+        "scaleTitleGapPx": 63,
+        "launcherRulerTextCollisions": 0
+      }
+    ]
+  },
+  "e2e": {
+    "startTime": "2026-11-05T03:49:26.568Z",
+    "duration": 15334.973,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

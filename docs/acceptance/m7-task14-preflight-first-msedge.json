@@ -1,0 +1,102 @@
+{
+  "mode": "preflight",
+  "channel": "msedge",
+  "date": "2026-11-05T06:32:46.228Z",
+  "environment": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+    "logicalCpus": 12,
+    "memoryBytes": 16850874368,
+    "os": "win32 10.0.26340",
+    "node": "v24.14.1",
+    "buildMode": "Vite production, local HTTP, headless browser",
+    "browser": "158.0.4370.1"
+  },
+  "stress": {
+    "equipment": 50,
+    "connections": 100,
+    "nodes": 50,
+    "note": "100 connections include parallel duplicate wires for drawing/union load; not a 100-unknown claim.",
+    "residuals": {
+      "kclA": 1.4137996329210978e-16,
+      "normalizedKcl": 1.0462308521874209e-14,
+      "normalizedConstitutive": 1.0008745850147114e-12,
+      "powerBalanceW": -2.6812319725566525e-16,
+      "normalizedPower": 6.613826424998681e-15,
+      "linear": 2.0678531787842992e-16
+    }
+  },
+  "results": [
+    {
+      "experiment": "J-ELEC-01",
+      "title": "串联 · 相同灯泡",
+      "equipment": 6,
+      "connections": 7,
+      "actions": 2,
+      "seconds": 1.4845999999940396,
+      "averageRafFps": 59.275225650244714,
+      "inputToTwoFramesP95Ms": 41.900000005960464,
+      "workerRoundtripP95Ms": 46,
+      "responseSamples": 4,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-OPT-02",
+      "title": "探究凸透镜成像规律",
+      "equipment": 5,
+      "connections": 0,
+      "actions": 2,
+      "seconds": 1.5102999999821185,
+      "averageRafFps": 60.252929882193875,
+      "inputToTwoFramesP95Ms": 31.69999998807907,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 4,
+      "pendingRaf": 0
+    },
+    {
+      "experiment": "J-MECH-02",
+      "title": "探究杠杆平衡条件",
+      "equipment": 6,
+      "connections": 0,
+      "actions": 2,
+      "seconds": 1.5005,
+      "averageRafFps": 59.980006664445185,
+      "inputToTwoFramesP95Ms": 33.599999994039536,
+      "workerRoundtripP95Ms": null,
+      "responseSamples": 4,
+      "pendingRaf": 0
+    }
+  ],
+  "externalRequests": [],
+  "errors": [],
+  "switching": {
+    "replacements": 6,
+    "before": {
+      "documents": 1,
+      "nodes": 4815,
+      "jsEventListeners": 226,
+      "usedSize": 6901252,
+      "totalSize": 7741440,
+      "embedderHeapUsedSize": 6395592,
+      "backingStorageSize": 683727,
+      "activeRaf": 0,
+      "workers": 0,
+      "createdWorkers": 0
+    },
+    "after": {
+      "documents": 1,
+      "nodes": 4816,
+      "jsEventListeners": 226,
+      "usedSize": 8999924,
+      "totalSize": 10100736,
+      "embedderHeapUsedSize": 7165648,
+      "backingStorageSize": 691936,
+      "activeRaf": 0,
+      "workers": 0,
+      "createdWorkers": 2
+    },
+    "delayedReplies": 1,
+    "note": "Forced GC only for same-scene before/after retention checks; not proof of unlimited absence of leaks."
+  },
+  "ok": false,
+  "failure": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '开始牵引', exact: true })\u001b[22m\n\n    at G:\\physics-sim-lab\\scripts\\m7-audit.mjs:98:86"
+}

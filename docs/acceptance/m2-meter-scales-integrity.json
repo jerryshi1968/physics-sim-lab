@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-04",
+  "baselineFiles": 83,
+  "unchangedFiles": 80,
+  "changed": [
+    "src\\app\\workbench\\MeterGraphic.tsx",
+    "src\\app\\workbench\\SceneBoard.tsx",
+    "tests\\e2e\\electrical.spec.ts"
+  ],
+  "protectedFiles": 4,
+  "protectedChanged": [],
+  "textFiles": 228,
+  "strictUtf8Errors": [],
+  "relativeLinks": 302,
+  "badLinks": [],
+  "buildArtifacts": 5,
+  "badArtifacts": [],
+  "noticesMatch": true,
+  "e2e": {
+    "startTime": "2026-11-04T02:27:00.827Z",
+    "duration": 46043.671,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "e2eErrors": []
+}

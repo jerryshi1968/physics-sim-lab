@@ -1,0 +1,207 @@
+{
+  "mode": "smoke",
+  "channel": "chrome",
+  "date": "2026-11-05T06:49:47.227Z",
+  "environment": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+    "logicalCpus": 12,
+    "memoryBytes": 16850874368,
+    "os": "win32 10.0.26340",
+    "node": "v24.14.1",
+    "buildMode": "Vite production, local HTTP, headless browser",
+    "browser": "153.0.8010.48"
+  },
+  "stress": {
+    "equipment": 50,
+    "connections": 100,
+    "nodes": 50,
+    "note": "100 connections include parallel duplicate wires for drawing/union load; not a 100-unknown claim.",
+    "residuals": {
+      "kclA": 1.4137996329210978e-16,
+      "normalizedKcl": 1.0462308521874209e-14,
+      "normalizedConstitutive": 1.0008745850147114e-12,
+      "powerBalanceW": -2.6812319725566525e-16,
+      "normalizedPower": 6.613826424998681e-15,
+      "linear": 2.0678531787842992e-16
+    }
+  },
+  "results": [
+    {
+      "experiment": "J-ELEC-01",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-ELEC-01",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-ELEC-01",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-OPT-02",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-OPT-02",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-OPT-02",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-02",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-02",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-02",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-01",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-01",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "J-MECH-01",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-01",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-01",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-01",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-02",
+      "width": 1366,
+      "height": 768,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-02",
+      "width": 1920,
+      "height": 1080,
+      "cssZoom": 1.5,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    },
+    {
+      "experiment": "H-MECH-02",
+      "width": 820,
+      "height": 1180,
+      "cssZoom": 1,
+      "keyboard": true,
+      "exportSaveReload": true,
+      "pageOverflow": false
+    }
+  ],
+  "externalRequests": [],
+  "errors": [],
+  "staticRoot": "artifacts/m7-offline-check/dist",
+  "coldOffline": {
+    "cacheDisabled": true,
+    "network": "all non-loopback page/Worker requests aborted; local HTTP retained; no OS adapter changes",
+    "serviceWorkers": 0
+  },
+  "touch": {
+    "type": "software touch context, not physical tablet",
+    "width": 820,
+    "height": 1180,
+    "sixEntrypoints": true
+  },
+  "ok": true
+}

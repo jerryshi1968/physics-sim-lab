@@ -1,0 +1,21 @@
+✔ configured rig and three independent SI baselines reach a real 0.3 s steady window (22.3173ms)
+✔ static friction matches demand, holds at 2.5 N and breaks at 2.6 N with 3.2 m/s² (1.6239ms)
+✔ event-based stopping preserves tiny velocities then rests without repeated sign flips or energy creation (1.7226ms)
+✔ reversal opposes current motion first, crosses zero exactly and only then reverses friction (0.9762ms)
+✔ halved steps converge for startup and exact force integration conserves the analytic trajectory (3.304ms)
+✔ mass, material and area controls are independent; unloaded weights do not contribute to N (4.9318ms)
+✔ invalid attachments, material mismatches, angled pulls, lost contact and unsupported domains have no normal sample (13.6887ms)
+✔ Matter static representation follows SI motion and contact with no second integration, friction force or scale dependence (10.798ms)
+✔ constraint view follows block, meter and loaded masses without modifying the saved initial apparatus (5.2316ms)
+✔ steady captures freeze conditions and runtime, round-trip JSON/CSV, plot F-N and preserve records through reset/editing (10.5243ms)
+✔ non-steady instrument/manual data retain labels, exclude invalid friction points and corrections never turn transients into steady observations (4.7495ms)
+✔ over-range tension is not a normal zero and malformed or initial-state measurements are rejected (4.2073ms)
+✔ assembly updates are atomic, undoable and reject unknown equipment without partial mutation (3.7847ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 419.363

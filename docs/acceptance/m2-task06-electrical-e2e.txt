@@ -1,0 +1,15 @@
+[WebServer] (node:13140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 2 workers
+
+(node:26964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\electrical.spec.ts:103:1 › actual range rewiring, reverse, over-range, invalid multi-range and reset clear stale readings (2.3s)
+  ok 3 [chromium] › tests\e2e\electrical.spec.ts:133:1 › delayed old Worker messages after reset cannot overwrite a newer run or leave extra workers active (2.3s)
+  ok 1 [chromium] › tests\e2e\electrical.spec.ts:54:1 › blank wiring runs two nonlinear series lamps with physical dual-range instruments, pauses and saves only initial state (4.9s)
+  ok 4 [chromium] › tests\e2e\electrical.spec.ts:169:3 › touch lamp and meter › touch places and connects a real lamp and the correct meter terminals (1.5s)
+
+  4 passed (9.0s)

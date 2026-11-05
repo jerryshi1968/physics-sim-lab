@@ -1,0 +1,44 @@
+✔ configured rig and three independent SI baselines reach a real 0.3 s steady window (23.3528ms)
+✔ static friction matches demand, holds at 2.5 N and breaks at 2.6 N with 3.2 m/s² (1.9048ms)
+✔ event-based stopping preserves tiny velocities then rests without repeated sign flips or energy creation (1.8908ms)
+✔ reversal opposes current motion first, crosses zero exactly and only then reverses friction (1.0573ms)
+✔ halved steps converge for startup and exact force integration conserves the analytic trajectory (3.6331ms)
+✔ mass, material and area controls are independent; unloaded weights do not contribute to N (5.5211ms)
+✔ invalid attachments, material mismatches, angled pulls, lost contact and unsupported domains have no normal sample (14.9929ms)
+✖ Matter static representation follows SI motion and contact with no second integration, friction force or scale dependence (4.4318ms)
+✔ constraint view follows block, meter and loaded masses without modifying the saved initial apparatus (5.1251ms)
+✔ steady captures freeze conditions and runtime, round-trip JSON/CSV, plot F-N and preserve records through reset/editing (14.228ms)
+✔ non-steady instrument/manual data retain labels, exclude invalid friction points and corrections never turn transients into steady observations (5.5057ms)
+✔ over-range tension is not a normal zero and malformed or initial-state measurements are rejected (3.7329ms)
+✔ assembly updates are atomic, undoable and reject unknown equipment without partial mutation (2.8714ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 449.5011
+
+✖ failing tests:
+
+test at tests\core\friction-experiment.test.mjs:72:1
+✖ Matter static representation follows SI motion and contact with no second integration, friction force or scale dependence (4.4318ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///G:/physics-sim-lab/tests/core/friction-experiment.test.mjs:75:56)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-05",
+  "baselineFiles": 196,
+  "unchangedFiles": 193,
+  "changed": [
+    "src/app/App.tsx",
+    "src/app/friction/useFrictionSimulation.ts",
+    "eslint.config.mjs"
+  ],
+  "added": [
+    "scripts/m7-audit.mjs",
+    "scripts/serve-dist.mjs",
+    "tests/core/static-server.test.mjs",
+    "tests/e2e/friction-lifecycle.spec.ts"
+  ],
+  "protected": [
+    {
+      "path": "AGENTS.md",
+      "unchanged": true,
+      "sha256": "88A6B36512E4523A8DF946A8ECB2FB714B1C5CE36CBE7820FBE08AFE4671C31E"
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "unchanged": true,
+      "sha256": "D3FA15DF8A21C0128BC31D1DA6B7A8F346823F508FE4FAA77ACB7B3BE7D172AD"
+    },
+    {
+      "path": "package.json",
+      "unchanged": true,
+      "sha256": "F65B5409FEE1B72F642CB005E8E241686EA6A95821486CE47105324FE82EEA1E"
+    },
+    {
+      "path": "package-lock.json",
+      "unchanged": true,
+      "sha256": "B3A9D4079ACB76C129285F4BF1666E89C65E8C7C6CB470D19690C2A9D5F1512C"
+    }
+  ],
+  "originalPhysicsSamplesAndTestsUnchanged": true,
+  "runtimeNoticesUnchanged": true,
+  "newDependencies": false,
+  "newThirdPartyAssets": false,
+  "tests": {
+    "edge": {
+      "startTime": "2026-11-05T06:45:02.119Z",
+      "duration": 171705.84,
+      "expected": 86,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "chrome": {
+      "startTime": "2026-11-05T06:49:02.061Z",
+      "duration": 196418.215,
+      "expected": 86,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "smoke-msedge": {
+      "ok": true,
+      "checks": 18,
+      "softwareTouch": {
+        "type": "software touch context, not physical tablet",
+        "width": 820,
+        "height": 1180,
+        "sixEntrypoints": true
+      }
+    },
+    "smoke-chrome": {
+      "ok": true,
+      "checks": 18,
+      "softwareTouch": {
+        "type": "software touch context, not physical tablet",
+        "width": 820,
+        "height": 1180,
+        "sixEntrypoints": true
+      }
+    }
+  },
+  "unitTests": {
+    "pass": 302,
+    "fail": 0,
+    "skip": 0
+  },
+  "offlinePackageSha256": "3C34B1E1CC3DE536ECF928203D546EFAD224522568C7E488AEBA5E9C2AFD1F28",
+  "strictUtf8Texts": 666,
+  "relativeMarkdownLinks": 840,
+  "brokenLinks": []
+}

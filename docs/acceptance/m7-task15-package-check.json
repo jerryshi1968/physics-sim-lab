@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "deterministicAcrossTwoRuns": true,
+  "archives": [
+    {
+      "kind": "source",
+      "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-source.zip",
+      "sha256": "A356AD49F598251182CED3C599DBC950BDBFBB782F9694D6A0C7A906F0F3F693",
+      "bytes": 669867,
+      "files": 275,
+      "codeFilesByteIdentical": 197,
+      "crc": true,
+      "allFileHashes": true,
+      "relativeMarkdownLinksValid": true,
+      "brokenLinks": [],
+      "extracted": "artifacts/release-0.1.0-rc.1/verify-final-source/cn-physics-lab-0.1.0-rc.1-source"
+    },
+    {
+      "kind": "offline",
+      "archive": "artifacts/release-0.1.0-rc.1/cn-physics-lab-0.1.0-rc.1-offline.zip",
+      "sha256": "713D875FD4A57B42883872256A6DCE5EB5447D5387E748C9A4B6B51EADDDF9EF",
+      "bytes": 295699,
+      "files": 19,
+      "codeFilesByteIdentical": 1,
+      "crc": true,
+      "allFileHashes": true,
+      "relativeMarkdownLinksValid": true,
+      "brokenLinks": [],
+      "extracted": "artifacts/release-0.1.0-rc.1/verify-final-offline/cn-physics-lab-0.1.0-rc.1-offline"
+    }
+  ],
+  "noRemoteActions": true
+}

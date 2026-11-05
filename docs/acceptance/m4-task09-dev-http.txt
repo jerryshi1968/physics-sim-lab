@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:5175/",
+  "status": 200,
+  "module": "src/app/App.tsx",
+  "moduleStatus": 200,
+  "isolatedPid": 27420,
+  "ownProcessOnly": true
+}

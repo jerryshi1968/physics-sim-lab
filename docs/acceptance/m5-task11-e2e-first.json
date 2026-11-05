@@ -1,0 +1,370 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "G:\\physics-sim-lab\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/friction-experiment.spec.ts"
+    ],
+    "configFile": "G:\\physics-sim-lab\\playwright.config.ts",
+    "rootDir": "G:/physics-sim-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "G:/physics-sim-lab/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "G:/physics-sim-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "G:\\physics-sim-lab\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "snapshotDir": "G:\\physics-sim-lab\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "msedge"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "friction-experiment.spec.ts",
+      "file": "friction-experiment.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "four controlled comparisons and transient data form traceable F-N, CSV, JSON and saved experiments without storing dynamic poses",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 25133,
+                  "error": {
+                    "message": "TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================",
+                    "stack": "TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================\n    at download (G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:7:24)\n    at G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:39:150",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                      "column": 24,
+                      "line": 7
+                    },
+                    "snippet": "   5 |\n   6 | async function download(page: Page, name = '导出') {\n>  7 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');\n     |                        ^\n   8 | }\n   9 | const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await download(page)) as SceneDocument;\n  10 | const status = (page: Page) => page.getByTestId('friction-status');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                        "column": 24,
+                        "line": 7
+                      },
+                      "message": "TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================\n\n   5 |\n   6 | async function download(page: Page, name = '导出') {\n>  7 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');\n     |                        ^\n   8 | }\n   9 | const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await download(page)) as SceneDocument;\n  10 | const status = (page: Page) => page.getByTestId('friction-status');\n    at download (G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:7:24)\n    at G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:39:150"
+                    },
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                        "column": 104,
+                        "line": 7
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '导出 CSV', exact: true })\u001b[22m\n\n\n   5 |\n   6 | async function download(page: Page, name = '导出') {\n>  7 |   const pending = page.waitForEvent('download'); await page.getByRole('button', { name, exact: true }).click(); return readFile((await (await pending).path())!, 'utf8');\n     |                                                                                                        ^\n   8 | }\n   9 | const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await download(page)) as SceneDocument;\n  10 | const status = (page: Page) => page.getByTestId('friction-status');\n    at download (G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:7:104)\n    at G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:39:150"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T13:00:29.201Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-four-c-47004-thout-storing-dynamic-poses-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                    "column": 24,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-9955a7d549dfa96a1f56",
+          "file": "friction-experiment.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "controlled pull matches static demand, breaks threshold, stops at zero and reverses without resetting runtime; invalid models and over-range are explicit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4577,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T13:00:29.204Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-ed4f617f5aa0ab3f5321",
+          "file": "friction-experiment.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "blank apparatus assembles horizontally, drag-loads a weight, cancels and undoes as one command and keeps initial-state positioning honest",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 16020,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: '器材库', exact: true }).locator('[data-library-type=\"mechanical.friction-surface\"]')\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: '器材库', exact: true }).locator('[data-library-type=\"mechanical.friction-surface\"]')\u001b[22m\n\n    at G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:63:224",
+                    "location": {
+                      "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                      "column": 224,
+                      "line": 63
+                    },
+                    "snippet": "  61 |   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await open(page, true);\n  62 |   const library = page.getByRole('region', { name: '器材库', exact: true });\n> 63 |   for (const type of ['mechanical.friction-surface', 'mechanical.friction-block', 'mechanical.friction-drive', 'mechanical.force-meter', 'mechanical.friction-load']) { await library.locator(`[data-library-type=\"${type}\"]`).click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click(); }\n     |                                                                                                                                                                                                                                ^\n  64 |   const source = await exported(page), id = (type: string) => source.equipment.find(item => item.type === type)!.id;\n  65 |   const block = id('mechanical.friction-block'), surface = id('mechanical.friction-surface'), meter = id('mechanical.force-meter'), drive = id('mechanical.friction-drive'), load = id('mechanical.friction-load');\n  66 |   await page.getByLabel('选择器材', { exact: true }).selectOption(block); await page.getByLabel('木块接触面').selectOption(surface); await page.getByLabel('木块牵引器').selectOption(drive); await page.getByLabel('木块测力计').selectOption(meter); await page.getByRole('button', { name: '应用水平连接', exact: true }).click(); await page.getByRole('button', { name: '放到接触面上', exact: true }).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                        "column": 224,
+                        "line": 63
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: '器材库', exact: true }).locator('[data-library-type=\"mechanical.friction-surface\"]')\u001b[22m\n\n\n  61 |   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await open(page, true);\n  62 |   const library = page.getByRole('region', { name: '器材库', exact: true });\n> 63 |   for (const type of ['mechanical.friction-surface', 'mechanical.friction-block', 'mechanical.friction-drive', 'mechanical.force-meter', 'mechanical.friction-load']) { await library.locator(`[data-library-type=\"${type}\"]`).click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click(); }\n     |                                                                                                                                                                                                                                ^\n  64 |   const source = await exported(page), id = (type: string) => source.equipment.find(item => item.type === type)!.id;\n  65 |   const block = id('mechanical.friction-block'), surface = id('mechanical.friction-surface'), meter = id('mechanical.force-meter'), drive = id('mechanical.friction-drive'), load = id('mechanical.friction-load');\n  66 |   await page.getByLabel('选择器材', { exact: true }).selectOption(block); await page.getByLabel('木块接触面').selectOption(surface); await page.getByLabel('木块牵引器').selectOption(drive); await page.getByLabel('木块测力计').selectOption(meter); await page.getByRole('button', { name: '应用水平连接', exact: true }).click(); await page.getByRole('button', { name: '放到接触面上', exact: true }).click();\n    at G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts:63:224"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T13:00:34.377Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "G:\\physics-sim-lab\\test-results\\friction-experiment-blank--f1bd5-al-state-positioning-honest-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "G:\\physics-sim-lab\\tests\\e2e\\friction-experiment.spec.ts",
+                    "column": 224,
+                    "line": 63
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f86993a2350ea3138749-c8f26c67987699c4631b",
+          "file": "friction-experiment.spec.ts",
+          "line": 60,
+          "column": 1
+        }
+      ],
+      "suites": [
+        {
+          "title": "touch friction experiment",
+          "file": "friction-experiment.spec.ts",
+          "line": 76,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch enters the mechanical experiment, reaches steady state, reads and records without overflow or accidental state changes on cancel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2908,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-04T13:00:51.183Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f86993a2350ea3138749-ac59142deec2bb90d13d",
+              "file": "friction-experiment.spec.ts",
+              "line": 78,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T13:00:27.639Z",
+    "duration": 28397.882999999998,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

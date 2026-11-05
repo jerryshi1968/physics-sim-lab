@@ -1,0 +1,64 @@
+--- src/app/App.tsx (before)
+
++++ src/app/App.tsx (after)
+
+@@ -202,6 +202,7 @@
+
+ 
+   function resetDocument() {
+     projectile.reset();
++    friction.reset();
+     setNutPreview(null);
+     setMechanicalPreview(null);
+     setLeverAuxiliary(false);
+@@ -311,6 +312,7 @@
+
+ 
+   function confirmReplacement() {
+     projectile.reset();
++    friction.reset();
+     if (!pending) return;
+     simulation.reset();
+     applyHistory(createHistory(pending.document));
+--- src/app/friction/useFrictionSimulation.ts (before)
+
++++ src/app/friction/useFrictionSimulation.ts (after)
+
+@@ -18,9 +18,11 @@
+
+   const [frame, setFrame] = useState<{ key: string; state: FrictionMotion; runId: string; error: string | null } | null>(null), [runningKey, setRunningKey] = useState<string | null>(null);
+   useEffect(() => {
+     runtime.current?.adapter.dispose(); runtime.current = null;
++    let cancelled = false;
++    queueMicrotask(() => { if (!cancelled) { setFrame(null); setRunningKey(null); } });
+     const current = context.current;
+     if (current.key && current.rig?.ok) runtime.current = { key: current.key, state: current.rig.initial, adapter: createFrictionAdapter(current.rig), runId: `friction-${crypto.randomUUID()}` };
+-    return () => { runtime.current?.adapter.dispose(); runtime.current = null; };
++    return () => { cancelled = true; runtime.current?.adapter.dispose(); runtime.current = null; };
+   }, [key]);
+   const advance = useCallback((count: number) => {
+     const current = context.current, active = runtime.current;
+@@ -58,7 +60,7 @@
+
+   return { sample, state, rig, viewScene, running: !!key && runningKey === key, runId: frame?.key === key ? frame.runId : '',
+     start: () => { if (runtime.current?.key === key && rig?.ok && !error) setRunningKey(key); }, pause: () => setRunningKey(null),
+     step: () => { setRunningKey(null); advance(1); },
+-    reset: () => { setRunningKey(null); if (runtime.current && rig?.ok) { runtime.current.state = rig.initial; runtime.current.runId = `friction-${crypto.randomUUID()}`; runtime.current.adapter.sync(rig.initial, rig.dt); setFrame({ key, state: rig.initial, runId: runtime.current.runId, error: null }); } },
++    reset: () => { setRunningKey(null); setFrame(null); if (runtime.current && rig?.ok) { runtime.current.state = rig.initial; runtime.current.runId = `friction-${crypto.randomUUID()}`; runtime.current.adapter.sync(rig.initial, rig.dt); setFrame({ key, state: rig.initial, runId: runtime.current.runId, error: null }); } },
+   };
+ }
+ export type FrictionSimulation = ReturnType<typeof useFrictionSimulation>;
+--- eslint.config.mjs (before)
+
++++ eslint.config.mjs (after)
+
+@@ -5,7 +5,7 @@
+
+ import reactHooks from 'eslint-plugin-react-hooks';
+ 
+ export default defineConfig([
+-  { ignores: ['node_modules/**', '.npm-cache/**', 'dist/**', 'test-results/**', 'playwright-report/**', '.playwright-browsers/**'] },
++  { ignores: ['artifacts/**', 'node_modules/**', '.npm-cache/**', 'dist/**', 'test-results/**', 'playwright-report/**', '.playwright-browsers/**'] },
+   js.configs.recommended,
+   { files: ['**/*.mjs', 'vite.config.ts', 'playwright.config.ts', 'tests/e2e/**/*.ts'], languageOptions: { globals: globals.node } },
+   ...tseslint.configs.recommended.map(config => ({ ...config, files: ['**/*.ts', '**/*.tsx'] })),
