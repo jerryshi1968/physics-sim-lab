@@ -10,7 +10,7 @@ for (const width of [1366, 1920]) {
     });
     await page.setViewportSize({ width, height: width === 1366 ? 768 : 1080 });
     await page.goto('/');
-    await expect(page).toHaveTitle('中学物理实验室');
+    await expect(page).toHaveTitle('中学物理仿真实验室');
     await expect(page.getByRole('heading', { name: '未命名实验' })).toBeVisible();
     for (const name of ['器材库', '实验区域', '属性与诊断']) {
       await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();

@@ -751,10 +751,9 @@ export function App() {
     <a className="skip-link" href="#workbench">跳至实验工作台</a>
     <header className="app-header">
       <div className="brand"><span className="brand-mark"><AtomMark /></span>
-        <div><span className="brand-name">中学物理实验室</span><span className="brand-caption">观察 · 测量 · 探索</span></div>
+        <div><span className="brand-name">中学物理仿真实验室</span><span className="brand-caption">观察 · 测量 · 探索</span></div>
       </div>
       <span className="workspace-label">实验工作台</span>
-      <span className="local-badge"><span />本地实验</span>
     </header>
 
     <div className="document-bar">
