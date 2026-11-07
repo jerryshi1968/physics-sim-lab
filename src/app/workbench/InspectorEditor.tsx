@@ -27,13 +27,14 @@ interface Props {
   onApply: (id: string, pose: Pose2D, parameters: Record<string, Scalar>) => boolean;
   onRemove: () => void;
   onRoute: (add: boolean) => void;
+  onDeleteRoutePoint: (index: number) => void;
   onColor: (color: string) => void;
   onWireEnd: (selection: WireEndSelection) => void;
   onDetachEnd: (side: 'from' | 'to') => void;
   onFlip: (id: string) => void;
 }
 
-export function InspectorEditor({ scene, registry, selection, start, wireColor, activeWireEnd, onSelect, onPort, onApply, onRemove, onRoute, onColor, onWireEnd, onDetachEnd, onFlip }: Props) {
+export function InspectorEditor({ scene, registry, selection, start, wireColor, activeWireEnd, onSelect, onPort, onApply, onRemove, onRoute, onDeleteRoutePoint, onColor, onWireEnd, onDetachEnd, onFlip }: Props) {
   const instance = selection?.kind === 'equipment' ? scene.equipment.find(item => item.id === selection.id) : undefined;
   const wire = selection?.kind === 'connection' ? scene.connections.find(item => item.id === selection.id) : undefined;
   const definition = instance && registry.get(instance.type, instance.definitionVersion);
@@ -69,7 +70,10 @@ export function InspectorEditor({ scene, registry, selection, start, wireColor, 
         {wire[side] && <button onClick={() => onDetachEnd(side)}>拔开线头 {index === 0 ? 'A' : 'B'}</button>}
       </div>)}</div>
       <p className="editor-help">拖动线头改接；拖动线身或弯曲控制点调整形状。也可先选线头，再点击目标接线柱。</p>
-      <button onClick={() => onRoute(true)}>添加弯曲点</button><button onClick={() => onRoute(false)}>清除弯曲点</button>
+      <p className="editor-help">当前有 {wire.routeWorldM?.length ?? 0} 个弯曲点。右键点击菱形点可删除；Tab 聚焦点后按 Delete 也可删除。触屏可用下方按钮逐点删除，操作支持撤销。</p>
+      <button disabled={(wire.routeWorldM?.length ?? 0) >= 100} onClick={() => onRoute(true)}>添加弯曲点</button><button disabled={!wire.routeWorldM?.length} onClick={() => onRoute(false)}>清除弯曲点</button>
+      {!!wire.routeWorldM?.length && <fieldset><legend>删除指定弯曲点（从线头 A 向 B 编号）</legend>{wire.routeWorldM.map((_, index) =>
+        <button key={index} onClick={() => onDeleteRoutePoint(index)}>删除弯曲点 {index + 1}</button>)}</fieldset>}
       <button className="delete-button" onClick={onRemove}>删除导线</button>
     </div>}
   </>;

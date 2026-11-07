@@ -708,6 +708,11 @@ export function App() {
     route(wire.id, add ? [...points, { x: (first.xM + last.xM) / 2, y: (first.yM + last.yM) / 2 + 0.06 * (points.length + 1) }] : []);
   }
 
+  function deleteRoutePoint(index: number) {
+    const wire = selection?.kind === 'connection' ? scene.connections.find(item => item.id === selection.id) : undefined;
+    if (wire) route(wire.id, (wire.routeWorldM ?? []).filter((_, pointIndex) => pointIndex !== index));
+  }
+
   function viewport(value: Viewport) {
     applyHistory(setHistoryViewport(historyRef.current, value));
   }
@@ -738,7 +743,7 @@ export function App() {
   return <div className="lab-app" aria-busy={booting || busy} onKeyDownCapture={event => {
     const target = event.target as HTMLElement;
     if (target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"]), [role="textbox"]') || pending || renaming || choosingExperiment || choosingOptical || choosingReflection || savedExperiments || booting) return;
-    if (event.key === 'Delete' && !event.ctrlKey && !event.metaKey && !event.altKey && selection && !busy) {
+    if (event.key === 'Delete' && !target.closest('.route-handle') && !event.ctrlKey && !event.metaKey && !event.altKey && selection && !busy) {
       event.preventDefault(); event.stopPropagation();
       if (!event.repeat) removeSelected();
       return;
@@ -802,7 +807,7 @@ export function App() {
         {projectileMode && mechanicalSelection?.type === PROJECTILE_BALL && <section className="projectile-panel"><h3>下次小球装配</h3><label>小球装入发射器<select aria-label="小球装入发射器" value={String(mechanicalSelection.parameters.launcherId ?? '')} onChange={event => applyProperties(mechanicalSelection.id, mechanicalSelection.pose, { ...mechanicalSelection.parameters, launcherId: event.target.value })}><option value="">未装入</option>{scene.equipment.filter(item => item.type === PROJECTILE_LAUNCHER).map(item => <option key={item.id} value={item.id}>{item.id}</option>)}</select></label><p>可把小球拖到枪口附近装入；参数立即配置到下次初态，本次飞行中的小球不接受拖动。</p></section>}
         {!projectileMode && !springMode && !frictionMode && mechanicalSelection && <LeverAttachment key={`${mechanicalSelection.id}:${scene.revision}`} scene={scene} instance={mechanicalSelection} onAttach={parameters => { commit({ type: 'update-equipment', id: mechanicalSelection.id, pose: mechanicalSelection.pose, parameters }); }} />}
         <InspectorEditor scene={springMode ? springScene : mechanicalMode ? mechanicalScene : scene} registry={registry} selection={selection} start={connectionStart} wireColor={wireColor} onSelect={select} activeWireEnd={activeWireEnd}
-          onPort={connect} onApply={applyProperties} onRemove={removeSelected} onRoute={changeRoute} onWireEnd={chooseWireEnd} onDetachEnd={detachWireEnd} onColor={setWireColor} onFlip={flipEquipment} />
+          onPort={connect} onApply={applyProperties} onRemove={removeSelected} onRoute={changeRoute} onDeleteRoutePoint={deleteRoutePoint} onWireEnd={chooseWireEnd} onDetachEnd={detachWireEnd} onColor={setWireColor} onFlip={flipEquipment} />
         {!opticalMode && !mechanicalMode && <div className="config-section"><span className="eyebrow">当前模型设定</span><dl>
           <div><dt>电学模式</dt><dd>理想源 · 电表按器材参数</dd></div><div><dt>重力加速度</dt><dd>{scene.simulationConfig.gravityMPerS2} m/s²</dd></div><div><dt>随机误差</dt><dd>{scene.simulationConfig.randomError.enabled ? '配置启用，本阶段未施加' : '关闭'}</dd></div>
         </dl><p className="config-note">重力加速度为可配置的教学值。</p></div>}

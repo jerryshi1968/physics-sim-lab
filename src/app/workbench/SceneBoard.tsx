@@ -226,9 +226,19 @@ export function SceneBoard({ reflectionOutcome = null, projectileMode = false, p
     const displayed = routePreview?.id === wire.id ? { ...base, routeWorldM: routePreview.points } : base;
     return <g key={wire.id} data-wire-controls-of={wire.id}>{(displayed.routeWorldM ?? []).map((point, pointIndex) => {
       const screen = worldToScreen({ xM: point.x, yM: point.y }, view, size);
-      return <g key={pointIndex} className="route-handle" role="button" tabIndex={0} aria-label={`弯曲点 ${pointIndex + 1}，方向键移动`}
+      return <g key={pointIndex} className="route-handle" role="button" tabIndex={0} aria-label={`弯曲点 ${pointIndex + 1}，方向键移动，Delete 删除`}
         transform={`translate(${screen.x} ${screen.y})`} onClick={event => event.stopPropagation()}
+        onContextMenu={event => {
+          event.preventDefault(); event.stopPropagation();
+          cancelGesture();
+          onRoute(wire.id, (wire.routeWorldM ?? []).filter((_, index) => index !== pointIndex));
+        }}
         onKeyDown={event => {
+          if (event.key === 'Delete' || event.key === 'Backspace') {
+            event.preventDefault(); event.stopPropagation();
+            if (!event.repeat) onRoute(wire.id, (wire.routeWorldM ?? []).filter((_, index) => index !== pointIndex));
+            return;
+          }
           const deltas: Record<string, { x: number; y: number }> = { ArrowLeft: { x: -0.01, y: 0 }, ArrowRight: { x: 0.01, y: 0 }, ArrowUp: { x: 0, y: 0.01 }, ArrowDown: { x: 0, y: -0.01 } };
           const delta = deltas[event.key];
           if (delta) {
