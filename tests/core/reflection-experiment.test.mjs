@@ -8,7 +8,8 @@ import { simulateReflection, isReflectionScene } from '../../src/equipment/refle
 import { MIRROR, EMITTER, PAPER, PROTRACTOR, NORMAL, reflectionTypes } from '../../src/equipment/reflection/definitions.ts';
 import { reflect3, paperTrace, length3, dot3 } from '../../src/core/optical/reflection.ts';
 import { buildReflectionMeasurements, reflectionProfiles } from '../../src/equipment/reflection/measure.ts';
-import { appendMeasurements } from '../../src/core/measurements/records.ts';
+import { displayMeasurement, measurementInputInSI } from '../../src/core/measurements/display.ts';
+import { appendMeasurements, correctManualMeasurement } from '../../src/core/measurements/records.ts';
 import { measurementSeries } from '../../src/core/measurements/charts.ts';
 import { measurementsCsv } from '../../src/core/measurements/csv.ts';
 import { validateSceneDocument } from '../../src/core/scene/validate.ts';
@@ -102,8 +103,8 @@ test('three student comparisons drive chart, CSV and strict save roundtrip, snap
   let s=scene();for(const [i,deg]of [30,45,60].entries()){
     orbit(s,90+deg);const built=buildReflectionMeasurements(s,registry,{...input,incidenceDeg:String(deg),reflectionDeg:String(deg+1),setupLabel:'三组比较'},`sample.${i}`,timestamp);assert.equal(built.ok,true);const appended=appendMeasurements(s,registry,built.records,built.snapshot,timestamp);assert.equal(appended.ok,true);s=appended.document;
   }
-  const series=measurementSeries(s,reflectionProfiles[0]);assert.equal(series.length,1);assert.equal(series[0].points.length,3);close(series[0].points[2].x,Math.PI/3);close(series[0].points[2].y,61*Math.PI/180);
-  const csv=measurementsCsv(s);assert.ok(csv.includes('rad'));assert.ok(csv.includes('31°'));assert.ok(csv.includes('手工估读'));assert.equal(/NaN|Infinity/.test(csv),false);
+  const series=measurementSeries(s,reflectionProfiles[0]);assert.equal(series.length,1);assert.equal(series[0].points.length,3);close(series[0].points[2].x,60);close(series[0].points[2].y,61);
+  const csv=measurementsCsv(s);assert.ok(csv.includes('"°",30'));assert.ok(csv.includes('31°'));assert.ok(csv.includes('手工估读'));assert.equal(/NaN|Infinity/.test(csv),false);
   const restored=parseSceneJson(serializeScene(s,registry),registry);assert.equal(restored.ok,true);assert.deepEqual(restored.document,s);
   const changed=JSON.parse(serializeScene(s,registry));changed.equipment[0].type='optical.unknown';assert.equal(parseSceneJson(JSON.stringify(changed),registry).ok,false);
 });
@@ -116,4 +117,23 @@ test('fold and pose commands undo independently of immutable measurement snapsho
 test('lens model also rejects unsupported reflection apparatus instead of silently ignoring it',()=>{
   const lens=createOpticalExperiment('lens.test',timestamp),mirror=structuredClone(item(scene(),MIRROR));
   lens.equipment.push(mirror);assert.equal(validateSceneDocument(lens,registry).ok,true);assert.deepEqual(simulateOptical(lens,registry),{ok:false,code:'OPTICAL_MIXED_DOMAIN'});
+});
+
+
+test('degree records, corrections and export preserve SI snapshots and invalid statuses',()=>{
+  const built=buildReflectionMeasurements(scene(),registry,{...input,incidenceDeg:'30'},'degree.sample',timestamp);
+  const added=appendMeasurements(scene(),registry,built.records,built.snapshot,timestamp);assert.equal(added.ok,true);
+  const s=added.document,before=structuredClone(s),record=s.measurementRecords[0],view=displayMeasurement(record);
+  assert.equal(view.value,30);assert.equal(view.unit,'°');assert.equal(view.rawInput,'30');assert.deepEqual(view.range,{min:0,max:90,resolution:1});
+  assert.equal(view.context.instrumentDisplayValue,30);assert.equal(view.context.physicalValue,30);assert.deepEqual(s,before);
+  const corrected=correctManualMeasurement(s,registry,record.id,measurementInputInSI(record,'32.5'),timestamp);assert.equal(corrected.ok,true);
+  assert.equal(displayMeasurement(corrected.document.measurementRecords[0]).value,32.5);assert.equal(displayMeasurement(corrected.document.measurementRecords[0]).rawInput,'32.5');
+  assert.equal(corrected.document.measurementRecords[0].context.originalRawInput,'30°');assert.deepEqual(corrected.document.measurementSnapshots,s.measurementSnapshots);
+  const csv=measurementsCsv(corrected.document);assert.ok(csv.includes('"°",32.5,"30°","32.5"'));assert.ok(csv.includes(',0,90,1,'));
+  for(const [raw,status]of [['91','over-range'],['-1','reverse'],['','invalid']]){
+    const result=correctManualMeasurement(s,registry,record.id,measurementInputInSI(record,raw),timestamp);assert.equal(result.ok,true);
+    const display=displayMeasurement(result.document.measurementRecords[0]);assert.equal(display.value,null);assert.equal(display.measurementStatus,status);
+  }
+  assert.equal(measurementInputInSI(record,'abc'),null);assert.equal(measurementInputInSI(record,'1e999'),null);
+  assert.equal(displayMeasurement(s.measurementRecords[2]),s.measurementRecords[2]);
 });

@@ -38,11 +38,12 @@ test('reflection three-angle readings, folded evidence, student chart and CSV/JS
     for(let a=0;a<boxes.length;a++)for(let b=a+1;b<boxes.length;b++){const x=boxes[a]!,y=boxes[b]!;if(x.box.left<y.box.right&&x.box.right>y.box.left&&x.box.top<y.box.bottom&&x.box.bottom>y.box.top)pairs.push(`${x.name}/${y.name}`);}return pairs;
   });expect(overlaps).toEqual([]);
   await page.getByRole('tab',{name:'图线',exact:true}).click();await expect(page.locator('[data-record-id]')).toHaveCount(3);await expect(page.getByLabel('图线类型',{exact:true})).toHaveValue('reflection-r-i');
+  await expect(page.getByTestId('measurement-chart')).toContainText('i（°）');await expect(page.locator('[data-record-id]').first()).toHaveAttribute('data-value','31');
   await page.screenshot({path:info.outputPath('reflection-three-angles.png'),fullPage:true});
   await page.getByRole('tab',{name:'记录表',exact:true}).click();await page.getByRole('button',{name:'折起纸板 45°',exact:true}).click();await expect(reflected(page)).toHaveCount(0);await expect(status(page)).toContainText('光仍沿原空间方向');
   await page.getByLabel('右纸板连续光迹观察',{exact:true}).selectOption('不能看到');await page.getByRole('button',{name:'保存反射记录',exact:true}).click();
   const folded=await exported(page);expect(folded.measurementRecords[10]!.value).toBeNull();expect(folded.measurementRecords[10]!.measurementStatus).toBe('out-of-model');expect(folded.measurementRecords[11]!.value).toBe(0);expect(JSON.parse(folded.measurementSnapshots![3]!.note).foldRad).toBeCloseTo(Math.PI/4);
-  const csv=await download(page,'导出 CSV');expect(csv).toContain('31°');expect(csv).toContain('rad');expect(csv).toContain('不能看到');expect(csv).not.toMatch(/NaN|Infinity/);
+  const csv=await download(page,'导出 CSV');expect(csv).toContain('31°');expect(csv).toContain('"°",30');expect(csv).toContain('不能看到');expect(csv).not.toMatch(/NaN|Infinity/);
   await page.getByLabel('显示空间光路与理论（可关闭）',{exact:true}).check();await expect(page.getByTestId('reflection-theory')).toContainText('模型入射角 60°');
   await page.locator('.inspector').evaluate(e=>{e.scrollTop=0;});await page.screenshot({path:info.outputPath('reflection-folded.png'),fullPage:true});
   await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByTestId('save-state')).toHaveText('已保存');await page.reload();
@@ -106,4 +107,21 @@ test.describe('reflection touch',()=>{
     await page.getByRole('button',{name:'展开纸板 0°',exact:true}).tap();await expect(reflected(page)).toHaveCount(1);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
     await page.screenshot({path:info.outputPath('reflection-touch.png'),fullPage:true});
   });
+});
+
+
+test('degree table and correction keep old SI records readable after saving and reloading',async({page},info)=>{
+  await page.setViewportSize({width:1920,height:1080});await ready(page);
+  await page.getByRole('button',{name:'展开记录区',exact:true}).click();
+  await page.getByLabel('入射角估读（°）',{exact:true}).fill('30');await page.getByLabel('反射角估读（°）',{exact:true}).fill('30');
+  await page.getByRole('button',{name:'保存反射记录',exact:true}).click();
+  const row=page.locator('[data-measurement-id]').first();await expect(row).toHaveAttribute('data-measurement-value','30');await expect(row.locator('td').nth(5)).toHaveText('°');await expect(row).toContainText('0～90 / 1');
+  await row.getByRole('button',{name:'修改抄表',exact:true}).click();const correction=row.getByLabel('修订抄表值（°）',{exact:true});await expect(correction).toHaveValue('30');await correction.fill('32.5');await row.getByRole('button',{name:'确认修订',exact:true}).click();
+  await expect(row).toHaveAttribute('data-measurement-value','32.5');await expect(page.getByRole('table',{name:'反射角度记录（度）',exact:true})).toContainText('32.5°');
+  const csv=await download(page,'导出 CSV');expect(csv).toContain('"°",32.5,"30°","32.5"');
+  const saved=await exported(page);expect(saved.measurementRecords[0]!.value).toBeCloseTo(32.5*Math.PI/180,9);
+  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByTestId('save-state')).toHaveText('已保存');await page.reload();
+  await page.getByRole('button',{name:'展开记录区',exact:true}).click();await expect(page.locator('[data-measurement-id]').first()).toHaveAttribute('data-measurement-value','32.5');expect(await exported(page)).toEqual(saved);
+  await page.locator('[data-measurement-id]').first().scrollIntoViewIfNeeded();
+  await page.screenshot({path:info.outputPath('reflection-degree-records.png'),fullPage:true});
 });

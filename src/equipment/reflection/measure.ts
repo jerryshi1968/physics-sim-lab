@@ -5,7 +5,7 @@ import { parseManualValue,manualResult } from '../../core/measurements/records.t
 import type { MeasurementChartProfile } from '../../core/measurements/charts.ts';
 import { simulateReflection } from './simulate.ts';
 export interface ReflectionCapture { incidenceDeg:string; reflectionDeg:string; observation:string; setupLabel:string; note:string }
-export const reflectionProfiles:readonly MeasurementChartProfile[]=[{id:'reflection-r-i',label:'反射角 r—入射角 i（SI rad）',available:true,x:{quantity:'angle',unit:'rad',label:'入射角 i（rad）',pointLabel:'入射角i'},y:{quantity:'angle',unit:'rad',label:'反射角 r（rad）',pointLabel:'反射角r'}}];
+export const reflectionProfiles:readonly MeasurementChartProfile[]=[{id:'reflection-r-i',label:'反射角 r—入射角 i（°）',available:true,x:{quantity:'angle',unit:'rad',displayUnit:'°',label:'入射角 i（°）',pointLabel:'入射角i'},y:{quantity:'angle',unit:'rad',displayUnit:'°',label:'反射角 r（°）',pointLabel:'反射角r'}}];
 export function buildReflectionMeasurements(scene:SceneDocument,registry:EquipmentRegistry,input:ReflectionCapture,sampleId:string,timestamp:string,preview=false){
   const fail=(code:string)=>({ok:false as const,code}),outcome=simulateReflection(scene,registry);
   if(preview||!outcome.ok)return fail('REFLECTION_CAPTURE_UNAVAILABLE');

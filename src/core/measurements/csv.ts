@@ -1,3 +1,4 @@
+import { displayMeasurement } from './display.ts';
 import type { SceneDocument } from '../scene/schema.ts';
 import { measurementRows, measurementStatusLabel, quantityLabels, sourceLabel } from './table.ts';
 import { utf8ByteLength } from '../scene/transfer.ts';
@@ -18,12 +19,13 @@ export function measurementsCsv(scene: SceneDocument): string {
     '量程最小值', '量程最大值', '分度值', '采样时间', '修订时间', '文档标识', '文档版本', '运行标识', '序号', '采样标识', '模型版本',
     '仪器显示快照', '模型真值快照', '仪器状态', '诊断', '模型配置快照', '器材参数快照', '连接快照', '备注', ...(captureColumn ? ['采样时待发装置快照'] : [])];
   const emitted = new Set<string>();
-  const rows: (string | number | null)[][] = measurementRows(scene).map(({ record, snapshot, sampleIndex, equipmentLabel, pointLabel, setupLabel }) => {
+  const rows: (string | number | null)[][] = measurementRows(scene).map(({ record: storedRecord, snapshot, sampleIndex, equipmentLabel, pointLabel, setupLabel }) => {
+    const record = displayMeasurement(storedRecord);
     const includeSnapshot = !!snapshot && !emitted.has(snapshot.id);
     if (snapshot) emitted.add(snapshot.id);
     return [
     scene.title, record.id, sampleIndex, setupLabel, pointLabel, equipmentLabel, record.equipmentId, quantityLabels[record.quantity], record.unit,
-    record.value, record.context?.originalRawInput ?? record.rawInput, record.correctedAt ? record.rawInput : '', sourceLabel(record.source), measurementStatusLabel(record), record.range?.min ?? null, record.range?.max ?? null,
+    record.value, record.context?.originalRawInput ?? record.rawInput, record.correctedAt ? record.rawInput : '', sourceLabel(record.source), measurementStatusLabel(storedRecord), record.range?.min ?? null, record.range?.max ?? null,
     record.range?.resolution ?? null, record.recordedAt, record.correctedAt ?? '', snapshot?.documentId ?? scene.documentId, record.documentRevision,
     record.runId, record.sequence, record.context?.sampleId ?? '', snapshot?.modelVersion ?? '', record.context?.instrumentDisplayValue ?? null,
     record.context?.physicalValue ?? null, record.context?.instrumentStatus ?? '', record.context?.diagnosticCodes.join(';') ?? '',

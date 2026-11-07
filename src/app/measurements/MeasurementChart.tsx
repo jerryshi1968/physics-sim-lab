@@ -41,7 +41,7 @@ export function MeasurementChart({ scene, profiles = measurementChartProfiles }:
         <text x={(left + right) / 2} y="244" textAnchor="middle" fontSize="12" fill="#344d50">{profile.x === 'sample' ? width < 450 ? '采样组次' : '采样组次（同次多测点共用组次）' : profile.x.label}</text>
         {series.map((group, index) => <g key={group.id} data-chart-series={group.id} stroke={colors[index % colors.length]}>
           {chartSegments(group.points).map((segment, segmentIndex) => <path key={segmentIndex} data-chart-segment={segmentIndex} d={segment.map((point, pointIndex) => `${pointIndex ? 'L' : 'M'}${sx(point.x)} ${sy(point.y!)}`).join(' ')} fill="none" strokeWidth="1.6" />)}
-          {group.points.filter(point => point.y !== null).map(point => <circle key={point.recordId} data-record-id={point.recordId} data-value={point.y} data-sample-index={point.sampleIndex} cx={sx(point.x)} cy={sy(point.y!)} r={3.5 + index % 3} fill="white" strokeWidth="1.6"><title>{`${group.label}；第 ${point.sampleIndex} 组：${point.y} ${profile.y.unit}；记录 ${point.recordId}`}</title></circle>)}
+          {group.points.filter(point => point.y !== null).map(point => <circle key={point.recordId} data-record-id={point.recordId} data-value={point.y} data-sample-index={point.sampleIndex} cx={sx(point.x)} cy={sy(point.y!)} r={3.5 + index % 3} fill="white" strokeWidth="1.6"><title>{`${group.label}；第 ${point.sampleIndex} 组：${point.y} ${profile.y.displayUnit ?? profile.y.unit}；记录 ${point.recordId}`}</title></circle>)}
         </g>)}
       </svg>
       <ul className="chart-legend">{series.map((group, index) => <li key={group.id}><span style={{ background: colors[index % colors.length] }} />{group.label}</li>)}</ul>

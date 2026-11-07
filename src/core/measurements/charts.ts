@@ -1,9 +1,10 @@
+import { displayMeasurement } from './display.ts';
 import type { Dimension, SIUnit } from '../units/units.ts';
 import type { SceneDocument } from '../scene/schema.ts';
 import { measurementRows, sourceLabel, validPlotValue } from './table.ts';
 import type { MeasurementRow } from './table.ts';
 
-export interface MeasurementAxis { quantity: Dimension; unit: SIUnit; label: string; pointLabel?: string; power?: 1 | 2 }
+export interface MeasurementAxis { quantity: Dimension; unit: SIUnit; displayUnit?: '°'; label: string; pointLabel?: string; power?: 1 | 2 }
 export interface MeasurementChartProfile { id: string; label: string; available: boolean; groupByRun?: boolean; x: MeasurementAxis | 'sample'; y: MeasurementAxis }
 export const measurementChartProfiles: readonly MeasurementChartProfile[] = [
   { id: 'electrical-current', label: '电流多测点比较', available: true, x: 'sample', y: { quantity: 'current', unit: 'A', label: '电流（A）' } },
@@ -28,7 +29,7 @@ function matches(row: MeasurementRow, axis: MeasurementAxis): boolean {
   return row.record.quantity === axis.quantity && row.record.unit === axis.unit && (!axis.pointLabel || row.pointLabel === axis.pointLabel);
 }
 function axisValue(row: MeasurementRow, axis: MeasurementAxis): number | null {
-  const value = validPlotValue(row.record);
+  const value = validPlotValue(row.record) === null ? null : axis.displayUnit === '°' ? displayMeasurement(row.record).value : row.record.value;
   if (value === null) return null;
   const transformed = axis.power === 2 ? value * value : value;
   return Number.isFinite(transformed) ? transformed : null;
