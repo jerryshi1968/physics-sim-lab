@@ -5,7 +5,7 @@ import { parseManualValue, manualResult } from '../../core/measurements/records.
 import { BENCH, RULER } from './definitions.ts';
 import { simulateOptical } from './simulate.ts';
 
-export interface OpticalCapture { rulerId: string; rawPositions: [string, string, string]; rawImageDistance?: string; nature: string; orientation: string; size: string; clarity: string; note: string; setupLabel: string }
+export interface OpticalCapture { rulerId: string; rawPositions: [string, string, string]; nature: string; orientation: string; size: string; clarity: string; note: string; setupLabel: string }
 export function buildOpticalMeasurements(scene: SceneDocument, registry: EquipmentRegistry, entry: OpticalCapture, sampleId: string, timestamp: string) {
   const outcome = simulateOptical(scene, registry), ruler = scene.equipment.find(item => item.id === entry.rulerId && [BENCH, RULER].includes(item.type));
   if (!outcome.ok || !ruler) return { ok: false as const, code: 'OPTICAL_MEASUREMENT_UNAVAILABLE' };
@@ -15,7 +15,8 @@ export function buildOpticalMeasurements(scene: SceneDocument, registry: Equipme
   if (parsed.some(item => !item.ok)) return { ok: false as const, code: 'INVALID_MANUAL_VALUE' };
   const values = parsed.map(item => item.ok ? item.value : null);
   const derived = (a: number, b: number) => values[a] !== null && values[b] !== null ? String(values[a]! - values[b]!) : '';
-  const raws = [...entry.rawPositions, derived(1, 0), derived(2, 1), entry.rawImageDistance ?? ''];
+  const imageAvailable = outcome.image.kind === 'real' && outcome.screenStatus === 'sharp' && entry.nature === '实像' && entry.clarity === '清晰';
+  const raws = [...entry.rawPositions, derived(1, 0), derived(2, 1), imageAvailable ? derived(2, 1) : ''];
   if (raws.some(raw => !parseManualValue(raw).ok)) return { ok: false as const, code: 'INVALID_MANUAL_VALUE' };
   const apparatus = [outcome.setup.candle, outcome.setup.lens, outcome.setup.screen, outcome.setup.lens, outcome.setup.screen, outcome.setup.screen];
   const truths = [outcome.setup.candle.xM - ruler.pose.xM, outcome.setup.lens.xM - ruler.pose.xM, outcome.setup.screen.xM - ruler.pose.xM, outcome.objectDistanceM, outcome.screenDistanceM, outcome.image.kind === 'real' ? outcome.image.imageDistanceM : null];
@@ -29,7 +30,7 @@ export function buildOpticalMeasurements(scene: SceneDocument, registry: Equipme
   const records = raws.map((rawInput, index) => {
     const truth = truths[index]!, range = { min: 0, max: maximum, resolution };
     const required = index === 3 ? [truths[0]!, truths[1]!] : index >= 4 ? [truths[1]!, truths[2]!] : [truth];
-    const imageUnavailable = index === 5 && (outcome.image.kind !== 'real' || outcome.screenStatus !== 'sharp');
+    const imageUnavailable = index === 5 && !imageAvailable;
     const instrumentStatus = imageUnavailable ? 'undefined' as const : required.every(value => value >= 0 && value <= maximum) && truth >= 0 && truth <= maximum ? 'valid' as const : 'over-range' as const;
     const result = manualResult(rawInput, instrumentStatus === 'undefined' ? 'invalid' : instrumentStatus, range)!;
     return MeasurementRecordSchema.safeParse({ id: `${sampleId}.${index}`, source: 'manual', quantity: 'length', unit: 'm', ...result, rawInput, equipmentId: apparatus[index]!.id,

@@ -77,7 +77,7 @@ test('five classes of manual ruler observations, independent ruler zero, frozen 
   for (const [index, [cx, sx, readings, nature, orientation, size, clarity]] of cases.entries()) {
     await properties(page, 'candle', { '位置 x（m）': cx }); await properties(page, 'screen', { '位置 x（m）': sx });
     for (const [slot, label] of ['蜡烛位置读数（m）', '透镜位置读数（m）', '光屏位置读数（m）'].entries()) await page.getByLabel(label, { exact: true }).fill(readings[slot]!);
-    await page.getByLabel('实测像距 v（m）', { exact: true }).fill(['.151', '.2', '.3', '', ''][index]!);
+    await expect(page.getByLabel('实测像距 v（m）', { exact: true })).toHaveCount(0);
     await page.getByLabel('组别', { exact: true }).fill(`五类物距第${index + 1}组`);
     for (const [label, value] of [['观察：虚实', nature], ['观察：正倒', orientation], ['观察：大小', size], ['观察：清晰度', clarity]]) await page.getByLabel(label!, { exact: true }).selectOption(value!);
     await page.getByLabel('观察备注', { exact: true }).fill('手工读尺，自己判断像的特点');
@@ -87,6 +87,11 @@ test('five classes of manual ruler observations, independent ruler zero, frozen 
   const recorded = await exported(page); expect(recorded.measurementRecords.slice(0, 6)).toEqual(first!.measurementRecords);
   expect(recorded.measurementSnapshots).toHaveLength(5); expect(JSON.parse(recorded.measurementSnapshots![4]!.note).observations.nature).toBe('虚像');
   expect(recorded.measurementRecords[4]!.value).toBeCloseTo(.151, 9); expect(recorded.measurementRecords[4]!.context!.physicalValue).toBeCloseTo(.15, 9);
+  for (let index = 0; index < 5; index++) {
+    const screenDistance = recorded.measurementRecords[index * 6 + 4]!, imageDistance = recorded.measurementRecords[index * 6 + 5]!;
+    expect(imageDistance.value).toBe(index < 3 ? screenDistance.value : null);
+    expect(imageDistance.rawInput).toBe(index < 3 ? screenDistance.rawInput : '');
+  }
   const sharpness = await projection(page).getAttribute('data-sharpness'); await properties(page, 'ruler', { '位置 x（m）': '.15' });
   await expect(projection(page)).toHaveAttribute('data-sharpness', sharpness!); await expect(page.getByLabel('蜡烛位置读数（m）', { exact: true })).toHaveValue('.35');
   expect((await exported(page)).measurementSnapshots).toEqual(recorded.measurementSnapshots);
@@ -121,6 +126,32 @@ test('native blank optical assembly keeps independent heights, rejects invalid l
   await page.getByRole('button', { name: '撤销', exact: true }).click(); await properties(page, ids.screen!, { '位置 x（m）': '.65' });
   await expect(status(page)).toContainText('清晰实像');
   await page.locator('.inspector').evaluate(element => { element.scrollTop = 0; }); await page.screenshot({ path: testInfo.outputPath('optical-blank-focused.png'), fullPage: true });
+});
+
+test('image distance needs a confirmed sharp real image and complete lens and screen readings', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 1920, height: 1080 }); await ready(page); await aligned(page);
+  await properties(page, 'screen', { '位置 x（m）': '.65' });
+  await page.getByRole('button', { name: '展开记录区', exact: true }).click();
+  await expect(page.getByLabel('实测像距 v（m）', { exact: true })).toHaveCount(0);
+  for (const [label, value] of [['蜡烛位置读数（m）', '.101'], ['透镜位置读数（m）', '.401'], ['光屏位置读数（m）', '.552']]) await page.getByLabel(label!, { exact: true }).fill(value!);
+  const capture = async () => {
+    await page.getByRole('button', { name: '保存读尺与观察', exact: true }).click();
+    return (await exported(page)).measurementRecords.slice(-6);
+  };
+  expect((await capture())[5]!.value).toBeNull();
+  await page.getByLabel('观察：虚实', { exact: true }).selectOption('实像');
+  expect((await capture())[5]!.value).toBeNull();
+  await page.getByLabel('观察：清晰度', { exact: true }).selectOption('清晰');
+  const focused = await capture(); expect(focused[5]!.value).toBeCloseTo(.151, 9); expect(focused[5]!.value).toBe(focused[4]!.value);
+  await page.getByLabel('光屏位置读数（m）', { exact: true }).fill('');
+  expect((await capture())[5]!.value).toBeNull();
+  await page.getByLabel('光屏位置读数（m）', { exact: true }).fill('.552');
+  await properties(page, 'screen', { '位置 x（m）': '.68' });
+  await expect(status(page)).toContainText('离焦');
+  const defocused = await capture(); expect(defocused[4]!.value).toBeCloseTo(.151, 9); expect(defocused[5]!.value).toBeNull();
+  await properties(page, 'screen', { '位置 x（m）': '.65' });
+  expect((await exported(page)).measurementRecords.slice(12, 18)).toEqual(focused);
+  await page.screenshot({ path: testInfo.outputPath('optical-derived-distance.png'), fullPage: true });
 });
 
 test.describe('touch optical bench', () => {

@@ -8,7 +8,6 @@ export function OpticalRecords({ scene, ready, onCapture }: { scene: SceneDocume
   const [scaleId, setScaleId] = useState(''), [raw, setRaw] = useState<[string, string, string]>(['', '', '']);
   const [nature, setNature] = useState('未判定'), [orientation, setOrientation] = useState('未判定'), [size, setSize] = useState('未判定'), [clarity, setClarity] = useState('未判定');
   const [note, setNote] = useState(''), [setupLabel, setSetupLabel] = useState('第1组'), [error, setError] = useState('');
-  const [imageDistance, setImageDistance] = useState('');
   const ruler = scales.find(item => item.id === scaleId) ?? scales.find(item => item.type === RULER) ?? scales[0];
   const length = Number(ruler?.parameters.lengthM ?? 1), width = length * 3000 + 30, tickStep = ruler?.type === BENCH ? 10 : 1;
   return <div className="optical-records"><h3>读尺与成像观察</h3><p>读刻度后换算为 m；位置输入留空记缺失，物距 u 和屏距 s 从手工读数相减。屏距不自动当成像距，虚像/无有限像也不填理论答案。</p>
@@ -20,11 +19,10 @@ export function OpticalRecords({ scene, ready, onCapture }: { scene: SceneDocume
     </svg></div>}
     <p>刻度标数为 cm，细格 1 mm；座上刻度的实际分度为 1 cm。移动独立尺会改变零点，不会移动器材。</p>
     <p>物距/屏距按采样时输入计算；事后各行独立修订，修改位置行后请同时核对相应距离。</p>
-    <p>实测像距 v 只在找到清晰实像后填写；离焦、虚像或无有限像时留空，不把当前屏距当成像距。</p>
-    <form onSubmit={event => { event.preventDefault(); setError(onCapture({ rulerId: ruler?.id ?? '', rawPositions: raw, rawImageDistance: imageDistance, nature, orientation, size, clarity, note, setupLabel }) ?? ''); }}>
+    <p>找到清晰实像后，将观察选为“实像”和“清晰”；保存时由光屏与透镜的位置读数相减，记为实测像距 v，无需重复填写。未确认或未找到清晰实像时，像距留空。</p>
+    <form onSubmit={event => { event.preventDefault(); setError(onCapture({ rulerId: ruler?.id ?? '', rawPositions: raw, nature, orientation, size, clarity, note, setupLabel }) ?? ''); }}>
       <div className="optical-entry-fields"><label>组别<input value={setupLabel} maxLength={100} onChange={event => setSetupLabel(event.target.value)} /></label>
         {['蜡烛位置读数（m）', '透镜位置读数（m）', '光屏位置读数（m）'].map((label, index) => <label key={label}>{label}<input inputMode="decimal" value={raw[index]} maxLength={100} onChange={event => setRaw(current => current.map((value, slot) => slot === index ? event.target.value : value) as [string, string, string])} /></label>)}
-        <label>实测像距 v（m）<input inputMode="decimal" value={imageDistance} maxLength={100} placeholder="未找到清晰实像请留空" onChange={event => setImageDistance(event.target.value)} /></label>
         {([{ label: '观察：虚实', value: nature, change: setNature, options: ['未判定', '实像', '虚像', '无有限像'] }, { label: '观察：正倒', value: orientation, change: setOrientation, options: ['未判定', '正立', '倒立'] }, { label: '观察：大小', value: size, change: setSize, options: ['未判定', '放大', '等大', '缩小'] }, { label: '观察：清晰度', value: clarity, change: setClarity, options: ['未判定', '清晰', '模糊', '未见像'] }]).map(field => <label key={field.label}>{field.label}<select aria-label={field.label} value={field.value} onChange={event => field.change(event.target.value)}>{field.options.map(option => <option key={option}>{option}</option>)}</select></label>)}
       </div><label>观察备注<input value={note} maxLength={150} onChange={event => setNote(event.target.value)} /></label><button type="submit" disabled={!ready || !ruler}>保存读尺与观察</button>
     </form>{error && <p role="alert">{error}</p>}

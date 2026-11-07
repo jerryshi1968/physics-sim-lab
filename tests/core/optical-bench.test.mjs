@@ -137,10 +137,10 @@ test('missing or invalid manual inputs are never filled, overflow is rejected, a
   const out = buildOpticalMeasurements(value, registry, input, 'sample.4', timestamp); assert.equal(out.ok, true);
   assert.equal(out.records[3].value, null); assert.equal(out.records[4].value, null);
   for (const u of [.1, .05]) {
-    const unavailable = buildOpticalMeasurements(scene(u), registry, { ...input, rawImageDistance: '.3' }, 'sample.5', timestamp);
+    const unavailable = buildOpticalMeasurements(scene(u), registry, input, 'sample.5', timestamp);
     assert.equal(unavailable.ok, true); assert.equal(unavailable.records[5].value, null); assert.equal(unavailable.records[5].context.physicalValue, null);
   }
-  const focused = buildOpticalMeasurements(scene(), registry, { ...input, rawImageDistance: '.151' }, 'sample.6', timestamp);
+  const focused = buildOpticalMeasurements(scene(), registry, input, 'sample.6', timestamp);
   assert.equal(focused.ok, true); close(focused.records[5].value, .151); close(focused.records[5].context.physicalValue, .15);
 });
 
@@ -149,4 +149,36 @@ test('all five image classes including nulls and off-screen outcomes round trip 
     const value = scene(u), text = serializeScene(value, registry), restored = parseSceneJson(text, registry); assert.equal(restored.ok, true);
     assert.deepEqual(solved(restored.document), solved(value)); assert.equal(/NaN|Infinity/.test(text), false);
   }
+});
+
+test('image distance uses the same manual position difference only after confirmation at a sharp real image', () => {
+  const capture = (value = scene(), changes = {}) => {
+    const result = buildOpticalMeasurements(value, registry, { ...input, ...changes }, 'sample.derived', timestamp);
+    assert.equal(result.ok, true); return result;
+  };
+  const focused = capture();
+  close(focused.records[5].value, .151); close(focused.records[5].context.physicalValue, .15);
+  assert.equal(focused.records[5].value, focused.records[4].value);
+  assert.equal(focused.records[5].rawInput, focused.records[4].rawInput);
+  for (const changes of [{ nature: '未判定' }, { nature: '虚像' }, { clarity: '未判定' }, { clarity: '模糊' }, { clarity: '未见像' }]) {
+    const result = capture(scene(), changes);
+    close(result.records[4].value, .151); assert.equal(result.records[5].value, null); assert.equal(result.records[5].rawInput, '');
+  }
+  const missed = scene(); missed.equipment.find(item => item.id === 'screen').pose.yM = .2;
+  for (const value of [scene(.3, .18), scene(.3, -.1), scene(.1), scene(.05), missed]) {
+    const result = capture(value);
+    assert.equal(result.records[5].value, null); assert.equal(result.records[5].rawInput, '');
+    assert.ok(result.records[5].context.diagnosticCodes.includes('OPTICAL_IMAGE_UNAVAILABLE'));
+  }
+  for (const rawPositions of [['.101', '', '.552'], ['.101', '.401', '']]) {
+    const result = capture(scene(), { rawPositions });
+    assert.equal(result.records[4].value, null); assert.equal(result.records[5].value, null);
+  }
+  const withoutCandle = capture(scene(), { rawPositions: ['', '.401', '.552'] });
+  assert.equal(withoutCandle.records[3].value, null); close(withoutCandle.records[5].value, .151);
+  const legacy = structuredClone(focused); legacy.records[5].value = .149; legacy.records[5].rawInput = '.149';
+  legacy.records[5].context.originalRawInput = '.149';
+  const saved = appendMeasurements(scene(), registry, legacy.records, legacy.snapshot, timestamp); assert.equal(saved.ok, true);
+  const restored = parseSceneJson(serializeScene(saved.document, registry), registry); assert.equal(restored.ok, true);
+  assert.deepEqual(restored.document.measurementRecords, legacy.records);
 });
