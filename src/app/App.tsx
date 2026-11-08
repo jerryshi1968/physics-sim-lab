@@ -432,8 +432,13 @@ export function App() {
 
   function captureSpring(input: SpringCapture): string | null {
     const built = buildSpringMeasurements(historyRef.current.present, registry, input, `spring-sample-${crypto.randomUUID()}`, new Date().toISOString(), !!activeMechanicalPreview);
-    if (!built.ok) return built.code === 'INVALID_MANUAL_VALUE' ? '请输入有限读数，留空记缺失。' : springMessage(built.code);
-    return measurementCommand({ type: 'record-measurements', records: built.records, snapshot: built.snapshot });
+    if (!built.ok) {
+      const message = built.code === 'INVALID_MANUAL_VALUE' ? '请输入有限读数，留空记缺失。' : built.code === 'SPRING_ORIGINAL_LOADED' ? `${springMessage(built.code)}记录当前载荷请将“测量阶段”改为“加载”或“卸载复测”。` : springMessage(built.code);
+      setNotice(`未保存弹簧读尺记录：${message}`); return message;
+    }
+    const message = measurementCommand({ type: 'record-measurements', records: built.records, snapshot: built.snapshot });
+    setNotice(message ? `未保存弹簧读尺记录：${message}` : `已新增 1 组弹簧读尺记录（${built.records.length} 行）；之前的记录已保留。${input.phase === '原长测量' ? '测量阶段已切换为“加载”。' : ''}`);
+    return message;
   }
 
   function prepareLever(empty: boolean) {

@@ -51,8 +51,59 @@ test('range boundaries, tray mass, loaded original-length rejection and actual r
   await page.getByLabel('选择器材',{exact:true}).selectOption('spring'); await page.getByLabel('弹簧安装支架',{exact:true}).selectOption(''); await expect(status(page)).toContainText('安装到支架'); await expect(page.getByTestId('spring-theory')).toHaveCount(0); await page.screenshot({path:info.outputPath('spring-unavailable.png'),fullPage:true});
 });
 
+test('saving original length prepares loading and subsequent readings append without replacing earlier data',async({page},info)=>{
+  await page.setViewportSize({width:1920,height:945}); await open(page);
+  await capture(page,0,0,'原长测量');
+  const original=await exported(page);
+  expect(original.measurementRecords).toHaveLength(7);
+  await expect(page.getByLabel('弹簧测量阶段',{exact:true})).toHaveValue('加载');
+  for(const [mass,bottom] of [['.025','.1525'],['.05','.165']]) {
+    await properties(page,'weight',{'钩码总质量（kg）':mass!});
+    await page.getByLabel('挂接弹簧',{exact:true}).selectOption('spring');
+    await page.getByLabel('弹簧下端读数（m）',{exact:true}).fill(bottom!);
+    await page.getByLabel('钩码质量读数（kg，不含盘）',{exact:true}).fill(mass!);
+    await page.getByRole('button',{name:'保存弹簧读尺记录',exact:true}).click();
+    await expect(page.locator('.live-notice')).toContainText('已新增 1 组弹簧读尺记录（7 行）');
+  }
+  const scene=await exported(page);
+  expect(scene.measurementRecords).toHaveLength(21);
+  expect(scene.measurementSnapshots).toHaveLength(3);
+  expect(scene.measurementRecords.slice(0,7)).toEqual(original.measurementRecords);
+  expect(scene.measurementSnapshots!.slice(0,1)).toEqual(original.measurementSnapshots);
+  expect(scene.measurementRecords.filter(item=>item.context?.pointLabel==='弹力').map(item=>item.value)).toEqual([0,.25,.5]);
+  expect(JSON.parse(scene.measurementSnapshots![0]!.note).phase).toBe('原长测量');
+  expect(scene.measurementSnapshots!.slice(1).map(item=>JSON.parse(item.note).phase)).toEqual(['加载','加载']);
+  await expect(page.locator('tr[data-measurement-id]')).toHaveCount(21);
+  await page.getByRole('button',{name:'保存',exact:true}).click(); await page.reload();
+  expect((await exported(page)).measurementRecords).toEqual(scene.measurementRecords);
+  await page.getByRole('button',{name:'保存弹簧读尺记录',exact:true}).scrollIntoViewIfNeeded();
+  await page.screenshot({path:info.outputPath('spring-appended-records.png'),fullPage:true});
+});
+
 test.describe('touch spring experiment',()=>{
   test.use({hasTouch:true,viewport:{width:390,height:844}});
+  test('loaded original-length save explains the failure beside the button and retains earlier data until phase correction',async({page},info)=>{
+    await open(page); await capture(page,0,0,'原长测量');
+    const original=await exported(page);
+    await page.getByLabel('选择器材',{exact:true}).selectOption('weight');
+    await page.getByLabel('挂接弹簧',{exact:true}).selectOption('spring');
+    await capture(page,.025,.0125,'原长测量');
+    await expect(page.getByRole('alert')).toContainText('记录当前载荷请将“测量阶段”改为“加载”或“卸载复测”');
+    await expect(page.getByRole('alert')).toBeInViewport();
+    await expect(page.locator('.live-notice')).toContainText('未保存弹簧读尺记录');
+    await expect(page.getByLabel('弹簧测量阶段',{exact:true})).toHaveValue('原长测量');
+    await expect(page.getByLabel('弹簧下端读数（m）',{exact:true})).toHaveValue(String(.14+.0125));
+    await page.screenshot({path:info.outputPath('spring-save-phase-error-touch.png'),fullPage:true});
+    expect((await exported(page)).measurementRecords).toEqual(original.measurementRecords);
+    await page.getByLabel('弹簧测量阶段',{exact:true}).selectOption('加载');
+    await page.getByRole('button',{name:'保存弹簧读尺记录',exact:true}).tap();
+    await expect(page.getByRole('alert')).toHaveCount(0);
+    await expect(page.locator('.live-notice')).toContainText('已新增 1 组弹簧读尺记录（7 行）');
+    const scene=await exported(page);
+    expect(scene.measurementRecords).toHaveLength(14);
+    expect(scene.measurementSnapshots).toHaveLength(2);
+    expect(scene.measurementRecords.slice(0,7)).toEqual(original.measurementRecords);
+  });
   test('touch cancels and attaches a real weight, immediate mass editing and manual reading stay usable without overflow',async({page},info)=>{
     await open(page); await page.getByTestId('scene-board').scrollIntoViewIfNeeded(); const before=await exported(page); await page.getByTestId('scene-board').scrollIntoViewIfNeeded();
     const session=await page.context().newCDPSession(page);
