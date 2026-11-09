@@ -6,8 +6,8 @@ export function MeterGraphic({ instance, reading }: { instance: EquipmentInstanc
   const fraction = reading?.needleFraction ?? 0;
   const angle = Math.PI + fraction * Math.PI;
   const unit = instance.type === AMMETER ? 'A' : 'V';
-  return <g data-meter-dial={instance.id} data-meter-status={reading?.status ?? 'unavailable'} data-needle-fraction={fraction}>
-    <rect x="-.085" y="-.06" width=".17" height=".12" rx=".012" fill="#414942" />
+  return <g data-meter-dial={instance.id} data-meter-status={reading?.status ?? 'unavailable'} data-needle-fraction={fraction} pointerEvents="none">
+    <rect x="-.085" y="-.06" width=".17" height=".12" rx=".012" fill="#414942" pointerEvents="fill" />
     <rect x="-.077" y="-.054" width=".154" height=".09" rx=".009" fill="#e8e5d2" />
     {(['high', 'low'] as const).map(range => {
       const maximum = Number(instance.parameters[`${range}Range`]);

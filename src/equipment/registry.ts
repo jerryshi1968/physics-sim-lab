@@ -1,4 +1,5 @@
 import { registerReflectionEquipment } from './reflection/definitions.ts';
+import { registerDensityEquipment } from './density/definitions.ts';
 import { registerProjectileEquipment } from './projectile/definitions.ts';
 import { createElectricalRegistry } from './electrical/definitions.ts';
 import { registerOpticalEquipment } from './optical/definitions.ts';
@@ -14,5 +15,6 @@ export function createWorkbenchRegistry() {
   registerFrictionEquipment(registry);
   registerSpringEquipment(registry);
   registerProjectileEquipment(registry);
+  registerDensityEquipment(registry);
   return registry;
 }

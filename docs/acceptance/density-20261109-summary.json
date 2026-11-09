@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-09",
+  "version": "0.2.0-dev.1",
+  "experimentIds": [
+    "J-MEAS-01",
+    "J-MEAS-01-L"
+  ],
+  "baselineHead": "8f27b238bc568fccee971479fb7c4f6f7d8a7665",
+  "environment": {
+    "node": "v24.14.1",
+    "platform": "win32",
+    "arch": "x64",
+    "edge": "158.0.4370.7",
+    "chrome": "153.0.8010.48"
+  },
+  "core": {
+    "tests": 340,
+    "passed": 340,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 2833.0182
+  },
+  "browsers": [
+    {
+      "label": "Edge full",
+      "startTime": "2026-11-08T22:15:26.018Z",
+      "duration": 249949.508,
+      "expected": 102,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "reportSha256": "328967b27463dca587940f0dc35c842308061ba9b0b0f025429c88f6595c1418",
+      "localReport": "artifacts/density-20261109/edge-all/results.json"
+    },
+    {
+      "label": "Chrome full",
+      "startTime": "2026-11-08T22:20:53.497Z",
+      "duration": 274067.964,
+      "expected": 102,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "reportSha256": "66363a7804c35b8015214d453e2a77770d784055888abc6406cb2ce611ab9697",
+      "localReport": "artifacts/density-20261109/chrome-all/results.json"
+    },
+    {
+      "label": "Final Edge affected",
+      "startTime": "2026-11-08T22:32:35.580Z",
+      "duration": 40933.249,
+      "expected": 17,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "reportSha256": "73c1a1f15b4e9d4a6d16ee51ed8436c0c225c1cc6a5cbbcd578193ece42ed59b",
+      "localReport": "artifacts/density-20261109/edge-confirmed/results.json"
+    },
+    {
+      "label": "Final Chrome density",
+      "startTime": "2026-11-08T22:33:18.239Z",
+      "duration": 25021.086000000003,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "reportSha256": "5df74e348c2116bf4ce4b7328f3504334c1c1b973ffa63f682dcd804bc213e77",
+      "localReport": "artifacts/density-20261109/chrome-final/results.json"
+    }
+  ],
+  "lint": {
+    "exitCode": 0,
+    "logSha256": "cb03e159f68e24bacd65a66258b3f9f5dcd97ec2c6b7cb4c6a71c32511ecd34b"
+  },
+  "build": {
+    "exitCode": 0,
+    "logSha256": "4f4d0a562d6f218ba0f759e070a0a1bc3801070dee3d42489fbe8401182461b9",
+    "assets": [
+      {
+        "name": "electrical.worker-Tcl9SI1R.js",
+        "bytes": 128202,
+        "sha256": "5fc65aac8935f8ae9b2bbfb8eca71585eff0bb00558170a148e1c13b63d4c1c7"
+      },
+      {
+        "name": "index-BSSgzwK7.js",
+        "bytes": 783901,
+        "sha256": "be735e0dce49f15fc977b2a6fb83ddeefb3962de8468470b3084a12c5342b9ec"
+      },
+      {
+        "name": "index-CHAovNJC.css",
+        "bytes": 30006,
+        "sha256": "33df8a10014c6d9c025b39d1a26a1cbf792a22a18af5b72847aad5883c95dc14"
+      }
+    ],
+    "knownWarning": "Existing main chunk exceeds 500 kB"
+  },
+  "sourceAudit": {
+    "baselineHead": "8f27b238bc568fccee971479fb7c4f6f7d8a7665",
+    "checked": 220,
+    "unchanged": 200,
+    "changed": [
+      "src/app/App.tsx",
+      "src/app/measurements/MeasurementPanel.tsx",
+      "src/app/mechanical/MechanicalGraphic.tsx",
+      "src/app/workbench/DocumentPreview.tsx",
+      "src/app/workbench/EquipmentLibrary.tsx",
+      "src/app/workbench/SceneBoard.tsx",
+      "src/core/measurements/charts.ts",
+      "src/core/measurements/csv.ts",
+      "src/core/measurements/display.ts",
+      "src/core/measurements/records.ts",
+      "src/core/measurements/table.ts",
+      "src/core/scene/schema.ts",
+      "src/core/scene/validate.ts",
+      "src/core/units/units.ts",
+      "src/equipment/registry.ts",
+      "src/styles/workbench.css",
+      "tests/core/lever-experiment.test.mjs",
+      "tests/e2e/lever-experiment.spec.ts",
+      "docs/PROGRESS.md",
+      "README.md"
+    ],
+    "commentIssues": [],
+    "oldPhysicsUnchanged": [
+      "src/core/electrical/compile.ts",
+      "src/core/electrical/instruments.ts",
+      "src/core/electrical/lamp.ts",
+      "src/core/electrical/linear.ts",
+      "src/core/electrical/netlist.ts",
+      "src/core/electrical/rheostat.ts",
+      "src/core/electrical/solve.ts",
+      "src/core/electrical/topology.ts",
+      "src/core/mechanical/friction/matterAdapter.ts",
+      "src/core/mechanical/friction/model.ts",
+      "src/core/mechanical/lever.ts",
+      "src/core/optical/bench.ts",
+      "src/core/optical/reflection.ts",
+      "src/equipment/electrical/dcAdapters.ts",
+      "src/equipment/electrical/definitions.ts",
+      "src/equipment/electrical/measure.ts",
+      "src/equipment/electrical/simulate.ts",
+      "src/equipment/mechanical/definitions.ts",
+      "src/equipment/mechanical/frictionDefinitions.ts",
+      "src/equipment/mechanical/frictionMeasure.ts",
+      "src/equipment/mechanical/frictionScene.ts",
+      "src/equipment/mechanical/measure.ts",
+      "src/equipment/mechanical/simulate.ts",
+      "src/equipment/mechanical/weightChain.ts",
+      "src/equipment/optical/definitions.ts",
+      "src/equipment/optical/measure.ts",
+      "src/equipment/optical/simulate.ts",
+      "src/equipment/projectile/definitions.ts",
+      "src/equipment/projectile/measure.ts",
+      "src/equipment/projectile/simulate.ts",
+      "src/equipment/reflection/definitions.ts",
+      "src/equipment/reflection/measure.ts",
+      "src/equipment/reflection/simulate.ts",
+      "src/equipment/spring/definitions.ts",
+      "src/equipment/spring/measure.ts",
+      "src/equipment/spring/simulate.ts"
+    ],
+    "packageUnchanged": true,
+    "trackedDiff": "docs/PROGRESS.md:3: trailing whitespace.\n+当前阶段：M8（任务 16 / J-OPT-01 与 J-MEAS-01 扩展；原课堂/实体设备门槛仍待补）  \ndocs/PROGRESS.md:4: trailing whitespace.\n+本次任务：第 9.2 节测量密度，固体排水法与液体质量差法  \ndocs/PROGRESS.md:5: trailing whitespace.\n+更新时间：2026-11-09  \n",
+    "intentionallyRetainedMarkdownHardBreaks": [
+      "docs/PROGRESS.md:3: trailing whitespace.",
+      "docs/PROGRESS.md:4: trailing whitespace.",
+      "docs/PROGRESS.md:5: trailing whitespace."
+    ]
+  },
+  "teacherReview": "pending_teacher_review",
+  "physicalDeviceReview": "pending",
+  "limitations": [
+    "Static equal-arm balance and equivalent uniform-section displacement only",
+    "Sinking, non-absorbing, insoluble solids only",
+    "No evaporation, vessel residue, mixture, pouring animation or fluid engine"
+  ],
+  "evidenceNote": "Raw reports/screenshots are local ignored artifacts. Full browser runs preceded final refinements; final affected runs cover those refinements. Failed attempts are retained separately. No Git push or server deployment."
+}

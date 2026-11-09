@@ -11,6 +11,7 @@ import { appendMeasurements, correctManualMeasurement, removeMeasurement } from 
 
 export type SceneCommand =
   | { type: 'rename'; title: string }
+  | { type: 'set-experiment'; experimentId: string; title: string }
   | { type: 'add-equipment'; equipmentType: string; id: string; point: WorldPoint }
   | { type: 'add-wire'; id: string; point: WorldPoint }
   | { type: 'update-equipment'; id: string; pose: Pose2D; parameters: Record<string, Scalar> }
@@ -57,6 +58,11 @@ export function executeCommand(history: SceneHistory, command: SceneCommand, reg
   let label: string;
   switch (command.type) {
     case 'rename': label = '修改实验名称'; result = renameDocument(current, registry, command.title, timestamp); break;
+    case 'set-experiment':
+      label = '切换测量方法';
+      result = validateSceneDocument({ ...current, experimentId: command.experimentId, title: command.title, revision: current.revision + 1,
+        provenance: { ...current.provenance, updatedAt: timestamp } }, registry);
+      break;
     case 'add-equipment': label = '放置器材'; result = addEquipment(current, registry, command.equipmentType, command.id, command.point, timestamp); break;
     case 'add-wire': label = '放置导线'; result = addLooseWire(current, registry, command.id, command.point, timestamp); break;
     case 'update-equipment': label = '移动或修改器材'; result = updateEquipment(current, registry, command.id, command.pose, command.parameters, timestamp); break;

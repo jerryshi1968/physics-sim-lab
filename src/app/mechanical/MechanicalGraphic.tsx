@@ -13,7 +13,13 @@ import { ProjectileGraphic, projectileBounds } from '../projectile/ProjectileGra
 import { RULER } from '../../equipment/optical/definitions.ts';
 import { OpticalGraphic, opticalBounds } from '../optical/OpticalGraphic.tsx';
 
+import { densityTypes } from '../../equipment/density/definitions.ts';
+import type { DensityOutcome } from '../../equipment/density/simulate.ts';
+import { DensityGraphic, densityBounds } from '../density/DensityGraphic.tsx';
+import type { DensityControls } from '../density/DensityGraphic.tsx';
+
 export function mechanicalBounds(item: EquipmentInstance, springOutcome?: SpringOutcome | null) {
+  if (densityTypes.includes(item.type)) return densityBounds(item);
   if (projectileTypes.includes(item.type)) return projectileBounds(item);
   if (item.type === SPRING) return { x: -.09, y: -.015, width: .125, height: (springOutcome?.ok ? springOutcome.value.lengthM : Number(item.parameters.originalLengthM)) + .06 };
   if (frictionTypes.includes(item.type)) return frictionBounds(item);
@@ -26,7 +32,8 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   }
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
-export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, frictionReading, springOutcome, projectileFlight }: { projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; frictionReading?: { forceN: number; status: string } | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, frictionReading, springOutcome, projectileFlight, densityOutcome, densityControls }: { densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; frictionReading?: { forceN: number; status: string } | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+  if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;
   const p = item.parameters, half = Number(p.halfHooks ?? 6), spacing = Number(p.spacingM ?? .05);
   const meter = frictionReading ?? (outcome?.ok ? outcome.meters.find(meter => meter.id === item.id) : undefined);
   const pointer = outcome === undefined ? 0 : meter && meter.status !== 'invalid' && Number.isFinite(meter.forceN) && Number(p.rangeN) > 0 ? Math.min(1, meter.forceN / Number(p.rangeN)) : null;

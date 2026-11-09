@@ -153,6 +153,8 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 .catalog-symbol { min-width: 44px; }
 .catalog-symbol svg { display: block; width: 44px; height: 34px; overflow: visible; }
 .real-apparatus :is(path, rect, circle, ellipse, line) { vector-effect: non-scaling-stroke; }
+/* WebKit can give text in a scaled SVG group a hit area far outside the visible glyphs. */
+.equipment-body .real-apparatus text { pointer-events: none; }
 .equipment-body .equipment-backdrop { fill: transparent; stroke: transparent; pointer-events: none; }
 .equipment-body.is-selected .equipment-backdrop { fill: transparent; stroke: #579b82; stroke-width: 1.5; stroke-dasharray: 4 3; }
 .equipment-port .port-dot { fill: #ebd18d; stroke: #8d733f; stroke-width: 1; }
@@ -402,3 +404,20 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 .reflection-table-scroll { overflow: auto; max-height: 240px; }
 .reflection-table-scroll table { width: 100%; font-size: 12px; border-collapse: collapse; }
 .reflection-table-scroll th, .reflection-table-scroll td { padding: 8px; border-bottom: 1px solid #dfe8e3; text-align: left; }
+.density-panel, .density-records { padding: 16px; font-size: 12px; }
+.density-panel h3, .density-records h3 { margin: 0 0 12px; }
+.density-panel label, .density-records label { display: grid; gap: 6px; margin: 12px 0; }
+.density-panel select, .density-panel input:not([type="checkbox"]), .density-records select, .density-records input { width: 100%; min-width: 0; box-sizing: border-box; }
+.density-panel select, .density-panel input[type="number"], .density-records select, .density-records input { padding: 8px; border: 1px solid #cbded7; border-radius: 4px; background: white; color: inherit; font: inherit; }
+.density-panel svg { display: block; width: 100%; max-width: 280px; margin: 12px auto; }
+.density-panel svg path, .density-panel svg rect, .density-panel svg circle { vector-effect: non-scaling-stroke; }
+.density-panel p, .density-records p { line-height: 1.8; }
+.density-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.density-balance-handle { cursor: ew-resize; }
+.density-weight-slot { cursor: pointer; }
+.density-balance-handle[aria-disabled="true"], .density-weight-slot[aria-disabled="true"] { cursor: not-allowed; }
+.density-panel .checkbox-field { display: flex; align-items: center; }
+.density-records form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
+.density-records form > button, .density-records form > p { grid-column: 1 / -1; }
+.density-records fieldset { margin: 16px 0; min-width: 0; }
+@media (max-width: 760px) { .density-records form { grid-template-columns: minmax(0, 1fr); } }

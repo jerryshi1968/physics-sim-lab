@@ -1,7 +1,7 @@
-export const SI_UNITS = ['m', 'kg', 's', 'A', 'V', 'Ω', 'N', 'N·m', 'm/s', 'm/s²', 'rad', '1'] as const;
+export const SI_UNITS = ['m', 'kg', 's', 'A', 'V', 'Ω', 'N', 'N·m', 'm/s', 'm/s²', 'rad', '1', 'm³', 'kg/m³'] as const;
 export type SIUnit = typeof SI_UNITS[number];
 export type Dimension = 'length' | 'mass' | 'time' | 'current' | 'voltage' | 'resistance'
-  | 'force' | 'torque' | 'velocity' | 'acceleration' | 'angle' | 'dimensionless';
+  | 'force' | 'torque' | 'velocity' | 'acceleration' | 'angle' | 'dimensionless' | 'volume' | 'density';
 
 const units = {
   m: { dimension: 'length', factor: 1, si: 'm' },
@@ -9,6 +9,11 @@ const units = {
   mm: { dimension: 'length', factor: 0.001, si: 'm' },
   kg: { dimension: 'mass', factor: 1, si: 'kg' },
   g: { dimension: 'mass', factor: 0.001, si: 'kg' },
+  'm³': { dimension: 'volume', factor: 1, si: 'm³' },
+  mL: { dimension: 'volume', factor: .000001, si: 'm³' },
+  'cm³': { dimension: 'volume', factor: .000001, si: 'm³' },
+  'kg/m³': { dimension: 'density', factor: 1, si: 'kg/m³' },
+  'g/cm³': { dimension: 'density', factor: 1000, si: 'kg/m³' },
   s: { dimension: 'time', factor: 1, si: 's' },
   ms: { dimension: 'time', factor: 0.001, si: 's' },
   A: { dimension: 'current', factor: 1, si: 'A' },

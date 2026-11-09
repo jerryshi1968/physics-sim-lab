@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
-import { POWER, LAMP, SWITCH, AMMETER, VOLTMETER } from '../../src/equipment/electrical/definitions.ts';
+import { POWER, LAMP, SWITCH, AMMETER, VOLTMETER, RESISTOR, RHEOSTAT } from '../../src/equipment/electrical/definitions.ts';
 
 async function ready(page: Page) {
   await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
@@ -43,6 +43,98 @@ async function guideDoesNotEdit(page: Page) {
   expect(await exported(page)).toEqual(before);
   await guide.locator(':scope > summary').click();
 }
+
+test('electrical equipment icons paint in the narrow workbench', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await ready(page);
+  for (const type of [POWER, RESISTOR, SWITCH, LAMP, RHEOSTAT, AMMETER, VOLTMETER]) {
+    const icon = page.locator(`[data-library-type="${type}"] svg`);
+    const screenshot = await icon.screenshot({ scale: 'css' });
+    const paintedPixels = await page.evaluate(async source => {
+      const image = new Image();
+      image.src = source;
+      await image.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const context = canvas.getContext('2d')!;
+      context.drawImage(image, 0, 0);
+      const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
+      let count = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i]! < 190 && data[i + 1]! < 190 && data[i + 2]! < 190) count++;
+      }
+      return count;
+    }, `data:image/png;base64,${screenshot.toString('base64')}`);
+    expect(paintedPixels, type).toBeGreaterThan(8);
+  }
+});
+
+test('blank drags leave the voltmeter in place and pan mode moves only the view', async ({ page, context, browserName }) => {
+  await ready(page);
+  await start(page, 'series-same');
+  const board = page.getByTestId('scene-board');
+  const meter = board.locator('[data-equipment-id="V"]');
+  const body = meter.locator('.equipment-body');
+  const shell = meter.locator('[data-meter-dial] > rect').first();
+  const pan = page.getByRole('button', { name: '平移', exact: true });
+  const revision = Number(await board.getAttribute('data-revision'));
+  const xM = (await meter.getAttribute('data-x-m'))!;
+  const yM = (await meter.getAttribute('data-y-m'))!;
+  const session = browserName === 'chromium' ? await context.newCDPSession(page) : null;
+  const drag = async (x: number, y: number, dx: number, dy: number) => {
+    if (session) {
+      await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+      await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + dx, y: y + dy }] });
+      await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    } else {
+      await page.mouse.move(x, y);
+      await page.mouse.down();
+      await page.mouse.move(x + dx, y + dy, { steps: 4 });
+      await page.mouse.up();
+    }
+  };
+  const dragFromBlank = async () => {
+    await board.scrollIntoViewIfNeeded();
+    const bounds = (await board.boundingBox())!;
+    const point = { x: bounds.x + 20, y: bounds.y + 20 };
+    expect(await board.evaluate((element, { x, y }) => document.elementFromPoint(x, y) === element, point)).toBe(true);
+    await drag(point.x, point.y, 24, 18);
+  };
+  const dragFromMeter = async () => {
+    await shell.scrollIntoViewIfNeeded();
+    const bounds = (await shell.boundingBox())!;
+    await drag(bounds.x + bounds.width / 2, bounds.y + bounds.height * .25, 24, -18);
+  };
+
+  const initialTransform = (await body.getAttribute('transform'))!;
+  await dragFromBlank();
+  await expect(body).toHaveAttribute('transform', initialTransform);
+  await expect(board).toHaveAttribute('data-revision', String(revision));
+  if (session) {
+    const terminal = meter.locator('[data-port-id="low"] .port-hit');
+    const bounds = (await terminal.boundingBox())!;
+    await drag(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, 28, -25);
+    await expect(terminal.locator('..')).toHaveAttribute('aria-pressed', 'false');
+    await expect(board).toHaveAttribute('data-revision', String(revision));
+  }
+  await pan.click();
+  await dragFromBlank();
+  await expect(body).not.toHaveAttribute('transform', initialTransform);
+  const pannedTransform = (await body.getAttribute('transform'))!;
+  await dragFromMeter();
+  await expect(body).not.toHaveAttribute('transform', pannedTransform);
+  await expect(meter).toHaveAttribute('data-x-m', xM);
+  await expect(meter).toHaveAttribute('data-y-m', yM);
+  await expect(board).toHaveAttribute('data-revision', String(revision));
+  await expect(board.locator('[data-wire-id]')).toHaveCount(7);
+
+  await pan.click();
+  await dragFromMeter();
+  await expect(meter).not.toHaveAttribute('data-x-m', xM);
+  await expect(board).toHaveAttribute('data-revision', String(revision + 1));
+  await expect(board.locator('[data-wire-id]')).toHaveCount(7);
+});
 
 test('experiment chooser previews and cancels without replacing work; four editable open templates solve real same/different lamp circuits', async ({ page }, testInfo) => {
   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await ready(page);

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
-export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' }
+export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' }
 
 export function DocumentPreview({ pending, onConfirm, onCancel }: {
   pending: PendingDocument; onConfirm: () => void; onCancel: () => void;
@@ -10,9 +10,10 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
   useEffect(() => { dialog.current?.showModal(); }, []);
   const scene = pending.document;
   return <dialog ref={dialog} className="document-preview" aria-labelledby="preview-title" onCancel={onCancel}>
-    <h2 id="preview-title">{pending.source === 'import' ? '导入预览' : pending.source === 'experiment' || pending.source === 'optical' || pending.source === 'lever' || pending.source === 'friction' || pending.source === 'spring' || pending.source === 'projectile' || pending.source === 'reflection' ? '实验起点预览' : '本地保存预览'}</h2>
+    <h2 id="preview-title">{pending.source === 'import' ? '导入预览' : pending.source === 'experiment' || pending.source === 'optical' || pending.source === 'lever' || pending.source === 'friction' || pending.source === 'spring' || pending.source === 'projectile' || pending.source === 'reflection' || pending.source === 'density' ? '实验起点预览' : '本地保存预览'}</h2>
     <h3>{scene.title}</h3>
     <p>{scene.equipment.length} 件器材 · {scene.connections.length} 根连接 · {scene.measurementRecords.length} 条记录</p>
+    {pending.source === 'density' && <p>托盘天平先空载调零，固体用称重与排水法，液体用倒出前后质量差法。放稳器材，自行加减砝码、移动游码和平视液面；学生读数不会自动填写。教材映射待教师核验。</p>}
     {pending.source === 'reflection' && <p>平面镜、光源、量角器、法线与可折承接纸板；局部三维计算光线与折板的关系。角从法线读起，记录不自动填写；折板无连续光迹不代表光消失。教材映射待教师核验。</p>}
     {pending.source === 'projectile' && <p>质点平抛，无空气阻力、恒定重力。器材起点水平，h=1.25 m、v0=2 m/s；请自行校准读尺后发射。本次初态冻结，运行中修改用于下一次，保存不续跑。高中教材映射待教师核验。</p>}
     {pending.source === 'spring' && <p>竖直静态弹簧，盘质量为零；先无载读尺，再加载/卸载复测。原长、总长和形变量分别记录，超限不外推长度。高中教材映射待教师核验。</p>}

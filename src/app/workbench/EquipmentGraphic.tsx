@@ -12,6 +12,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
   const wood = `url(#${id}-wood)`;
   const metal = `url(#${id}-metal)`;
   const brightness = branchValue?.brightness ?? 0;
+  // Keep apparatus bodies free of SVG shadow filters, which can hide the entire group in WebKit.
   return <g className="real-apparatus" stroke="none" data-appearance="physical">
     <defs>
       <linearGradient id={`${id}-wood`} x2="0" y2="1"><stop stopColor="#dfc196" /><stop offset=".5" stopColor="#c99d68" /><stop offset="1" stopColor="#aa7947" /></linearGradient>
@@ -19,9 +20,8 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <linearGradient id={`${id}-cell`} x2="0" y2="1"><stop stopColor="#edb84f" /><stop offset=".35" stopColor="#ffe294" /><stop offset=".65" stopColor="#d49c37" /><stop offset="1" stopColor="#9b6b22" /></linearGradient>
       <linearGradient id={`${id}-ceramic`} x2="0" y2="1"><stop stopColor="#e4eadf" /><stop offset=".45" stopColor="#ffffff" /><stop offset="1" stopColor="#a9b4a2" /></linearGradient>
       <radialGradient id={`${id}-lamp-glow`}><stop stopColor="#fff6bc" /><stop offset=".45" stopColor="#ffd464" stopOpacity=".7" /><stop offset="1" stopColor="#ffc443" stopOpacity="0" /></radialGradient>
-      <filter id={`${id}-shadow`} x="-.12" y="-.1" width=".24" height=".2" filterUnits="userSpaceOnUse"><feDropShadow dx=".002" dy=".004" stdDeviation=".002" floodOpacity=".22" /></filter>
     </defs>
-    {instance.type === POWER && <g filter={`url(#${id}-shadow)`}>
+    {instance.type === POWER && <g>
       <rect x="-.067" y="-.03" width=".134" height=".06" rx=".009" fill="#293e48" />
       <rect x="-.059" y="-.022" width=".118" height=".044" rx=".004" fill="#132830" />
       <rect data-battery-cell="true" x="-.048" y="-.017" width=".096" height=".034" rx=".005" fill={`url(#${id}-cell)`} />
@@ -31,7 +31,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <path d="M-.075 0H-.065M.065 0H.075" stroke="#a8b7ba" strokeWidth="4" />
       <text x="-.06" y="-.015" fontSize=".016" fill="#ffb4a0">+</text><text x=".05" y="-.015" fontSize=".016" fill="#d8e5eb">−</text>
     </g>}
-    {instance.type === RESISTOR && <g filter={`url(#${id}-shadow)`}>
+    {instance.type === RESISTOR && <g>
       <rect x="-.072" y="-.039" width=".144" height=".078" rx=".006" fill={wood} />
       <path d="M-.066-.029H.066M-.064.03H.064" stroke="#b88b5e" strokeWidth="1" />
       <rect x="-.075" y="-.006" width=".15" height=".012" fill={metal} />
@@ -40,7 +40,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <text x="0" y=".004" textAnchor="middle" fontSize=".012" fill="#42523b">{String(instance.parameters.resistanceOhm)} Ω</text>
       {[-.058, .058].map(x => <g key={x}><circle cx={x} cy=".027" r=".004" fill="#e5d4b5" /><path d={`M${x - .0025} .027h.005`} stroke="#735e3d" strokeWidth="1" /></g>)}
     </g>}
-    {instance.type === SWITCH && <g filter={`url(#${id}-shadow)`}>
+    {instance.type === SWITCH && <g>
       <rect x="-.073" y="-.034" width=".146" height=".074" rx=".008" fill="#2e3437" />
       <rect x="-.065" y="-.026" width=".13" height=".057" rx=".005" fill="#454d4d" />
       <rect x="-.075" y="-.008" width=".045" height=".016" rx=".003" fill="#b5934f" /><rect x=".025" y="-.008" width=".05" height=".016" rx=".003" fill="#b5934f" />
@@ -69,7 +69,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <circle cx="-.035" r=".006" fill={metal} /><text x="0" y=".032" textAnchor="middle" fontSize=".01" fill="#d2dddc">{instance.parameters.closed ? '闭合' : '断开'}</text>
     </g>}
     {instance.type === JUNCTION && <circle r=".01" fill="#7b847e" />}
-    {instance.type === LAMP && <g data-lamp-brightness={brightness} data-lamp-power-w={branchValue?.powerW ?? undefined} data-lamp-status={branchValue ? 'valid' : 'unavailable'} filter={`url(#${id}-shadow)`}>
+    {instance.type === LAMP && <g data-lamp-brightness={brightness} data-lamp-power-w={branchValue?.powerW ?? undefined} data-lamp-status={branchValue ? 'valid' : 'unavailable'}>
       <title>{branchValue?.powerW === undefined || branchValue.powerW === null ? '尚无有效灯泡功率' : `耗散功率：${Number(branchValue.powerW.toPrecision(4))} W；亮度为教学示意`}</title>
       <ellipse data-lamp-halo="true" cy="-.018" rx={.042 + .045 * brightness} ry={.04 + .045 * brightness} fill={`url(#${id}-lamp-glow)`} opacity={brightness} />
       <rect x="-.07" y=".012" width=".14" height=".036" rx=".006" fill={wood} />
@@ -81,7 +81,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <path data-lamp-filament="true" d="M-.02 .018H.02M-.02 .024H.02M-.013 .01V-.009l.009-.009 .008.009 .009-.009V.01" fill="none" stroke={`hsl(${25 + 30 * brightness} ${20 + 80 * brightness}% ${35 + 55 * brightness}%)`} strokeWidth={1 + brightness} />
       <text x="0" y=".043" fontSize=".009" fill="#5c503a" textAnchor="middle">{String(instance.parameters.ratedVoltageV)} V · {String(instance.parameters.ratedCurrentA)} A</text>
     </g>}
-    {instance.type === RHEOSTAT && <RheostatGraphic instance={instance} wood={wood} metal={metal} shadow={`url(#${id}-shadow)`} onWiperPointerDown={onWiperPointerDown} onWiperKeyDown={onWiperKeyDown} />}
+    {instance.type === RHEOSTAT && <RheostatGraphic instance={instance} wood={wood} metal={metal} onWiperPointerDown={onWiperPointerDown} onWiperKeyDown={onWiperKeyDown} />}
     {(instance.type === AMMETER || instance.type === VOLTMETER) && <MeterGraphic instance={instance} {...(meter ? { reading: meter } : {})} />}
   </g>;
 }

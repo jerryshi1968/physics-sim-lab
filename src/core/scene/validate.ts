@@ -60,6 +60,9 @@ export function validateSceneDocument(input: unknown, registry: EquipmentRegistr
   });
   const snapshots = new Map((document.measurementSnapshots ?? []).map(snapshot => [snapshot.id, snapshot]));
   for (const [index, snapshot] of (document.measurementSnapshots ?? []).entries()) {
+    if (snapshot.sourceSnapshotIds?.some(id => !snapshots.has(id) || snapshots.get(id)!.documentRevision >= snapshot.documentRevision)) {
+      diagnostics.push(documentDiagnostic('INVALID_MEASUREMENT_SNAPSHOT', `measurementSnapshots.${index}.sourceSnapshotIds`));
+    }
     if (snapshot.documentId !== document.documentId || snapshot.documentRevision > document.revision) {
       diagnostics.push(documentDiagnostic('INVALID_MEASUREMENT_SNAPSHOT', `measurementSnapshots.${index}`));
     }

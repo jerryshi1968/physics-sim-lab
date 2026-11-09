@@ -7,11 +7,11 @@ export interface RheostatInteraction {
   onWiperKeyDown?: ((event: KeyboardEvent<SVGGElement>) => void) | undefined;
 }
 
-export function RheostatGraphic({ instance, wood, metal, shadow, onWiperPointerDown, onWiperKeyDown }: RheostatInteraction & {
-  instance: EquipmentInstance; wood: string; metal: string; shadow: string;
+export function RheostatGraphic({ instance, wood, metal, onWiperPointerDown, onWiperKeyDown }: RheostatInteraction & {
+  instance: EquipmentInstance; wood: string; metal: string;
 }) {
   const position = Number(instance.parameters.position), percentage = Number((position * 100).toFixed(1));
-  return <g data-rheostat-position={position} filter={shadow}>
+  return <g data-rheostat-position={position}>
     <rect data-rheostat-base="true" x="-.082" y=".025" width=".164" height=".029" rx=".005" fill={wood} />
     <path d="M-.075 .032L-.045 .008M.075 .032L.045 .008" stroke="#b9b29a" strokeWidth="3" />
     <rect x="-.061" y="-.013" width=".122" height=".038" rx=".012" fill="#dbceb0" stroke="#a39373" strokeWidth="1" />

@@ -72,6 +72,10 @@ export function removeMeasurement(document: SceneDocument, registry: EquipmentRe
   const candidate = SceneDocumentSchema.parse(document);
   candidate.measurementRecords = candidate.measurementRecords.filter(item => item.id !== id);
   const used = new Set(candidate.measurementRecords.map(item => item.context?.sampleId));
+  for (let size = -1; size !== used.size;) {
+    size = used.size;
+    for (const snapshot of candidate.measurementSnapshots ?? []) if (used.has(snapshot.id)) for (const source of snapshot.sourceSnapshotIds ?? []) used.add(source);
+  }
   if (candidate.measurementSnapshots) candidate.measurementSnapshots = candidate.measurementSnapshots.filter(snapshot => used.has(snapshot.id));
   return finish(candidate, registry, timestamp);
 }
