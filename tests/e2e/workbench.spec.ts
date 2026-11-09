@@ -40,6 +40,39 @@ test('record tabs work with keyboard and creating a blank document resets the vi
   await expect(page.getByText('0 件器材 · 0 根导线')).toBeVisible();
 });
 
+test('minimizing records gives the bench more space and preserves the active tab', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 720 });
+  await page.goto('/');
+  const records = page.getByRole('region', { name: '实验记录与分析' });
+  const chartTab = records.getByRole('tab', { name: '图线', exact: true });
+  await chartTab.click();
+  const board = page.getByTestId('scene-board');
+  const before = (await board.boundingBox())!.height;
+  await records.getByRole('button', { name: '最小化记录区', exact: true }).click();
+  await expect(records.getByRole('heading', { name: '实验记录' })).toBeVisible();
+  await expect(records.getByRole('tabpanel')).toBeHidden();
+  expect((await board.boundingBox())!.height).toBeGreaterThan(before + 100);
+  await records.getByRole('button', { name: '恢复记录区', exact: true }).click();
+  await expect(chartTab).toHaveAttribute('aria-selected', 'true');
+  await expect(records.getByRole('tabpanel')).toBeVisible();
+  expect((await board.boundingBox())!.height).toBe(before);
+});
+
+test('operation notices expire and a repeated notice restarts the timer', async ({ page }) => {
+  await page.clock.install();
+  await page.goto('/');
+  const create = page.getByRole('button', { name: '新建实验' });
+  const notice = page.locator('.live-notice');
+  await create.click();
+  await expect(notice).toHaveText('已建立新的空白实验。');
+  await page.clock.fastForward(2400);
+  await create.click();
+  await page.clock.fastForward(800);
+  await expect(notice).toBeVisible();
+  await page.clock.fastForward(2400);
+  await expect(notice).toBeHidden();
+});
+
 test('narrow viewport keeps primary controls visible without horizontal scrolling', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');

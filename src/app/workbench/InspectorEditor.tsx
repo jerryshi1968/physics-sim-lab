@@ -10,6 +10,7 @@ import { frictionParameterFields } from '../../equipment/mechanical/frictionDefi
 import { isFrictionScene } from '../../equipment/mechanical/frictionScene.ts';
 import { SPRING, springFields } from '../../equipment/spring/definitions.ts';
 import { LAUNCHER, SCALE, projectileFields } from '../../equipment/projectile/definitions.ts';
+import { cartFields } from '../../equipment/cart/definitions.ts';
 import { reflectionFields, reflectionTypes } from '../../equipment/reflection/definitions.ts';
 import { LiveProperties } from './LiveProperties.tsx';
 import { endpointLabel, equipmentLabel } from './shared.ts';
@@ -40,7 +41,7 @@ export function InspectorEditor({ scene, registry, selection, start, wireColor, 
   const definition = instance && registry.get(instance.type, instance.definitionVersion);
   const optical = definition?.domain === 'optical';
   const mechanical = definition?.domain === 'mechanical', canRotate = !!instance && reflectionTypes.includes(instance.type) || !optical && (!mechanical || instance?.type === MECHANICAL_RULER || instance?.type === LAUNCHER || instance?.type === SCALE);
-  const fields = instance ? (mechanical ? { ...mechanicalParameterFields, ...frictionParameterFields, ...projectileFields, [SPRING]: springFields } : optical ? { ...opticalParameterFields, ...reflectionFields } : parameterFields)[instance.type]?.filter(field => !(isFrictionScene(scene) && instance.type === FORCE_METER && field.key === 'forceN')) ?? [] : [];
+  const fields = instance ? (mechanical ? { ...mechanicalParameterFields, ...frictionParameterFields, ...projectileFields, ...cartFields, [SPRING]: springFields } : optical ? { ...opticalParameterFields, ...reflectionFields } : parameterFields)[instance.type]?.filter(field => !(isFrictionScene(scene) && instance.type === FORCE_METER && field.key === 'forceN')) ?? [] : [];
   const rheostat = instance?.type === RHEOSTAT ? rheostatResistances({ maxResistanceOhm: Number(instance.parameters.maxResistanceOhm), position: Number(instance.parameters.position) }) : null;
   return <>
     {scene.equipment.length > 0 && <div className="selection-controls"><label>选择器材<select aria-label="选择器材" value={instance?.id ?? ''}

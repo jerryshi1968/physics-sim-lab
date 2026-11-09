@@ -1,6 +1,6 @@
 # 中学物理实验室（CN Physics Lab）
 
-当前工作区为 0.2.0-dev.1 / M8 任务 16，包含 J-OPT-01 光的反射定律，以及 J-MEAS-01 固体/液体密度测量扩展，首批六项保持。原创代码、文字和 SVG/CSS 由 jerryshi1968 授权采用 Apache-2.0；第三方内容保留原声明。第二名教师、逐项教材和实体设备待核验项仍保留，开发扩展不代表这些门槛已经通过。
+当前工作区为 0.2.0-dev.1 / M8 任务 16，包含 J-OPT-01 光的反射定律、J-MEAS-01 固体和液体密度测量，以及 H-MECH-03 小车加速度与力、质量实验，首批六项保持。原创代码、文字和 SVG/CSS 由 jerryshi1968 授权采用 Apache-2.0；第三方内容保留原声明。第二名教师、逐项教材和实体设备待核验项仍保留，开发扩展不代表这些门槛已经通过。
 
 源码仓库：[jerryshi1968/physics-sim-lab](https://github.com/jerryshi1968/physics-sim-lab)。首次获取：
 
@@ -18,6 +18,8 @@ npm run dev
 发布说明与完整六项演示见 [v0.1.0-rc.1](docs/releases/v0.1.0-rc.1.md)、[演示指南](docs/releases/DEMO-GUIDE.md)、[模型范围](docs/releases/MODEL-SUMMARY.md)、[验证摘要](docs/releases/VALIDATION.md)及[已知限制](docs/releases/KNOWN-LIMITATIONS.md)。贡献入口见 [CONTRIBUTING.md](CONTRIBUTING.md)，许可范围见 [LICENSING.md](LICENSING.md)。
 
 任务 14 的历史离线测试包与本地 HTTP 启动说明见[离线运行](docs/OFFLINE.md)；教学电脑预装 Node.js 后，解压维护者本机的历史静态测试包（`artifacts/physics-lab-m7-offline.zip`），运行 `node scripts/serve-dist.mjs` 并打开 `http://127.0.0.1:8080/`，无需 npm 或外网。原地址保存迁移请先导出 JSON。任务 14 复测及限制见[实际验收](docs/acceptance/M7-TASK14.md)，两学段教师反馈见[试用清单](docs/acceptance/TEACHER-TRIAL.md)。
+
+点击顶部“加速度与力、质量实验”，可使用带定滑轮的水平轨道、动力学小车、光电门和打点计时器。把车上配重和悬挂质量作为控制变量，暂停或结束后记录光电门或纸带读数，可画 `a–F`、`a–1/M`、`x–t` 和 `x–t²` 图。系统质量包含小车、车上配重和悬挂总质量。[小车模型与基准](docs/models/cart-experiment.md)
 
 点击顶部“测量密度实验”，选择“固体密度”或“液体密度”，再选一套器材或从空白搭建。新增五件器材在“力学”页签；不需要后端。
 

@@ -17,8 +17,12 @@ import { densityTypes } from '../../equipment/density/definitions.ts';
 import type { DensityOutcome } from '../../equipment/density/simulate.ts';
 import { DensityGraphic, densityBounds } from '../density/DensityGraphic.tsx';
 import type { DensityControls } from '../density/DensityGraphic.tsx';
+import { cartTypes } from '../../equipment/cart/definitions.ts';
+import { CartGraphic, cartBounds } from '../cart/CartGraphic.tsx';
+import type { CartRun } from '../../equipment/cart/simulate.ts';
 
 export function mechanicalBounds(item: EquipmentInstance, springOutcome?: SpringOutcome | null) {
+  if (cartTypes.includes(item.type)) return cartBounds(item);
   if (densityTypes.includes(item.type)) return densityBounds(item);
   if (projectileTypes.includes(item.type)) return projectileBounds(item);
   if (item.type === SPRING) return { x: -.09, y: -.015, width: .125, height: (springOutcome?.ok ? springOutcome.value.lengthM : Number(item.parameters.originalLengthM)) + .06 };
@@ -32,7 +36,8 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   }
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
-export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, frictionReading, springOutcome, projectileFlight, densityOutcome, densityControls }: { densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; frictionReading?: { forceN: number; status: string } | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, frictionReading, springOutcome, projectileFlight, densityOutcome, densityControls, cartRun }: { densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+  if (cartTypes.includes(item.type)) return <CartGraphic instance={item} run={cartRun} />;
   if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;
   const p = item.parameters, half = Number(p.halfHooks ?? 6), spacing = Number(p.spacingM ?? .05);
   const meter = frictionReading ?? (outcome?.ok ? outcome.meters.find(meter => meter.id === item.id) : undefined);

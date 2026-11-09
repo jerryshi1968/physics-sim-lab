@@ -43,8 +43,14 @@ import { BALANCE, MASS_SET, densityTypes, SPECIMEN as DENSITY_SPECIMEN, BEAKER a
 import { balanceAdjustments, steppedBalanceValue } from '../density/DensityGraphic.tsx';
 import type { BalanceAdjustment } from '../density/DensityGraphic.tsx';
 import type { DensityPreview } from '../density/DensityPanel.tsx';
+import { CART as DYNAMICS_CART, TICKER as CART_TICKER, TRACK as CART_TRACK } from '../../equipment/cart/definitions.ts';
+import type { CartRig, CartRun } from '../../equipment/cart/simulate.ts';
+import { CartTether } from '../cart/CartGraphic.tsx';
 
 interface Props {
+  cartMode?: boolean;
+  cartRig?: CartRig | null;
+  cartRun?: CartRun | null;
   densityOutcome?: DensityOutcome | null;
   onDensityPreview: (preview: DensityPreview | null) => void;
   onDensityAdjust: (id: string, key: BalanceAdjustment, value: number) => void;
@@ -95,7 +101,7 @@ type Gesture = { pointerId: number; clientX: number; clientY: number; view: View
   | { kind: 'pan' }
 );
 
-export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
+export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
   const svg = useRef<SVGSVGElement>(null);
   const wireLayerId = useId();
   const gesture = useRef<Gesture | null>(null);
@@ -280,7 +286,7 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
   }
 
   return <section className="panel bench" id="workbench" tabIndex={-1} aria-labelledby="bench-title">
-    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {densityOutcome ? '密度实验' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
+    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {cartMode ? '小车实验' : densityOutcome ? '密度实验' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
       <div className="view-actions"><button aria-label="缩小" onClick={() => onViewport(zoomViewport(view, 1 / 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>−</button>
         <span aria-label="缩放比例">{Math.round(view.pixelsPerM / DEFAULT_VIEWPORT.pixelsPerM * 100)}%</span>
         <button aria-label="放大" onClick={() => onViewport(zoomViewport(view, 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>＋</button>
@@ -342,7 +348,8 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
           return <path data-friction-link="true" d={`M${points[0]!.x} ${points[0]!.y}L${points[1]!.x} ${points[1]!.y}M${points[2]!.x} ${points[2]!.y}L${drive.type === DRIVE ? points[3]!.x : points[2]!.x + sign * .06 * view.pixelsPerM} ${points[3]!.y}`} fill="none" stroke="#7d8780" strokeWidth="2" pointerEvents="none" />;
         })()}
         {projectileMode && <ProjectileOverlay scene={scene} flight={projectileFlight} marks={projectileMarks} view={view} size={size} />}
-        {(densityOutcome ? [...equipment].sort((a, b) => Number([DENSITY_SPECIMEN, DENSITY_BEAKER].includes(a.type)) - Number([DENSITY_SPECIMEN, DENSITY_BEAKER].includes(b.type))) : reflectionOutcome ? [...equipment].sort((a, b) => reflectionTypes.indexOf(a.type) - reflectionTypes.indexOf(b.type)) : projectileMode ? [...equipment].sort((a, b) => ([PROJECTILE_SCALE, PROJECTILE_GROUND].includes(a.type) ? -1 : a.type === PROJECTILE_BALL ? 1 : 0) - ([PROJECTILE_SCALE, PROJECTILE_GROUND].includes(b.type) ? -1 : b.type === PROJECTILE_BALL ? 1 : 0)) : equipment).map((instance, equipmentIndex) => {
+        {cartRig && !preview && <CartTether rig={cartRig} run={cartRun} view={view} size={size} />}
+        {(cartMode ? [...equipment].sort((a, b) => Number(b.type === CART_TRACK) - Number(a.type === CART_TRACK)) : densityOutcome ? [...equipment].sort((a, b) => Number([DENSITY_SPECIMEN, DENSITY_BEAKER].includes(a.type)) - Number([DENSITY_SPECIMEN, DENSITY_BEAKER].includes(b.type))) : reflectionOutcome ? [...equipment].sort((a, b) => reflectionTypes.indexOf(a.type) - reflectionTypes.indexOf(b.type)) : projectileMode ? [...equipment].sort((a, b) => ([PROJECTILE_SCALE, PROJECTILE_GROUND].includes(a.type) ? -1 : a.type === PROJECTILE_BALL ? 1 : 0) - ([PROJECTILE_SCALE, PROJECTILE_GROUND].includes(b.type) ? -1 : b.type === PROJECTILE_BALL ? 1 : 0)) : equipment).map((instance, equipmentIndex) => {
           const screen = worldToScreen(instance.pose, view, size);
           const selected = equipmentSelectionIds(selection).includes(instance.id);
           const definition = registry.get(instance.type, instance.definitionVersion)!;
@@ -368,6 +375,9 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
           const springCaption = springOutcome ? instance.type === SPRING ? { x: screen.x - .12 * view.pixelsPerM, y: screen.y + (springOutcome.ok ? springOutcome.value.lengthM : Number(instance.parameters.originalLengthM)) * .5 * view.pixelsPerM, anchor: 'end' as const }
             : instance.type === 'mechanical.ruler' ? { x: screen.x + 12, y: screen.y - 12, anchor: 'start' as const }
             : instance.type === WEIGHT ? { x: Math.max(screen.x + .03 * view.pixelsPerM + 6, ...equipment.filter(item => item.type === 'mechanical.ruler').map(item => worldToScreen(item.pose, view, size).x + .045 * view.pixelsPerM)), y: screen.y + .046 * view.pixelsPerM, anchor: 'start' as const } : null : null;
+          const cartCaption = instance.type === CART_TRACK ? { x: screen.x - Number(instance.parameters.lengthM) * view.pixelsPerM / 2, y: screen.y + .06 * view.pixelsPerM + 30, anchor: 'start' as const }
+            : instance.type === DYNAMICS_CART ? { x: screen.x, y: Math.max(14, screen.y - .17 * view.pixelsPerM - 7), anchor: 'middle' as const }
+            : instance.type === CART_TICKER ? { x: Math.max(8, screen.x - .085 * view.pixelsPerM), y: screen.y + .053 * view.pixelsPerM + 16, anchor: 'start' as const } : null;
           const hasDensityControls = densityOutcome && (instance.type === BALANCE || instance.type === MASS_SET);
           return <g key={instance.id} data-equipment-id={instance.id} data-equipment-type={instance.type} data-x-m={instance.pose.xM} data-y-m={instance.pose.yM} data-rotation-rad={instance.pose.rotationRad}>
             <g className={`equipment-body ${selected ? 'is-selected' : ''} ${instance.pose.flippedX ? 'is-flipped' : ''}`} data-flipped-x={!!instance.pose.flippedX} data-selected={selected} role={instance.type === SWITCH || instance.type === RHEOSTAT || hasDensityControls ? 'group' : 'button'} tabIndex={0} aria-label={`选择${equipmentLabel(scene, registry, instance.id)}`}
@@ -375,6 +385,7 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
               onPointerDown={event => {
                 if (start || activeWireEnd) { event.stopPropagation(); onNotice('请将线头连接到器材的金属接线柱，或使用右侧接线按钮。'); return; }
                 onSelect({ kind: 'equipment', id: instance.id }, event.shiftKey);
+                if (cartRun?.rig.cart.id === instance.id) { event.stopPropagation(); onNotice('请重置后再调整小车起点。'); return; }
                 if (projectileFlight && instance.id === projectileFlight.rig.ball.id) { event.stopPropagation(); onNotice('本次小球按冻结初态运动；请重置后再拖放小球，或在属性区配置下一次。'); return; }
                 capture(event, { kind: 'equipment', pointerId: event.pointerId, clientX: event.clientX, clientY: event.clientY,
                   view: { ...view }, id: instance.id, origin: { xM: instance.pose.xM, yM: instance.pose.yM }, pointer: pointerPoint(event.clientX, event.clientY) });
@@ -383,10 +394,11 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
                 if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); onSelect({ kind: 'equipment', id: instance.id }, event.shiftKey); }
                 const deltas: Record<string, WorldPoint> = { ArrowLeft: { xM: -0.01, yM: 0 }, ArrowRight: { xM: 0.01, yM: 0 }, ArrowUp: { xM: 0, yM: 0.01 }, ArrowDown: { xM: 0, yM: -0.01 } };
                 const delta = deltas[event.key];
+                if (delta && cartRun?.rig.cart.id === instance.id) { event.preventDefault(); event.stopPropagation(); onNotice('请重置后再调整小车起点。'); return; }
                 if (delta && projectileFlight && instance.id === projectileFlight.rig.ball.id) { event.preventDefault(); event.stopPropagation(); onNotice('请重置后再摆放小球。'); return; }
                 if (delta) { event.preventDefault(); event.stopPropagation(); onMove(instance.id, { xM: instance.pose.xM + delta.xM, yM: instance.pose.yM + delta.yM }); }
               }}>
-              <rect className="equipment-backdrop" {...bounds} rx=".008" />{definition.domain === 'mechanical' ? <MechanicalGraphic densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
+              <rect className="equipment-backdrop" {...bounds} rx=".008" />{definition.domain === 'mechanical' ? <MechanicalGraphic cartRun={cartRun} densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
                 onAdjustStart: (key, event) => {
                   if (!event.isPrimary || event.button !== 0) return;
                   if (key === 'zeroTrimKg' && (!densityOutcome?.weighing.ok || !densityOutcome.weighing.canZero)) {
@@ -420,7 +432,7 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
                   onSelect({ kind: 'equipment', id: instance.id }); onRheostatChange(instance.id, Number(next.toFixed(10)));
                 } : undefined} />}
             </g>
-            <text className="equipment-caption" data-friction-caption={frictionCaption ? instance.type : undefined} x={densityCaption?.x ?? reflectionCaption?.x ?? projectileCaption?.x ?? springCaption?.x ?? frictionCaption?.x ?? (instance.type === WEIGHT ? screen.x + .03 * view.pixelsPerM + 6 : screen.x)} y={densityCaption?.y ?? reflectionCaption?.y ?? projectileCaption?.y ?? springCaption?.y ?? frictionCaption?.y ?? (instance.type === WEIGHT ? screen.y + .046 * view.pixelsPerM : definition.domain === 'mechanical' ? screen.y + (bounds.y + bounds.height) * view.pixelsPerM + 18 : definition.domain === 'optical' && ![BENCH, 'optical.ruler'].includes(instance.type) ? worldToScreen({ xM: instance.pose.xM, yM: equipment.find(item => item.type === BENCH)?.pose.yM ?? 0 }, view, size).y + (instance.type === 'optical.candle' ? 34 : instance.type === 'optical.convex-lens' ? 48 : 62) : screen.y + Math.max(0.09 * view.pixelsPerM, 40))} textAnchor={densityCaption?.anchor ?? reflectionCaption?.anchor ?? projectileCaption?.anchor ?? springCaption?.anchor ?? (instance.type === WEIGHT ? 'start' : 'middle')}>{projectileMode && instance.type === PROJECTILE_BALL && projectileFlight ? '' : equipmentLabel(scene, registry, instance.id)}{instance.type === WEIGHT ? ` · ${Number(instance.parameters.massKg)} kg` : ''}</text>
+            <text className="equipment-caption" data-friction-caption={frictionCaption ? instance.type : undefined} x={cartCaption?.x ?? densityCaption?.x ?? reflectionCaption?.x ?? projectileCaption?.x ?? springCaption?.x ?? frictionCaption?.x ?? (instance.type === WEIGHT ? screen.x + .03 * view.pixelsPerM + 6 : screen.x)} y={cartCaption?.y ?? densityCaption?.y ?? reflectionCaption?.y ?? projectileCaption?.y ?? springCaption?.y ?? frictionCaption?.y ?? (instance.type === WEIGHT ? screen.y + .046 * view.pixelsPerM : definition.domain === 'mechanical' ? screen.y + (bounds.y + bounds.height) * view.pixelsPerM + 18 : definition.domain === 'optical' && ![BENCH, 'optical.ruler'].includes(instance.type) ? worldToScreen({ xM: instance.pose.xM, yM: equipment.find(item => item.type === BENCH)?.pose.yM ?? 0 }, view, size).y + (instance.type === 'optical.candle' ? 34 : instance.type === 'optical.convex-lens' ? 48 : 62) : screen.y + Math.max(0.09 * view.pixelsPerM, 40))} textAnchor={cartCaption?.anchor ?? densityCaption?.anchor ?? reflectionCaption?.anchor ?? projectileCaption?.anchor ?? springCaption?.anchor ?? (instance.type === WEIGHT ? 'start' : 'middle')}>{projectileMode && instance.type === PROJECTILE_BALL && projectileFlight ? '' : equipmentLabel(scene, registry, instance.id)}{instance.type === WEIGHT ? ` · ${Number(instance.parameters.massKg)} kg` : ''}</text>
             {definition.ports.map((port, portIndex) => {
               const endpoint = { equipmentId: instance.id, portId: port.id };
               const point = worldToScreen(endpointWorld(endpoint, equipment, registry), view, size);
@@ -524,7 +536,7 @@ export function SceneBoard({ densityOutcome = null, onDensityPreview, onDensityA
         })}</g>
       </svg>
       {trendAngle !== 0 && <div className="lever-trend-banner" data-testid="lever-trend-banner">失衡：{trendAngle > 0 ? '左端下沉' : '右端下沉'}（转动趋势示意）。虚线为原位置，倾斜角不用于读尺。</div>}
-      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
+      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{cartMode ? <p>放置水平轨道、小车和计时器材。<br />将小车和光电门放到轨道上，再释放小车。</p> : densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
       {(placing || start || activeWireEnd) && <div className="canvas-prompt">{placing ? `待放置：${placing === WIRE ? '导线' : registry.list().find(item => item.type === placing)?.label}` : activeWireEnd ? `待连接：线头 ${activeWireEnd.side === 'from' ? 'A' : 'B'}，请拖到或点击接线柱` : `接线起点：${endpointLabel(scene, registry, start!)}`}<button onClick={onCancel}>取消</button></div>}
       <span className="coordinate-label" aria-hidden="true">世界坐标：x 向右 · y 向上</span>
     </div>

@@ -6,6 +6,7 @@ import { registerOpticalEquipment } from './optical/definitions.ts';
 import { registerFrictionEquipment } from './mechanical/frictionDefinitions.ts';
 import { registerSpringEquipment } from './spring/definitions.ts';
 import { registerMechanicalEquipment } from './mechanical/definitions.ts';
+import { registerCartEquipment } from './cart/definitions.ts';
 
 export function createWorkbenchRegistry() {
   const registry = createElectricalRegistry();
@@ -16,5 +17,6 @@ export function createWorkbenchRegistry() {
   registerSpringEquipment(registry);
   registerProjectileEquipment(registry);
   registerDensityEquipment(registry);
+  registerCartEquipment(registry);
   return registry;
 }
