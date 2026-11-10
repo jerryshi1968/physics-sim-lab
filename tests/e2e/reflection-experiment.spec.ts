@@ -22,7 +22,7 @@ test('reflection three-angle readings, folded evidence, student chart and CSV/JS
   test.setTimeout(120_000);await page.setViewportSize({width:1920,height:1080});
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{const original=window.Worker;(window as Window&{reflectionWorkers?:number}).reflectionWorkers=0;window.Worker=class extends original{constructor(url:string|URL,options?:WorkerOptions){super(url,options);const counter=window as Window&{reflectionWorkers?:number};counter.reflectionWorkers=(counter.reflectionWorkers??0)+1;}};});
-  await ready(page);await expect(page.locator('[data-library-type]')).toHaveCount(10);await expect(reflected(page)).toHaveCount(1);await expect(page.getByTestId('reflection-theory')).toHaveCount(0);
+  await ready(page);await expect(page.locator('[data-library-type]')).toHaveCount(13);await expect(reflected(page)).toHaveCount(1);await expect(page.getByTestId('reflection-theory')).toHaveCount(0);
   await expect(page.getByTestId('scene-board').locator('[data-optical-rays]')).toHaveCount(0);await expect(page.locator('[data-screen-projection]')).toHaveCount(0);
   await page.getByRole('button',{name:'展开记录区',exact:true}).click();
   let first:SceneDocument|null=null;

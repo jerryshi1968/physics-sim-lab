@@ -7,11 +7,13 @@ import { registerFrictionEquipment } from './mechanical/frictionDefinitions.ts';
 import { registerSpringEquipment } from './spring/definitions.ts';
 import { registerMechanicalEquipment } from './mechanical/definitions.ts';
 import { registerCartEquipment } from './cart/definitions.ts';
+import { registerMirrorImageEquipment } from './mirrorImage/definitions.ts';
 
 export function createWorkbenchRegistry() {
   const registry = createElectricalRegistry();
   registerOpticalEquipment(registry);
   registerReflectionEquipment(registry);
+  registerMirrorImageEquipment(registry);
   registerMechanicalEquipment(registry);
   registerFrictionEquipment(registry);
   registerSpringEquipment(registry);

@@ -16,7 +16,7 @@ test('default library exposes both tabs without changing work; optical apparatus
   await expect(library.getByRole('tab', { name: '电学', exact: true })).toHaveAttribute('aria-selected', 'true');
   await library.getByRole('tab', { name: '电学', exact: true }).focus(); await page.keyboard.press('ArrowRight');
   await expect(library.getByRole('tab', { name: '光学', exact: true })).toBeFocused();
-  await expect(library.locator('[data-library-type]')).toHaveCount(10);
+  await expect(library.locator('[data-library-type]')).toHaveCount(13);
   expect(await exported(page)).toEqual(before);
   await page.screenshot({ path: testInfo.outputPath('library-default-optical.png'), fullPage: true });
   await library.locator('[data-library-type="optical.convex-lens"]').click();
@@ -58,7 +58,7 @@ test.describe('touch library categories', () => {
     await expect(library.getByRole('button', { name: '取消放置', exact: true })).toHaveCount(0);
     await expect(library.locator('[data-library-type]')).toHaveCount(8);
     await library.getByRole('tab', { name: '光学', exact: true }).tap();
-    await expect(library.locator('[data-library-type]')).toHaveCount(10);
+    await expect(library.locator('[data-library-type]')).toHaveCount(13);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: testInfo.outputPath('library-optical-touch.png'), fullPage: true });
   });

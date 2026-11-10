@@ -29,7 +29,7 @@ test('five object distances use real screen rays; preview/undo preserves apparat
   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 });
   await page.addInitScript(() => { const original = window.Worker; (window as Window & { opticalWorkerCount?: number }).opticalWorkerCount = 0;
     window.Worker = class extends original { constructor(url: string | URL, options?: WorkerOptions) { super(url, options); const counter = window as Window & { opticalWorkerCount?: number }; counter.opticalWorkerCount = (counter.opticalWorkerCount ?? 0) + 1; } }; });
-  await ready(page); await expect(page.locator('[data-library-type]')).toHaveCount(10); await expect(page.locator('[data-library-type="electrical.wire"]')).toHaveCount(0);
+  await ready(page); await expect(page.locator('[data-library-type]')).toHaveCount(13); await expect(page.locator('[data-library-type="electrical.wire"]')).toHaveCount(0);
   await expect(status(page)).toContainText('离焦'); await expect(page.locator('[data-optical-rays]')).toHaveCount(0);
   await aligned(page); await properties(page, 'screen', { '位置 x（m）': '.65' }); await expect(status(page)).toContainText('清晰实像');
   await expect(page.getByTestId('scene-board').locator('[data-equipment-id="screen"] [data-screen-side-view]')).toHaveAttribute('transform', 'matrix(.36 -.14 0 1 0 0)');

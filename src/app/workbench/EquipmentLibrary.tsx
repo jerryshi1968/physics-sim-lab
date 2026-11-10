@@ -11,6 +11,7 @@ import { SPRING } from '../../equipment/spring/definitions.ts';
 import { LEVER, SUPPORT, MECHANICAL_RULER } from '../../equipment/mechanical/definitions.ts';
 
 import { MIRROR, EMITTER, PAPER, PROTRACTOR, NORMAL } from '../../equipment/reflection/definitions.ts';
+import { mirrorImageApparatus } from '../../equipment/mirrorImage/definitions.ts';
 
 import { BALANCE, CYLINDER, SPECIMEN, MASS_SET, BEAKER } from '../../equipment/density/definitions.ts';
 import { CART, TRACK, GATE, TICKER } from '../../equipment/cart/definitions.ts';
@@ -23,6 +24,7 @@ const domainLabels = { electrical: '电学', optical: '光学', mechanical: '力
 interface Props {
   registry: EquipmentRegistry;
   domain?: Domain;
+  mirrorImage?: boolean;
   locked: boolean;
   onNewDomain: (domain: Domain) => void;
   placing: string | null;
@@ -31,7 +33,7 @@ interface Props {
   onCenter: () => void;
 }
 
-export function EquipmentLibrary({ registry, domain: sceneDomain = 'electrical', locked, onNewDomain, placing, onChoose, onDrop, onCenter }: Props) {
+export function EquipmentLibrary({ registry, domain: sceneDomain = 'electrical', mirrorImage = false, locked, onNewDomain, placing, onChoose, onDrop, onCenter }: Props) {
   const [domain, setDomain] = useState(sceneDomain);
   const drag = useRef<{ pointerId: number; x: number; y: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
@@ -44,6 +46,7 @@ export function EquipmentLibrary({ registry, domain: sceneDomain = 'electrical',
     setDomain(value);
   }
   const catalog = [...registry.list().filter(item => item.type !== JUNCTION && item.domain === domain), ...(domain === 'electrical' ? [{ type: WIRE, label: '导线', domain: 'electrical' }] : [])];
+  if (mirrorImage && domain === 'optical') catalog.sort((a, b) => Number(mirrorImageApparatus.includes(b.type)) - Number(mirrorImageApparatus.includes(a.type)));
   return <section className="panel library" aria-labelledby="library-title">
     <div className="panel-heading"><h2 id="library-title">器材库</h2><span className="count">{catalog.length}</span></div>
     <div className="library-tabs" role="tablist" aria-label="器材分类">
@@ -57,6 +60,7 @@ export function EquipmentLibrary({ registry, domain: sceneDomain = 'electrical',
         }}>{domainLabels[value]}</button>)}
     </div>
     <p className="section-caption">选择后点击放置，也可直接拖入。</p>
+    {mirrorImage && domain === 'optical' && <p className="section-caption">平面镜成像常用器材排在前面。将一把刻度尺设为 90°，可量标记的高度。</p>}
     {blocked && <div className="library-domain-notice"><p>当前为{domainLabels[sceneDomain]}装置，请新建{domainLabels[domain]}实验后使用这些器材。</p><button onClick={() => onNewDomain(domain)}>新建{domainLabels[domain]}实验</button></div>}
     <div className="equipment-catalog" role="tabpanel" id={`library-panel-${domain}`} aria-labelledby={`library-tab-${domain}`}>
       {catalog.map(definition => <button key={definition.type} data-library-type={definition.type} disabled={blocked}

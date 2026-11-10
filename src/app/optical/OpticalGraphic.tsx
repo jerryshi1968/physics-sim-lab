@@ -4,8 +4,11 @@ import { BENCH, CANDLE, LENS, SCREEN, RULER } from '../../equipment/optical/defi
 
 import { reflectionTypes } from '../../equipment/reflection/definitions.ts';
 import { ReflectionGraphic, reflectionBounds } from '../reflection/ReflectionGraphic.tsx';
+import { mirrorImageTypes } from '../../equipment/mirrorImage/definitions.ts';
+import { MirrorImageGraphic, mirrorImageBounds } from '../mirrorImage/MirrorImageGraphic.tsx';
 
 export function opticalBounds(instance: EquipmentInstance) {
+  if (mirrorImageTypes.includes(instance.type)) return mirrorImageBounds(instance);
   if (reflectionTypes.includes(instance.type)) return reflectionBounds(instance);
   const length = Number(instance.parameters.lengthM ?? .08), height = Number(instance.parameters.heightM ?? .08);
   return instance.type === BENCH || instance.type === RULER ? { x: -.012, y: -.025, width: length + .024, height: .06 }
@@ -15,6 +18,7 @@ export function OpticalGraphic({ instance, pixelsPerM = 600, benchYM = 0 }: { in
   const id = useId(), { type, parameters, pose } = instance, base = Math.max(.04, pose.yM - benchYM), length = Number(parameters.lengthM ?? 1);
   const isScale = type === BENCH || type === RULER, step = type === BENCH ? .01 : pixelsPerM >= 1000 ? .001 : .005;
   if (reflectionTypes.includes(type)) return <ReflectionGraphic instance={instance} />;
+  if (mirrorImageTypes.includes(type)) return <MirrorImageGraphic item={instance} pixelsPerM={pixelsPerM} />;
   return <g className="real-apparatus" data-appearance="physical" data-optical-type={type} stroke="none">
     <defs><linearGradient id={`${id}-metal`} x2="0" y2="1"><stop stopColor="#dbe8ed" /><stop offset=".5" stopColor="#7f939d" /><stop offset="1" stopColor="#d4dfe2" /></linearGradient></defs>
     {isScale ? <>

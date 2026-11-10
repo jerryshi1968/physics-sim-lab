@@ -19,6 +19,9 @@ import { OpticalGraphic, opticalBounds } from '../optical/OpticalGraphic.tsx';
 import type { ReflectionOutcome } from '../../equipment/reflection/simulate.ts';
 import { reflectionTypes, PAPER, MIRROR, PROTRACTOR, NORMAL } from '../../equipment/reflection/definitions.ts';
 import { ReflectionRays } from '../reflection/ReflectionRays.tsx';
+import { MirrorImageGraphic, MirrorImageOverlay, mirrorImageBounds } from '../mirrorImage/MirrorImageGraphic.tsx';
+import type { MirrorImageOutcome } from '../../equipment/mirrorImage/simulate.ts';
+import { EYE, MATCH, mirrorImageApparatus } from '../../equipment/mirrorImage/definitions.ts';
 import { OpticalRays } from '../optical/OpticalRays.tsx';
 import { BENCH } from '../../equipment/optical/definitions.ts';
 import { MechanicalGraphic, mechanicalBounds } from '../mechanical/MechanicalGraphic.tsx';
@@ -79,6 +82,9 @@ interface Props {
   onRedo: () => void;
   outcome: ElectricalOutcome | null;
   reflectionOutcome?: ReflectionOutcome | null;
+  mirrorImageOutcome?: MirrorImageOutcome | null;
+  mirrorGuides?: boolean;
+  mirrorRays?: boolean;
   opticalOutcome: OpticalOutcome | null;
   opticalAuxiliary: boolean;
   leverOutcome: LeverOutcome | null;
@@ -101,7 +107,7 @@ type Gesture = { pointerId: number; clientX: number; clientY: number; view: View
   | { kind: 'pan' }
 );
 
-export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
+export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
   const svg = useRef<SVGSVGElement>(null);
   const wireLayerId = useId();
   const gesture = useRef<Gesture | null>(null);
@@ -286,7 +292,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
   }
 
   return <section className="panel bench" id="workbench" tabIndex={-1} aria-labelledby="bench-title">
-    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {cartMode ? '小车实验' : densityOutcome ? '密度实验' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
+    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {cartMode ? '小车实验' : densityOutcome ? '密度实验' : mirrorImageOutcome ? '平面镜成像' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
       <div className="view-actions"><button aria-label="缩小" onClick={() => onViewport(zoomViewport(view, 1 / 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>−</button>
         <span aria-label="缩放比例">{Math.round(view.pixelsPerM / DEFAULT_VIEWPORT.pixelsPerM * 100)}%</span>
         <button aria-label="放大" onClick={() => onViewport(zoomViewport(view, 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>＋</button>
@@ -335,6 +341,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
             return regions;
           }))} />
         </clipPath></defs>
+        {mirrorImageOutcome && <MirrorImageOverlay outcome={mirrorImageOutcome} equipment={equipment} view={view} size={size} guides={mirrorGuides} rays={mirrorRays} />}
         {opticalOutcome && opticalAuxiliary && <OpticalRays outcome={opticalOutcome} view={view} size={size} />}
         {trendAngle !== 0 && leverOutcome?.ok && (() => {
           const half = Number(leverOutcome.lever.parameters.halfHooks), a = worldToScreen(hookWorld(leverOutcome.lever, -half), view, size), b = worldToScreen(hookWorld(leverOutcome.lever, half), view, size);
@@ -354,7 +361,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
           const selected = equipmentSelectionIds(selection).includes(instance.id);
           const definition = registry.get(instance.type, instance.definitionVersion)!;
           if (definition.domain === 'optical' && ![screen.x, screen.y].every(Number.isFinite)) return null;
-          const bounds = definition.domain === 'mechanical' ? mechanicalBounds(instance, springOutcome) : definition.domain === 'optical' ? opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
+          const bounds = definition.domain === 'mechanical' ? mechanicalBounds(instance, springOutcome) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
           let frictionCaption: { x: number; y: number } | null = null;
           if (frictionSample?.ok) {
             const base = worldToScreen(frictionSample.rig.surface.pose, view, size).y + .07 * view.pixelsPerM;
@@ -364,6 +371,8 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
             else if (instance.type === SURFACE && instance.id === frictionSample.rig.surface.id) frictionCaption = { x: screen.x, y: base + 78 };
           }
           const densityCaption = densityOutcome && densityTypes.includes(instance.type) && [DENSITY_SPECIMEN, DENSITY_BEAKER].includes(instance.type) ? { x: screen.x + (instance.parameters.targetId === equipment.find(item => item.type === 'mechanical.density-balance')?.id ? -.06 * view.pixelsPerM - 8 : .055 * view.pixelsPerM + 8), y: screen.y + (bounds.y + bounds.height / 2) * view.pixelsPerM, anchor: instance.parameters.targetId === equipment.find(item => item.type === 'mechanical.density-balance')?.id ? 'end' as const : 'start' as const } : null;
+          const mirrorCaption = mirrorImageOutcome ? { x: instance.type === 'optical.ruler' ? screen.x + Math.cos(instance.pose.rotationRad) * Number(instance.parameters.lengthM) * view.pixelsPerM / 2 : screen.x,
+            y: instance.type === 'optical.ruler' ? screen.y + (Math.abs(Math.sin(instance.pose.rotationRad)) > .5 ? 13 : .026 * view.pixelsPerM + 13) : [EYE, MATCH, MIRROR].includes(instance.type) ? Math.max(12, screen.y + bounds.y * view.pixelsPerM - 8) : screen.y + (bounds.y + bounds.height) * view.pixelsPerM + 14 } : null;
           const reflectionCaption = reflectionOutcome ? instance.type === PAPER ? { x: screen.x - Number(instance.parameters.halfWidthM) * view.pixelsPerM / 2, y: Math.max(16, screen.y - Number(instance.parameters.heightM) * view.pixelsPerM - 18), anchor: 'middle' as const }
             : instance.type === MIRROR ? { x: screen.x, y: screen.y + 40, anchor: 'middle' as const }
             : instance.type === NORMAL ? { x: screen.x + 12, y: screen.y - Number(instance.parameters.lengthM) * view.pixelsPerM - 8, anchor: 'start' as const }
@@ -414,7 +423,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
                   if (value !== Number(instance.parameters[key])) onDensityAdjust(instance.id, key, value);
                 },
                 onWeight: index => onDensityWeight(instance.id, index),
-              } : undefined} projectileFlight={projectileFlight} springOutcome={springOutcome} instance={instance} outcome={leverOutcome} pixelsPerM={view.pixelsPerM} showWeightLabel={false} frictionReading={frictionSample?.ok && instance.id === frictionSample.rig.meter.id ? { forceN: frictionSample.state.timeS === 0 ? 0 : Math.abs(frictionSample.forces.pullN), status: frictionSample.state.timeS === 0 ? 'disconnected' : frictionSample.reading.status } : undefined} /> : definition.domain === 'optical' ? <OpticalGraphic instance={instance} pixelsPerM={view.pixelsPerM} benchYM={equipment.find(item => item.type === BENCH)?.pose.yM ?? 0} /> : <EquipmentGraphic instance={instance}
+              } : undefined} projectileFlight={projectileFlight} springOutcome={springOutcome} instance={instance} outcome={leverOutcome} pixelsPerM={view.pixelsPerM} showWeightLabel={false} frictionReading={frictionSample?.ok && instance.id === frictionSample.rig.meter.id ? { forceN: frictionSample.state.timeS === 0 ? 0 : Math.abs(frictionSample.forces.pullN), status: frictionSample.state.timeS === 0 ? 'disconnected' : frictionSample.reading.status } : undefined} /> : mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? <MirrorImageGraphic item={instance} pixelsPerM={view.pixelsPerM} /> : definition.domain === 'optical' ? <OpticalGraphic instance={instance} pixelsPerM={view.pixelsPerM} benchYM={equipment.find(item => item.type === BENCH)?.pose.yM ?? 0} /> : <EquipmentGraphic instance={instance}
                 branchValue={outcome?.result.ok ? outcome.result.solution.branches.find(branch => branch.id === instance.id) : undefined}
                 meter={outcome?.meters.find(item => item.id === instance.id)} onToggleSwitch={() => onToggleSwitch(instance.id)}
                 onWiperPointerDown={instance.type === RHEOSTAT ? event => {
@@ -432,7 +441,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
                   onSelect({ kind: 'equipment', id: instance.id }); onRheostatChange(instance.id, Number(next.toFixed(10)));
                 } : undefined} />}
             </g>
-            <text className="equipment-caption" data-friction-caption={frictionCaption ? instance.type : undefined} x={cartCaption?.x ?? densityCaption?.x ?? reflectionCaption?.x ?? projectileCaption?.x ?? springCaption?.x ?? frictionCaption?.x ?? (instance.type === WEIGHT ? screen.x + .03 * view.pixelsPerM + 6 : screen.x)} y={cartCaption?.y ?? densityCaption?.y ?? reflectionCaption?.y ?? projectileCaption?.y ?? springCaption?.y ?? frictionCaption?.y ?? (instance.type === WEIGHT ? screen.y + .046 * view.pixelsPerM : definition.domain === 'mechanical' ? screen.y + (bounds.y + bounds.height) * view.pixelsPerM + 18 : definition.domain === 'optical' && ![BENCH, 'optical.ruler'].includes(instance.type) ? worldToScreen({ xM: instance.pose.xM, yM: equipment.find(item => item.type === BENCH)?.pose.yM ?? 0 }, view, size).y + (instance.type === 'optical.candle' ? 34 : instance.type === 'optical.convex-lens' ? 48 : 62) : screen.y + Math.max(0.09 * view.pixelsPerM, 40))} textAnchor={cartCaption?.anchor ?? densityCaption?.anchor ?? reflectionCaption?.anchor ?? projectileCaption?.anchor ?? springCaption?.anchor ?? (instance.type === WEIGHT ? 'start' : 'middle')}>{projectileMode && instance.type === PROJECTILE_BALL && projectileFlight ? '' : equipmentLabel(scene, registry, instance.id)}{instance.type === WEIGHT ? ` · ${Number(instance.parameters.massKg)} kg` : ''}</text>
+            <text className="equipment-caption" data-friction-caption={frictionCaption ? instance.type : undefined} x={mirrorCaption?.x ?? cartCaption?.x ?? densityCaption?.x ?? reflectionCaption?.x ?? projectileCaption?.x ?? springCaption?.x ?? frictionCaption?.x ?? (instance.type === WEIGHT ? screen.x + .03 * view.pixelsPerM + 6 : screen.x)} y={mirrorCaption?.y ?? cartCaption?.y ?? densityCaption?.y ?? reflectionCaption?.y ?? projectileCaption?.y ?? springCaption?.y ?? frictionCaption?.y ?? (instance.type === WEIGHT ? screen.y + .046 * view.pixelsPerM : definition.domain === 'mechanical' ? screen.y + (bounds.y + bounds.height) * view.pixelsPerM + 18 : definition.domain === 'optical' && ![BENCH, 'optical.ruler'].includes(instance.type) ? worldToScreen({ xM: instance.pose.xM, yM: equipment.find(item => item.type === BENCH)?.pose.yM ?? 0 }, view, size).y + (instance.type === 'optical.candle' ? 34 : instance.type === 'optical.convex-lens' ? 48 : 62) : screen.y + Math.max(0.09 * view.pixelsPerM, 40))} textAnchor={cartCaption?.anchor ?? densityCaption?.anchor ?? reflectionCaption?.anchor ?? projectileCaption?.anchor ?? springCaption?.anchor ?? (instance.type === WEIGHT ? 'start' : 'middle')}>{mirrorImageOutcome && instance.type === MIRROR ? '薄玻璃板' : mirrorImageOutcome && instance.type === 'optical.ruler' ? 'cm · 1 cm/格' : projectileMode && instance.type === PROJECTILE_BALL && projectileFlight ? '' : equipmentLabel(scene, registry, instance.id)}{instance.type === WEIGHT ? ` · ${Number(instance.parameters.massKg)} kg` : ''}</text>
             {definition.ports.map((port, portIndex) => {
               const endpoint = { equipmentId: instance.id, portId: port.id };
               const point = worldToScreen(endpointWorld(endpoint, equipment, registry), view, size);
@@ -530,13 +539,13 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
         })}
         <g className="selection-overlay" pointerEvents="none" aria-hidden="true">{equipment.filter(instance => equipmentSelectionIds(selection).includes(instance.id)).map(instance => {
           const definition = registry.get(instance.type, instance.definitionVersion)!, screen = worldToScreen(instance.pose, view, size);
-          const bounds = definition.domain === 'mechanical' ? mechanicalBounds(instance, springOutcome) : definition.domain === 'optical' ? opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
+          const bounds = definition.domain === 'mechanical' ? mechanicalBounds(instance, springOutcome) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
           const padding = 7 / view.pixelsPerM;
           return <g key={instance.id} data-selection-outline={instance.id} transform={`translate(${screen.x} ${screen.y}) rotate(${-instance.pose.rotationRad * 180 / Math.PI}) scale(${view.pixelsPerM * (instance.pose.flippedX ? -1 : 1)} ${view.pixelsPerM})`}><rect x={bounds.x - padding} y={bounds.y - padding} width={bounds.width + 2 * padding} height={bounds.height + 2 * padding} rx={4 / view.pixelsPerM} fill="none" stroke="#167e6a" strokeWidth="2" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" /></g>;
         })}</g>
       </svg>
       {trendAngle !== 0 && <div className="lever-trend-banner" data-testid="lever-trend-banner">失衡：{trendAngle > 0 ? '左端下沉' : '右端下沉'}（转动趋势示意）。虚线为原位置，倾斜角不用于读尺。</div>}
-      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{cartMode ? <p>放置水平轨道、小车和计时器材。<br />将小车和光电门放到轨道上，再释放小车。</p> : densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
+      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{cartMode ? <p>放置水平轨道、小车和计时器材。<br />将小车和光电门放到轨道上，再释放小车。</p> : densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : mirrorImageOutcome ? <p>放置平面镜、成像标记物和观察眼。<br />添加镜后对照物、刻度尺和光屏进行测量。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
       {(placing || start || activeWireEnd) && <div className="canvas-prompt">{placing ? `待放置：${placing === WIRE ? '导线' : registry.list().find(item => item.type === placing)?.label}` : activeWireEnd ? `待连接：线头 ${activeWireEnd.side === 'from' ? 'A' : 'B'}，请拖到或点击接线柱` : `接线起点：${endpointLabel(scene, registry, start!)}`}<button onClick={onCancel}>取消</button></div>}
       <span className="coordinate-label" aria-hidden="true">世界坐标：x 向右 · y 向上</span>
     </div>

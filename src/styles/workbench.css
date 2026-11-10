@@ -431,6 +431,18 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 .cart-paper-tape { display: block; width: 100%; }
 .cart-tape-scale { color: var(--muted); font-size: 12px; }
 .cart-paper-view input[type=range] { padding: 0; border: 0; }
+.mirror-image-panel { display: grid; gap: 10px; font-size: 12px; }
+.mirror-image-panel p, .mirror-image-panel li { line-height: 1.65; }
+.mirror-image-panel ol { padding-inline-start: 19px; margin-top: 8px; }
+.mirror-image-panel label { display: flex; align-items: center; gap: 6px; }
+.mirror-image-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.mirror-image-actions button, .mirror-image-records button { font-size: 11px; padding: 6px 8px; }
+.mirror-image-actions button[aria-pressed="true"] { border-color: var(--teal); background: #edf5f1; color: var(--teal); }
+.mirror-sight { width: 100%; max-height: 170px; }
+.mirror-image-records form { display: grid; gap: 10px; margin-block: 10px; }
+.mirror-image-records label { display: grid; gap: 4px; min-width: 0; font-size: 11px; color: var(--muted); }
+.mirror-image-records input, .mirror-image-records select { width: 100%; min-width: 0; padding: 7px 8px; border: 1px solid var(--line); border-radius: 5px; font: inherit; color: inherit; background: white; }
+.mirror-image-records form > button { justify-self: start; }
 .cart-sample-table { max-width: 100%; overflow-x: auto; }
 .cart-sample-table table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .cart-sample-table :is(th, td) { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
