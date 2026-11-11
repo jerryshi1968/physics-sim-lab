@@ -28,7 +28,8 @@ test('both instruments measure the cart, record data, plot and survive persisten
   const samples = page.getByRole('table', { name: '小车本次采样' });
   const sceneBoard = page.getByTestId('scene-board');
   await expect(page.locator(`[data-library-type="${GATE}"]`)).toBeEnabled();
-  await expect(page.locator(`[data-library-type="${TICKER}"]`)).toBeEnabled();
+  await expect(page.locator(`[data-library-type="${TICKER}"]`)).toBeDisabled();
+  await expect(page.locator(`[data-library-type="${TICKER}"]`)).toHaveAttribute('title', /最多放置 1 件/);
   await expect(sceneBoard.locator(`[data-equipment-type="${GATE}"]`)).toHaveCount(2);
   await page.getByLabel('选择器材', { exact: true }).selectOption('gate-b');
   await page.getByLabel('位置 x（m）', { exact: true }).fill('0.39');

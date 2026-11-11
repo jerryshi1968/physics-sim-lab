@@ -7,13 +7,14 @@ import { rheostatResistances } from '../../core/electrical/rheostat.ts';
 import { opticalParameterFields, RULER } from '../../equipment/optical/definitions.ts';
 import { mechanicalParameterFields, MECHANICAL_RULER, FORCE_METER } from '../../equipment/mechanical/definitions.ts';
 import { frictionParameterFields } from '../../equipment/mechanical/frictionDefinitions.ts';
-import { isFrictionScene } from '../../equipment/mechanical/frictionScene.ts';
 import { SPRING, springFields } from '../../equipment/spring/definitions.ts';
 import { LAUNCHER, SCALE, projectileFields } from '../../equipment/projectile/definitions.ts';
 import { cartFields } from '../../equipment/cart/definitions.ts';
 import { reflectionFields, reflectionTypes } from '../../equipment/reflection/definitions.ts';
 import { mirrorImageFields } from '../../equipment/mirrorImage/definitions.ts';
-import { isMirrorImageScene } from '../../equipment/mirrorImage/simulate.ts';
+import { buoyancyFields } from '../../equipment/buoyancy/definitions.ts';
+import { equipmentSupport } from '../../equipment/support.ts';
+import { BEAKER } from '../../equipment/density/definitions.ts';
 import { LiveProperties } from './LiveProperties.tsx';
 import { endpointLabel, equipmentLabel } from './shared.ts';
 import type { Selection, WireEndSelection } from './shared.ts';
@@ -38,13 +39,16 @@ interface Props {
 }
 
 export function InspectorEditor({ scene, registry, selection, start, wireColor, activeWireEnd, onSelect, onPort, onApply, onRemove, onRoute, onDeleteRoutePoint, onColor, onWireEnd, onDetachEnd, onFlip }: Props) {
-  const instance = selection?.kind === 'equipment' ? scene.equipment.find(item => item.id === selection.id) : undefined;
+  const support = equipmentSupport(scene);
+  const selectedInstance = selection?.kind === 'equipment' ? scene.equipment.find(item => item.id === selection.id) : undefined;
+  const instance = selectedInstance?.type === BEAKER && support?.key === 'buoyancy' ? { ...selectedInstance, parameters: { ...selectedInstance.parameters, buoyancyRole: selectedInstance.parameters.buoyancyRole ?? 'vessel' } } : selectedInstance;
   const wire = selection?.kind === 'connection' ? scene.connections.find(item => item.id === selection.id) : undefined;
   const definition = instance && registry.get(instance.type, instance.definitionVersion);
   const optical = definition?.domain === 'optical';
-  const mirrorImage = isMirrorImageScene(scene);
+  const mirrorImage = support?.key === 'mirrorImage';
+  const buoyancy = support?.key === 'buoyancy';
   const mechanical = definition?.domain === 'mechanical', canRotate = !!instance && (mirrorImage ? instance.type === RULER : reflectionTypes.includes(instance.type)) || !optical && (!mechanical || instance?.type === MECHANICAL_RULER || instance?.type === LAUNCHER || instance?.type === SCALE);
-  const fields = instance ? (mechanical ? { ...mechanicalParameterFields, ...frictionParameterFields, ...projectileFields, ...cartFields, [SPRING]: springFields } : optical ? { ...opticalParameterFields, ...reflectionFields, ...mirrorImageFields } : parameterFields)[instance.type]?.filter(field => !(isFrictionScene(scene) && instance.type === FORCE_METER && field.key === 'forceN')) ?? [] : [];
+  const fields = instance ? (mechanical ? { ...mechanicalParameterFields, ...frictionParameterFields, ...projectileFields, ...cartFields, [SPRING]: springFields, ...(buoyancy ? buoyancyFields : {}) } : optical ? { ...opticalParameterFields, ...reflectionFields, ...mirrorImageFields } : parameterFields)[instance.type]?.filter(field => !(buoyancy && field.key === 'mountHeightM' && instance.parameters.mountHeightM === undefined) && !(support?.key === 'friction' && instance.type === FORCE_METER && field.key === 'forceN')) ?? [] : [];
   const rheostat = instance?.type === RHEOSTAT ? rheostatResistances({ maxResistanceOhm: Number(instance.parameters.maxResistanceOhm), position: Number(instance.parameters.position) }) : null;
   return <>
     {scene.equipment.length > 0 && <div className="selection-controls"><label>选择器材<select aria-label="选择器材" value={instance?.id ?? ''}
@@ -54,7 +58,8 @@ export function InspectorEditor({ scene, registry, selection, start, wireColor, 
     {selection?.kind === 'equipment-group' && <div className="property-editor" aria-label="多选器材"><h3>已选择 {selection.ids.length} 件器材</h3><p>按住 Shift 点击器材可增选或取消选择；按 Delete 删除所选器材，保留相连导线。</p><button className="delete-button" onClick={onRemove}>删除所选器材</button></div>}
     {instance && definition ? <div className="property-editor"><h3>{equipmentLabel(scene, registry, instance.id)}</h3>
       <LiveProperties key={`${scene.documentId}:${instance.id}`} instance={instance} registry={registry} fields={fields} optical={optical && !mirrorImage && !reflectionTypes.includes(instance.type)} canRotate={canRotate} onApply={onApply} />
-      {instance.type === FORCE_METER && isFrictionScene(scene) && <p className="editor-help">在上方控制水平拉力；可选匀速牵引器。斜拉超出模型，左右方向由控制拉力的正负决定。</p>}
+      {buoyancy && instance.type === BEAKER && <label>烧杯用途<select value={String(instance.parameters.buoyancyRole ?? 'vessel')} onChange={event => onApply(instance.id, instance.pose, { ...instance.parameters, buoyancyRole: event.target.value })}><option value="vessel">盛液容器</option><option value="receiver">接液杯</option></select></label>}
+      {instance.type === FORCE_METER && support?.key === 'friction' && <p className="editor-help">在上方控制水平拉力；可选匀速牵引器。斜拉超出模型，左右方向由控制拉力的正负决定。</p>}
       {!optical && !mechanical && <button aria-pressed={!!instance.pose.flippedX} onClick={() => onFlip(instance.id)}>左右翻转</button>}
       {rheostat && <p className="editor-help">下端 A/B 是电阻丝两端，上端 C/D 共用滑片。A/B 间固定为 {String(instance.parameters.maxResistanceOhm)} Ω，C/D 间为理想导线；一上一下可调。当前 A–滑片 {Number(rheostat.asOhm.toPrecision(6))} Ω，B–滑片 {Number(rheostat.sbOhm.toPrecision(6))} Ω。拖动红色滑片，或用方向键/Home/End 调节；拖动中仅预览，松手一次提交。</p>}
       {definition.ports.length > 0 && <fieldset className="port-controls"><legend>接线柱（点击起点，再点终点）</legend>{definition.ports.map(port =>

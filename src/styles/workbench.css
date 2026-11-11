@@ -97,6 +97,8 @@ dd { margin: 0; }
 .skip-link:focus { top: 10px; }
 .equipment-catalog { display: grid; gap: 10px; padding: 18px 14px; }
 .equipment-catalog button { display: flex; align-items: center; gap: 14px; padding: 12px; text-align: left; touch-action: none; user-select: none; font-size: 13px; min-height: 58px; }
+.equipment-catalog button:disabled { cursor: not-allowed; background: #f3f6f5; opacity: .72; }
+.equipment-catalog button:disabled small { color: #536b6c; }
 .equipment-catalog button[aria-pressed="true"], .port-controls button[aria-pressed="true"] { border-color: var(--teal); background: #e7f3ee; }
 .catalog-symbol { color: var(--teal); font-size: 24px; min-width: 30px; text-align: center; }
 .equipment-catalog small { display: block; font-size: 10px; color: var(--muted); margin-top: 6px; }
@@ -443,6 +445,12 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 .mirror-image-records label { display: grid; gap: 4px; min-width: 0; font-size: 11px; color: var(--muted); }
 .mirror-image-records input, .mirror-image-records select { width: 100%; min-width: 0; padding: 7px 8px; border: 1px solid var(--line); border-radius: 5px; font: inherit; color: inherit; background: white; }
 .mirror-image-records form > button { justify-self: start; }
+.buoyancy-panel, .buoyancy-records { font-size: 12px; line-height: 1.7; }
+.buoyancy-panel label, .buoyancy-records label { display: grid; gap: 5px; margin-block: 9px; }
+.buoyancy-panel select, .buoyancy-records input, .buoyancy-records select { width: 100%; min-width: 0; padding: 7px; font: inherit; color: inherit; border: 1px solid var(--line); border-radius: 5px; background: white; }
+.buoyancy-panel button, .buoyancy-records button { font-size: 11px; padding: 6px 8px; margin-block: 4px; }
+.buoyancy-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+.buoyancy-panel ol { padding-inline-start: 18px; margin-block: 9px; }
 .cart-sample-table { max-width: 100%; overflow-x: auto; }
 .cart-sample-table table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .cart-sample-table :is(th, td) { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }

@@ -3,7 +3,8 @@ import { parseManualValue } from './records.ts';
 
 function contextualDisplay(record: MeasurementRecord) {
   if (record.runId.startsWith('mirror-image-') && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
-  if (!record.runId.startsWith('density-')) return null;
+  if (record.runId.startsWith('buoyancy-') && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
+  if (!record.runId.startsWith('density-') && !record.runId.startsWith('buoyancy-')) return null;
   return record.unit === 'kg' ? { unit: 'g' as const, factor: 1000 } : record.unit === 'm³' ? { unit: 'mL' as const, factor: 1000000 } : record.unit === 'kg/m³' ? { unit: 'g/cm³' as const, factor: .001 } : null;
 }
 

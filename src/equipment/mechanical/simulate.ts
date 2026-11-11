@@ -5,6 +5,7 @@ import { validateSceneDocument } from '../../core/scene/validate.ts';
 import { solveLever, targetLeverForce, forceReading, endNutBalance, BALANCE_NUT_MASS_KG, BALANCE_DROP_M } from '../../core/mechanical/lever.ts';
 import type { LeverLoad } from '../../core/mechanical/lever.ts';
 import { LEVER, SUPPORT, WEIGHT, FORCE_METER, MECHANICAL_RULER } from './definitions.ts';
+import { leverApparatus } from '../support.ts';
 
 import { positionWeightChains, weightAttachment, weightBottom, weightChainIssue, weightDescendants, weightRoot } from './weightChain.ts';
 
@@ -74,7 +75,7 @@ export function mechanicalDrop(scene: SceneDocument, instance: EquipmentInstance
 export function simulateLever(scene: SceneDocument, registry: EquipmentRegistry) {
   const fail = (code: string) => ({ ok: false as const, code });
   if (!validateSceneDocument(scene, registry).ok) return fail('LEVER_DOCUMENT');
-  if (scene.connections.length || scene.equipment.some(item => registry.get(item.type, 1)?.domain !== 'mechanical')) return fail('LEVER_MIXED_DOMAIN');
+  if (scene.connections.length || scene.equipment.some(item => !leverApparatus.includes(item.type))) return fail('LEVER_MIXED_DOMAIN');
   if (scene.equipment.some(item => Math.abs(item.pose.xM) > 1000 || Math.abs(item.pose.yM) > 1000 || Math.abs(item.pose.rotationRad) > 2 * Math.PI || item.pose.flippedX)) return fail('LEVER_RANGE');
   if (scene.equipment.some(item => ![LEVER, MECHANICAL_RULER].includes(item.type) && Math.abs(item.pose.rotationRad) > 1e-10)) return fail('LEVER_ORIENTATION');
   const levers = scene.equipment.filter(item => item.type === LEVER);
@@ -121,7 +122,7 @@ export function simulateLever(scene: SceneDocument, registry: EquipmentRegistry)
     ignoredLoads: scene.equipment.filter(item => [WEIGHT, FORCE_METER].includes(item.type) && !roots.get(item.id)?.parameters.leverId).length, target: supportedTarget, nuts };
 }
 export type LeverOutcome = ReturnType<typeof simulateLever>;
-export const leverMessage = (code: string) => ({ LEVER_DOCUMENT: '器材参数无效。', LEVER_MIXED_DOMAIN: '杠杆实验只支持力学器材，请另建实验。', LEVER_RANGE: '挂点、质心、螺母或坐标超出模型范围。',
+export const leverMessage = (code: string) => ({ LEVER_DOCUMENT: '器材参数无效。', LEVER_MIXED_DOMAIN: '杠杆实验仅支持杠杆、支架、钩码、弹簧测力计和独立刻度尺。', LEVER_RANGE: '挂点、质心、螺母或坐标超出模型范围。',
   LEVER_ORIENTATION: '支架、钩码须保持竖直；拉力方向请在测力计参数中调整。', LEVER_MISSING: '请放置杠杆和支架，并将杠杆安装到支架。', LEVER_MULTIPLE: '当前杠杆实验支持一根杠杆。',
   MISSING_SUPPORT: '杠杆没有有效支架：拖到支架顶端或在挂接区安装。', SUPPORT_OVERLOAD: '支点反力超过支架约束范围，不能输出正常读数。', LEVER_DANGLING_ATTACHMENT: '挂载引用的杠杆已不存在，请重新挂接。',
   WEIGHT_HOOK_OCCUPIED: '同一杠杆挂点只能直接挂一个钩码，请将其余钩码串接到下挂钩。', WEIGHT_CHAIN_REFERENCE: '钩码串接引用无效，请重新挂接。', WEIGHT_CHAIN_BRANCH: '一个下挂钩只能串接一个钩码，请接到串尾。', WEIGHT_CHAIN_CYCLE: '钩码不能挂到自己或自己的下级钩码上。',

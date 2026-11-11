@@ -3,13 +3,14 @@ import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
 import { validateSceneDocument } from '../../core/scene/validate.ts';
 import { solveOpticalBench } from '../../core/optical/bench.ts';
 import type { OpticalOutcome, OpticalSetup } from '../../core/optical/bench.ts';
-import { BENCH, CANDLE, LENS, SCREEN, RULER } from './definitions.ts';
+import { BENCH, CANDLE, LENS, SCREEN } from './definitions.ts';
+import { opticalApparatus } from '../support.ts';
 
 export const OPTICAL_EXPERIMENT = 'J-OPT-02';
 export const isOpticalScene = (scene: SceneDocument) => scene.experimentId === OPTICAL_EXPERIMENT || scene.equipment.some(item => item.type.startsWith('optical.'));
 export function simulateOptical(scene: SceneDocument, registry: EquipmentRegistry): OpticalOutcome {
   if (!validateSceneDocument(scene, registry).ok) return { ok: false, code: 'OPTICAL_DOCUMENT' };
-  if (scene.equipment.some(item => registry.get(item.type, item.definitionVersion)?.domain !== 'optical' || ![BENCH, CANDLE, LENS, SCREEN, RULER].includes(item.type)) || scene.connections.length) return { ok: false, code: 'OPTICAL_MIXED_DOMAIN' };
+  if (scene.equipment.some(item => registry.get(item.type, item.definitionVersion)?.domain !== 'optical' || !opticalApparatus.includes(item.type)) || scene.connections.length) return { ok: false, code: 'OPTICAL_MIXED_DOMAIN' };
   if (scene.equipment.some(item => Math.abs(item.pose.xM) > 1000 || Math.abs(item.pose.yM) > 1000)) return { ok: false, code: 'OPTICAL_BENCH_RANGE' };
   if (scene.equipment.some(item => Math.abs(Math.sin(item.pose.rotationRad / 2)) > 1e-10 || item.pose.flippedX)) return { ok: false, code: 'OPTICAL_ORIENTATION' };
   const groups = [BENCH, CANDLE, LENS, SCREEN].map(type => scene.equipment.filter(item => item.type === type));

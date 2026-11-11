@@ -3,6 +3,7 @@ import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
 import { validateSceneDocument } from '../../core/scene/validate.ts';
 import { FORCE_METER, MECHANICAL_RULER } from './definitions.ts';
+import { frictionApparatus } from '../support.ts';
 import { BLOCK, SURFACE, DRIVE, LOAD, materials, frictionTypes, FRICTION_EXPERIMENT } from './frictionDefinitions.ts';
 import { frictionForces, initialFrictionMotion } from '../../core/mechanical/friction/model.ts';
 import type { FrictionMotion, FrictionConfig } from '../../core/mechanical/friction/model.ts';
@@ -14,7 +15,7 @@ const fail = (code: string) => ({ ok: false as const, code });
 export function compileFriction(scene: SceneDocument, registry: EquipmentRegistry) {
   if (!validateSceneDocument(scene, registry).ok) return fail('FRICTION_DOCUMENT');
   if (scene.simulationConfig.randomError.enabled) return fail('FRICTION_RANDOM_UNSUPPORTED');
-  if (scene.connections.length || scene.equipment.some(item => ![...frictionTypes, FORCE_METER, MECHANICAL_RULER].includes(item.type))) return fail('FRICTION_DOMAIN');
+  if (scene.connections.length || scene.equipment.some(item => !frictionApparatus.includes(item.type))) return fail('FRICTION_DOMAIN');
   const blocks = scene.equipment.filter(item => item.type === BLOCK);
   if (blocks.length !== 1) return fail('FRICTION_BLOCK_COUNT');
   const block = blocks[0]!, p = block.parameters;

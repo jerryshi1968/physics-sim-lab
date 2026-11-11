@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { SWITCH, WIRE, RHEOSTAT } from '../equipment/electrical/definitions.ts';
 import { createWorkbenchRegistry } from '../equipment/registry.ts';
-import { isOpticalScene, simulateOptical } from '../equipment/optical/simulate.ts';
+import { simulateOptical } from '../equipment/optical/simulate.ts';
 import { createOpticalExperiment } from '../experiments/optical-bench.ts';
 import { OpticalPanel } from './optical/OpticalPanel.tsx';
 import { OpticalStart } from './optical/OpticalStart.tsx';
@@ -45,14 +45,14 @@ import { LampCircuitStart } from './experiments/LampCircuitStart.tsx';
 import { LampCircuitGuide } from './experiments/LampCircuitGuide.tsx';
 import { createLeverExperiment } from '../experiments/lever.ts';
 import { detachedWeightUpdates } from '../equipment/mechanical/weightChain.ts';
-import { isMechanicalScene, mechanicalViewScene, simulateLever, mechanicalDrop } from '../equipment/mechanical/simulate.ts';
+import { mechanicalViewScene, simulateLever, mechanicalDrop } from '../equipment/mechanical/simulate.ts';
 import { buildLeverMeasurements } from '../equipment/mechanical/measure.ts';
 import type { LeverCapture } from '../equipment/mechanical/measure.ts';
 import { LeverPanel, LeverAttachment } from './mechanical/LeverPanel.tsx';
 import { LeverStart } from './mechanical/LeverStart.tsx';
 import { LeverRecords } from './mechanical/LeverRecords.tsx';
 import type { NutPreview } from './mechanical/BalanceNutControls.tsx';
-import { isFrictionScene, frictionDrop, frictionSample } from '../equipment/mechanical/frictionScene.ts';
+import { frictionDrop, frictionSample } from '../equipment/mechanical/frictionScene.ts';
 import { createFrictionExperiment } from '../experiments/friction.ts';
 import { useFrictionSimulation } from './friction/useFrictionSimulation.ts';
 import { FrictionPanel, FrictionAssembly } from './friction/FrictionPanel.tsx';
@@ -66,7 +66,7 @@ import type { EquipmentInstance } from '../core/equipment/schema.ts';
 import { leverPresentationScene } from './mechanical/leverPresentation.ts';
 
 import { createSpringExperiment } from '../experiments/spring.ts';
-import { isSpringScene, springSample, springViewScene, springDrop, detachedSpringUpdates, springMessage } from '../equipment/spring/simulate.ts';
+import { springSample, springViewScene, springDrop, detachedSpringUpdates, springMessage } from '../equipment/spring/simulate.ts';
 import { buildSpringMeasurements } from '../equipment/spring/measure.ts';
 import type { SpringCapture } from '../equipment/spring/measure.ts';
 import { SpringStart } from './spring/SpringStart.tsx';
@@ -75,7 +75,7 @@ import { SpringRecords } from './spring/SpringRecords.tsx';
 import { SpringChart } from './spring/SpringChart.tsx';
 
 import { createProjectileExperiment } from '../experiments/projectile.ts';
-import { isProjectileScene, projectileDrop, projectileMessage } from '../equipment/projectile/simulate.ts';
+import { projectileDrop, projectileMessage } from '../equipment/projectile/simulate.ts';
 import { LAUNCHER as PROJECTILE_LAUNCHER, BALL as PROJECTILE_BALL, GROUND as PROJECTILE_GROUND } from '../equipment/projectile/definitions.ts';
 import { buildProjectileMeasurements } from '../equipment/projectile/measure.ts';
 import type { ProjectileCapture } from '../equipment/projectile/measure.ts';
@@ -86,25 +86,35 @@ import { ProjectileChart } from './projectile/ProjectileChart.tsx';
 import { ProjectileStart } from './projectile/ProjectileStart.tsx';
 
 import { createReflectionExperiment } from '../experiments/reflection.ts';
-import { isReflectionScene, simulateReflection } from '../equipment/reflection/simulate.ts';
-import { PAPER, MIRROR, EMITTER, reflectionTypes } from '../equipment/reflection/definitions.ts';
+import { simulateReflection } from '../equipment/reflection/simulate.ts';
+import { PAPER, MIRROR, EMITTER } from '../equipment/reflection/definitions.ts';
 import { buildReflectionMeasurements, reflectionProfiles } from '../equipment/reflection/measure.ts';
 import type { ReflectionCapture } from '../equipment/reflection/measure.ts';
 import { ReflectionStart } from './reflection/ReflectionStart.tsx';
 import { ReflectionPanel } from './reflection/ReflectionPanel.tsx';
 import { ReflectionRecords } from './reflection/ReflectionRecords.tsx';
 import { createMirrorImageExperiment } from '../experiments/mirrorImage.ts';
-import { EYE, mirrorImageApparatus, mirrorImageTypes } from '../equipment/mirrorImage/definitions.ts';
-import { isMirrorImageScene, simulateMirrorImage } from '../equipment/mirrorImage/simulate.ts';
+import { EYE } from '../equipment/mirrorImage/definitions.ts';
+import { simulateMirrorImage } from '../equipment/mirrorImage/simulate.ts';
 import { buildMirrorImageMeasurements, mirrorImageProfiles } from '../equipment/mirrorImage/measure.ts';
 import type { MirrorImageCapture } from '../equipment/mirrorImage/measure.ts';
 import { MirrorImageStart } from './mirrorImage/MirrorImageStart.tsx';
 import { MirrorImagePanel } from './mirrorImage/MirrorImagePanel.tsx';
 import { MirrorImageRecords } from './mirrorImage/MirrorImageRecords.tsx';
+import { createBuoyancyExperiment } from '../experiments/buoyancy.ts';
+import { equipmentAvailability, equipmentSupport } from '../equipment/support.ts';
+import { OVERFLOW, vesselAreaM2, spoutHeightM } from '../equipment/buoyancy/definitions.ts';
+import { buoyancyViewScene, simulateBuoyancy, buoyancyTransition, buoyancyDrop, buoyancyChanges, buoyancyDetached, isReceiver, overflowOutlet } from '../equipment/buoyancy/simulate.ts';
+import { captureBuoyancy, calculateBuoyancy, buoyancyProfiles } from '../equipment/buoyancy/measure.ts';
+import type { BuoyancyPhase, BuoyancyCalculation } from '../equipment/buoyancy/measure.ts';
+import { BuoyancyStart } from './buoyancy/BuoyancyStart.tsx';
+import { BuoyancyPanel } from './buoyancy/BuoyancyPanel.tsx';
+import type { BuoyancyAction } from './buoyancy/BuoyancyPanel.tsx';
+import { BuoyancyRecords } from './buoyancy/BuoyancyRecords.tsx';
 
 import { createDensityExperiment } from '../experiments/density.ts';
-import { isDensityScene, densityMethod, simulateDensity, densityViewScene, densityDrop, densityPour, densityMessage, detachedDensityUpdates } from '../equipment/density/simulate.ts';
-import { densityTypes, BALANCE, MASS_SET, SPECIMEN, BEAKER, DENSITY_EXPERIMENT, LIQUID_EXPERIMENT, densityExperimentTitles } from '../equipment/density/definitions.ts';
+import { densityMethod, simulateDensity, densityViewScene, densityDrop, densityPour, densityMessage, detachedDensityUpdates } from '../equipment/density/simulate.ts';
+import { BALANCE, MASS_SET, SPECIMEN, BEAKER, DENSITY_EXPERIMENT, LIQUID_EXPERIMENT, densityExperimentTitles } from '../equipment/density/definitions.ts';
 import { buildDensityReading, buildDensityResult, densityProfiles } from '../equipment/density/measure.ts';
 import type { DensityPhase } from '../equipment/density/measure.ts';
 import { DensityStart } from './density/DensityStart.tsx';
@@ -113,7 +123,7 @@ import type { DensityPreview } from './density/DensityPanel.tsx';
 import { DensityRecords } from './density/DensityRecords.tsx';
 import { createCartExperiment } from '../experiments/cart.ts';
 import { cartTypes } from '../equipment/cart/definitions.ts';
-import { cartDropPoint, cartMessage, isCartScene } from '../equipment/cart/simulate.ts';
+import { cartDropPoint, cartMessage } from '../equipment/cart/simulate.ts';
 import type { CartMethod } from '../equipment/cart/simulate.ts';
 import { buildCartMeasurement, cartProfiles } from '../equipment/cart/measure.ts';
 import type { CartCapture } from '../equipment/cart/measure.ts';
@@ -144,9 +154,10 @@ export function App() {
   const [history, setHistory] = useState(() => createHistory(newDocument()));
   const historyRef = useRef(history);
   const scene = history.present;
-  const mirrorImageMode = isMirrorImageScene(scene);
-  const reflectionMode = !mirrorImageMode && isReflectionScene(scene);
-  const opticalMode = isOpticalScene(scene) || reflectionMode || mirrorImageMode;
+  const activeEquipmentSupport = equipmentSupport(scene);
+  const mirrorImageMode = activeEquipmentSupport?.key === 'mirrorImage';
+  const reflectionMode = activeEquipmentSupport?.key === 'reflection';
+  const opticalMode = activeEquipmentSupport?.types.some(type => type.startsWith('optical.')) ?? false;
   const [choosingMirrorImage, setChoosingMirrorImage] = useState(false);
   const [mirrorGuides, setMirrorGuides] = useState(true);
   const [mirrorRays, setMirrorRays] = useState(false);
@@ -154,18 +165,22 @@ export function App() {
   const [foldPreview, setFoldPreview] = useState<{ value: number; documentId: string; revision: number } | null>(null);
   const [reflectionAuxiliary, setReflectionAuxiliary] = useState(false);
   const activeFoldPreview = foldPreview?.documentId === scene.documentId && foldPreview.revision === scene.revision ? foldPreview : null;
-  const densityMode = isDensityScene(scene);
-  const cartMode = isCartScene(scene);
+  const buoyancyMode = activeEquipmentSupport?.key === 'buoyancy';
+  const [choosingBuoyancy, setChoosingBuoyancy] = useState(false);
+  const buoyPreviewRef = useRef<{ documentId: string; revision: number; scene: SceneDocument } | null>(null);
+  const [buoyPreview, setBuoyPreview] = useState<SceneDocument | null>(null);
+  const densityMode = activeEquipmentSupport?.key === 'density';
+  const cartMode = activeEquipmentSupport?.key === 'cart';
   const cart = useCartSimulation(scene, registry, cartMode);
   const [choosingCart, setChoosingCart] = useState(false);
   const [cartMethod, setCartMethod] = useState<CartMethod>('gate');
-  const mechanicalMode = isMechanicalScene(scene) || densityMode || cartMode;
+  const mechanicalMode = activeEquipmentSupport?.types.some(type => type.startsWith('mechanical.')) ?? false;
   const [choosingDensity, setChoosingDensity] = useState(false);
   const [densityPreview, setDensityPreview] = useState<(DensityPreview & { documentId: string; revision: number }) | null>(null);
   const activeDensityPreview = densityPreview?.documentId === scene.documentId && densityPreview.revision === scene.revision ? densityPreview : null;
-  const frictionMode = isFrictionScene(scene);
-  const springMode = isSpringScene(scene);
-  const projectileMode = isProjectileScene(scene);
+  const frictionMode = activeEquipmentSupport?.key === 'friction';
+  const springMode = activeEquipmentSupport?.key === 'spring';
+  const projectileMode = activeEquipmentSupport?.key === 'projectile';
   const projectile = useProjectileSimulation(scene, registry, projectileMode);
   const [choosingProjectile, setChoosingProjectile] = useState(false), [projectileMarksVisible, setProjectileMarksVisible] = useState(false);
   const [choosingSpring, setChoosingSpring] = useState(false);
@@ -180,11 +195,14 @@ export function App() {
   const nutScene = activeNutPreview ? { ...scene, equipment: scene.equipment.map(item => item.id === activeNutPreview.id ? { ...item, parameters: { ...item.parameters, [activeNutPreview.side === 'left' ? 'leftNutOffsetM' : 'rightNutOffsetM']: activeNutPreview.offsetM } } : item) } : scene;
   const springScene = springMode ? springViewScene(scene, registry, activeMechanicalPreview) : scene;
   const springOutcome = springMode ? springSample(springScene, registry) : null;
-  const mechanicalScene = mechanicalMode && !densityMode && !cartMode && !frictionMode && !springMode && !projectileMode ? mechanicalViewScene(nutScene, activeMechanicalPreview) : scene;
+  const mechanicalScene = mechanicalMode && !buoyancyMode && !densityMode && !cartMode && !frictionMode && !springMode && !projectileMode ? mechanicalViewScene(nutScene, activeMechanicalPreview) : scene;
   const densityWorkingScene = activeDensityPreview ? { ...scene, equipment: scene.equipment.map(item => item.id === activeDensityPreview.id ? { ...item, parameters: { ...item.parameters, [activeDensityPreview.key]: activeDensityPreview.value } } : item) } : scene;
   const densityOutcome = densityMode ? simulateDensity(densityViewScene(densityWorkingScene, activeMechanicalPreview), registry) : null;
   const densityScene = densityMode ? densityViewScene(densityWorkingScene, activeMechanicalPreview, densityOutcome) : scene;
-  const leverOutcome = mechanicalMode && !densityMode && !cartMode && !frictionMode && !springMode && !projectileMode ? simulateLever(mechanicalScene, registry) : null;
+  const buoyWorkingScene = buoyancyMode && buoyPreview?.documentId === scene.documentId && buoyPreview.revision === scene.revision ? buoyPreview : densityWorkingScene;
+  const buoyancyOutcome = buoyancyMode ? simulateBuoyancy(buoyWorkingScene, registry) : null;
+  const buoyancyScene = buoyancyMode ? buoyancyViewScene(buoyWorkingScene) : scene;
+  const leverOutcome = mechanicalMode && !buoyancyMode && !densityMode && !cartMode && !frictionMode && !springMode && !projectileMode ? simulateLever(mechanicalScene, registry) : null;
   const [opticalPreview, setOpticalPreview] = useState<{ id: string; point: WorldPoint; documentId: string; revision: number } | null>(null);
   const [opticalAuxiliary, setOpticalAuxiliary] = useState(false);
   const activeOpticalPreview = opticalPreview?.documentId === scene.documentId && opticalPreview.revision === scene.revision ? opticalPreview : null;
@@ -254,6 +272,7 @@ export function App() {
 
   function clearEditing() {
     cart.reset();
+    buoyPreviewRef.current = null; setBuoyPreview(null);
     setDensityPreview(null);
     setNutPreview(null);
     setMechanicalPreview(null);
@@ -274,6 +293,7 @@ export function App() {
   }
 
   function resetDocument() {
+    buoyPreviewRef.current = null; setBuoyPreview(null);
     setDensityPreview(null);
     projectile.reset();
     friction.reset();
@@ -433,6 +453,76 @@ export function App() {
     setPending({ document, fromVersion: 2, source: 'mirror-image' });
   }
 
+  function prepareBuoyancy(method: 'factors' | 'archimedes' | 'empty') {
+    const document = createBuoyancyExperiment(crypto.randomUUID(), new Date().toISOString(), method);
+    const heightLimit = (Math.max(352, window.innerHeight - 414) - 116) / .72;
+    const widthLimit = window.innerWidth < 760 ? 290 : window.innerWidth < 1100 ? 440 : 620;
+    document.viewport!.pixelsPerM = Math.min(document.viewport!.pixelsPerM, heightLimit, widthLimit);
+    setChoosingBuoyancy(false);
+    setPending({ document, fromVersion: 2, source: 'buoyancy' });
+  }
+
+  function updateBuoyancy(id: string, values: Record<string, Scalar>) {
+    const current = historyRef.current.present, item = current.equipment.find(peer => peer.id === id);
+    if (Object.hasOwn(values, 'zeroTrimKg')) {
+      const weighing = simulateBuoyancy(current, registry).density.weighing;
+      if (!weighing.ok || !weighing.canZero) { setNotice('先清空天平两盘并将游码归零，再调零。'); return; }
+    }
+    const shown = buoyancyViewScene(current).equipment.find(peer => peer.id === id);
+    if (item && shown) applyProperties(id, shown.pose, { ...item.parameters, ...values });
+  }
+
+  function previewBuoyancy(value: { id: string; point: WorldPoint } | null) {
+    if (!value) { buoyPreviewRef.current = null; setBuoyPreview(null); return; }
+    const current = historyRef.current.present;
+    const previous = buoyPreviewRef.current;
+    const base = previous?.documentId === current.documentId && previous.revision === current.revision ? previous.scene : current;
+    const item = base.equipment.find(peer => peer.id === value.id);
+    if (!item) return;
+    const changed = buoyancyDrop(base, item, value.point);
+    if (!changed) return;
+    const candidate = buoyancyTransition({ ...base, equipment: base.equipment.map(peer => peer.id === item.id ? { ...peer, ...changed } : peer) });
+    buoyPreviewRef.current = { documentId: current.documentId, revision: current.revision, scene: candidate };
+    setBuoyPreview(candidate);
+  }
+
+  function buoyancyAction(action: BuoyancyAction) {
+    const current = historyRef.current.present, outcome = simulateBuoyancy(current, registry), candidate = structuredClone(current);
+    const tank = candidate.equipment.find(item => item.type === OVERFLOW), receiver = candidate.equipment.find(isReceiver), cylinder = candidate.equipment.find(item => item.type === 'mechanical.density-cylinder');
+    if (action === 'fill' && tank) {
+      if (outcome.submergedM3 > 1e-12 || outcome.code === 'BUOY_CONTACT') { setNotice('先把物体提离液面，再补液。'); return; }
+      Object.assign(tank.parameters, { liquidM3: vesselAreaM2 * spoutHeightM, initialLiquidM3: vesselAreaM2 * spoutHeightM, spilledM3: 0, lostM3: 0, trialId: crypto.randomUUID() });
+    } else if (action === 'clear-receiver' && receiver) receiver.parameters.liquidM3 = 0;
+    else if (action === 'clear-cylinder' && cylinder) cylinder.parameters.liquidM3 = 0;
+    else if (action === 'receive' && tank && receiver) {
+      const point = overflowOutlet(tank);
+      receiver.parameters.targetId = ''; receiver.pose.xM = point.xM; receiver.pose.yM = point.yM - .115;
+      tank.parameters.receiverId = receiver.id;
+    } else if (action === 'fill-beaker') {
+      const beaker = candidate.equipment.find(item => item.type === BEAKER && !isReceiver(item));
+      if (!beaker || outcome.submergedM3 > 1e-12) { setNotice('先将物体提离液体，再补液。'); return; }
+        beaker.parameters.liquidM3 = .0004; beaker.parameters.buoyancyRole = 'vessel';
+    } else if (action === 'pour' && receiver && cylinder) {
+      const amount = Number(receiver.parameters.liquidM3);
+      if (amount <= 0 || Number(cylinder.parameters.liquidM3) !== 0 || amount > Number(cylinder.parameters.capacityM3)) { setNotice('请准备空量筒，并检查排液量是否超出量程。'); return; }
+      cylinder.parameters.liquidM3 = amount; cylinder.parameters.liquidDensityKgPerM3 = receiver.parameters.liquidDensityKgPerM3!; receiver.parameters.liquidM3 = 0;
+    } else { setNotice('请先放置本次操作所需的器材。'); return; }
+    commit({ type: 'update-equipment-batch', updates: buoyancyChanges(current, buoyancyTransition(candidate)) });
+  }
+
+  function captureBuoyancyRecord(phase: BuoyancyPhase, raw: string, group: string): string | null {
+    if (buoyPreview || activeDensityPreview) return '先松手完成调整，再记录读数。';
+    const built = captureBuoyancy(historyRef.current.present, registry, phase, raw, group, `buoyancy-${crypto.randomUUID()}`, new Date().toISOString());
+    if (!built.ok) return built.message;
+    return measurementCommand({ type: 'record-measurements', records: built.records, snapshot: built.snapshot });
+  }
+
+  function calculateBuoyancyRecords(kind: BuoyancyCalculation, ids: string[], group: string): string | null {
+    const built = calculateBuoyancy(historyRef.current.present, kind, ids, group, `buoyancy-${crypto.randomUUID()}`, new Date().toISOString());
+    if (!built.ok) return built.message;
+    return measurementCommand({ type: 'record-measurements', records: built.records, snapshot: built.snapshot });
+  }
+
   function stepMirrorEye(deltaM: number) {
     const eye = historyRef.current.present.equipment.find(item => item.type === EYE);
     if (eye) applyProperties(eye.id, { ...eye.pose, yM: Number((eye.pose.yM + deltaM).toFixed(4)) }, eye.parameters);
@@ -482,6 +572,7 @@ export function App() {
   }
 
   function updateDensity(id: string, values: Record<string, Scalar>) {
+    if (buoyancyMode) { updateBuoyancy(id, values); return; }
     setDensityPreview(null);
     const current = historyRef.current.present, item = current.equipment.find(item => item.id === id);
     if (!item) return;
@@ -498,6 +589,11 @@ export function App() {
   }
 
   function toggleDensityWeight(id: string, index: number) {
+    if (buoyancyMode) {
+      const box = scene.equipment.find(item => item.id === id);
+      if (box) updateBuoyancy(id, { mask: Number(box.parameters.mask) ^ (1 << index) });
+      return;
+    }
     const { weighing } = simulateDensity(historyRef.current.present, registry);
     if (!weighing.ok || weighing.masses?.id !== id) return;
     updateDensity(id, { mask: Number(weighing.masses.parameters.mask) ^ (1 << index) });
@@ -537,21 +633,10 @@ export function App() {
     return measurementCommand({ type: 'record-measurements', records: built.records, snapshot: built.snapshot });
   }
 
-  function opticalPlacementBlocked(type: string) {
-    if (!opticalMode || !(scene.equipment.length || scene.experimentId)) return false;
-    if (mirrorImageMode) return !mirrorImageApparatus.includes(type);
-    return mirrorImageTypes.includes(type) || reflectionTypes.includes(type) !== reflectionMode;
-  }
-
   function chooseEquipment(value: string | null) {
-    if (value?.startsWith('mechanical.') && mechanicalMode && (scene.equipment.length || scene.experimentId) && (densityTypes.includes(value) !== densityMode || cartTypes.includes(value) !== cartMode)) {
-      if (densityTypes.includes(value)) setChoosingDensity(true); else if (cartTypes.includes(value)) setChoosingCart(true); else if (value.startsWith('mechanical.projectile-')) setChoosingProjectile(true); else if (value === 'mechanical.spring') setChoosingSpring(true); else if (value.startsWith('mechanical.friction-')) setChoosingFriction(true); else setChoosingLever(true);
-      setPlacing(null); return;
-    }
-    if (value && opticalPlacementBlocked(value)) {
-      if (mirrorImageTypes.includes(value)) setChoosingMirrorImage(true); else if (reflectionTypes.includes(value)) setChoosingReflection(true); else setChoosingOptical(true);
-      setPlacing(null);
-      return;
+    if (value) {
+      const available = equipmentAvailability(historyRef.current.present, value);
+      if (!available.enabled) { setPlacing(null); setNotice(available.reason); return; }
     }
     setPlacing(value); setConnectionStart(null); setActiveWireEnd(null);
   }
@@ -749,8 +834,8 @@ export function App() {
   }
 
   function place(type: string, point: WorldPoint) {
-    if (type.startsWith('mechanical.') && mechanicalMode && (scene.equipment.length || scene.experimentId) && (densityTypes.includes(type) !== densityMode || cartTypes.includes(type) !== cartMode)) { chooseEquipment(type); return; }
-    if (opticalPlacementBlocked(type)) { chooseEquipment(type); return; }
+    const available = equipmentAvailability(historyRef.current.present, type);
+    if (!available.enabled) { setPlacing(null); setNotice(available.reason); return; }
     if (type === WIRE) {
       const id = `wire-${crypto.randomUUID()}`;
       if (commit({ type: 'add-wire', id, point })) {
@@ -778,6 +863,18 @@ export function App() {
   }
 
   function applyProperties(id: string, pose: Pose2D, parameters: Record<string, Scalar>) {
+    if (buoyancyMode) {
+      const current = historyRef.current.present, previous = buoyPreviewRef.current;
+      const base = previous?.documentId === current.documentId && previous.revision === current.revision ? previous.scene : current;
+      const item = base.equipment.find(peer => peer.id === id), shown = buoyancyViewScene(base).equipment.find(peer => peer.id === id);
+      if (!item || !shown) return false;
+        const buoyancyParameters = item.type === BEAKER ? { ...parameters, buoyancyRole: parameters.buoyancyRole ?? 'vessel' } : parameters;
+        const changed = Math.hypot(shown.pose.xM - pose.xM, shown.pose.yM - pose.yM) > 1e-10 ? buoyancyDrop(base, { ...item, parameters: buoyancyParameters }, pose) : { pose: item.pose, parameters: buoyancyParameters };
+      if (!changed) { setNotice('天平左盘已有物体。'); return false; }
+      const candidate = buoyancyTransition({ ...base, equipment: base.equipment.map(peer => peer.id === id ? { ...peer, ...changed } : peer) });
+      buoyPreviewRef.current = null; setBuoyPreview(null);
+      return commit({ type: 'update-equipment-batch', updates: buoyancyChanges(current, candidate) });
+    }
     if (cartMode) {
       const item = scene.equipment.find(item => item.id === id);
       if (!item) return false;
@@ -834,6 +931,18 @@ export function App() {
   }
 
   function move(id: string, point: WorldPoint) {
+    if (buoyancyMode) {
+      const current = historyRef.current.present, previous = buoyPreviewRef.current;
+      const base = previous?.documentId === current.documentId && previous.revision === current.revision ? previous.scene : current;
+      const item = base.equipment.find(peer => peer.id === id);
+      if (!item) return;
+      const changed = buoyancyDrop(base, item, point);
+      if (!changed) { setNotice('天平左盘已有物体。'); return; }
+      const candidate = buoyancyTransition({ ...base, equipment: base.equipment.map(peer => peer.id === id ? { ...peer, ...changed } : peer) });
+      buoyPreviewRef.current = null; setBuoyPreview(null);
+      commit({ type: 'update-equipment-batch', updates: buoyancyChanges(current, candidate) });
+      return;
+    }
     const instance = scene.equipment.find(item => item.id === id);
     if (instance && densityMode) { const changed = densityDrop(scene, instance, point); if (changed.notice) { setNotice(changed.notice); return; } commit({ type: 'update-equipment', id, ...changed }); }
     else if (instance && cartMode) { applyProperties(id, { ...instance.pose, ...point }, instance.parameters); }
@@ -878,7 +987,7 @@ export function App() {
   function removeSelected() {
     if (!selection) return;
     const ids = selection.kind === 'equipment-group' ? selection.ids : selection.kind === 'equipment' ? [selection.id] : [];
-    const command: SceneCommand = densityMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedDensityUpdates(scene, ids, densityScene) } : springMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedSpringUpdates(scene, ids, springScene) } : mechanicalMode && !cartMode && !projectileMode && !frictionMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedWeightUpdates(scene, ids, leverPresentationScene(scene, leverOutcome)) } : selection.kind === 'equipment-group' ? { type: 'remove-equipment-batch', ids: selection.ids }
+    const command: SceneCommand = buoyancyMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: buoyancyDetached(scene, ids) } : densityMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedDensityUpdates(scene, ids, densityScene) } : springMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedSpringUpdates(scene, ids, springScene) } : mechanicalMode && !cartMode && !projectileMode && !frictionMode && ids.length ? { type: 'remove-equipment-batch', ids, updates: detachedWeightUpdates(scene, ids, leverPresentationScene(scene, leverOutcome)) } : selection.kind === 'equipment-group' ? { type: 'remove-equipment-batch', ids: selection.ids }
       : { type: selection.kind === 'equipment' ? 'remove-equipment' : 'remove-wire', id: selection.id };
     if (commit(command)) {
       clearEditing();
@@ -973,7 +1082,7 @@ export function App() {
 
     <div className="document-bar">
       <div className="document-heading"><span className="document-symbol" aria-hidden="true">◇</span>
-        <div><div className="document-title"><h1>{scene.title}</h1><button className="rename-button" aria-label="修改实验名称" disabled={booting || busy} onClick={() => setRenaming(true)}>修改名称</button></div><p>{cartMode ? '小车 · 高中控制变量' : densityMode ? '密度 · 初中测量' : mirrorImageMode ? '平面镜成像 · 初中光学' : reflectionMode ? '光的反射 · 共面探究' : projectileMode ? '平抛 · 高中定量探究' : springMode ? '弹簧 · 高中定量探究' : frictionMode ? '滑动摩擦 · 控制变量' : mechanicalMode ? '杠杆 · 自主探究' : opticalMode ? '凸透镜 · 自主探究' : scene.experimentId === LAMP_CIRCUIT_EXPERIMENT ? '灯泡串并联 · 自主探究' : '自由搭建'}<span className="separator">/</span><span data-testid="save-state">{booting ? '正在读取本地保存…' : savedSnapshot === JSON.stringify(scene) ? '已保存' : savedSnapshot === null ? '尚未保存' : '有未保存更改'}</span></p></div>
+        <div><div className="document-title"><h1>{scene.title}</h1><button className="rename-button" aria-label="修改实验名称" disabled={booting || busy} onClick={() => setRenaming(true)}>修改名称</button></div><p>{buoyancyMode ? '浮力 · 初中探究' : cartMode ? '小车 · 高中控制变量' : densityMode ? '密度 · 初中测量' : mirrorImageMode ? '平面镜成像 · 初中光学' : reflectionMode ? '光的反射 · 共面探究' : projectileMode ? '平抛 · 高中定量探究' : springMode ? '弹簧 · 高中定量探究' : frictionMode ? '滑动摩擦 · 控制变量' : mechanicalMode ? '杠杆 · 自主探究' : opticalMode ? '凸透镜 · 自主探究' : scene.experimentId === LAMP_CIRCUIT_EXPERIMENT ? '灯泡串并联 · 自主探究' : '自由搭建'}<span className="separator">/</span><span data-testid="save-state">{booting ? '正在读取本地保存…' : savedSnapshot === JSON.stringify(scene) ? '已保存' : savedSnapshot === null ? '尚未保存' : '有未保存更改'}</span></p></div>
       </div>
       <div className="document-actions">
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingExperiment(true)}>灯泡串并联实验</button>
@@ -981,6 +1090,7 @@ export function App() {
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingMirrorImage(true)}>平面镜成像实验</button>
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingOptical(true)}>凸透镜成像实验</button>
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingLever(true)}>杠杆平衡实验</button>
+        <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingBuoyancy(true)}>浮力实验</button>
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingFriction(true)}>滑动摩擦实验</button>
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingSpring(true)}>弹簧弹力实验</button>
         <button className="experiment-entry-button" disabled={booting || busy} onClick={() => setChoosingProjectile(true)}>平抛运动实验</button>
@@ -1000,33 +1110,33 @@ export function App() {
     </div>
 
     <main className="workspace" inert={booting}>
-      <EquipmentLibrary key={scene.documentId} registry={registry} domain={mechanicalMode ? 'mechanical' : opticalMode ? 'optical' : 'electrical'} mirrorImage={mirrorImageMode} locked={!!scene.experimentId || !!scene.equipment.length || !!scene.connections.length}
+      <EquipmentLibrary key={scene.documentId} registry={registry} scene={scene} domain={mechanicalMode ? 'mechanical' : opticalMode ? 'optical' : 'electrical'} mirrorImage={mirrorImageMode} buoyancy={buoyancyMode} locked={!!scene.experimentId || !!scene.equipment.length || !!scene.connections.length}
         onNewDomain={domain => { if (domain === 'mechanical') prepareLever(true); else if (domain === 'optical') prepareOptical(true); else setPending({ document: newDocument(), fromVersion: 2, source: 'experiment' }); }} placing={placing} onChoose={chooseEquipment} onDrop={drop}
         onCenter={() => { if (placing) { const view = scene.viewport ?? DEFAULT_VIEWPORT; place(placing, { xM: view.centerXM, yM: view.centerYM }); } }} />
 
-      <SceneBoard key={`${scene.documentId}:${boardEpoch}`} scene={cartMode ? cart.viewScene : densityMode ? densityScene : reflectionMode ? reflectionScene : projectileMode ? projectile.viewScene : springMode ? springScene : frictionMode ? friction.viewScene : nutScene} projectileMode={projectileMode} projectileFlight={projectile.flight} projectileMarks={projectileMarksVisible} springOutcome={springOutcome} frictionSample={friction.sample} registry={registry} selection={selection} placing={placing} start={connectionStart} wireColor={wireColor} activeWireEnd={activeWireEnd}
+      <SceneBoard key={`${scene.documentId}:${boardEpoch}`} scene={buoyancyMode ? buoyancyScene : cartMode ? cart.viewScene : densityMode ? densityScene : reflectionMode ? reflectionScene : projectileMode ? projectile.viewScene : springMode ? springScene : frictionMode ? friction.viewScene : nutScene} projectileMode={projectileMode} projectileFlight={projectile.flight} projectileMarks={projectileMarksVisible} springOutcome={springOutcome} frictionSample={friction.sample} registry={registry} selection={selection} placing={placing} start={connectionStart} wireColor={wireColor} activeWireEnd={activeWireEnd}
         cartMode={cartMode} cartRun={cart.run} cartRig={cart.rig?.ok ? cart.rig : null}
         mirrorImageOutcome={mirrorImageOutcome} mirrorGuides={mirrorGuides} mirrorRays={mirrorRays}
-        densityOutcome={densityOutcome} onDensityPreview={previewDensity} onDensityAdjust={(id, key, value) => updateDensity(id, { [key]: value })} onDensityWeight={toggleDensityWeight} reflectionOutcome={reflectionOutcome} opticalOutcome={opticalOutcome} opticalAuxiliary={opticalAuxiliary} onOpticalPreview={value => setOpticalPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null)}
-        leverOutcome={leverOutcome} leverAuxiliary={leverAuxiliary} onMechanicalPreview={value => { if (frictionMode && value) friction.pause(); setMechanicalPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null); }}
-        outcome={simulation.current} calculationStatus={cartMode ? '水平轨道 · 光电门与纸带采样' : densityMode ? '密度测量 · 自行称量、平视读液面' : mirrorImageMode ? '薄玻璃板 · 对照找像与光屏验证' : reflectionMode ? '空间反射 · 自行量角与折板对照' : projectileMode ? '解析平抛 · 同一时间源 · 落地事件截断' : springMode ? '竖直静态弹簧 · 自行读尺与拟合' : frictionMode ? '水平一维摩擦 · 运行时刻不保存' : mechanicalMode ? '杠杆静力矩 · 先空载调平再挂载' : opticalMode ? '近轴光学 · 自行调高与找焦' : simulation.status} onToggleSwitch={toggleSwitch} onRheostatChange={changeRheostat} onRheostatPreview={previewRheostat}
+        buoyancyOutcome={buoyancyOutcome} densityOutcome={buoyancyOutcome?.density ?? densityOutcome} onDensityPreview={previewDensity} onDensityAdjust={(id, key, value) => updateDensity(id, { [key]: value })} onDensityWeight={toggleDensityWeight} reflectionOutcome={reflectionOutcome} opticalOutcome={opticalOutcome} opticalAuxiliary={opticalAuxiliary} onOpticalPreview={value => setOpticalPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null)}
+        leverOutcome={leverOutcome} leverAuxiliary={leverAuxiliary} onMechanicalPreview={value => { if (buoyancyMode) { previewBuoyancy(value); return; } if (frictionMode && value) friction.pause(); setMechanicalPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null); }}
+        outcome={simulation.current} calculationStatus={buoyancyMode ? '浮力 · 静态称重与排液测量' : cartMode ? '水平轨道 · 光电门与纸带采样' : densityMode ? '密度测量 · 自行称量、平视读液面' : mirrorImageMode ? '薄玻璃板 · 对照找像与光屏验证' : reflectionMode ? '空间反射 · 自行量角与折板对照' : projectileMode ? '解析平抛 · 同一时间源 · 落地事件截断' : springMode ? '竖直静态弹簧 · 自行读尺与拟合' : frictionMode ? '水平一维摩擦 · 运行时刻不保存' : mechanicalMode ? '杠杆静力矩 · 先空载调平再挂载' : opticalMode ? '近轴光学 · 自行调高与找焦' : simulation.status} onToggleSwitch={toggleSwitch} onRheostatChange={changeRheostat} onRheostatPreview={previewRheostat}
         undoLabel={history.undo.at(-1)?.label ?? null} redoLabel={history.redo.at(-1)?.label ?? null} onUndo={() => travel('undo')} onRedo={() => travel('redo')}
         onSelect={select} onPort={connect} onPlace={place} onMove={move} onRoute={route} onWireChange={reshapeWire} onWireEnd={chooseWireEnd} onViewport={viewport} onCancel={cancelInteraction} onNotice={setNotice} />
 
       <aside className="panel inspector" aria-labelledby="inspector-title">
         <div className="panel-heading"><h2 id="inspector-title">属性与诊断</h2></div>
         {scene.experimentId === LAMP_CIRCUIT_EXPERIMENT && <LampCircuitGuide key={scene.documentId} onRecord={() => { setPanel('记录表'); expandRecords(); recordContent.current?.scrollTo(0, 0); }} />}
-        {cartMode ? <CartPanel simulation={cart} preview={!!activeMechanicalPreview} onViewTape={viewCartTape} /> : densityOutcome ? <DensityPanel key={scene.documentId} onMethodChange={changeDensityMethod} scene={densityWorkingScene} outcome={densityOutcome} preview={!!activeDensityPreview || !!activeMechanicalPreview} onUpdate={updateDensity} onPreview={previewDensity} onPour={pourDensity} onClear={clearDensityBalance} /> : mirrorImageOutcome ? <MirrorImagePanel key={scene.documentId} outcome={mirrorImageOutcome} guides={mirrorGuides} rays={mirrorRays} onGuides={setMirrorGuides} onRays={setMirrorRays} onEyeStep={stepMirrorEye} /> : reflectionOutcome ? <ReflectionPanel key={scene.documentId} scene={reflectionScene} outcome={reflectionOutcome} auxiliary={reflectionAuxiliary} onAuxiliary={setReflectionAuxiliary} preview={!!activeOpticalPreview || !!activeFoldPreview} onFoldPreview={value => setFoldPreview(value === null ? null : { value, documentId: scene.documentId, revision: scene.revision })} onFold={changeFold} onAlign={alignReflection} onOrbit={orbitReflection} /> : projectileMode ? <ProjectilePanel key={scene.documentId} scene={scene} simulation={projectile} marks={projectileMarksVisible} onMarks={setProjectileMarksVisible} onHeight={projectileHeight} onLevel={levelProjectile} /> : springOutcome ? <SpringPanel key={scene.documentId} outcome={springOutcome} preview={!!activeMechanicalPreview} gravity={scene.simulationConfig.gravityMPerS2} /> : frictionMode ? <FrictionPanel key={scene.documentId} scene={scene} simulation={friction} onUpdate={updateFriction} /> : leverOutcome ? <LeverPanel scene={scene} outcome={leverOutcome} auxiliary={leverAuxiliary} onAuxiliary={setLeverAuxiliary} onZero={zeroLever} preview={!!activeMechanicalPreview || !!activeNutPreview} movingEquipment={!!activeMechanicalPreview} onNutPreview={value => setNutPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null)} onNutChange={changeNut} /> : opticalOutcome ? <OpticalPanel outcome={opticalOutcome} auxiliary={opticalAuxiliary} onAuxiliary={setOpticalAuxiliary} preview={!!activeOpticalPreview} /> : <SimulationPanel scene={scene} outcome={simulation.current} running={simulation.running} status={simulation.status} onStart={simulation.start} onPause={simulation.pause} onReset={simulation.reset} />}
+        {buoyancyOutcome ? <BuoyancyPanel scene={buoyWorkingScene} outcome={buoyancyOutcome} onUpdate={updateBuoyancy} onAction={buoyancyAction} /> : cartMode ? <CartPanel simulation={cart} preview={!!activeMechanicalPreview} onViewTape={viewCartTape} /> : densityOutcome ? <DensityPanel key={scene.documentId} onMethodChange={changeDensityMethod} scene={densityWorkingScene} outcome={densityOutcome} preview={!!activeDensityPreview || !!activeMechanicalPreview} onUpdate={updateDensity} onPreview={previewDensity} onPour={pourDensity} onClear={clearDensityBalance} /> : mirrorImageOutcome ? <MirrorImagePanel key={scene.documentId} outcome={mirrorImageOutcome} guides={mirrorGuides} rays={mirrorRays} onGuides={setMirrorGuides} onRays={setMirrorRays} onEyeStep={stepMirrorEye} /> : reflectionOutcome ? <ReflectionPanel key={scene.documentId} scene={reflectionScene} outcome={reflectionOutcome} auxiliary={reflectionAuxiliary} onAuxiliary={setReflectionAuxiliary} preview={!!activeOpticalPreview || !!activeFoldPreview} onFoldPreview={value => setFoldPreview(value === null ? null : { value, documentId: scene.documentId, revision: scene.revision })} onFold={changeFold} onAlign={alignReflection} onOrbit={orbitReflection} /> : projectileMode ? <ProjectilePanel key={scene.documentId} scene={scene} simulation={projectile} marks={projectileMarksVisible} onMarks={setProjectileMarksVisible} onHeight={projectileHeight} onLevel={levelProjectile} /> : springOutcome ? <SpringPanel key={scene.documentId} outcome={springOutcome} preview={!!activeMechanicalPreview} gravity={scene.simulationConfig.gravityMPerS2} /> : frictionMode ? <FrictionPanel key={scene.documentId} scene={scene} simulation={friction} onUpdate={updateFriction} /> : leverOutcome ? <LeverPanel scene={scene} outcome={leverOutcome} auxiliary={leverAuxiliary} onAuxiliary={setLeverAuxiliary} onZero={zeroLever} preview={!!activeMechanicalPreview || !!activeNutPreview} movingEquipment={!!activeMechanicalPreview} onNutPreview={value => setNutPreview(value ? { ...value, documentId: scene.documentId, revision: scene.revision } : null)} onNutChange={changeNut} /> : opticalOutcome ? <OpticalPanel outcome={opticalOutcome} auxiliary={opticalAuxiliary} onAuxiliary={setOpticalAuxiliary} preview={!!activeOpticalPreview} /> : <SimulationPanel scene={scene} outcome={simulation.current} running={simulation.running} status={simulation.status} onStart={simulation.start} onPause={simulation.pause} onReset={simulation.reset} />}
         {frictionMode && mechanicalSelection && <FrictionAssembly key={`${mechanicalSelection.id}:${scene.revision}`} scene={scene} instance={mechanicalSelection} onUpdate={updateFriction} onPlace={placeOnFrictionSurface} />}
         {springMode && mechanicalSelection && <SpringAssembly key={`${mechanicalSelection.id}:${scene.revision}`} scene={scene} instance={mechanicalSelection} onAttach={parameters => commit({ type: 'update-equipment', id: mechanicalSelection.id, pose: mechanicalSelection.pose, parameters })} />}
         {projectileMode && mechanicalSelection?.type === PROJECTILE_BALL && <section className="projectile-panel"><h3>下次小球装配</h3><label>小球装入发射器<select aria-label="小球装入发射器" value={String(mechanicalSelection.parameters.launcherId ?? '')} onChange={event => applyProperties(mechanicalSelection.id, mechanicalSelection.pose, { ...mechanicalSelection.parameters, launcherId: event.target.value })}><option value="">未装入</option>{scene.equipment.filter(item => item.type === PROJECTILE_LAUNCHER).map(item => <option key={item.id} value={item.id}>{item.id}</option>)}</select></label><p>可把小球拖到枪口附近装入；参数立即配置到下次初态，本次飞行中的小球不接受拖动。</p></section>}
-        {!cartMode && !densityMode && !projectileMode && !springMode && !frictionMode && mechanicalSelection && <LeverAttachment key={`${mechanicalSelection.id}:${scene.revision}`} scene={scene} instance={mechanicalSelection} onAttach={parameters => { commit({ type: 'update-equipment', id: mechanicalSelection.id, pose: mechanicalSelection.pose, parameters }); }} />}
-        <InspectorEditor scene={densityMode ? densityScene : springMode ? springScene : mechanicalMode ? mechanicalScene : scene} registry={registry} selection={selection} start={connectionStart} wireColor={wireColor} onSelect={select} activeWireEnd={activeWireEnd}
+        {!buoyancyMode && !cartMode && !densityMode && !projectileMode && !springMode && !frictionMode && mechanicalSelection && <LeverAttachment key={`${mechanicalSelection.id}:${scene.revision}`} scene={scene} instance={mechanicalSelection} onAttach={parameters => { commit({ type: 'update-equipment', id: mechanicalSelection.id, pose: mechanicalSelection.pose, parameters }); }} />}
+        <InspectorEditor scene={buoyancyMode ? buoyancyScene : densityMode ? densityScene : springMode ? springScene : mechanicalMode ? mechanicalScene : scene} registry={registry} selection={selection} start={connectionStart} wireColor={wireColor} onSelect={select} activeWireEnd={activeWireEnd}
           onPort={connect} onApply={applyProperties} onRemove={removeSelected} onRoute={changeRoute} onDeleteRoutePoint={deleteRoutePoint} onWireEnd={chooseWireEnd} onDetachEnd={detachWireEnd} onColor={setWireColor} onFlip={flipEquipment} />
         {!opticalMode && !mechanicalMode && <div className="config-section"><span className="eyebrow">当前模型设定</span><dl>
           <div><dt>电学模式</dt><dd>理想源 · 电表按器材参数</dd></div><div><dt>重力加速度</dt><dd>{scene.simulationConfig.gravityMPerS2} m/s²</dd></div><div><dt>随机误差</dt><dd>{scene.simulationConfig.randomError.enabled ? '配置启用，本阶段未施加' : '关闭'}</dd></div>
         </dl><p className="config-note">重力加速度为可配置的教学值。</p></div>}
-        <div className="diagnostic-empty"><h3>操作诊断</h3><p role={error ? 'alert' : undefined}>{error || (cartMode ? '将小车和光电门摆到水平轨道上。释放后读挡光时间或纸带，暂停或停止后记录。' : densityMode ? '先空载调零，拖固体或烧杯到天平左盘、砝码盒到右盘；也可在上方选择位置。固体拖入量筒观察排水，液体用倒液按钮转移；读数需手工保存。' : mirrorImageMode ? '镜前移动观察眼，镜后移动对照物，使用刻度尺自行测量。' : reflectionMode ? '移动/转动光源瞄准镜面，分别校准纸板、量角器与法线；从法线读角，折板做共面对照。' : projectileMode ? '调平发射器，将小球装入；发射后暂停或单步，再用计时器和二维标尺读数。' : springMode ? '弹簧安装到支架，钩码挂到弹簧下端；独立尺竖直向下摆放，超限请减载。' : mechanicalMode ? '拖到挂点或在挂接区选择支架/杠杆；改变支点或自重后重新空载调平。' : opticalMode ? '拖动或输入位置与光心高度；光屏不自动对焦。' : scene.equipment.length || scene.connections.length ? '拖动线头接到接线柱；未接线头不导通，多线可共用接线柱。尚未求解电路。' : '当前没有待检查的装置。')}</p></div>
+        <div className="diagnostic-empty"><h3>操作诊断</h3><p role={error ? 'alert' : undefined}>{error || (buoyancyMode ? '上下移动测力计使圆柱体浸入液体，逐阶段保存读数。排液前先给溢水杯补液并放好接液杯。' : cartMode ? '将小车和光电门摆到水平轨道上。释放后读挡光时间或纸带，暂停或停止后记录。' : densityMode ? '先空载调零，拖固体或烧杯到天平左盘、砝码盒到右盘；也可在上方选择位置。固体拖入量筒观察排水，液体用倒液按钮转移；读数需手工保存。' : mirrorImageMode ? '镜前移动观察眼，镜后移动对照物，使用刻度尺自行测量。' : reflectionMode ? '移动/转动光源瞄准镜面，分别校准纸板、量角器与法线；从法线读角，折板做共面对照。' : projectileMode ? '调平发射器，将小球装入；发射后暂停或单步，再用计时器和二维标尺读数。' : springMode ? '弹簧安装到支架，钩码挂到弹簧下端；独立尺竖直向下摆放，超限请减载。' : mechanicalMode ? '拖到挂点或在挂接区选择支架/杠杆；改变支点或自重后重新空载调平。' : opticalMode ? '拖动或输入位置与光心高度；光屏不自动对焦。' : scene.equipment.length || scene.connections.length ? '拖动线头接到接线柱；未接线头不导通，多线可共用接线柱。尚未求解电路。' : '当前没有待检查的装置。')}</p></div>
       </aside>
 
       <section className={`panel records ${recordsMinimized ? 'is-minimized' : recordsExpanded ? 'is-expanded' : ''}`} aria-label="实验记录与分析">
@@ -1039,10 +1149,11 @@ export function App() {
           <button aria-expanded={!recordsMinimized} aria-controls={`panel-${panels.indexOf(panel)}`} onClick={() => setRecordsMinimized(value => !value)}>{recordsMinimized ? '恢复记录区' : '最小化记录区'}</button>
         </div></div>
         <div ref={recordContent} className={`record-content ${panel !== '模型说明' ? 'records-data-view' : ''}`} role="tabpanel" id={`panel-${panels.indexOf(panel)}`} aria-labelledby={`tab-${panels.indexOf(panel)}`} tabIndex={0} hidden={recordsMinimized}>
-          <div hidden={panel !== '记录表'}>{cartMode && <CartRecords key={scene.documentId} run={cart.run} ready={!!cart.run && !cart.running && !activeMechanicalPreview} method={cartMethod} onMethodChange={setCartMethod} onCapture={captureCart} />}{densityMode && <DensityRecords key={scene.documentId + ':' + densityMethod(scene)} scene={scene} ready={!!densityOutcome?.ok && !activeDensityPreview && !activeMechanicalPreview} onCapture={captureDensity} onResult={calculateDensity} />}{mirrorImageMode && <MirrorImageRecords key={scene.documentId} ready={!!mirrorImageOutcome?.ok && !activeOpticalPreview} onCapture={captureMirrorImage} />}{reflectionMode && <ReflectionRecords key={`reflection-records:${scene.documentId}`} scene={scene} ready={!!reflectionOutcome?.ok && !activeOpticalPreview && !activeFoldPreview} onCapture={captureReflection} />}{projectileMode && <ProjectileRecords key={`projectile-records:${scene.documentId}`} scene={scene} registry={registry} flight={projectile.flight} ready={!!projectile.flight && !projectile.running && !activeMechanicalPreview} onCapture={captureProjectile} />}{springMode && <SpringRecords key={`spring-records:${scene.documentId}`} scene={scene} registry={registry} ready={!!springOutcome?.ok && !activeMechanicalPreview} onCapture={captureSpring} />}{frictionMode && <FrictionRecords key={`friction-records:${scene.documentId}`} ready={!!friction.sample?.ok && friction.state.timeS > 0 && !activeMechanicalPreview} onCapture={captureFriction} />}{leverOutcome && <LeverRecords key={`lever-records:${scene.documentId}`} scene={scene} outcome={leverOutcome} ready={leverOutcome.ok && leverOutcome.calibrated && !activeMechanicalPreview && !activeNutPreview} onCapture={captureLever} />}{opticalOutcome && <OpticalRecords key={`optical-records:${scene.documentId}`} scene={scene} ready={opticalOutcome.ok && !activeOpticalPreview} onCapture={captureOptical} />}<MeasurementPanel key={`measurements:${scene.documentId}`} scene={scene} registry={registry} ready={!!simulation.acceptedReply} entryEnabled={!opticalMode && !mechanicalMode}
+          <div hidden={panel !== '记录表'}>{buoyancyMode && <BuoyancyRecords key={scene.documentId} scene={scene} ready={!buoyPreview && !activeDensityPreview} onCapture={captureBuoyancyRecord} onCalculate={calculateBuoyancyRecords} />}{cartMode && <CartRecords key={scene.documentId} run={cart.run} ready={!!cart.run && !cart.running && !activeMechanicalPreview} method={cartMethod} onMethodChange={setCartMethod} onCapture={captureCart} />}{densityMode && <DensityRecords key={scene.documentId + ':' + densityMethod(scene)} scene={scene} ready={!!densityOutcome?.ok && !activeDensityPreview && !activeMechanicalPreview} onCapture={captureDensity} onResult={calculateDensity} />}{mirrorImageMode && <MirrorImageRecords key={scene.documentId} ready={!!mirrorImageOutcome?.ok && !activeOpticalPreview} onCapture={captureMirrorImage} />}{reflectionMode && <ReflectionRecords key={`reflection-records:${scene.documentId}`} scene={scene} ready={!!reflectionOutcome?.ok && !activeOpticalPreview && !activeFoldPreview} onCapture={captureReflection} />}{projectileMode && <ProjectileRecords key={`projectile-records:${scene.documentId}`} scene={scene} registry={registry} flight={projectile.flight} ready={!!projectile.flight && !projectile.running && !activeMechanicalPreview} onCapture={captureProjectile} />}{springMode && <SpringRecords key={`spring-records:${scene.documentId}`} scene={scene} registry={registry} ready={!!springOutcome?.ok && !activeMechanicalPreview} onCapture={captureSpring} />}{frictionMode && <FrictionRecords key={`friction-records:${scene.documentId}`} ready={!!friction.sample?.ok && friction.state.timeS > 0 && !activeMechanicalPreview} onCapture={captureFriction} />}{leverOutcome && <LeverRecords key={`lever-records:${scene.documentId}`} scene={scene} outcome={leverOutcome} ready={leverOutcome.ok && leverOutcome.calibrated && !activeMechanicalPreview && !activeNutPreview} onCapture={captureLever} />}{opticalOutcome && <OpticalRecords key={`optical-records:${scene.documentId}`} scene={scene} ready={opticalOutcome.ok && !activeOpticalPreview} onCapture={captureOptical} />}<MeasurementPanel key={`measurements:${scene.documentId}`} scene={scene} registry={registry} ready={!!simulation.acceptedReply} entryEnabled={!opticalMode && !mechanicalMode}
             onCapture={captureMeasurements} onCorrect={(id, rawInput) => measurementCommand({ type: 'correct-measurement', id, rawInput })}
             onRemove={id => { measurementCommand({ type: 'remove-measurement', id }); }} onExport={exportMeasurements} /></div>
-          <div hidden={panel !== '图线'}>{projectileMode ? <ProjectileChart scene={scene} /> : springMode ? <SpringChart scene={scene} /> : <MeasurementChart key={scene.documentId} scene={scene} profiles={mirrorImageMode ? mirrorImageProfiles : cartMode ? cartProfiles : densityMode ? densityProfiles : reflectionMode ? reflectionProfiles : frictionMode ? [{ id: 'friction-f-n', label: '滑动摩擦力—压力（稳态）', available: true, x: { quantity: 'force', unit: 'N', label: '压力（N）', pointLabel: '压力' }, y: { quantity: 'force', unit: 'N', label: '滑动摩擦力（N）', pointLabel: '滑动摩擦力' } }] : mechanicalMode ? [{ id: 'lever-torque', label: '多组力矩比较（手工计算）', available: true, x: 'sample', y: { quantity: 'torque', unit: 'N·m', label: '有符号力矩（N·m）' } }, { id: 'lever-force', label: '多组拉力比较', available: true, x: 'sample', y: { quantity: 'force', unit: 'N', label: '力（N）' } }] : opticalMode ? [{ id: 'optical-distance', label: '屏距—物距（手工读尺）', available: true, x: { quantity: 'length', unit: 'm', label: '物距 u（m）', pointLabel: '物距u' }, y: { quantity: 'length', unit: 'm', label: '屏距 s（m，非自动像距）', pointLabel: '屏距s' } }, { id: 'optical-image', label: '实测像距—物距（清晰实像）', available: true, x: { quantity: 'length', unit: 'm', label: '物距 u（m）', pointLabel: '物距u' }, y: { quantity: 'length', unit: 'm', label: '实测像距 v（m）', pointLabel: '像距v' } }] : undefined} />}</div>
+          <div hidden={panel !== '图线'}>{projectileMode ? <ProjectileChart scene={scene} /> : springMode ? <SpringChart scene={scene} /> : <MeasurementChart key={scene.documentId} scene={scene} profiles={buoyancyMode ? buoyancyProfiles : mirrorImageMode ? mirrorImageProfiles : cartMode ? cartProfiles : densityMode ? densityProfiles : reflectionMode ? reflectionProfiles : frictionMode ? [{ id: 'friction-f-n', label: '滑动摩擦力—压力（稳态）', available: true, x: { quantity: 'force', unit: 'N', label: '压力（N）', pointLabel: '压力' }, y: { quantity: 'force', unit: 'N', label: '滑动摩擦力（N）', pointLabel: '滑动摩擦力' } }] : mechanicalMode ? [{ id: 'lever-torque', label: '多组力矩比较（手工计算）', available: true, x: 'sample', y: { quantity: 'torque', unit: 'N·m', label: '有符号力矩（N·m）' } }, { id: 'lever-force', label: '多组拉力比较', available: true, x: 'sample', y: { quantity: 'force', unit: 'N', label: '力（N）' } }] : opticalMode ? [{ id: 'optical-distance', label: '屏距—物距（手工读尺）', available: true, x: { quantity: 'length', unit: 'm', label: '物距 u（m）', pointLabel: '物距u' }, y: { quantity: 'length', unit: 'm', label: '屏距 s（m，非自动像距）', pointLabel: '屏距s' } }, { id: 'optical-image', label: '实测像距—物距（清晰实像）', available: true, x: { quantity: 'length', unit: 'm', label: '物距 u（m）', pointLabel: '物距u' }, y: { quantity: 'length', unit: 'm', label: '实测像距 v（m）', pointLabel: '像距v' } }] : undefined} />}</div>
+          {panel === '模型说明' && buoyancyMode && <div className="model-description"><h3>静态浮力与排液</h3><p>浮力按液体密度、重力加速度与实际浸没体积计算，悬挂张力等于重力减浮力。液面由液体体积和浸入几何共同确定，排出的液体累计保存在接液杯中。触底、碰壁、松绳和超量程均不输出正常悬挂读数。</p><p>学生分阶段记录测力计、天平与量筒读数，并选来源计算。忽略黏滞阻力、液滴挂壁、表面张力及浮体动态运动。教材映射待教师核验。</p></div>}
           {panel === '模型说明' && cartMode && <div className="model-description"><h3>小车、配重与悬挂砝码</h3><p>水平轨道无摩擦，绳轻且不可伸长，定滑轮无转动惯量。系统质量包含小车、车上配重和悬挂总质量。以悬挂端重力为系统驱动力，从静止释放，到轨道末端或砝码限位停止采样。</p><p>光电门速度来自挡光时长，纸带加速度来自 x–t² 拟合。运行时刻不保存，重新加载从初态释放。教材映射待教师核验。</p></div>}
           {panel === '模型说明' && densityMode && <div className="model-description"><h3>天平称量与排水读数</h3><p>静态等臂天平先调零，左物右码，游码每格0.2 g；量筒100 mL，每格1 mL，平视凹液面最低处。固体使用ρ=m/(V2−V1)，液体使用ρ=(m1−m2)/V。各阶段独立保存学生读数，选择相同条件的来源再计算；修改来源后需明确重算。</p><p>计算存储使用SI，界面和CSV使用g、mL、g/cm³。忽略吸水、溶解、挂壁、蒸发与砝码浮力；仅支持下沉固体、相同液体转移，未调零/未平衡、溢出和未浸没不输出正常密度。教材映射待教师核验。</p></div>}
           {panel === '模型说明' && reflectionMode && <div className="model-description"><h3>光的反射与共面证据</h3><p>空间单位方向按 r=d−2(d·n)n 反射，入射角和反射角均从镜面法线量起。两片纸板为有限空间承接面，右板绕法线折轴转动；光线离开纸板时只有交点，没有连续光迹，光的方向仍保持。正入射沿轴是退化对照，不能证明共面。</p><p>量角器分度 1°，学生记录独立于理论，存储/图线/CSV 使用 SI rad。单镜单束，无衍射、散射亮度或厚光束，非校准状态不输出正常角度记录。</p></div>}
@@ -1061,6 +1172,7 @@ export function App() {
     {choosingExperiment && <LampCircuitStart onChoose={prepareExperiment} onCancel={() => setChoosingExperiment(false)} />}
     {choosingReflection && <ReflectionStart onChoose={prepareReflection} onCancel={() => setChoosingReflection(false)} />}
     {choosingMirrorImage && <MirrorImageStart onChoose={prepareMirrorImage} onCancel={() => setChoosingMirrorImage(false)} />}
+    {choosingBuoyancy && <BuoyancyStart onChoose={prepareBuoyancy} onCancel={() => setChoosingBuoyancy(false)} />}
     {choosingOptical && <OpticalStart onChoose={prepareOptical} onCancel={() => setChoosingOptical(false)} />}
     {choosingCart && <CartStart onChoose={prepareCart} onCancel={() => setChoosingCart(false)} />}
     {choosingProjectile && <ProjectileStart onChoose={prepareProjectile} onCancel={() => setChoosingProjectile(false)} />}

@@ -5,6 +5,7 @@ import { validateSceneDocument } from '../../core/scene/validate.ts';
 import { solveSpring } from '../../physics/samples/spring.ts';
 import { SPRING, SPRING_EXPERIMENT } from './definitions.ts';
 import { SUPPORT, WEIGHT, MECHANICAL_RULER } from '../mechanical/definitions.ts';
+import { springApparatus } from '../support.ts';
 import { positionWeightChains, weightChainIssue, weightRoot, weightDescendants, weightBottom } from '../mechanical/weightChain.ts';
 
 export const isSpringScene = (scene: SceneDocument) => scene.experimentId === SPRING_EXPERIMENT || scene.equipment.some(item => item.type === SPRING);
@@ -13,7 +14,7 @@ const fail = (code: string) => ({ ok: false as const, code });
 export function springSample(scene: SceneDocument, registry: EquipmentRegistry, transitioning = false) {
   if (!validateSceneDocument(scene, registry).ok) return fail('SPRING_DOCUMENT');
   if (scene.simulationConfig.randomError.enabled) return fail('SPRING_RANDOM_UNSUPPORTED');
-  if (scene.connections.length || scene.equipment.some(item => ![SPRING, SUPPORT, WEIGHT, MECHANICAL_RULER].includes(item.type))) return fail('SPRING_DOMAIN');
+  if (scene.connections.length || scene.equipment.some(item => !springApparatus.includes(item.type))) return fail('SPRING_DOMAIN');
   const springs = scene.equipment.filter(item => item.type === SPRING);
   if (springs.length !== 1) return fail('SPRING_COUNT');
   const spring = springs[0]!, p = spring.parameters, support = scene.equipment.find(item => item.type === SUPPORT && item.id === p.supportId);

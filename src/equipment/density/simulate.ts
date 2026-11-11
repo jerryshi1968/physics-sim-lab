@@ -19,7 +19,7 @@ function densitySceneError(scene: SceneDocument, registry: EquipmentRegistry): s
   return null;
 }
 
-function solveBalance(equipment: EquipmentInstance[]) {
+export function solveBalance(equipment: EquipmentInstance[]) {
   const [balance, duplicateBalance] = equipment.filter(item => item.type === BALANCE);
   if (!balance || duplicateBalance) return fail('DENSITY_BALANCE_SETUP');
   const [load, otherLoad] = equipment.filter(item => [SPECIMEN, BEAKER].includes(item.type) && item.parameters.targetId === balance.id);
@@ -39,7 +39,7 @@ function solveBalance(equipment: EquipmentInstance[]) {
   return { ok: true as const, balance, masses, load, leftKg, rightKg, weightsKg, offsetKg, residualKg, calibrated, balanced, overRange, readableMass, canZero: !load && weightsKg === 0 && riderKg === 0 };
 }
 
-function solveCylinder(equipment: EquipmentInstance[]) {
+export function solveCylinder(equipment: EquipmentInstance[]) {
   const [cylinder, duplicateCylinder] = equipment.filter(item => item.type === CYLINDER);
   if (!cylinder || duplicateCylinder) return fail('DENSITY_CYLINDER_SETUP');
   const [immersed, otherImmersed] = equipment.filter(item => item.type === SPECIMEN && item.parameters.targetId === cylinder.id);

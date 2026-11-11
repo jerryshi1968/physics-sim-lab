@@ -8,6 +8,7 @@ import { registerSpringEquipment } from './spring/definitions.ts';
 import { registerMechanicalEquipment } from './mechanical/definitions.ts';
 import { registerCartEquipment } from './cart/definitions.ts';
 import { registerMirrorImageEquipment } from './mirrorImage/definitions.ts';
+import { registerBuoyancyEquipment } from './buoyancy/definitions.ts';
 
 export function createWorkbenchRegistry() {
   const registry = createElectricalRegistry();
@@ -20,5 +21,6 @@ export function createWorkbenchRegistry() {
   registerProjectileEquipment(registry);
   registerDensityEquipment(registry);
   registerCartEquipment(registry);
+  registerBuoyancyEquipment(registry);
   return registry;
 }
