@@ -16,9 +16,9 @@ export const AMMETER = 'electrical.ammeter';
 export const VOLTMETER = 'electrical.voltmeter';
 export const RHEOSTAT = 'electrical.rheostat';
 
-export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean' }
+export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean'; inverted?: boolean }
 export const parameterFields: Record<string, readonly ParameterField[]> = {
-  [POWER]: [{ key: 'voltageV', label: '电源电压', unit: 'V', kind: 'number' }],
+  [POWER]: [{ key: 'voltageV', label: '电源电压', unit: 'V', kind: 'number' }, { key: 'internalResistanceOhm', label: '电源内阻', unit: 'Ω', kind: 'number' }],
   [RESISTOR]: [{ key: 'resistanceOhm', label: '电阻', unit: 'Ω', kind: 'number' }],
   [SWITCH]: [{ key: 'closed', label: '闭合开关', unit: '', kind: 'boolean' }],
   [JUNCTION]: [],
@@ -29,7 +29,7 @@ export const parameterFields: Record<string, readonly ParameterField[]> = {
     { key: 'lowResolution', label: '小量程分度值', unit: 'A', kind: 'number' }, { key: 'highResolution', label: '大量程分度值', unit: 'A', kind: 'number' }, { key: 'resistanceOhm', label: '电流表内阻', unit: 'Ω', kind: 'number' }],
   [VOLTMETER]: [{ key: 'lowRange', label: '小量程上限', unit: 'V', kind: 'number' }, { key: 'highRange', label: '大量程上限', unit: 'V', kind: 'number' },
     { key: 'lowResolution', label: '小量程分度值', unit: 'V', kind: 'number' }, { key: 'highResolution', label: '大量程分度值', unit: 'V', kind: 'number' },
-    { key: 'finiteInput', label: '启用有限输入电阻', unit: '', kind: 'boolean' }, { key: 'inputResistanceOhm', label: '输入电阻', unit: 'Ω', kind: 'number' }],
+    { key: 'finiteInput', label: '理想电压表', unit: '', kind: 'boolean', inverted: true }, { key: 'inputResistanceOhm', label: '电压表内阻', unit: 'Ω', kind: 'number' }],
 };
 
 export function portLabel(id: string): string {
@@ -39,7 +39,7 @@ export function portLabel(id: string): string {
 export function createElectricalRegistry(): EquipmentRegistry {
   const registry = new EquipmentRegistry();
   const descriptions = [
-    { type: POWER, label: '电源', schema: z.strictObject({ voltageV: FiniteSchema.nonnegative() }), defaults: { voltageV: 3 }, ports: ['positive', 'negative'] },
+    { type: POWER, label: '电源', schema: z.strictObject({ voltageV: FiniteSchema.nonnegative(), internalResistanceOhm: FiniteSchema.nonnegative().optional() }).transform(value => value.internalResistanceOhm === undefined ? { voltageV: value.voltageV } : { voltageV: value.voltageV, internalResistanceOhm: value.internalResistanceOhm }), defaults: { voltageV: 3 }, ports: ['positive', 'negative'] },
     { type: RESISTOR, label: '电阻', schema: z.strictObject({ resistanceOhm: FiniteSchema.positive() }), defaults: { resistanceOhm: 10 }, ports: ['a', 'b'] },
     { type: SWITCH, label: '开关', schema: z.strictObject({ closed: z.boolean() }), defaults: { closed: false }, ports: ['a', 'b'] },
     { type: JUNCTION, label: '显式结点', schema: z.strictObject({}), defaults: {}, ports: ['node'] },

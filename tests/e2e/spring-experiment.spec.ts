@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -5,7 +6,7 @@ import type { SceneDocument } from '../../src/core/scene/schema.ts';
 const status = (page: Page) => page.getByTestId('spring-status');
 const group = (page: Page, id: string) => page.getByTestId('scene-board').locator(`[data-equipment-id="${id}"]`);
 async function exported(page: Page): Promise<SceneDocument> { const pending=page.waitForEvent('download'); await page.getByRole('button',{name:'导出',exact:true}).click(); return JSON.parse(await readFile((await (await pending).path())!,'utf8')) as SceneDocument; }
-async function open(page: Page, empty=false) { await page.goto('/'); await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled(); await page.getByRole('button',{name:'弹簧弹力实验',exact:true}).click(); if(empty) await page.getByLabel('弹簧空白搭建',{exact:true}).check(); await page.getByRole('button',{name:'预览弹簧实验',exact:true}).click(); await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click(); }
+async function open(page: Page, empty=false) { await page.goto('/'); await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled(); await openFamily(page, '弹簧弹力实验'); if(empty) await page.getByLabel('空白搭建弹簧弹力与形变量实验',{exact:true}).check(); await page.getByRole('button',{name: '进入实验',exact:true}).click(); await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click(); }
 async function properties(page: Page,id: string,fields: Record<string,string>) { await page.getByLabel('选择器材',{exact:true}).selectOption(id); for(const [label,value] of Object.entries(fields)) await page.getByLabel(label,{exact:true}).fill(value); }
 async function capture(page: Page,m: number,delta: number,phase='加载') { await page.getByRole('tab',{name:'记录表',exact:true}).click(); await page.getByLabel('弹簧测量阶段',{exact:true}).selectOption(phase); for(const [label,value] of Object.entries({'弹簧上端读数（m）':'.04','弹簧下端读数（m）':String(.14+delta),'无载原长 L0（m）':'.1','钩码质量读数（kg，不含盘）':String(m)})) await page.getByLabel(label,{exact:true}).fill(value); await page.getByRole('button',{name:'保存弹簧读尺记录',exact:true}).click(); }
 async function drag(page: Page,from: ReturnType<typeof group>,to: ReturnType<typeof group>,cancel=false) { const a=(await from.boundingBox())!,b=(await to.boundingBox())!; await page.mouse.move(a.x+a.width/2,a.y+3); await page.mouse.down(); await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:7}); await expect(page.getByRole('button',{name:'保存弹簧读尺记录',exact:true})).toBeDisabled(); if(cancel) await page.keyboard.press('Escape'); await page.mouse.up(); }

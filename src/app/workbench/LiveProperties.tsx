@@ -5,7 +5,7 @@ import type { ParameterField } from '../../equipment/electrical/definitions.ts';
 import { activePropertyDrafts, acknowledgePropertyDrafts, propertyCandidate, propertyValue, validPropertyCandidate } from '../../core/workbench/properties.ts';
 import type { PropertyDrafts } from '../../core/workbench/properties.ts';
 
-export function LiveProperties({ instance, registry, fields, optical, canRotate, onApply }: { instance: EquipmentInstance; registry: EquipmentRegistry; fields: readonly ParameterField[]; optical: boolean; canRotate: boolean; onApply: (id: string, pose: Pose2D, parameters: Record<string, Scalar>) => boolean }) {
+export function LiveProperties({ instance, registry, fields, optical, canRotate, readOnlyValues, onApply }: { instance: EquipmentInstance; registry: EquipmentRegistry; fields: readonly ParameterField[]; optical: boolean; canRotate: boolean; readOnlyValues?: Record<string, string> | undefined; onApply: (id: string, pose: Pose2D, parameters: Record<string, Scalar>) => boolean }) {
   const [drafts, setDrafts] = useState<PropertyDrafts>({}), [rejected, setRejected] = useState<string | null>(null), helpId = useId();
   const anchor = useRef<{ input: HTMLElement; top: number; container: HTMLElement | null } | null>(null);
   useLayoutEffect(() => {
@@ -15,7 +15,7 @@ export function LiveProperties({ instance, registry, fields, optical, canRotate,
     if (saved.container && saved.container.scrollHeight > saved.container.clientHeight) saved.container.scrollTop += delta;
     else window.scrollBy(0, delta);
   });
-  const active = activePropertyDrafts(instance, drafts);
+  const active = Object.fromEntries(Object.entries(activePropertyDrafts(instance, drafts)).filter(([key]) => readOnlyValues?.[key] === undefined));
   function remember(input: HTMLElement) { anchor.current = { input, top: input.getBoundingClientRect().top, container: input.closest<HTMLElement>('.inspector') }; }
   function changeNumber(key: string, raw: string, input: HTMLInputElement) {
     const next = { ...active, [key]: { raw, applied: propertyValue(instance, key) } };
@@ -35,6 +35,7 @@ export function LiveProperties({ instance, registry, fields, optical, canRotate,
   const invalidDraft = Object.entries(active).some(([key, draft]) => draft.raw.trim() === '' || !Number.isFinite(Number(draft.raw)) || !validPropertyCandidate(propertyCandidate(instance, { [key]: draft }), registry));
   return <div className="live-properties">
     {numericFields.map(({ key, label }) => {
+    if (readOnlyValues?.[key] !== undefined) return <label key={key}>{label}<input aria-label={label} name={key} type="text" value={readOnlyValues[key]} readOnly /></label>;
     const value = active[key]?.raw ?? String(propertyValue(instance, key));
     const candidate = propertyCandidate(instance, { [key]: { raw: value, applied: propertyValue(instance, key) } });
     const invalid = value.trim() === '' || !Number.isFinite(Number(value)) || !validPropertyCandidate(candidate, registry) || rejected === key;
@@ -42,9 +43,10 @@ export function LiveProperties({ instance, registry, fields, optical, canRotate,
       onChange={event => changeNumber(key, event.currentTarget.value, event.currentTarget)} onBlur={() => { setDrafts(current => { const remaining = { ...current }; delete remaining[key]; return remaining; }); setRejected(null); }}
       onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setDrafts(current => { const remaining = { ...current }; delete remaining[key]; return remaining; }); setRejected(null); } }} /></label>;
     })}
-    {fields.filter(field => field.kind === 'boolean').map(field => <label key={field.key} className="checkbox-field">{field.label}<input name={field.key} type="checkbox" checked={instance.parameters[field.key] === true} onChange={event => {
-      let candidate = propertyCandidate(instance, active); candidate.parameters[field.key] = event.currentTarget.checked;
-      if (!validPropertyCandidate(candidate, registry)) candidate = { ...instance, parameters: { ...instance.parameters, [field.key]: event.currentTarget.checked } };
+    {fields.filter(field => field.kind === 'boolean').map(field => <label key={field.key} className="checkbox-field">{field.label}<input name={field.key} type="checkbox" checked={field.inverted ? instance.parameters[field.key] !== true : instance.parameters[field.key] === true} onChange={event => {
+      const value = field.inverted ? !event.currentTarget.checked : event.currentTarget.checked;
+      let candidate = propertyCandidate(instance, active); candidate.parameters[field.key] = value;
+      if (!validPropertyCandidate(candidate, registry)) candidate = { ...instance, parameters: { ...instance.parameters, [field.key]: value } };
       remember(event.currentTarget);
       if (validPropertyCandidate(candidate, registry) && onApply(instance.id, candidate.pose, candidate.parameters)) setDrafts(acknowledgePropertyDrafts(candidate, active));
     }} /></label>)}

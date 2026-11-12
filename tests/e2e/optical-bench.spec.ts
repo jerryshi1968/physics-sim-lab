@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -6,9 +7,9 @@ import { BENCH, CANDLE, LENS, SCREEN, RULER } from '../../src/equipment/optical/
 
 async function ready(page: Page, empty = false) {
   await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '凸透镜成像实验', exact: true }).click();
-  if (empty) await page.getByRole('radio', { name: '光学空白搭建', exact: true }).check();
-  await page.getByRole('button', { name: '预览光学实验', exact: true }).click();
+  await openFamily(page, '凸透镜成像实验');
+  if (empty) await page.getByRole('radio', { name: '空白搭建光学实验', exact: true }).check();
+  await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function properties(page: Page, id: string, values: Record<string, string>) {
@@ -110,10 +111,11 @@ test('five classes of manual ruler observations, independent ruler zero, frozen 
 test('native blank optical assembly keeps independent heights, rejects invalid lens values and clears projection for missed or invalid geometry', async ({ page }, testInfo) => {
   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await ready(page, true);
   await expect(page.getByTestId('scene-board').locator('[data-equipment-id]')).toHaveCount(0);
+  const view = (await exported(page)).viewport!;
   const ids: Record<string, string> = {};
   for (const [type, key, xM, yM] of [[BENCH, 'bench', 0, 0], [CANDLE, 'candle', .2, .06], [LENS, 'lens', .5, .06], [SCREEN, 'screen', .65, .06], [RULER, 'ruler', .1, -.045]] as const) {
     await page.locator(`[data-library-type="${type}"]`).click(); const board = page.getByTestId('scene-board'), bounds = (await board.boundingBox())!;
-    await board.click({ position: { x: bounds.width / 2 + (xM - .55) * 600, y: bounds.height / 2 - (yM - .03) * 600 } });
+    await board.click({ position: { x: bounds.width / 2 + (xM - view.centerXM) * view.pixelsPerM, y: bounds.height / 2 - (yM - view.centerYM) * view.pixelsPerM } });
     ids[key] = (await board.locator(`[data-equipment-type="${type}"]`).last().getAttribute('data-equipment-id'))!;
   }
   await expect(status(page)).toContainText('清晰实像'); const before = await exported(page); expect(before.connections).toEqual([]);

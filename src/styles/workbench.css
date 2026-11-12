@@ -112,7 +112,7 @@ dd { margin: 0; }
 .property-editor h3 { margin-bottom: 14px; }
 .selection-controls label, .property-editor label { display: block; font-size: 11px; line-height: 1.7; color: #506c63; margin-bottom: 10px; }
 input, select { font: inherit; }
-.selection-controls select, .property-editor input[type="number"], .property-editor select { display: block; width: 100%; min-width: 0; border: 1px solid #d2dfd8; border-radius: 5px; padding: 7px; background: white; color: #223b43; margin-top: 5px; }
+.selection-controls select, .property-editor input[type="number"], .property-editor input[readonly], .property-editor select { display: block; width: 100%; min-width: 0; border: 1px solid #d2dfd8; border-radius: 5px; padding: 7px; background: white; color: #223b43; margin-top: 5px; }
 input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-offset: 1px; }
 .property-editor form > button { width: 100%; font-size: 12px; }
 .property-editor .checkbox-field { display: flex; align-items: center; justify-content: space-between; min-height: 34px; }

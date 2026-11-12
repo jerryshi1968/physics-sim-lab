@@ -1,0 +1,9 @@
+.pendulum-panel input { width: 100%; min-width: 0; padding: 8px; border: 1px solid #cbded7; border-radius: 4px; background: white; color: inherit; }
+.pendulum-records .measurement-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0 12px; }
+.pendulum-records details { margin: 12px 0; font-size: 12px; }
+.pendulum-records summary { cursor: pointer; color: #16786f; }
+.pendulum-ruler-scroll { max-height: 240px; overflow: auto; border: 1px solid #dfe8e3; background: #f7faf8; }
+.pendulum-ruler-scroll svg { display: block; max-width: none; }
+.pendulum-results .measurement-table-scroll { overflow-x: auto; }
+.pendulum-results table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.pendulum-results th, .pendulum-results td { padding: 8px; border-bottom: 1px solid #dfe8e3; text-align: left; white-space: nowrap; }

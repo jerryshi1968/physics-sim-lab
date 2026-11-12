@@ -29,6 +29,13 @@ export function addEquipment(document: SceneDocument, registry: EquipmentRegistr
   return finish(document, candidate, registry, timestamp);
 }
 
+export function updateGravity(document: SceneDocument, registry: EquipmentRegistry, gravityMPerS2: number, timestamp: string): DocumentValidation {
+  if (!SceneDocumentSchema.shape.simulationConfig.shape.gravityMPerS2.safeParse(gravityMPerS2).success) return failure('INVALID_GRAVITY');
+  const candidate = SceneDocumentSchema.parse(document);
+  candidate.simulationConfig.gravityMPerS2 = gravityMPerS2;
+  return finish(document, candidate, registry, timestamp);
+}
+
 export function renameDocument(document: SceneDocument, registry: EquipmentRegistry, title: string, timestamp: string): DocumentValidation {
   const value = title.trim();
   if (!SceneDocumentSchema.shape.title.safeParse(value).success) return failure('INVALID_TITLE');
@@ -142,5 +149,6 @@ export function editMessage(code: string): string {
     UNSUPPORTED_CONNECTION_KIND: '当前器材不支持这种连接方式。',
     SELF_CONNECTION: '同一接线柱不能连接到自己，请选择另一个接线柱。',
     UNKNOWN_CONNECTION: '导线不存在。', EQUIPMENT_HAS_MEASUREMENTS: '该器材已有历史记录，请先保留记录，当前不能删除。',
+    INVALID_GRAVITY: '重力加速度须为大于零的有限数值。',
   } as Record<string, string>)[code] ?? '操作未通过场景校验，原装置保持不变。';
 }

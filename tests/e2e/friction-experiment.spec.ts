@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -10,8 +11,8 @@ const exported = async (page: Page): Promise<SceneDocument> => JSON.parse(await 
 const status = (page: Page) => page.getByTestId('friction-status');
 async function open(page: Page, empty = false) {
   page.setDefaultTimeout(15_000); await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '滑动摩擦实验', exact: true }).click(); if (empty) await page.getByRole('radio', { name: '摩擦空白搭建', exact: true }).check();
-  await page.getByRole('button', { name: '预览摩擦实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  await openFamily(page, '滑动摩擦实验'); if (empty) await page.getByRole('radio', { name: '空白搭建滑动摩擦实验', exact: true }).check();
+  await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function properties(page: Page, id: string, fields: Record<string, string>) {
   await page.getByLabel('选择器材', { exact: true }).selectOption(id);

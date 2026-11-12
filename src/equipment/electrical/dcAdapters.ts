@@ -15,7 +15,7 @@ function terminal(instance: EquipmentInstance, portId: string): string {
 export function createDcModelAdapters(): DcModelAdapters {
   const adapters = new Map<string, DcModelAdapter>();
   adapters.set(`${POWER}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'voltage-source',
-    from: terminal(instance, 'positive'), to: terminal(instance, 'negative'), voltageV: Number(instance.parameters.voltageV), resistanceOhm: 0 }]);
+    from: terminal(instance, 'positive'), to: terminal(instance, 'negative'), voltageV: Number(instance.parameters.voltageV), resistanceOhm: Number(instance.parameters.internalResistanceOhm ?? 0) }]);
   adapters.set(`${RESISTOR}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'resistor',
     from: terminal(instance, 'a'), to: terminal(instance, 'b'), resistanceOhm: Number(instance.parameters.resistanceOhm) }]);
   adapters.set(`${SWITCH}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'switch',

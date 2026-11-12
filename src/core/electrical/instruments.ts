@@ -26,7 +26,7 @@ export interface MeterReading {
   reverse: boolean; overRange: boolean;
 }
 
-export function meterConnection(scene: SceneDocument, id: string): MeterConnection {
+export function meterConnection(scene: Pick<SceneDocument, 'connections'>, id: string): MeterConnection {
   const ports = new Set<string>();
   for (const wire of scene.connections) {
     if (wire.kind !== 'wire') continue;

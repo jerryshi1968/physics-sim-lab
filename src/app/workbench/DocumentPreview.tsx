@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
-export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' }
+export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' }
 
 export function DocumentPreview({ pending, onConfirm, onCancel }: {
   pending: PendingDocument; onConfirm: () => void; onCancel: () => void;
@@ -13,6 +13,8 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     <h2 id="preview-title">{pending.source === 'import' ? '导入预览' : pending.source !== 'saved' ? '实验起点预览' : '本地保存预览'}</h2>
     <h3>{scene.title}</h3>
     <p>{scene.equipment.length} 件器材 · {scene.connections.length} 根连接 · {scene.measurementRecords.length} 条记录</p>
+    {pending.source === 'free' && <p>空白实验台，没有预放器材；从器材库自行搭建，互斥器材按先放的优先。</p>}
+    {pending.source === 'emf' && <p>有限内阻电源、双量程电表及可调电阻性负载。开关断开；按实际导线识别内外接法，至少五个不同电流作 U–I 拟合。理想导线，不模拟温升与电池耗竭。教材映射待教师核验。</p>}
     {pending.source === 'buoyancy' && <p>测力计与圆柱体逐步浸入，排液杯保留已收集的液体。每阶段自行读数，称量排液验证阿基米德原理。教材映射待教师核验。</p>}
     {pending.source === 'cart' && <p>理想水平轨道上由悬挂砝码牵引小车。可比较光电门读数和打点纸带，系统质量包括随动的悬挂砝码。高中教材映射待教师核验。</p>}
     {pending.source === 'mirror-image' && <p>用薄玻璃板、观察眼和镜后对照物找像位；用刻度尺量距离和高度，再用光屏验证。观察和读数由学生填写。教材映射待教师核验。</p>}

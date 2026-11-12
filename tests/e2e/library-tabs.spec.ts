@@ -1,3 +1,4 @@
+import { selectCatalogOption } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -30,6 +31,7 @@ test('default library exposes both tabs without changing work; optical apparatus
   await library.getByRole('button', { name: '新建电学实验', exact: true }).click();
   await page.getByRole('button', { name: '取消', exact: true }).click(); expect(await exported(page)).toEqual(placed);
   await library.getByRole('button', { name: '新建电学实验', exact: true }).click();
+  await selectCatalogOption(page, 'electrical-blank'); await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
   await expect(library.getByRole('tab', { name: '电学', exact: true })).toHaveAttribute('aria-selected', 'true');
   await library.locator('[data-library-type="electrical.resistor"]').click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click();
@@ -39,6 +41,7 @@ test('default library exposes both tabs without changing work; optical apparatus
   await library.getByRole('button', { name: '新建光学实验', exact: true }).click();
   await page.getByRole('button', { name: '取消', exact: true }).click(); expect(await exported(page)).toEqual(electrical);
   await library.getByRole('button', { name: '新建光学实验', exact: true }).click();
+  await selectCatalogOption(page, 'optical-blank'); await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
   await expect(library.getByRole('tab', { name: '光学', exact: true })).toHaveAttribute('aria-selected', 'true');
   await expect(board.locator('[data-equipment-id]')).toHaveCount(0);

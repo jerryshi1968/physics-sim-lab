@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test,expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -5,7 +6,7 @@ import type { SceneDocument } from '../../src/core/scene/schema.ts';
 const status=(page:Page)=>page.getByTestId('projectile-status'),clock=(page:Page)=>page.getByTestId('projectile-clock');
 const group=(page:Page,id:string)=>page.getByTestId('scene-board').locator(`[data-equipment-id="${id}"]`);
 async function exported(page:Page):Promise<SceneDocument>{const pending=page.waitForEvent('download');await page.getByRole('button',{name:'导出',exact:true}).click();return JSON.parse(await readFile((await(await pending).path())!,'utf8')) as SceneDocument;}
-async function open(page:Page,empty=false){await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await page.getByRole('button',{name:'平抛运动实验',exact:true}).click();if(empty)await page.getByLabel('平抛空白搭建',{exact:true}).check();await page.getByRole('button',{name:'预览平抛实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
+async function open(page:Page,empty=false){await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await openFamily(page, '平抛运动实验');if(empty)await page.getByLabel('空白搭建平抛运动实验',{exact:true}).check();await page.getByRole('button',{name: '进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
 async function properties(page:Page,id:string,fields:Record<string,string>){await page.getByLabel('选择器材',{exact:true}).selectOption(id);for(const[label,value]of Object.entries(fields))await page.getByLabel(label,{exact:true}).fill(value);}
 async function step(page:Page,t:number){await page.getByRole('button',{name:'单步 Δt',exact:true}).click();await expect.poll(async()=>Number(await clock(page).getAttribute('data-time-s'))).toBeCloseTo(t,8);}
 async function capture(page:Page,t:number,x:number,y:number){await page.getByRole('tab',{name:'记录表',exact:true}).click();for(const[label,value]of Object.entries({'平抛时间读数（s）':String(t),'本次起点横尺读数（m）':'.1','小球横尺读数（m）':String(.1+x),'本次起点竖尺读数（m）':'.05','小球竖尺读数（m）':String(.05+y),'地面竖尺读数（m）':'1.3'}))await page.getByLabel(label,{exact:true}).fill(value);await page.getByRole('button',{name:'保存平抛读数',exact:true}).click();}

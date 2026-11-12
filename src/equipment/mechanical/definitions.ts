@@ -6,7 +6,7 @@ import type { ParameterField } from '../electrical/definitions.ts';
 
 export const LEVER = 'mechanical.lever', SUPPORT = 'mechanical.support', WEIGHT = 'mechanical.weights', FORCE_METER = 'mechanical.force-meter', MECHANICAL_RULER = 'mechanical.ruler';
 export function mechanicalLabel(scene: { equipment: readonly EquipmentInstance[] }, id: string) {
-  const index = scene.equipment.findIndex(item => item.id === id), labels: Record<string, string> = { [LEVER]: '杠杆', [SUPPORT]: '支架', [WEIGHT]: '钩码', [FORCE_METER]: '弹簧测力计', [MECHANICAL_RULER]: '独立刻度尺', 'mechanical.spring': '弹簧', 'mechanical.projectile-launcher': '发射器', 'mechanical.projectile-ball': '小球', 'mechanical.projectile-timer': '计时器', 'mechanical.projectile-scale': '二维标尺', 'mechanical.projectile-ground': '地面' };
+  const index = scene.equipment.findIndex(item => item.id === id), labels: Record<string, string> = { [LEVER]: '杠杆', [SUPPORT]: '支架', [WEIGHT]: '钩码', [FORCE_METER]: '弹簧测力计', [MECHANICAL_RULER]: '独立刻度尺', 'mechanical.pendulum': '单摆', 'mechanical.spring': '弹簧', 'mechanical.projectile-launcher': '发射器', 'mechanical.projectile-ball': '小球', 'mechanical.projectile-timer': '计时器', 'mechanical.projectile-scale': '二维标尺', 'mechanical.projectile-ground': '地面' };
   return index >= 0 ? `${labels[scene.equipment[index]!.type] ?? '器材'} ${index + 1}` : id.endsWith(':self') ? '杆自重' : id.endsWith(':nut-left') ? '左端平衡螺母' : id.endsWith(':nut-right') ? '右端平衡螺母' : id.endsWith(':trim') ? '调平螺母' : '未挂接器材';
 }
 export const mechanicalParameterFields: Record<string, readonly ParameterField[]> = {

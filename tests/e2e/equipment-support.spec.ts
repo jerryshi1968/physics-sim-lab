@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -8,6 +9,7 @@ import { createWorkbenchRegistry } from '../../src/equipment/registry.ts';
 const mechanical = (names: string) => names.split(' ').map(name => `mechanical.${name}`);
 const optical = (names: string) => names.split(' ').map(name => `optical.${name}`);
 const cases: [string, string[]][] = [
+  ['H-ELEC-01', ['power-supply', 'resistor', 'switch', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
   ['J-ELEC-01', ['power-supply', 'resistor', 'switch', 'lamp', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
   ['J-OPT-02', optical('bench candle convex-lens screen ruler')],
   ['J-OPT-01', optical('plane-mirror ray-box folding-paper protractor normal-marker')],
@@ -16,6 +18,7 @@ const cases: [string, string[]][] = [
   ['J-MECH-01', mechanical('friction-block friction-surface friction-drive friction-load force-meter ruler')],
   ['H-MECH-01', mechanical('spring support weights ruler')],
   ['H-MECH-02', mechanical('projectile-launcher projectile-ball projectile-timer projectile-scale projectile-ground')],
+  ['H-MECH-04', mechanical('pendulum support ruler projectile-timer')],
   ['H-MECH-03', mechanical('cart cart-track cart-photogate cart-ticker')],
   ['J-MEAS-01', mechanical('density-balance density-cylinder density-specimen density-masses density-beaker')],
   ['J-MEAS-01-L', mechanical('density-balance density-cylinder density-specimen density-masses density-beaker')],
@@ -53,8 +56,8 @@ for (const [id, supported] of cases) test(`${id}: the full catalogue matches its
 
 test('buoyancy disables springs and extra meters for mouse, drag and keyboard; delete and undo release the meter limit', async ({ page }, info) => {
   await page.setViewportSize({ width: 1440, height: 1000 }); await page.goto('/');
-  await page.getByRole('button', { name: '浮力实验', exact: true }).click();
-  await page.getByRole('button', { name: '预览浮力实验' }).click(); await page.getByRole('button', { name: '确认替换当前实验' }).click();
+  await openFamily(page, '浮力实验');
+  await page.getByRole('button', { name: '进入实验' }).click(); await page.getByRole('button', { name: '确认替换当前实验' }).click();
   const library = page.getByRole('region', { name: '器材库', exact: true }), board = page.getByTestId('scene-board');
   const spring = library.locator('[data-library-type="mechanical.spring"]'), meter = library.locator('[data-library-type="mechanical.force-meter"]');
   await expect(spring).toBeDisabled(); await expect(meter).toBeDisabled(); await expect(meter).toHaveAttribute('title', /最多放置 1 件/);

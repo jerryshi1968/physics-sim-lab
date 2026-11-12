@@ -1,5 +1,9 @@
 # 物理模型说明
 
+2026-11-12：[学段目录与光学自由搭建](../experiment-catalog.md)复用已有模型，按兼容器材选择观察/记录流程。独立尺为被动工具，无确定模型或互斥时不输出正常结果；不新增任意镜/透镜组合的光学模型。
+
+M9 / 任务 16 已实现 [H-ELEC-01 电源电动势与内阻](emf-experiment.md)：复用有限内阻源与可加载电表，实际内外接线、同源成对记录、五点 U–I 拟合与导出重载；旧源缺省内阻仍按零处理，教材与课堂待核验。
+
 当前候选版含四初中、两高中六项正式实验；完整范围与独立预期见[六模型摘要](../releases/MODEL-SUMMARY.md)，逐项操作见[演示指南](../releases/DEMO-GUIDE.md)。正式说明包括[灯泡串并联](lamp-circuit-experiment.md)、[凸透镜](optical-bench.md)、[杠杆](lever-experiment.md)、[摩擦](friction-experiment.md)、[弹簧](spring-experiment.md)、[平抛](projectile-experiment.md)。下文任务段落保留历史范围，不将 M0 小样说明误作当前 UI 限制；教材继续 pending_teacher_review。
 
 M5 / 任务 11 已实现[水平一维摩擦实验与 Matter.js 适配](friction-experiment.md)：自研静/滑状态、过零与牵引，匀速辅助/直接控力、可选砝码、压力/材料/面积对照、稳态资格及记录导出。旧小样保持，教材/课堂待核验。
@@ -46,3 +50,5 @@ M1 / 任务 03 的正式器材、坐标转换、指针/键盘操作和连接图�
 M6 / 任务 12 已将原静态弹簧小样正式接入支架/钩码装配、独立尺、手工记录与 F–Δx 最小二乘拟合，详见[正式弹簧实验](spring-experiment.md)；M0 小样及预期基准保留，不将教材/课堂验收自动标为通过。
 
 M6 / 任务 13 已将原解析平抛小样接入发射器、小球、计时器、二维标尺和同源帧控制，详见[正式平抛实验](projectile-experiment.md)；x–t 与 ydrop–t² 拟合只使用学生有效记录，本次初态与采样时待发配置分开追溯。
+
+M9 / H-MECH-04 已接入[单摆测 g](pendulum-experiment.md)：悬点到球心的摆长、非线性周期、多周期计时、小角拟合及大角对照，独立 Decimal 级数基准保留。

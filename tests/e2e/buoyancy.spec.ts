@@ -1,12 +1,13 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 async function open(page: Page, choice = '探究浮力的影响因素') {
   await page.goto('/');
-  await page.getByRole('button', { name: '浮力实验', exact: true }).click();
+  await openFamily(page, '浮力实验');
   await page.getByRole('radio', { name: choice, exact: true }).check();
-  await page.getByRole('button', { name: '预览浮力实验' }).click();
+  await page.getByRole('button', { name: '进入实验' }).click();
   await page.getByRole('button', { name: '确认替换当前实验' }).click();
 }
 async function mount(page: Page, value: string) {
@@ -159,7 +160,7 @@ test.describe('touch buoyancy', () => {
     await expect(pointer).toHaveAttribute('data-applied-force-n', '1');
   });
   test('blank assembly accepts shared apparatus and new physical equipment', async ({ page }) => {
-    await open(page, '浮力空白搭建');
+    await open(page, '空白搭建浮力实验');
     for (const type of ['mechanical.support', 'mechanical.force-meter', 'mechanical.buoyancy-body', 'mechanical.density-beaker']) {
       await page.locator(`[data-library-type="${type}"]`).tap();
       await page.getByRole('button', { name: '在视口中心放置' }).tap();

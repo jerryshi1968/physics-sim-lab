@@ -1,10 +1,11 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
 async function open(page: Page) {
   page.setDefaultTimeout(15_000); await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '杠杆平衡实验', exact: true }).click(); await page.getByRole('button', { name: '预览杠杆实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  await openFamily(page, '杠杆平衡实验'); await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function exported(page: Page): Promise<SceneDocument> {
   const pending = page.waitForEvent('download'); await page.getByRole('button', { name: '导出', exact: true }).click(); return JSON.parse(await readFile((await (await pending).path())!, 'utf8')) as SceneDocument;

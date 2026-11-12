@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -6,9 +7,9 @@ import { reflectionTypes, PAPER, EMITTER } from '../../src/equipment/reflection/
 
 async function ready(page:Page,empty=false){
   await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();
-  await page.getByRole('button',{name:'光的反射定律实验',exact:true}).click();
-  if(empty)await page.getByRole('radio',{name:'反射空白搭建',exact:true}).check();
-  await page.getByRole('button',{name:'预览反射实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
+  await openFamily(page, '光的反射定律实验');
+  if(empty)await page.getByRole('radio',{name:'空白搭建光学实验',exact:true}).check();
+  await page.getByRole('button',{name: '进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
 }
 async function download(page:Page,name='导出'){
   const pending=page.waitForEvent('download');await page.getByRole('button',{name,exact:true}).click();return readFile((await(await pending).path())!,'utf8');
@@ -100,7 +101,7 @@ test.describe('reflection touch',()=>{
     test.setTimeout(90_000);await ready(page,true);const library=page.getByRole('region',{name:'器材库',exact:true});
     await library.locator(`[data-library-type="${PAPER}"]`).tap();await library.getByRole('button',{name:'在视口中心放置',exact:true}).tap();
     await expect(page.getByTestId('scene-board').locator('[data-equipment-type="optical.folding-paper"] [data-selected="true"]')).toHaveCount(1);
-    await page.getByRole('button',{name:'光的反射定律实验',exact:true}).tap();await page.getByRole('button',{name:'预览反射实验',exact:true}).tap();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).tap();
+    await openFamily(page, '光的反射定律实验', true);await page.getByRole('button',{name: '进入实验',exact:true}).tap();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).tap();
     const range=page.getByLabel('右纸板折角（°）',{exact:true});await range.scrollIntoViewIfNeeded();const box=(await range.boundingBox())!,client=await page.context().newCDPSession(page),x=box.x+box.width/2,y=box.y+box.height/2;
     await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:box.x+box.width*.82,y}]});await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
     await expect(page.getByTestId('reflection-fold-view')).toHaveAttribute('data-evidence','off-sheet');const folded=await exported(page);expect(Number(folded.equipment.find(e=>e.type===PAPER)!.parameters.foldRad)).toBeGreaterThan(.5);

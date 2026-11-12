@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -7,9 +8,9 @@ import { CART, GATE, TICKER, TRACK } from '../../src/equipment/cart/definitions.
 async function open(page: Page, empty = false) {
   await page.goto('/');
   await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '加速度与力、质量实验', exact: true }).click();
-  if (empty) await page.getByRole('radio', { name: '小车实验空白搭建' }).check();
-  await page.getByRole('button', { name: '预览小车实验' }).click();
+  await openFamily(page, '加速度与力、质量实验');
+  if (empty) await page.getByRole('radio', { name: '空白搭建小车实验' }).check();
+  await page.getByRole('button', { name: '进入实验' }).click();
   await page.getByRole('button', { name: '确认替换当前实验' }).click();
 }
 

@@ -1,12 +1,13 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
 import { BEAKER, densityTypes } from '../../src/equipment/density/definitions.ts';
 async function open(page: Page, liquid=false, empty=false) {
- await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await page.getByRole('button',{name:'测量密度实验',exact:true}).click();
- if(liquid)await page.getByRole('radio',{name:'液体密度：倒出前后质量差法',exact:true}).check();if(empty)await page.getByLabel('从空白搭建密度实验',{exact:true}).check();
- await page.getByRole('button',{name:'预览密度实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
+ await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await openFamily(page, '测量密度实验');
+ if(liquid)await page.getByRole('radio',{name:'测量液体密度实验',exact:true}).check();if(empty)await page.getByLabel('空白搭建密度测量实验',{exact:true}).check();
+ await page.getByRole('button',{name: '进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
 }
 async function download(page:Page,name='导出'){const pending=page.waitForEvent('download');await page.getByRole('button',{name,exact:true}).click();return readFile((await(await pending).path())!,'utf8');}
 const exported=async(page:Page)=>JSON.parse(await download(page)) as SceneDocument;
@@ -17,7 +18,7 @@ async function weight(page:Page,index:number,g:number){await page.getByRole('but
 async function capture(page:Page,raw:string){await page.getByLabel(/^(天平手工读数（g）|液面手工读数（mL）)$/).fill(raw);await page.getByRole('button',{name:'保存本次密度读数',exact:true}).click();}
 async function derive(page:Page){for(let i=1;i<=3;i++){const input=page.getByLabel(`密度来源${i}`,{exact:true});const value=await input.locator('option').nth(1).getAttribute('value');await input.selectOption(value!);}await page.getByRole('button',{name:'按所选读数计算密度',exact:true}).click();}
 test('solid weighing, displacement, manual error, source correction, charts and persistent SI round trip',async({page},info)=>{
- test.setTimeout(120000);await page.setViewportSize({width:1920,height:1080});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await open(page);await expect(page.locator('[data-library-type]')).toHaveCount(26);await expect(page.getByTestId('density-theory')).toHaveCount(0);await zero(page);
+ test.setTimeout(120000);await page.setViewportSize({width:1920,height:1080});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await open(page);await expect(page.locator('[data-library-type]')).toHaveCount(27);await expect(page.getByTestId('density-theory')).toHaveCount(0);await zero(page);
  await page.getByLabel('待测固体位置',{exact:true}).selectOption('balance');await weight(page,2,50);await weight(page,7,2);await weight(page,9,1);await range(page,'游码位置（每格0.2 g）',5);await expect(page.getByTestId('density-status')).toContainText('指针对准中央');
  await page.getByRole('button',{name:'展开记录区',exact:true}).click();await capture(page,'53.8');await expect(page.locator('[data-measurement-id]')).toHaveCount(1);
  await page.getByLabel('待测固体位置',{exact:true}).selectOption('');await capture(page,'50');await page.getByLabel('待测固体位置',{exact:true}).selectOption('cylinder');expect(Number(await page.getByTestId('scene-board').locator('[data-liquid-fill]').getAttribute('data-volume-m3'))).toBeCloseTo(.00007,10);await capture(page,'70');await derive(page);

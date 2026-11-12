@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -6,9 +7,9 @@ import type { SceneDocument } from '../../src/core/scene/schema.ts';
 async function open(page: Page, empty = false) {
   page.setDefaultTimeout(15_000);
   await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '杠杆平衡实验', exact: true }).click();
-  if (empty) await page.getByRole('radio', { name: '力学空白搭建', exact: true }).check();
-  await page.getByRole('button', { name: '预览杠杆实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  await openFamily(page, '杠杆平衡实验');
+  if (empty) await page.getByRole('radio', { name: '空白搭建杠杆平衡实验', exact: true }).check();
+  await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function properties(page: Page, id: string, fields: Record<string, string>) {
   await page.getByLabel('选择器材', { exact: true }).selectOption(id);
@@ -34,11 +35,11 @@ test('mechanical category is always available with a physical independent ruler 
   await page.setViewportSize({ width: 1366, height: 900 }); await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
   const library = page.getByRole('region', { name: '器材库', exact: true }), before = await exported(page);
   await library.getByRole('tab', { name: '电学', exact: true }).focus(); await page.keyboard.press('End'); await expect(library.getByRole('tab', { name: '力学', exact: true })).toBeFocused();
-  await expect(library.locator('[data-library-type]')).toHaveCount(26); expect(await exported(page)).toEqual(before);
+  await expect(library.locator('[data-library-type]')).toHaveCount(27); expect(await exported(page)).toEqual(before);
   await library.locator('[data-library-type="mechanical.ruler"]').click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click();
   await expect(page.getByTestId('scene-board').locator('[data-equipment-type="mechanical.ruler"] [data-appearance="physical"]')).toHaveCount(1);
   const placed = await exported(page); expect(placed.equipment[0]!.parameters).toEqual({ lengthM: 1 }); await expect(status(page)).toContainText('请放置杠杆');
-  await page.getByRole('button', { name: '杠杆平衡实验', exact: true }).click(); await page.getByRole('button', { name: '取消', exact: true }).click(); expect(await exported(page)).toEqual(placed);
+  await openFamily(page, '杠杆平衡实验'); await page.getByRole('button', { name: '取消', exact: true }).click(); expect(await exported(page)).toEqual(placed);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('mechanical-library.png'), fullPage: true });
 });

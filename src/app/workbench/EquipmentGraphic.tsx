@@ -27,7 +27,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <rect data-battery-cell="true" x="-.048" y="-.017" width=".096" height=".034" rx=".005" fill={`url(#${id}-cell)`} />
       <rect x="-.048" y="-.017" width=".015" height=".034" rx=".003" fill={metal} />
       <rect x="-.052" y="-.006" width=".004" height=".012" fill="#c6ced0" />
-      <text data-battery-voltage="true" x=".007" y=".005" textAnchor="middle" fontSize=".014" fill="#624a1e">{String(instance.parameters.voltageV)} V</text>
+      <text data-battery-voltage="true" x=".007" y=".005" textAnchor="middle" fontSize=".014" fill="#624a1e">{Number(instance.parameters.internalResistanceOhm ?? 0) > 0 ? 'E ' : ''}{String(instance.parameters.voltageV)} V</text>
       <path d="M-.075 0H-.065M.065 0H.075" stroke="#a8b7ba" strokeWidth="4" />
       <text x="-.06" y="-.015" fontSize=".016" fill="#ffb4a0">+</text><text x=".05" y="-.015" fontSize=".016" fill="#d8e5eb">−</text>
     </g>}

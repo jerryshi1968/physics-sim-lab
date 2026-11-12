@@ -1,3 +1,4 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
@@ -11,7 +12,7 @@ async function attach(page: Page, id: string, hook: string) {
 }
 async function setup(page: Page) {
   page.setDefaultTimeout(15_000); await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '杠杆平衡实验', exact: true }).click(); await page.getByRole('button', { name: '预览杠杆实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  await openFamily(page, '杠杆平衡实验'); await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
   for (let step = 0; step < 4; step++) await page.getByRole('button', { name: '左端平衡螺母向外调 1 mm', exact: true }).click();
   await page.getByRole('button', { name: '确认空载调平', exact: true }).click(); await attach(page, 'left', '-4'); await attach(page, 'right', '2');
   const library = page.getByRole('region', { name: '器材库', exact: true }); await library.locator('[data-library-type="mechanical.weights"]').click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click();

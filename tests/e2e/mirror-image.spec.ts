@@ -1,12 +1,13 @@
+import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 async function openMirror(page: Page, empty = false) {
   await page.goto('/');
-  await page.getByRole('button', { name: '平面镜成像实验', exact: true }).click();
-  if (empty) await page.getByRole('radio', { name: '平面镜成像空白搭建' }).check();
-  await page.getByRole('button', { name: '预览平面镜实验' }).click();
+  await openFamily(page, '平面镜成像实验');
+  if (empty) await page.getByRole('radio', { name: '空白搭建光学实验' }).check();
+  await page.getByRole('button', { name: '进入实验' }).click();
   await page.getByRole('button', { name: '确认替换当前实验' }).click();
 }
 
@@ -78,7 +79,7 @@ test('uses the eye, comparison, rulers and screen to observe and save the plane-
   await page.getByRole('button', { name: '保存', exact: true }).click();
   await expect(page.getByTestId('save-state')).toHaveText('已保存');
   await page.reload();
-  await expect(page.getByRole('heading', { name: '探究平面镜成像', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '平面镜成像实验', exact: true })).toBeVisible();
   await expect(page.locator('[data-measurement-id]')).toHaveCount(5);
 });
 
@@ -109,7 +110,7 @@ test.describe('narrow touch layout', () => {
     await openMirror(page, true);
     const board = page.getByTestId('scene-board');
     await expect(board.locator('[data-equipment-id]')).toHaveCount(0);
-    await expect(page.getByTestId('mirror-image-status')).toContainText('需要各一件');
+    await expect(page.getByRole('heading', { name: '光学自由搭建', exact: true })).toBeVisible();
     for (const type of ['plane-mirror', 'mirror-target', 'observation-eye']) {
       const item = page.locator(`[data-library-type="optical.${type}"]`);
       await item.tap();

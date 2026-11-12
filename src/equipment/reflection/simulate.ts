@@ -1,4 +1,6 @@
 import type { SceneDocument } from '../../core/scene/schema.ts';
+import { FREE_OPTICAL_EXPERIMENT } from '../support.ts';
+import { RULER } from '../optical/definitions.ts';
 import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
 import { validateSceneDocument } from '../../core/scene/validate.ts';
@@ -11,11 +13,11 @@ const difference=(a:number,b:number)=>Math.abs(Math.atan2(Math.sin(a-b),Math.cos
 export function simulateReflection(scene:SceneDocument,registry:EquipmentRegistry){
   const fail=(code:string)=>({ok:false as const,code});
   if(!validateSceneDocument(scene,registry).ok)return fail('REFLECTION_DOCUMENT');
-  if(scene.connections.length||scene.equipment.some(item=>!reflectionTypes.includes(item.type)))return fail('REFLECTION_MIXED');
+  if(scene.connections.length||scene.equipment.some(item=>!reflectionTypes.includes(item.type)&&!(scene.experimentId===FREE_OPTICAL_EXPERIMENT&&item.type===RULER)))return fail('REFLECTION_MIXED');
   if(scene.simulationConfig.randomError.enabled)return fail('REFLECTION_RANDOM');
   const find=(type:string)=>scene.equipment.filter(item=>item.type===type);
   if(reflectionTypes.some(type=>find(type).length!==1))return fail('REFLECTION_APPARATUS');
-  if(scene.equipment.some(item=>item.pose.flippedX||Math.abs(item.pose.xM)>100||Math.abs(item.pose.yM)>100||Math.abs(item.pose.rotationRad)>2*Math.PI))return fail('REFLECTION_RANGE');
+  if(scene.equipment.some(item=>item.type!==RULER&&(item.pose.flippedX||Math.abs(item.pose.xM)>100||Math.abs(item.pose.yM)>100||Math.abs(item.pose.rotationRad)>2*Math.PI)))return fail('REFLECTION_RANGE');
   const mirror=find(MIRROR)[0]!,emitter=find(EMITTER)[0]!,paper=find(PAPER)[0]!,gauge=find(PROTRACTOR)[0]!,normalMarker=find(NORMAL)[0]!;
   if(!emitter.parameters.enabled)return fail('REFLECTION_LIGHT_OFF');
   const angle=mirror.pose.rotationRad,tangent={x:Math.cos(angle),y:Math.sin(angle),z:0},normal={x:-Math.sin(angle),y:Math.cos(angle),z:0};

@@ -56,6 +56,9 @@ import type { CartRig, CartRun } from '../../equipment/cart/simulate.ts';
 import { CartTether } from '../cart/CartGraphic.tsx';
 
 interface Props {
+  pendulumAngle?: number | undefined;
+  pendulumTimeS?: number | undefined;
+  onPendulumAngle?: ((id: string, degrees: number) => void) | undefined;
   cartMode?: boolean;
   cartRig?: CartRig | null;
   cartRun?: CartRun | null;
@@ -113,7 +116,7 @@ type Gesture = { pointerId: number; clientX: number; clientY: number; view: View
   | { kind: 'pan' }
 );
 
-export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
+export function SceneBoard({ pendulumAngle, pendulumTimeS, onPendulumAngle, cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onRoute, onWireChange, onWireEnd, onViewport, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
   const svg = useRef<SVGSVGElement>(null);
   const wireLayerId = useId();
   const gesture = useRef<Gesture | null>(null);
@@ -299,7 +302,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
   }
 
   return <section className="panel bench" id="workbench" tabIndex={-1} aria-labelledby="bench-title">
-    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {buoyancyOutcome ? '浮力实验' : cartMode ? '小车实验' : densityOutcome ? '密度实验' : mirrorImageOutcome ? '平面镜成像' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
+    <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {pendulumTimeS !== undefined ? '单摆实验' : buoyancyOutcome ? '浮力实验' : cartMode ? '小车实验' : densityOutcome ? '密度实验' : mirrorImageOutcome ? '平面镜成像' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
       <div className="view-actions"><button aria-label="缩小" onClick={() => onViewport(zoomViewport(view, 1 / 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>−</button>
         <span aria-label="缩放比例">{Math.round(view.pixelsPerM / DEFAULT_VIEWPORT.pixelsPerM * 100)}%</span>
         <button aria-label="放大" onClick={() => onViewport(zoomViewport(view, 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>＋</button>
@@ -419,7 +422,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
                 if (delta && projectileFlight && instance.id === projectileFlight.rig.ball.id) { event.preventDefault(); event.stopPropagation(); onNotice('请重置后再摆放小球。'); return; }
                 if (delta) { event.preventDefault(); event.stopPropagation(); onMove(instance.id, { xM: instance.pose.xM + delta.xM, yM: instance.pose.yM + delta.yM }); }
               }}>
-              <rect className="equipment-backdrop" {...bounds} rx=".008" />{buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? <BuoyancyGraphic item={instance} outcome={buoyancyOutcome} /> : definition.domain === 'mechanical' ? <MechanicalGraphic cartRun={cartRun} densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
+              <rect className="equipment-backdrop" {...bounds} rx=".008" />{buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? <BuoyancyGraphic item={instance} outcome={buoyancyOutcome} /> : definition.domain === 'mechanical' ? <MechanicalGraphic onPendulumSelect={(id, additive) => onSelect({ kind: 'equipment', id }, additive)} pendulumAngle={pendulumAngle} timerValueS={pendulumTimeS} onPendulumAngle={onPendulumAngle} cartRun={cartRun} densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
                 onAdjustStart: (key, event) => {
                   if (!event.isPrimary || event.button !== 0) return;
                   if (key === 'zeroTrimKg' && (!densityOutcome?.weighing.ok || !densityOutcome.weighing.canZero)) {
@@ -557,7 +560,7 @@ export function SceneBoard({ cartMode = false, cartRig = null, cartRun = null, d
         })}</g>
       </svg>
       {trendAngle !== 0 && <div className="lever-trend-banner" data-testid="lever-trend-banner">失衡：{trendAngle > 0 ? '左端下沉' : '右端下沉'}（转动趋势示意）。虚线为原位置，倾斜角不用于读尺。</div>}
-      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{buoyancyOutcome ? <p>放置支架、测力计、带吊环圆柱体和盛液容器。<br />验证排液时再添加溢水杯、接液杯、天平与量筒。</p> : cartMode ? <p>放置水平轨道、小车和计时器材。<br />将小车和光电门放到轨道上，再释放小车。</p> : densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : mirrorImageOutcome ? <p>放置平面镜、成像标记物和观察眼。<br />添加镜后对照物、刻度尺和光屏进行测量。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
+      {scene.equipment.length === 0 && scene.connections.length === 0 && <div className="surface-empty empty-overlay"><h3>从一个问题，开始实验</h3>{pendulumTimeS !== undefined ? <p>放置支架、单摆、刻度尺和计时器。<br />单摆挂到支架，量悬点到球心的距离后多周期计时。</p> : buoyancyOutcome ? <p>放置支架、测力计、带吊环圆柱体和盛液容器。<br />验证排液时再添加溢水杯、接液杯、天平与量筒。</p> : cartMode ? <p>放置水平轨道、小车和计时器材。<br />将小车和光电门放到轨道上，再释放小车。</p> : densityOutcome ? <p>放置托盘天平、量筒、砝码盒和本方法所需的待测样品。<br />先调零、称量，再排水或倒液读体积。</p> : mirrorImageOutcome ? <p>放置平面镜、成像标记物和观察眼。<br />添加镜后对照物、刻度尺和光屏进行测量。</p> : reflectionOutcome ? <p>放置平面镜、窄光束光源、可折纸板、量角器与法线。<br />独立摆放并校准，斜入射后折板观察共面现象。</p> : projectileMode ? <p>放置水平发射器、小球、二维标尺、计时器与地面。<br />自行调平、测高度，发射后暂停或步进读数。</p> : springOutcome ? <p>放置弹簧、支架、钩码和独立刻度尺。<br />先无载读原长，再加载、卸载复测。</p> : frictionSample ? <p>放置接触面、木块、牵引器与测力计。<br />在装配区连接，等待滑动稳态后读数。</p> : leverOutcome ? <p>放置支架、杠杆、钩码和测力计。<br />先空载调平，再挂接和测量；独立尺可单独摆放。</p> : opticalOutcome ? <p>拖入光具座、蜡烛、透镜、光屏与独立尺。<br />独立摆放、调高，再移动光屏找像。</p> : <p>拖入电池盒、电阻、开关与导线。<br />将导线线头接到器材的接线柱上。</p>}<span className="empty-state-label">当前装置为空</span></div>}
       {(placing || start || activeWireEnd) && <div className="canvas-prompt">{placing ? `待放置：${placing === WIRE ? '导线' : registry.list().find(item => item.type === placing)?.label}` : activeWireEnd ? `待连接：线头 ${activeWireEnd.side === 'from' ? 'A' : 'B'}，请拖到或点击接线柱` : `接线起点：${endpointLabel(scene, registry, start!)}`}<button onClick={onCancel}>取消</button></div>}
       <span className="coordinate-label" aria-hidden="true">世界坐标：x 向右 · y 向上</span>
     </div>

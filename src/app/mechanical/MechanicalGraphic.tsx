@@ -1,3 +1,5 @@
+import { PENDULUM } from '../../equipment/pendulum/definitions.ts';
+import { PendulumGraphic, pendulumBounds } from '../pendulum/PendulumGraphic.tsx';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
 import type { LeverOutcome } from '../../equipment/mechanical/simulate.ts';
 import { LEVER, SUPPORT, WEIGHT, FORCE_METER, MECHANICAL_RULER } from '../../equipment/mechanical/definitions.ts';
@@ -24,6 +26,7 @@ import { CartGraphic, cartBounds } from '../cart/CartGraphic.tsx';
 import type { CartRun } from '../../equipment/cart/simulate.ts';
 
 export function mechanicalBounds(item: EquipmentInstance, springOutcome?: SpringOutcome | null) {
+  if (item.type === PENDULUM) return pendulumBounds(item);
   if (buoyancyTypes.includes(item.type)) return buoyancyBounds(item);
   if (cartTypes.includes(item.type)) return cartBounds(item);
   if (densityTypes.includes(item.type)) return densityBounds(item);
@@ -39,7 +42,7 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   }
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
-export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, densityOutcome, densityControls, cartRun }: { densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun }: { onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
   if (buoyancyTypes.includes(item.type)) return <BuoyancyGraphic item={item} />;
   if (cartTypes.includes(item.type)) return <CartGraphic instance={item} run={cartRun} />;
   if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;
@@ -47,7 +50,8 @@ export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, s
   const meter = buoyancyReading ?? frictionReading ?? (outcome?.ok ? outcome.meters.find(meter => meter.id === item.id) : undefined);
   const pointer = outcome === undefined && !buoyancyReading ? 0 : meter && meter.status !== 'invalid' && Number.isFinite(meter.forceN) && Number(p.rangeN) > 0 ? Math.min(1, meter.forceN / Number(p.rangeN)) : null;
   const divisions = item.type === FORCE_METER ? Number(p.rangeN) / Number(p.resolutionN) : 1, tickStep = Math.max(1, Math.ceil(divisions / 200));
-  if (projectileTypes.includes(item.type)) return <ProjectileGraphic instance={item} flight={projectileFlight} pixelsPerM={pixelsPerM} />;
+  if (item.type === PENDULUM) return <PendulumGraphic item={item} angleRad={pendulumAngle} onAngle={onPendulumAngle} onSelect={onPendulumSelect} />;
+  if (projectileTypes.includes(item.type)) return <ProjectileGraphic instance={item} flight={projectileFlight} timerValueS={timerValueS} pixelsPerM={pixelsPerM} />;
   if (item.type === SPRING) return <SpringGraphic instance={item} outcome={springOutcome} />;
   if (frictionTypes.includes(item.type)) return <FrictionGraphic instance={item} />;
   if (item.type === MECHANICAL_RULER) return <OpticalGraphic instance={{ ...item, type: RULER }} pixelsPerM={pixelsPerM} />;

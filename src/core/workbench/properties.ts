@@ -6,7 +6,7 @@ import { convertUnit } from '../units/units.ts';
 export interface PropertyDraft { raw: string; applied: number }
 export type PropertyDrafts = Record<string, PropertyDraft>;
 export function propertyValue(item: EquipmentInstance, key: string): number {
-  return key === 'xM' || key === 'yM' ? item.pose[key] : key === 'degrees' ? convertUnit(item.pose.rotationRad, 'rad', 'deg') : Number(item.parameters[key]);
+  return key === 'xM' || key === 'yM' ? item.pose[key] : key === 'degrees' ? convertUnit(item.pose.rotationRad, 'rad', 'deg') : Number(item.parameters[key] ?? (item.type === 'electrical.power-supply' && key === 'internalResistanceOhm' ? 0 : undefined));
 }
 export function activePropertyDrafts(item: EquipmentInstance, drafts: PropertyDrafts): PropertyDrafts {
   return Object.fromEntries(Object.entries(drafts).filter(([key, draft]) => Object.is(draft.applied, propertyValue(item, key))));
