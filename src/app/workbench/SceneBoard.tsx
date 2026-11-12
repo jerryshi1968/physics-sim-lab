@@ -337,7 +337,7 @@ export function SceneBoard({ pendulumAngle, pendulumTimeS, onPendulumAngle, cart
         <defs><clipPath id={`${wireLayerId}-wire-hit`} clipPathUnits="userSpaceOnUse">
           <path clipRule="evenodd" d={wireHitClipPath(size.width, size.height, equipment.flatMap(instance => {
             const definition = registry.get(instance.type, instance.definitionVersion)!;
-            const radius = definition.ports.length === 1 ? 22 : Math.min(22, view.pixelsPerM * (definition.ports.length >= 3 ? .03 : .07));
+            const radius = definition.ports.length === 1 ? 22 : Math.min(22, view.pixelsPerM * (instance.type === SWITCH ? .045 : definition.ports.length >= 3 ? .03 : .07));
             const regions = definition.ports.map(port => {
               const point = worldToScreen(endpointWorld({ equipmentId: instance.id, portId: port.id }, equipment, registry), view, size);
               return [point.x - radius, point.y - radius, point.x + radius, point.y + radius];
@@ -473,7 +473,7 @@ export function SceneBoard({ pendulumAngle, pendulumTimeS, onPendulumAngle, cart
                   onPort(endpoint);
                 }}
                 onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); onPort(endpoint); } }}>
-                <title>{endpointLabel(scene, registry, endpoint)}</title><circle className="port-hit" r={definition.ports.length === 1 ? 22 : Math.min(22, view.pixelsPerM * (definition.ports.length >= 3 ? .03 : .07))} />
+                <title>{endpointLabel(scene, registry, endpoint)}</title><circle className="port-hit" r={definition.ports.length === 1 ? 22 : Math.min(22, view.pixelsPerM * (instance.type === SWITCH ? .045 : definition.ports.length >= 3 ? .03 : .07))} />
                 <circle className="terminal-base" r={definition.ports.length === 4 ? Math.min(8, view.pixelsPerM * .027) : 8} pointerEvents="none" fill={port.id === 'positive' || port.id === 'low' || port.id === 'high' ? '#ad493b' : port.id === 'negative' || port.id === 'common' ? '#33434a' : '#776141'} />
                 <circle className="port-dot" r={definition.ports.length === 4 ? Math.min(5, view.pixelsPerM * .017) : 5} pointerEvents="none" /><path d="M-3 0H3" stroke="#766339" strokeWidth="1.3" pointerEvents="none" />
               </g>;

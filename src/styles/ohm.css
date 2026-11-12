@@ -1,0 +1,6 @@
+.ohm-replacements { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 8px; border: 1px solid #dfe8e3; }
+.ohm-replacements legend { padding: 0 4px; font-size: 12px; }
+.ohm-replacements button[aria-pressed="true"] { background: #e3f1eb; border-color: #16786f; }
+.ohm-chart .measurement-table-wrap { max-height: 360px; overflow: auto; }
+.ohm-chart .measurement-table { min-width: 680px; }
+.ohm-chart h4 { margin: 20px 0 8px; }

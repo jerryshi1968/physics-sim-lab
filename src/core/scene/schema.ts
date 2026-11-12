@@ -3,6 +3,14 @@ import { EquipmentInstanceSchema, FiniteSchema, IdSchema } from '../equipment/sc
 import { ConnectionSchema } from '../connections/schema.ts';
 import { dimensionOf, SI_UNITS } from '../units/units.ts';
 
+export const OhmControlSchema = z.strictObject({
+  mode: z.enum(['voltage', 'resistance']),
+  fixedResistanceOhm: FiniteSchema.positive(),
+  targetVoltageV: FiniteSchema.positive(),
+  voltageToleranceV: FiniteSchema.nonnegative(),
+}).refine(control => control.voltageToleranceV < control.targetVoltageV, { message: 'Voltage tolerance must be smaller than the target' });
+export type OhmControl = z.infer<typeof OhmControlSchema>;
+
 export const SCHEMA_VERSION = 2;
 const DateTimeSchema = z.iso.datetime({ offset: true });
 const OptionalTextSchema = z.string().min(1).max(500).nullable();
@@ -110,6 +118,7 @@ export const SceneDocumentSchema = z.strictObject({
   revision: z.number().int().nonnegative(),
   title: z.string().min(1).max(200),
   experimentId: IdSchema.nullable(),
+  ohmControl: OhmControlSchema.optional(),
   equipment: z.array(EquipmentInstanceSchema).max(200),
   connections: z.array(ConnectionSchema).max(500),
   simulationConfig: SimulationConfigSchema,

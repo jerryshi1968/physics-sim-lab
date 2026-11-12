@@ -5,13 +5,14 @@ import type { MeasurementRecord, MeasurementSnapshot, SceneDocument } from '../s
 import { SceneDocumentSchema } from '../scene/schema.ts';
 import { validateSceneDocument } from '../scene/validate.ts';
 import type { DocumentValidation } from '../scene/validate.ts';
-import { addEquipment, addLooseWire, connectEndpoints, removeConnection, removeEquipment, removeEquipmentMany, renameDocument, updateGravity, updateEquipment, updateEquipmentMany, updateWireRoute, updateWireShape } from './edit.ts';
+import { addEquipment, addLooseWire, connectEndpoints, removeConnection, removeEquipment, removeEquipmentMany, renameDocument, updateGravity, updateOhmControl, updateEquipment, updateEquipmentMany, updateWireRoute, updateWireShape } from './edit.ts';
 import type { Viewport, WorldPoint } from './geometry.ts';
 import { appendMeasurements, correctManualMeasurement, removeMeasurement } from '../measurements/records.ts';
 
 export type SceneCommand =
   | { type: 'rename'; title: string }
   | { type: 'set-gravity'; gravityMPerS2: number }
+  | { type: 'set-ohm-control'; control: NonNullable<SceneDocument['ohmControl']> | null }
   | { type: 'set-experiment'; experimentId: string; title: string }
   | { type: 'add-equipment'; equipmentType: string; id: string; point: WorldPoint }
   | { type: 'add-wire'; id: string; point: WorldPoint }
@@ -58,6 +59,7 @@ export function executeCommand(history: SceneHistory, command: SceneCommand, reg
   let result: DocumentValidation;
   let label: string;
   switch (command.type) {
+    case 'set-ohm-control': label = '修改电流关系实验的控制变量'; result = updateOhmControl(current, registry, command.control, timestamp); break;
     case 'set-gravity': label = '修改重力加速度'; result = updateGravity(current, registry, command.gravityMPerS2, timestamp); break;
     case 'rename': label = '修改实验名称'; result = renameDocument(current, registry, command.title, timestamp); break;
     case 'set-experiment':

@@ -4,6 +4,7 @@ import { App } from './App.tsx';
 import '../styles/workbench.css';
 import '../styles/experiment-catalog.css';
 import '../styles/pendulum.css';
+import '../styles/ohm.css';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');

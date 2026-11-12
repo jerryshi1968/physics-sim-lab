@@ -17,9 +17,11 @@ const registry = createWorkbenchRegistry(), time = '2026-11-12T00:00:00.000Z';
 const create = choice => createCatalogExperiment(choice, `catalog.${choice}`, time);
 const add = (scene, type) => scene.equipment.push({ id: `equipment.${scene.equipment.length}`, type, definitionVersion: 1, pose: { xM: 0, yM: 0, rotationRad: 0 }, parameters: { ...registry.get(type, 1).defaultParameters } });
 
-test('catalogue contains exactly 31 distinct options in the requested stage/domain distribution', () => {
-  assert.equal(experimentChoices.length, 31); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 31);
-  for (const [stage, domain, count] of [['junior', 'mechanical', 10], ['junior', 'electrical', 5], ['junior', 'optical', 4], ['senior', 'mechanical', 8], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
+test('catalogue contains exactly 33 distinct options in the requested stage/domain distribution', () => {
+  assert.equal(experimentChoices.length, 33); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 33);
+  assert.equal(experimentChoices.some(choice => choice.id === 'ohm-blank'), false);
+  assert.equal(experimentChoices.filter(choice => choice.stage === 'junior' && choice.domain === 'electrical' && choice.id.endsWith('-blank')).length, 1);
+  for (const [stage, domain, count] of [['junior', 'mechanical', 10], ['junior', 'electrical', 7], ['junior', 'optical', 4], ['senior', 'mechanical', 8], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
 });
 
 test('every catalogue option produces an independent valid pending-review scene and round trips its actual apparatus', () => {
@@ -85,7 +87,7 @@ test('an independent ruler is a passive tool in free reflection without altering
 });
 
 test('catalogue viewport fitting preserves the established mobile scale and short-window cart/buoyancy fitting', () => {
-  for (const [id, scale] of [['lens', 240], ['emf-inner', 260], ['spring', 360], ['friction', 180], ['current-blank', 320], ['projectile', 128]]) {
+  for (const [id, scale] of [['lens', 240], ['emf-inner', 260], ['ohm-voltage', 260], ['spring', 360], ['friction', 180], ['current-blank', 320], ['projectile', 128]]) {
     const scene = create(id), before = structuredClone(scene.equipment); fitCatalogViewport(scene, experimentChoices.find(choice => choice.id === id), 390, 844); assert.equal(scene.viewport.pixelsPerM, scale); assert.deepEqual(scene.equipment, before);
   }
   const cart = create('cart'); fitCatalogViewport(cart, experimentChoices.find(choice => choice.id === 'cart'), 1440, 768); assert.equal(cart.viewport.pixelsPerM, 130);

@@ -2,7 +2,7 @@ import { documentDiagnostic } from '../diagnostics/diagnostic.ts';
 import type { EquipmentRegistry } from '../equipment/registry.ts';
 import type { EquipmentInstance, Pose2D, Scalar } from '../equipment/schema.ts';
 import type { Connection, Endpoint } from '../connections/schema.ts';
-import { SceneDocumentSchema } from '../scene/schema.ts';
+import { SceneDocumentSchema, OhmControlSchema } from '../scene/schema.ts';
 import type { SceneDocument } from '../scene/schema.ts';
 import { validateSceneDocument } from '../scene/validate.ts';
 import type { DocumentValidation } from '../scene/validate.ts';
@@ -26,6 +26,19 @@ export function addEquipment(document: SceneDocument, registry: EquipmentRegistr
   const candidate = SceneDocumentSchema.parse(document);
   candidate.equipment.push({ id, type, definitionVersion: definition.definitionVersion,
     pose: { ...position, rotationRad: 0 }, parameters: { ...definition.defaultParameters } });
+  return finish(document, candidate, registry, timestamp);
+}
+
+export function updateOhmControl(document: SceneDocument, registry: EquipmentRegistry, control: NonNullable<SceneDocument['ohmControl']> | null, timestamp: string): DocumentValidation {
+  if (control === null) {
+    const candidate = SceneDocumentSchema.parse(document);
+    delete candidate.ohmControl;
+    return finish(document, candidate, registry, timestamp);
+  }
+  const parsed = OhmControlSchema.safeParse(control);
+  if (!parsed.success) return failure('INVALID_OHM_CONTROL');
+  const candidate = SceneDocumentSchema.parse(document);
+  candidate.ohmControl = parsed.data;
   return finish(document, candidate, registry, timestamp);
 }
 
@@ -149,6 +162,7 @@ export function editMessage(code: string): string {
     UNSUPPORTED_CONNECTION_KIND: '当前器材不支持这种连接方式。',
     SELF_CONNECTION: '同一接线柱不能连接到自己，请选择另一个接线柱。',
     UNKNOWN_CONNECTION: '导线不存在。', EQUIPMENT_HAS_MEASUREMENTS: '该器材已有历史记录，请先保留记录，当前不能删除。',
+    INVALID_OHM_CONTROL: '控制变量参数无效：电阻和目标电压须为正，允许偏差须非负且小于目标电压。',
     INVALID_GRAVITY: '重力加速度须为大于零的有限数值。',
   } as Record<string, string>)[code] ?? '操作未通过场景校验，原装置保持不变。';
 }

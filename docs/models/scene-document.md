@@ -57,3 +57,9 @@ const length = toSI({ value: 10, unit: 'cm' });
 运行 `npm run typecheck`、`npm run lint`、`npm test`。新增核心测试覆盖合法/非法文档、深拷贝、版本、参数不自动转换、端口与能力、手工原文/状态/量纲、课程待核验及 SI 换算；原有 49 项物理基准保持独立。实际结果见[任务 02 验收记录](../acceptance/M1-TASK02.md)。
 
 空工作台可通过 `npm run dev` 查看。本任务不具备拖放、接线、命令历史、文件导入导出、测量采样或完整求解；这些边界与后续扩展点见[决策记录](../decisions/0003-m1-scene-and-workbench.md)。
+
+## M9 / J-ELEC-02 控制变量扩展
+
+当前版本 2 增加可选根字段 `ohmControl`，包含 `mode`、`fixedResistanceOhm`、`targetVoltageV`、`voltageToleranceV`，由对应命令参与撤销和保存。旧文档不要求此字段、不补默认字段，原有场景继续兼容；新字段需要当前应用读取。采样时将控制参数冻结在带模型标识的测量快照 note 中，历史记录不引用可变的当前配置。详细规则见[电流关系模型](ohm-experiment.md)。
+
+初中通用电学空白 J-ELEC-FREE 以 ohmControl 是否存在选择普通/专用记录模式；切回普通的命令参数为 null，实际文档删除可选字段，不写入不符合 schema 的 null。切换保留器材、连接和测量记录，撤销与保存加载覆盖该变更。旧 J-ELEC-02 文件继续使用其专用模式。
