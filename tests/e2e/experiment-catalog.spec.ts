@@ -26,7 +26,7 @@ test('two school entries keep the toolbar compact, all categories are accessible
   const dialog = page.getByRole('dialog', { name: '初中物理实验', exact: true });
   await expect(dialog.getByRole('radio')).toHaveCount(10); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
   await dialog.getByRole('tab', { name: '力学实验', exact: true }).focus(); await page.keyboard.press('ArrowRight');
-  await expect(dialog.getByRole('tab', { name: '电学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(7);
+  await expect(dialog.getByRole('tab', { name: '电学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(8);
   await page.keyboard.press('End'); await expect(dialog.getByRole('radio')).toHaveCount(4);
   await selectCatalogOption(page, 'reflection'); await page.keyboard.press('Delete'); await page.keyboard.press('Escape');
   expect(await exported(page)).toEqual(before);

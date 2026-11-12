@@ -37,7 +37,7 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <rect x="-.075" y="-.006" width=".15" height=".012" fill={metal} />
       <rect x="-.038" y="-.018" width=".076" height=".036" rx=".009" fill={`url(#${id}-ceramic)`} />
       <rect x="-.04" y="-.014" width=".008" height=".028" rx=".003" fill={metal} /><rect x=".032" y="-.014" width=".008" height=".028" rx=".003" fill={metal} />
-      <text x="0" y=".004" textAnchor="middle" fontSize=".012" fill="#42523b">{String(instance.parameters.resistanceOhm)} Ω</text>
+      <text x="0" y=".004" textAnchor="middle" fontSize=".012" fill="#42523b">{instance.parameters.concealResistance ? `R${instance.parameters.sampleLabel ?? 'x'}` : `${String(instance.parameters.resistanceOhm)} Ω`}</text>
       {[-.058, .058].map(x => <g key={x}><circle cx={x} cy=".027" r=".004" fill="#e5d4b5" /><path d={`M${x - .0025} .027h.005`} stroke="#735e3d" strokeWidth="1" /></g>)}
     </g>}
     {instance.type === SWITCH && <g>

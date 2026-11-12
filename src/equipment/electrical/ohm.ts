@@ -10,8 +10,8 @@ import { buildElectricalMeasurements } from './measure.ts';
 import type { ElectricalMeasurementEntry, MeasurementBatch } from './measure.ts';
 import { POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT, JUNCTION } from './definitions.ts';
 
-export const ohmRecordMode = (scene: Pick<SceneDocument, 'experimentId' | 'ohmControl'>) => scene.experimentId === 'J-ELEC-02' || scene.experimentId === 'J-ELEC-FREE' && scene.ohmControl !== undefined;
-export const ohmLabels = { voltage: 'I–U：保持电阻不变', resistance: 'I–1/R：保持电压不变' };
+export const ohmRecordMode = (scene: Pick<SceneDocument, 'experimentId' | 'ohmControl'>) => scene.experimentId === 'J-ELEC-02' || scene.experimentId === 'J-ELEC-FREE' && scene.ohmControl !== undefined && scene.ohmControl.mode !== 'measurement';
+export const ohmLabels = { voltage: 'I–U：保持电阻不变', resistance: 'I–1/R：保持电压不变', measurement: '伏安法测电阻' };
 export const ohmResistanceChoices = [5, 10, 15, 20, 25] as const;
 export const ohmControl = (scene: SceneDocument): OhmControl => scene.ohmControl ?? { mode: 'voltage', fixedResistanceOhm: 10, targetVoltageV: 2, voltageToleranceV: .05 };
 type CircuitScene = Pick<SceneDocument, 'equipment' | 'connections'>;
@@ -55,6 +55,7 @@ export function ohmCircuit(scene: CircuitScene): OhmCircuit {
 }
 
 export function ohmQualification(control: OhmControl, resistance: number, shownVoltage: number | null, recordedVoltage?: number | null) {
+  if (control.mode === 'measurement') return '本记录不是控制变量探究。';
   if (control.mode === 'voltage') return Math.abs(resistance - control.fixedResistanceOhm) <= Math.max(1e-9, control.fixedResistanceOhm * 1e-9) ? null : '定值电阻已改变，未保持本组固定电阻。';
   const within = (value: number | null | undefined) => value !== null && value !== undefined && Number.isFinite(value) && Math.abs(value - control.targetVoltageV) <= control.voltageToleranceV + 1e-9;
   if (!within(shownVoltage)) return '电压表示数未保持目标值，请调节变阻器后重新读表。';
@@ -77,7 +78,7 @@ export function ohmResults(scene: SceneDocument) {
   return (scene.measurementSnapshots ?? []).filter(snapshot => snapshot.modelVersion === 'electrical.ohm.inquiry.v1').map(snapshot => {
     const circuit = ohmCircuit(snapshot), records = rows.get(snapshot.id) ?? [];
     let control: OhmControl | null = null;
-    try { const parsed = OhmControlSchema.safeParse(JSON.parse(snapshot.note).control); if (parsed.success) control = parsed.data; } catch { /* A malformed imported control snapshot must not qualify for a fit. */ }
+    try { const parsed = OhmControlSchema.safeParse(JSON.parse(snapshot.note).control); if (parsed.success && parsed.data.mode !== 'measurement') control = parsed.data; } catch { /* A malformed imported control snapshot must not qualify for a fit. */ }
     const i = records.find(record => circuit.ok && record.equipmentId === circuit.ammeter.id && record.quantity === 'current' && record.unit === 'A');
     const u = records.find(record => circuit.ok && record.equipmentId === circuit.voltmeter.id && record.quantity === 'voltage' && record.unit === 'V');
     const nominal = circuit.ok ? Number(circuit.resistor.parameters.resistanceOhm) : NaN;

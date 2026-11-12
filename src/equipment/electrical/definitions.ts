@@ -19,7 +19,7 @@ export const RHEOSTAT = 'electrical.rheostat';
 export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean'; inverted?: boolean }
 export const parameterFields: Record<string, readonly ParameterField[]> = {
   [POWER]: [{ key: 'voltageV', label: '电源电压', unit: 'V', kind: 'number' }, { key: 'internalResistanceOhm', label: '电源内阻', unit: 'Ω', kind: 'number' }],
-  [RESISTOR]: [{ key: 'resistanceOhm', label: '电阻', unit: 'Ω', kind: 'number' }],
+  [RESISTOR]: [{ key: 'resistanceOhm', label: '电阻', unit: 'Ω', kind: 'number' }, { key: 'concealResistance', label: '隐藏阻值（待测电阻）', unit: '', kind: 'boolean' }],
   [SWITCH]: [{ key: 'closed', label: '闭合开关', unit: '', kind: 'boolean' }],
   [JUNCTION]: [],
   [RHEOSTAT]: [{ key: 'maxResistanceOhm', label: '最大电阻', unit: 'Ω', kind: 'number' }, { key: 'position', label: '滑片位置', unit: '0～1', kind: 'number' }],
@@ -40,7 +40,7 @@ export function createElectricalRegistry(): EquipmentRegistry {
   const registry = new EquipmentRegistry();
   const descriptions = [
     { type: POWER, label: '电源', schema: z.strictObject({ voltageV: FiniteSchema.nonnegative(), internalResistanceOhm: FiniteSchema.nonnegative().optional() }).transform(value => value.internalResistanceOhm === undefined ? { voltageV: value.voltageV } : { voltageV: value.voltageV, internalResistanceOhm: value.internalResistanceOhm }), defaults: { voltageV: 3 }, ports: ['positive', 'negative'] },
-    { type: RESISTOR, label: '电阻', schema: z.strictObject({ resistanceOhm: FiniteSchema.positive() }), defaults: { resistanceOhm: 10 }, ports: ['a', 'b'] },
+    { type: RESISTOR, label: '电阻', schema: z.strictObject({ resistanceOhm: FiniteSchema.positive(), concealResistance: z.boolean().optional(), sampleLabel: z.enum(['A', 'B', 'C']).optional() }).transform(value => ({ resistanceOhm: value.resistanceOhm, ...(value.concealResistance === undefined ? {} : { concealResistance: value.concealResistance }), ...(value.sampleLabel === undefined ? {} : { sampleLabel: value.sampleLabel }) })), defaults: { resistanceOhm: 10 }, ports: ['a', 'b'] },
     { type: SWITCH, label: '开关', schema: z.strictObject({ closed: z.boolean() }), defaults: { closed: false }, ports: ['a', 'b'] },
     { type: JUNCTION, label: '显式结点', schema: z.strictObject({}), defaults: {}, ports: ['node'] },
   ];

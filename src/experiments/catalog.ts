@@ -12,13 +12,14 @@ import { createCartExperiment } from './cart.ts';
 import { createPendulumExperiment } from './pendulum.ts';
 import { createSpringExperiment } from './spring.ts';
 import { createProjectileExperiment } from './projectile.ts';
+import { createVoltammetryExperiment } from './voltammetry.ts';
 import { createOhmExperiment } from './ohm.ts';
 import { createEmfExperiment } from './emf.ts';
 import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICAL_EXPERIMENT } from '../equipment/support.ts';
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验' };
 export interface ExperimentChoice {
@@ -60,6 +61,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('electrical-blank', 'junior', 'electrical', 'free', '空白搭建电学实验', '自行取用器材，设置电源和接线，串联与并联均可探索。', (id, time) => electricalBlank(id, time, 'junior')),
   entry('ohm-voltage', 'junior', 'electrical', 'ohm', '探究电流与电压的关系', '保持定值电阻不变，调节四柱变阻器，记录并绘制 I–U 图线。', (id, time) => createOhmExperiment(id, time, 'voltage')),
   entry('ohm-resistance', 'junior', 'electrical', 'ohm', '探究电流与电阻的关系', '替换定值电阻，调变阻器保持电压，记录并绘制 I–1/R 图线。', (id, time) => createOhmExperiment(id, time, 'resistance')),
+  entry('voltammetry', 'junior', 'electrical', 'voltammetry', '伏安法测量定值电阻', '选择电表量程，调节变阻器测多组 U、I，计算未知电阻并分析读数误差。', createVoltammetryExperiment),
   entry('series-same', 'junior', 'electrical', 'experiment', '串联 · 相同灯泡', '6 V 电源；两灯均为 3 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'series-same')),
   entry('series-different', 'junior', 'electrical', 'experiment', '串联 · 不同灯泡', '9 V 电源；两灯分别为 3 V / 0.3 A、6 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'series-different')),
   entry('parallel-same', 'junior', 'electrical', 'experiment', '并联 · 相同灯泡', '3 V 电源；两灯均为 3 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'parallel-same')),
@@ -93,7 +95,7 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'ohm') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
+  if (choice.family === 'ohm' || choice.family === 'voltammetry') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
   else if (choice.family === 'pendulum') viewport.pixelsPerM = Math.min(440, (Math.max(352, height - 414) - 60) / .8, width < 760 ? 300 : 440);
   else if (choice.family === 'buoyancy') viewport.pixelsPerM = Math.min(viewport.pixelsPerM, (Math.max(352, height - 414) - 116) / .72, width < 760 ? 290 : width < 1100 ? 440 : 620);
   else if (choice.family === 'cart' && (width < 760 || height < 900)) viewport.pixelsPerM = 130;

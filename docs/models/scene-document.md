@@ -63,3 +63,7 @@ const length = toSI({ value: 10, unit: 'cm' });
 当前版本 2 增加可选根字段 `ohmControl`，包含 `mode`、`fixedResistanceOhm`、`targetVoltageV`、`voltageToleranceV`，由对应命令参与撤销和保存。旧文档不要求此字段、不补默认字段，原有场景继续兼容；新字段需要当前应用读取。采样时将控制参数冻结在带模型标识的测量快照 note 中，历史记录不引用可变的当前配置。详细规则见[电流关系模型](ohm-experiment.md)。
 
 初中通用电学空白 J-ELEC-FREE 以 ohmControl 是否存在选择普通/专用记录模式；切回普通的命令参数为 null，实际文档删除可选字段，不写入不符合 schema 的 null。切换保留器材、连接和测量记录，撤销与保存加载覆盖该变更。旧 J-ELEC-02 文件继续使用其专用模式。
+
+## M9 / J-ELEC-03 伏安法扩展
+
+沿用可选 ohmControl，mode 增加 measurement，仅在 J-ELEC-FREE 选择伏安法记录时使用；其余控制参数在此模式不参与计算。J-ELEC-03 正式起点通过实验 ID 识别。没有新根字段或 schema 版本升级，旧文档保持兼容；包含新枚举的文件需当前版本读取。电阻参数可选 concealResistance、sampleLabel，旧数值型电阻仍合法；序列化省略未设置的可选键。成组记录快照模型标识为 electrical.voltammetry.measurement.v1，计算与区间由实际 U/I、冻结的量程分度重新推导。理想电压表继续以 finiteInput=false 与有限备用内阻值编码，不序列化 Infinity。

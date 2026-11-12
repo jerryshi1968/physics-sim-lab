@@ -4,7 +4,7 @@ import { ConnectionSchema } from '../connections/schema.ts';
 import { dimensionOf, SI_UNITS } from '../units/units.ts';
 
 export const OhmControlSchema = z.strictObject({
-  mode: z.enum(['voltage', 'resistance']),
+  mode: z.enum(['voltage', 'resistance', 'measurement']),
   fixedResistanceOhm: FiniteSchema.positive(),
   targetVoltageV: FiniteSchema.positive(),
   voltageToleranceV: FiniteSchema.nonnegative(),

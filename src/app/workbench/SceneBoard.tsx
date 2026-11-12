@@ -531,7 +531,7 @@ export function SceneBoard({ pendulumAngle, pendulumTimeS, onPendulumAngle, cart
           return <g key={wire.id} data-wire-end-of={wire.id}>{(['from', 'to'] as const).map((side, endIndex) => {
             if (displayed[side] && !selected) return null;
             const owner = displayed[side] ? equipment.find(item => item.id === displayed[side]!.equipmentId) : null;
-            const compactEnd = owner && registry.get(owner.type, owner.definitionVersion)!.ports.length === 4;
+            const compactEnd = owner && registry.get(owner.type, owner.definitionVersion)!.ports.length >= 3;
             const point = endIndex === 0 ? points[0]! : points[points.length - 1]!;
             const neighbour = endIndex === 0 ? points[1]! : points[points.length - 2]!;
             const angle = Math.atan2(point.y - neighbour.y, point.x - neighbour.x) * 180 / Math.PI;
