@@ -67,3 +67,7 @@ const length = toSI({ value: 10, unit: 'cm' });
 ## M9 / J-ELEC-03 伏安法扩展
 
 沿用可选 ohmControl，mode 增加 measurement，仅在 J-ELEC-FREE 选择伏安法记录时使用；其余控制参数在此模式不参与计算。J-ELEC-03 正式起点通过实验 ID 识别。没有新根字段或 schema 版本升级，旧文档保持兼容；包含新枚举的文件需当前版本读取。电阻参数可选 concealResistance、sampleLabel，旧数值型电阻仍合法；序列化省略未设置的可选键。成组记录快照模型标识为 electrical.voltammetry.measurement.v1，计算与区间由实际 U/I、冻结的量程分度重新推导。理想电压表继续以 finiteInput=false 与有限备用内阻值编码，不序列化 Infinity。
+
+## M9 / J-ELEC-04 功率记录扩展
+
+可选 ohmControl.mode 增加 lamp-power，作为初中通用空白的第五种记录模式，沿用原命令的撤销与持久化；其余控制变量参数在本模式不参与计算。正式起点由 J-ELEC-04 识别，不增加新根字段或器材 schema。成组快照模型标识为 electrical.lamp-power.measurement.v1；保存两条 U/I 原始记录，P、额定工作点与额定功率从该次灯泡额定电压、表分度和原始值重新推导，不存一份会与修订脱节的第三条功率记录。旧场景不要求新模式字段，新枚举需要当前应用读取。

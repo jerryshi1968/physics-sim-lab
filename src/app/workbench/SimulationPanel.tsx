@@ -1,3 +1,4 @@
+import { lampPowerMode } from '../../equipment/electrical/lamp-power.ts';
 import { voltammetryMode } from '../../equipment/electrical/voltammetry.ts';
 import { ohmRecordMode } from '../../equipment/electrical/ohm.ts';
 import type { ElectricalOutcome } from '../../equipment/electrical/simulate.ts';
@@ -34,6 +35,6 @@ export function SimulationPanel({ scene, outcome, running, status, onStart, onPa
         <details><summary>查看模型真值</summary><p>{meter.trueValue === null ? '不可用' : `${meter.trueValue} ${meter.unit}`}（未按分度值取整）</p></details>
       </div>;
     })}
-    <p className="simulation-model-note">{(ohmRecordMode(scene) || voltammetryMode(scene)) ? '定值电阻保持恒定，不模拟温升；仪表示数按分度值显示，需自行保存实验记录。' : scene.experimentId === 'H-ELEC-01' ? '电源按设置的电动势、内阻供电，电表按器材参数加载；仪表示数不会自动写入学生记录。' : '灯泡为准静态教学模型，不模拟热惯性或真实烧毁；仪表示数不会自动写入学生记录。'}</p>
+    <p className="simulation-model-note">{lampPowerMode(scene) ? '沿用非线性灯泡，亮度随功率变化；自行调至额定电压并保存 U、I，功率不自动填入手工记录。' : (ohmRecordMode(scene) || voltammetryMode(scene)) ? '定值电阻保持恒定，不模拟温升；仪表示数按分度值显示，需自行保存实验记录。' : scene.experimentId === 'H-ELEC-01' ? '电源按设置的电动势、内阻供电，电表按器材参数加载；仪表示数不会自动写入学生记录。' : '灯泡为准静态教学模型，不模拟热惯性或真实烧毁；仪表示数不会自动写入学生记录。'}</p>
   </section>;
 }

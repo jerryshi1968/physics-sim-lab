@@ -17,11 +17,11 @@ const registry = createWorkbenchRegistry(), time = '2026-11-12T00:00:00.000Z';
 const create = choice => createCatalogExperiment(choice, `catalog.${choice}`, time);
 const add = (scene, type) => scene.equipment.push({ id: `equipment.${scene.equipment.length}`, type, definitionVersion: 1, pose: { xM: 0, yM: 0, rotationRad: 0 }, parameters: { ...registry.get(type, 1).defaultParameters } });
 
-test('catalogue contains exactly 34 distinct options in the requested stage/domain distribution', () => {
-  assert.equal(experimentChoices.length, 34); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 34);
+test('catalogue contains exactly 35 distinct options in the requested stage/domain distribution', () => {
+  assert.equal(experimentChoices.length, 35); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 35);
   assert.equal(experimentChoices.some(choice => choice.id === 'ohm-blank'), false);
   assert.equal(experimentChoices.filter(choice => choice.stage === 'junior' && choice.domain === 'electrical' && choice.id.endsWith('-blank')).length, 1);
-  for (const [stage, domain, count] of [['junior', 'mechanical', 10], ['junior', 'electrical', 8], ['junior', 'optical', 4], ['senior', 'mechanical', 8], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
+  for (const [stage, domain, count] of [['junior', 'mechanical', 10], ['junior', 'electrical', 9], ['junior', 'optical', 4], ['senior', 'mechanical', 8], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
 });
 
 test('every catalogue option produces an independent valid pending-review scene and round trips its actual apparatus', () => {

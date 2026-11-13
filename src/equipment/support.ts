@@ -30,6 +30,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'lampPower', label: '小灯泡电功率', experimentIds: ['J-ELEC-04'], types: [POWER, LAMP, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, LAMP, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'voltammetry', label: '伏安法测量定值电阻', experimentIds: ['J-ELEC-03'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'ohm', label: '电流与电压、电阻的关系', experimentIds: ['J-ELEC-02'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'emf', label: '电源电动势与内阻', experimentIds: ['H-ELEC-01'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },

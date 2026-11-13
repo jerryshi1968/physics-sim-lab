@@ -9,6 +9,7 @@ import { createWorkbenchRegistry } from '../../src/equipment/registry.ts';
 const mechanical = (names: string) => names.split(' ').map(name => `mechanical.${name}`);
 const optical = (names: string) => names.split(' ').map(name => `optical.${name}`);
 const cases: [string, string[]][] = [
+  ['J-ELEC-04', ['power-supply', 'lamp', 'switch', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
   ['J-ELEC-03', ['power-supply', 'resistor', 'switch', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
   ['J-ELEC-02', ['power-supply', 'resistor', 'switch', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
   ['H-ELEC-01', ['power-supply', 'resistor', 'switch', 'ammeter', 'voltmeter', 'rheostat', 'wire'].map(name => `electrical.${name}`)],
