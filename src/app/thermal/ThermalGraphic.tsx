@@ -1,0 +1,26 @@
+import type { EquipmentInstance } from '../../core/equipment/schema.ts';
+import { BEAKER } from '../../equipment/density/definitions.ts';
+import { SUPPORT } from '../../equipment/mechanical/definitions.ts';
+import { TIMER } from '../../equipment/projectile/definitions.ts';
+import { HEATER, THERMOMETER } from '../../equipment/thermal/definitions.ts';
+import { MechanicalGraphic } from '../mechanical/MechanicalGraphic.tsx';
+import type { ThermalSimulation } from './useThermalSimulation.ts';
+
+export function thermalBounds(type: string) {
+  return type === BEAKER ? { x: -.055, y: -.235, width: .11, height: .245 } : type === HEATER ? { x: -.09, y: -.025, width: .18, height: .15 } : type === THERMOMETER ? { x: -.011, y: -.012, width: .058, height: .25 } : type === SUPPORT ? { x: -.06, y: -.47, width: .12, height: .49 } : { x: -.1, y: -.045, width: .2, height: .09 };
+}
+export function ThermalGraphic({ instance: item, simulation: s }: { instance: EquipmentInstance; simulation?: ThermalSimulation | undefined }) {
+  if (item.type === SUPPORT) return <g className="real-apparatus thermal-apparatus" stroke="none" data-appearance="physical"><MechanicalGraphic instance={item} /><path d={`M0 ${-Number(item.parameters.heightM) + .06}H.18`} stroke="#819a9d" strokeWidth="3" /><rect x=".168" y={-Number(item.parameters.heightM) + .05} width=".024" height=".02" rx=".004" fill="#6a8589" /></g>;
+  if (item.type === TIMER) return <g className="real-apparatus thermal-apparatus" stroke="none" data-appearance="physical"><rect x="-.1" y="-.045" width=".2" height=".09" rx=".012" fill="#35525b" /><rect x="-.083" y="-.03" width=".166" height=".05" rx=".004" fill="#e5efd0" /><text x="0" y=".005" textAnchor="middle" fontSize=".022" fill="#24434b">{s?.clockText ?? '0.0'} s</text><circle cy=".032" r=".005" fill={s?.running ? '#6eb99a' : '#cb9341'} /></g>;
+  if (item.type === HEATER) return <g className="real-apparatus thermal-apparatus" stroke="none" data-appearance="physical" data-testid="thermal-heater" data-heating={s?.heating && s.rig.contact ? 'true' : 'false'}><path d="M-.075 -.02H.075M-.06 -.02L-.08 .11M.06 -.02L.08 .11" stroke="#6e7779" strokeWidth="3" /><path d="M-.075 -.026H.075" stroke="#a4aaa6" strokeWidth="4" /><rect x="-.033" y=".075" width=".066" height=".04" rx=".014" fill="#e6dbbc" stroke="#8b9691" strokeWidth="1.2" /><path d="M-.015 .075V.06H.015V.075" fill="#808b8c" />{s?.heating && s.rig.contact && s.state.massKg > 0 && s.rig.config.powerW > 0 && <g><path d="M0 .064Q-.025 .045 0 .005Q.023 .046 0 .064" fill="#ed9b29" /><path d="M0 .06Q-.012 .045 0 .028Q.01 .046 0 .06" fill="#ffe785" /></g>}</g>;
+  if (item.type === BEAKER) {
+    const mass = s?.rig.ok && s.rig.beaker?.id === item.id ? s.state.massKg : Number(item.parameters.liquidM3) * 1000, h = Math.max(0, Math.min(.18, .18 * mass / .25));
+    const boiling = !!s && s.heating && s.rig.contact && s.state.temperatureK >= 373.15 - 1e-7 && s.rig.config.powerW * s.rig.config.efficiency > s.rig.config.lossWPerK * (373.15 - s.rig.config.ambientTemperatureK) && mass > 0;
+    return <g className="real-apparatus thermal-apparatus" stroke="none" data-appearance="physical" data-testid="thermal-beaker" data-boiling={boiling ? 'true' : 'false'}><path d={`M-.045 ${-h}Q0 ${-h + .006} .045 ${-h}V-.005Q0 .005 -.045 -.005Z`} fill="#aed7df" fillOpacity=".7" />{boiling && [0,1,2,3,4,5,6,7].map(n => <circle key={n} cx={-.03 + n % 3 * .027} cy={-.012 - ((n * .021 + (s.state.timeS % 1) * .08) % Math.max(.015, h - .015))} r={.003 + n % 2 * .001} stroke="#e7fafb" fill="none" strokeWidth="1" />)}<path d="M-.05 -.19H-.045V-.006Q0 .008 .045 -.006V-.19H.055" fill="none" stroke="#658e98" strokeWidth="1.2" />{[50,100,150,200,250].map(v => <g key={v}><path d={`M-.032 ${-.18 * v / 250}H-.044`} stroke="#729b9c" strokeWidth=".7" /><text x="-.029" y={-.18 * v / 250 + .003} textAnchor="start" fontSize=".008" fill="#446c71">{v}</text></g>)}<text x="-.045" y="-.194" fontSize=".009" fill="#446c71">mL</text>{boiling && <path d="M-.02 -.2q-.01 -.015 0 -.03m.025 .03q.01 -.015 0 -.03" fill="none" stroke="#b7d6d6" strokeWidth="1.5" />}</g>;
+  }
+  if (item.type === THERMOMETER) {
+    const valid = s?.reading.ok, c = valid ? s.reading.valueK - 273.15 : 20, y = .2 - c / 110 * .2, resolution = Number(item.parameters.resolutionK);
+    return <g className="real-apparatus thermal-apparatus" stroke="none" data-appearance="physical" data-testid="thermal-thermometer" data-valid={valid ? 'true' : 'false'}><rect x="-.008" y="-.005" width=".016" height=".225" rx=".006" fill="#ecf3e8" stroke="#708c85" strokeWidth="1" /><path d={`M0 .22V${y}`} stroke={valid || !s ? '#c95844' : '#b5bab4'} strokeWidth="2" /><circle cy=".22" r=".009" fill={valid || !s ? '#c95844' : '#b5bab4'} stroke="#708c85" strokeWidth=".7" />{Array.from({ length: Math.min(1101, Math.floor(110 / resolution) + 1) }, (_, n) => <path key={n} d={`M.004 ${.2 - n * resolution / 110 * .2}h${Math.abs(n * resolution / 10 - Math.round(n * resolution / 10)) < 1e-8 ? '.006' : '.003'}`} stroke="#627b76" strokeWidth=".6" />)}{[0,20,40,60,80,100].map(v => <text key={v} x=".013" y={.203 - v / 110 * .2} fontSize=".009" fill="#35525b">{v}</text>)}<text x=".015" y="-.005" fontSize=".01" fill="#35525b">℃</text></g>;
+  }
+  return null;
+}

@@ -70,7 +70,7 @@ export const MeasurementRecordSchema = z.strictObject({
   id: IdSchema,
   source: z.enum(['manual', 'instrument']),
   quantity: z.enum(['length', 'mass', 'time', 'current', 'voltage', 'resistance', 'force', 'torque',
-    'velocity', 'acceleration', 'angle', 'dimensionless', 'volume', 'density']),
+    'velocity', 'acceleration', 'angle', 'dimensionless', 'volume', 'density', 'temperature']),
   unit: z.enum(SI_UNITS),
   value: FiniteSchema.nullable(),
   rawInput: z.string().max(1000).nullable(),

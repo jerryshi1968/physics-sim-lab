@@ -6,7 +6,7 @@ export function ExperimentCatalog({ stage, initialDomain = 'mechanical', onChoos
   stage: SchoolStage; initialDomain?: CatalogDomain; onChoose: (choice: ExperimentChoice) => void; onCancel: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
-  const domains = (['mechanical', 'electrical', 'optical'] as const).filter(domain => experimentChoices.some(choice => choice.stage === stage && choice.domain === domain));
+  const domains = (['mechanical', 'electrical', 'optical', 'thermal'] as const).filter(domain => experimentChoices.some(choice => choice.stage === stage && choice.domain === domain));
   const [domain, setDomain] = useState<CatalogDomain>(domains.includes(initialDomain) ? initialDomain : domains[0]!);
   const [selected, setSelected] = useState('');
   const choices = experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain);

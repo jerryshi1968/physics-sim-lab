@@ -1,3 +1,4 @@
+import { createBoilingExperiment } from './boiling.ts';
 import type { SceneDocument } from '../core/scene/schema.ts';
 import { createEmptyScene } from '../core/scene/create.ts';
 import { createLampCircuitExperiment } from './lamp-circuits.ts';
@@ -19,10 +20,10 @@ import { createEmfExperiment } from './emf.ts';
 import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICAL_EXPERIMENT } from '../equipment/support.ts';
 
 export type SchoolStage = 'junior' | 'senior';
-export type CatalogDomain = 'mechanical' | 'electrical' | 'optical';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power';
+export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
-export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验' };
+export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
   id: string; stage: SchoolStage; domain: CatalogDomain; family: CatalogFamily; title: string; description: string;
   create: (id: string, timestamp: string) => SceneDocument;
@@ -49,6 +50,8 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
+  entry('thermal-blank', 'junior', 'thermal', 'boiling', '空白搭建热学实验', '自行取用烧杯、加热装置、温度计、支架和计时器。', (id, time) => createBoilingExperiment(id, time, true)),
+  entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
   entry('density-blank', 'junior', 'mechanical', 'density', '空白搭建密度测量实验', '自行取用器材，设置天平、砝码盒、盛水量筒等。', (id, time) => createDensityExperiment(id, time, false, true)),
   entry('density-solid', 'junior', 'mechanical', 'density', '测量固体密度实验', '预放托盘天平、砝码盒、盛水量筒和待测固体。', (id, time) => createDensityExperiment(id, time, false, false)),
   entry('density-liquid', 'junior', 'mechanical', 'density', '测量液体密度实验', '预放托盘天平、砝码盒、空量筒和盛液烧杯。', (id, time) => createDensityExperiment(id, time, true, false)),
@@ -97,7 +100,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'ohm' || choice.family === 'voltammetry' || choice.family === 'lamp-power') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
+  if (choice.family === 'boiling') viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
+  else if (choice.family === 'ohm' || choice.family === 'voltammetry' || choice.family === 'lamp-power') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
   else if (choice.family === 'pendulum') viewport.pixelsPerM = Math.min(440, (Math.max(352, height - 414) - 60) / .8, width < 760 ? 300 : 440);
   else if (choice.family === 'buoyancy') viewport.pixelsPerM = Math.min(viewport.pixelsPerM, (Math.max(352, height - 414) - 116) / .72, width < 760 ? 290 : width < 1100 ? 440 : 620);
   else if (choice.family === 'cart' && (width < 760 || height < 900)) viewport.pixelsPerM = 130;

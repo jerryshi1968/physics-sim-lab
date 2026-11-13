@@ -9,6 +9,12 @@ function contextualDisplay(record: MeasurementRecord) {
 }
 
 export function displayMeasurement(record: MeasurementRecord) {
+  if (record.quantity === 'temperature' && record.unit === 'K') {
+    const celsius = (value: number | null) => value === null ? null : Number((value - 273.15).toPrecision(12));
+    const raw = (value: string | null) => { const parsed = value === null ? null : parseManualValue(value); return parsed?.ok && parsed.value !== null ? String(celsius(parsed.value)) : value; };
+    return { ...record, unit: '℃', value: celsius(record.value), rawInput: raw(record.rawInput), range: record.range ? { ...record.range, min: celsius(record.range.min)!, max: celsius(record.range.max)! } : null,
+      context: record.context ? { ...record.context, instrumentDisplayValue: celsius(record.context.instrumentDisplayValue), physicalValue: celsius(record.context.physicalValue) } : record.context };
+  }
   const display = contextualDisplay(record);
   if (display) {
     const convert = (value: number) => Number((value * display.factor).toPrecision(12)), parsed = record.rawInput === null ? null : parseManualValue(record.rawInput);
@@ -28,6 +34,10 @@ export function displayMeasurement(record: MeasurementRecord) {
 }
 
 export function measurementInputInSI(record: MeasurementRecord, rawInput: string): string | null {
+  if (record.quantity === 'temperature' && record.unit === 'K') {
+    const parsed = parseManualValue(rawInput);
+    return !parsed.ok ? null : parsed.value === null ? rawInput : String(parsed.value + 273.15);
+  }
   const display = contextualDisplay(record);
   if (display) {
     if (rawInput === displayMeasurement(record).rawInput) return record.rawInput;

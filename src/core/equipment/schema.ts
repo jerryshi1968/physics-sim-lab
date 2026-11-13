@@ -17,7 +17,7 @@ export const EquipmentDefinitionSchema = z.strictObject({
   type: IdSchema,
   definitionVersion: z.number().int().positive(),
   label: z.string().min(1).max(100),
-  domain: z.enum(['electrical', 'optical', 'mechanical']),
+  domain: z.enum(['electrical', 'optical', 'mechanical', 'thermal']),
   ports: z.array(PortDefinitionSchema).max(32),
   parameterSchemaId: IdSchema,
   modelAdapterId: IdSchema,

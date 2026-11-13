@@ -1,3 +1,4 @@
+import { registerThermalEquipment } from './thermal/definitions.ts';
 import { registerPendulumEquipment } from './pendulum/definitions.ts';
 import { registerReflectionEquipment } from './reflection/definitions.ts';
 import { registerDensityEquipment } from './density/definitions.ts';
@@ -24,5 +25,6 @@ export function createWorkbenchRegistry() {
   registerCartEquipment(registry);
   registerBuoyancyEquipment(registry);
   registerPendulumEquipment(registry);
+  registerThermalEquipment(registry);
   return registry;
 }

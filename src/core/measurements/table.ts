@@ -3,7 +3,7 @@ import type { MeasurementRecord, MeasurementSnapshot, SceneDocument } from '../s
 export const quantityLabels: Record<MeasurementRecord['quantity'], string> = {
   length: '长度', mass: '质量', time: '时间', current: '电流', voltage: '电压', resistance: '电阻', force: '力', torque: '力矩',
   velocity: '速度', acceleration: '加速度', angle: '角度', dimensionless: '无量纲',
-  volume: '体积', density: '密度',
+  volume: '体积', density: '密度', temperature: '温度',
 };
 export const sourceLabel = (source: MeasurementRecord['source']) => source === 'manual' ? '手工抄表' : '仪表采集';
 export function measurementStatusLabel(record: MeasurementRecord): string {

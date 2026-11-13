@@ -12,6 +12,8 @@ import { densityTypes, BALANCE, CYLINDER, MASS_SET, BEAKER } from './density/def
 import { cartTypes, CART, TRACK, GATE, TICKER } from './cart/definitions.ts';
 import { buoyancyApparatus, buoyancyTypes, BODY, OVERFLOW } from './buoyancy/definitions.ts';
 
+import { BOILING_EXPERIMENT, thermalApparatus, HEATER, THERMOMETER } from './thermal/definitions.ts';
+
 export const electricalApparatus = [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, WIRE];
 export const opticalApparatus = [BENCH, CANDLE, LENS, SCREEN, RULER];
 export const leverApparatus = [LEVER, SUPPORT, WEIGHT, FORCE_METER, MECHANICAL_RULER];
@@ -30,6 +32,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'boiling', label: '水沸腾', experimentIds: [BOILING_EXPERIMENT], types: thermalApparatus, maximum: oneEach(thermalApparatus) },
   { key: 'lampPower', label: '小灯泡电功率', experimentIds: ['J-ELEC-04'], types: [POWER, LAMP, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, LAMP, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'voltammetry', label: '伏安法测量定值电阻', experimentIds: ['J-ELEC-03'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'ohm', label: '电流与电压、电阻的关系', experimentIds: ['J-ELEC-02'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
@@ -53,7 +56,7 @@ export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'eq
   const formal = equipmentSupports.find(profile => profile.experimentIds.includes(scene.experimentId ?? ''));
   if (formal) return formal;
   const has = (types: readonly string[]) => scene.equipment.some(item => types.includes(item.type));
-  const key = has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
+  const key = has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
     : has([PENDULUM]) ? 'pendulum' : has(densityTypes) ? 'density' : has(cartTypes) ? 'cart' : has([SPRING]) ? 'spring' : has(projectileTypes) ? 'projectile'
     : has(frictionTypes) ? 'friction' : scene.equipment.some(item => item.type.startsWith('mechanical.')) ? 'lever'
     : scene.equipment.some(item => item.type.startsWith('optical.')) ? 'optical' : scene.equipment.length || scene.connections.length ? 'electrical' : null;

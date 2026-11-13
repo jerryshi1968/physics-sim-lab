@@ -27,7 +27,7 @@ test('two school entries keep the toolbar compact, all categories are accessible
   await expect(dialog.getByRole('radio')).toHaveCount(10); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
   await dialog.getByRole('tab', { name: '力学实验', exact: true }).focus(); await page.keyboard.press('ArrowRight');
   await expect(dialog.getByRole('tab', { name: '电学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(9);
-  await page.keyboard.press('End'); await expect(dialog.getByRole('radio')).toHaveCount(4);
+  await page.keyboard.press('End'); await expect(dialog.getByRole('tab', { name: '热学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(2);
   await selectCatalogOption(page, 'reflection'); await page.keyboard.press('Delete'); await page.keyboard.press('Escape');
   expect(await exported(page)).toEqual(before);
   await page.getByRole('button', { name: '高中物理实验', exact: true }).click();
@@ -36,7 +36,7 @@ test('two school entries keep the toolbar compact, all categories are accessible
   expect(await exported(page)).toEqual(before); await page.screenshot({ path: info.outputPath('compact-toolbar.png'), fullPage: true });
 });
 
-for (const [stage, domain] of [['junior', 'mechanical'], ['junior', 'electrical'], ['junior', 'optical'], ['senior', 'mechanical'], ['senior', 'electrical']] as [SchoolStage, CatalogDomain][]) {
+for (const [stage, domain] of [['junior', 'mechanical'], ['junior', 'electrical'], ['junior', 'optical'], ['junior', 'thermal'], ['senior', 'mechanical'], ['senior', 'electrical']] as [SchoolStage, CatalogDomain][]) {
   test(`${stage}/${domain}: every listed choice opens its own validated start rather than another chooser`, async ({ page }) => {
     test.setTimeout(90_000); await page.goto('/');
     for (const choice of experimentChoices.filter(item => item.stage === stage && item.domain === domain)) {

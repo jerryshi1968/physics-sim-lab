@@ -455,3 +455,10 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 .cart-sample-table table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .cart-sample-table :is(th, td) { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
 @media (max-width: 760px) { .density-records form { grid-template-columns: minmax(0, 1fr); } }
+
+.thermal-controls label { display: grid; gap: 6px; margin: 14px 0; font-size: 12px; }
+.thermal-controls input, .thermal-controls select { width: 100%; box-sizing: border-box; min-height: 34px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; background: white; color: inherit; font: inherit; }
+.thermal-controls > p { margin: 12px 0; font-size: 12px; line-height: 1.7; }
+
+.library-tabs button { white-space: nowrap; padding-inline: 1px; }
+@media (max-width: 760px) { .library-tabs { margin-inline: 10px; gap: 2px; } }
