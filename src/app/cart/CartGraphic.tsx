@@ -15,7 +15,7 @@ export function cartBounds(item: EquipmentInstance) {
   return { x: -.085, y: -.047, width: .17, height: .1 };
 }
 
-export function CartGraphic({ instance, run }: { instance: EquipmentInstance; run?: CartRun | null | undefined }) {
+export function CartGraphic({ instance, run, simple = false }: { instance: EquipmentInstance; run?: CartRun | null | undefined; simple?: boolean }) {
   const { type, parameters } = instance;
   const half = Number(parameters.lengthM) / 2;
   const reading = run?.rig.gateEvents.find(event => event.gate.id === instance.id)?.reading;
@@ -34,8 +34,8 @@ export function CartGraphic({ instance, run }: { instance: EquipmentInstance; ru
     {type === CART && <>
       <rect x="-.11" y="-.069" width=".22" height=".045" rx=".011" fill="#245e66" />
       {[-.075, .075].map(x => <g key={x}><circle cx={x} cy="-.021" r=".021" fill="#35464b" /><circle cx={x} cy="-.021" r=".01" fill="#bcc4b6" /></g>)}
-      <rect x="-.01" y="-.126" width=".02" height=".057" fill="#71898a" />
-      <rect x={-flag / 2} y="-.158" width={flag} height=".04" rx=".003" fill="#39484d" />
+      {!simple && <><rect x="-.01" y="-.126" width=".02" height=".057" fill="#71898a" />
+      <rect x={-flag / 2} y="-.158" width={flag} height=".04" rx=".003" fill="#39484d" /></>}
       {Number(parameters.loadMassKg) > 0 && <rect x="-.069" y="-.096" width=".046" height=".026" rx=".004" fill="#bb8c48" />}
       <circle cx=".108" cy="-.052" r=".009" fill="#d7ae71" />
     </>}

@@ -35,7 +35,7 @@ test('mechanical category is always available with a physical independent ruler 
   await page.setViewportSize({ width: 1366, height: 900 }); await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
   const library = page.getByRole('region', { name: '器材库', exact: true }), before = await exported(page);
   await library.getByRole('tab', { name: '电学', exact: true }).focus(); await page.keyboard.press('End'); await expect(library.getByRole('tab', { name: '热学', exact: true })).toBeFocused(); await page.keyboard.press('ArrowLeft'); await expect(library.getByRole('tab', { name: '力学', exact: true })).toBeFocused();
-  await expect(library.locator('[data-library-type]')).toHaveCount(27); expect(await exported(page)).toEqual(before);
+  await expect(library.locator('[data-library-type]')).toHaveCount(28); expect(await exported(page)).toEqual(before);
   await library.locator('[data-library-type="mechanical.ruler"]').click(); await library.getByRole('button', { name: '在视口中心放置', exact: true }).click();
   await expect(page.getByTestId('scene-board').locator('[data-equipment-type="mechanical.ruler"] [data-appearance="physical"]')).toHaveCount(1);
   const placed = await exported(page); expect(placed.equipment[0]!.parameters).toEqual({ lengthM: 1 }); await expect(status(page)).toContainText('请放置杠杆');

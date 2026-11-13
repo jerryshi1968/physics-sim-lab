@@ -2,6 +2,7 @@ import type { MeasurementRecord } from '../scene/schema.ts';
 import { parseManualValue } from './records.ts';
 
 function contextualDisplay(record: MeasurementRecord) {
+  if (record.runId.startsWith('average-speed-') && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
   if (record.runId.startsWith('mirror-image-') && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
   if (record.runId.startsWith('buoyancy-') && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
   if (!record.runId.startsWith('density-') && !record.runId.startsWith('buoyancy-')) return null;

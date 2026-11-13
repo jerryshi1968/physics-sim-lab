@@ -14,7 +14,7 @@ export type SceneCommand =
   | { type: 'set-gravity'; gravityMPerS2: number }
   | { type: 'set-ohm-control'; control: NonNullable<SceneDocument['ohmControl']> | null }
   | { type: 'set-experiment'; experimentId: string; title: string }
-  | { type: 'add-equipment'; equipmentType: string; id: string; point: WorldPoint }
+  | { type: 'add-equipment'; equipmentType: string; id: string; point: WorldPoint; initial?: Pick<EquipmentInstance, 'pose' | 'parameters'> }
   | { type: 'add-wire'; id: string; point: WorldPoint }
   | { type: 'update-equipment'; id: string; pose: Pose2D; parameters: Record<string, Scalar> }
   | { type: 'update-equipment-batch'; updates: Pick<EquipmentInstance, 'id' | 'pose' | 'parameters'>[] }
@@ -67,7 +67,7 @@ export function executeCommand(history: SceneHistory, command: SceneCommand, reg
       result = validateSceneDocument({ ...current, experimentId: command.experimentId, title: command.title, revision: current.revision + 1,
         provenance: { ...current.provenance, updatedAt: timestamp } }, registry);
       break;
-    case 'add-equipment': label = '放置器材'; result = addEquipment(current, registry, command.equipmentType, command.id, command.point, timestamp); break;
+    case 'add-equipment': label = '放置器材'; result = addEquipment(current, registry, command.equipmentType, command.id, command.point, timestamp, command.initial); break;
     case 'add-wire': label = '放置导线'; result = addLooseWire(current, registry, command.id, command.point, timestamp); break;
     case 'update-equipment': label = '移动或修改器材'; result = updateEquipment(current, registry, command.id, command.pose, command.parameters, timestamp); break;
     case 'update-equipment-batch': label = '配置器材'; result = updateEquipmentMany(current, registry, command.updates, timestamp); break;

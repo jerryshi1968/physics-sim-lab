@@ -20,12 +20,12 @@ function finish(document: SceneDocument, candidate: SceneDocument, registry: Equ
 }
 
 export function addEquipment(document: SceneDocument, registry: EquipmentRegistry, type: string, id: string,
-  position: WorldPoint, timestamp: string): DocumentValidation {
+  position: WorldPoint, timestamp: string, initial?: Pick<EquipmentInstance, 'pose' | 'parameters'>): DocumentValidation {
   const definition = registry.list().find(item => item.type === type);
   if (!definition) return failure('UNKNOWN_EQUIPMENT_VERSION');
   const candidate = SceneDocumentSchema.parse(document);
   candidate.equipment.push({ id, type, definitionVersion: definition.definitionVersion,
-    pose: { ...position, rotationRad: 0 }, parameters: { ...definition.defaultParameters } });
+    pose: initial?.pose ?? { ...position, rotationRad: 0 }, parameters: initial?.parameters ?? { ...definition.defaultParameters } });
   return finish(document, candidate, registry, timestamp);
 }
 

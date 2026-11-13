@@ -1,3 +1,4 @@
+import { createAverageSpeedExperiment } from './average-speed.ts';
 import { createBoilingExperiment } from './boiling.ts';
 import type { SceneDocument } from '../core/scene/schema.ts';
 import { createEmptyScene } from '../core/scene/create.ts';
@@ -21,7 +22,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -50,6 +51,8 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
+  entry('average-speed-blank', 'junior', 'mechanical', 'average-speed', '空白搭建平均速度实验', '自行取用小车、斜面、木块、金属挡片、刻度尺和停表。', (id, time) => createAverageSpeedExperiment(id, time, true)),
+  entry('average-speed', 'junior', 'mechanical', 'average-speed', '测量物体运动的平均速度', '沿小坡度斜面静止释放小车，分别测全程、上半程的路程和时间，用 s/t 计算平均速度。', createAverageSpeedExperiment),
   entry('thermal-blank', 'junior', 'thermal', 'boiling', '空白搭建热学实验', '自行取用烧杯、加热装置、温度计、支架和计时器。', (id, time) => createBoilingExperiment(id, time, true)),
   entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
   entry('density-blank', 'junior', 'mechanical', 'density', '空白搭建密度测量实验', '自行取用器材，设置天平、砝码盒、盛水量筒等。', (id, time) => createDensityExperiment(id, time, false, true)),
@@ -100,7 +103,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'boiling') viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
+  if (choice.family === 'average-speed') viewport.pixelsPerM = Math.min(500, width < 760 ? 200 : width < 1100 ? 310 : 500, (Math.max(352, height * .52 - 114) - 60) / .65);
+  else if (choice.family === 'boiling') viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
   else if (choice.family === 'ohm' || choice.family === 'voltammetry' || choice.family === 'lamp-power') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
   else if (choice.family === 'pendulum') viewport.pixelsPerM = Math.min(440, (Math.max(352, height - 414) - 60) / .8, width < 760 ? 300 : 440);
   else if (choice.family === 'buoyancy') viewport.pixelsPerM = Math.min(viewport.pixelsPerM, (Math.max(352, height - 414) - 116) / .72, width < 760 ? 290 : width < 1100 ? 440 : 620);

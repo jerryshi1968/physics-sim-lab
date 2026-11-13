@@ -24,7 +24,7 @@ test('two school entries keep the toolbar compact, all categories are accessible
   const before = await exported(page);
   await page.getByRole('button', { name: '初中物理实验', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: '初中物理实验', exact: true });
-  await expect(dialog.getByRole('radio')).toHaveCount(10); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
+  await expect(dialog.getByRole('radio')).toHaveCount(12); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
   await dialog.getByRole('tab', { name: '力学实验', exact: true }).focus(); await page.keyboard.press('ArrowRight');
   await expect(dialog.getByRole('tab', { name: '电学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(9);
   await page.keyboard.press('End'); await expect(dialog.getByRole('tab', { name: '热学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(2);

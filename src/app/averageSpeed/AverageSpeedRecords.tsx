@@ -1,0 +1,18 @@
+import { useRef, useState } from 'react';
+import type { SceneDocument } from '../../core/scene/schema.ts';
+import { MECHANICAL_RULER } from '../../equipment/mechanical/definitions.ts';
+import { averageSpeedRuler } from '../../equipment/averageSpeed/simulate.ts';
+import type { AverageSpeedCapture } from '../../equipment/averageSpeed/measure.ts';
+import type { AverageSpeedSimulation } from './useAverageSpeed.ts';
+import { AverageSpeedResults } from './AverageSpeedResults.tsx';
+export function AverageSpeedRecords({scene,simulation:s,onCapture}:{scene:SceneDocument;simulation:AverageSpeedSimulation;onCapture:(input:AverageSpeedCapture)=>string|null}) {
+  const rulers=scene.equipment.filter(i=>i.type===MECHANICAL_RULER),[input,setInput]=useState<AverageSpeedCapture>({rulerId:rulers[0]?.id??'',startRaw:'',stopRaw:'',timeRaw:'',segment:'full',setupLabel:'第1组',note:''}),[message,setMessage]=useState('');
+  const change=(key:keyof AverageSpeedCapture,value:string)=>setInput(old=>({...old,[key]:value}));
+  const scale=s.rig.ok?averageSpeedRuler(scene,s.run?.rig??s.rig,input.rulerId):null,scroll=useRef<HTMLDivElement>(null),px=3000;
+  return <section className="spring-records average-speed-records"><h3>平均速度测量记录</h3><p>尺上标数为 cm，每小格 1 mm。读同一车头初始位置与挡片位置，两读数相减得到路程；时间用 s，平均速度用 m/s。留空记缺失。</p>
+    <label>平均速度读尺来源<select aria-label="平均速度读尺来源" value={input.rulerId} onChange={e=>change('rulerId',e.target.value)}><option value="">请选择</option>{rulers.map(i=><option key={i.id} value={i.id}>{i.id}</option>)}</select></label>
+    <details><summary>放大读尺（起始车头与挡片）</summary>{scale?<><p>起点标记为释放前同一车头的位置。读尺窗不代填读数。</p><button onClick={()=>{scroll.current?.scrollTo({left:Math.max(0,scale.startM*px-100)});}}>看起点</button><button onClick={()=>{scroll.current?.scrollTo({left:Math.max(0,scale.stopM*px-100)});}}>看挡片</button><div ref={scroll} className="average-ruler-scroll" tabIndex={0} role="region" aria-label="平均速度毫米尺，可横向滚动"><svg width={scale.lengthM*px+40} height="150" role="img" aria-label="小车起始前端和挡片对应尺标"><rect x="20" y="65" width={scale.lengthM*px} height="65" fill="#eee1b8"/>{Array.from({length:Math.floor(scale.lengthM*1000)+1},(_,n)=><g key={n}><path d={`M${20+n*3} 65v${n%10?10:22}`} stroke="#64776f" strokeWidth=".7"/>{n%10===0&&<text x={20+n*3} y="115" textAnchor="middle" fontSize="12">{n/10}</text>}</g>)}{[scale.stopM,scale.startM].map((p,n)=>p>=0&&p<=scale.lengthM?<g key={n} data-average-ruler-mark={n?'start':'stop'}><path d={`M${20+p*px} 30V90`} stroke={n?'#16786f':'#be7c36'} strokeWidth="1.5"/><text x={20+p*px} y={n?18:44} textAnchor="middle" fontSize="12">{n?'起始车头':'挡片'}</text></g>:null)}<text x="6" y="145" fontSize="12">cm · 每小格 1 mm</text></svg></div>{!scale.covered&&<p>刻度尚未覆盖两端，请移动刻度尺。</p>}</>:<p>请选择并沿斜面摆正刻度尺。</p>}</details>
+    <div className="measurement-fields"><label>记录路段<select aria-label="记录路段" value={input.segment} onChange={e=>change('segment',e.target.value)}><option value="full">全程</option><option value="upper">上半程</option></select></label>{([['setupLabel','平均速度组名'],['startRaw','起始车头尺读数（cm）'],['stopRaw','挡片尺读数（cm）'],['timeRaw','运动时间（s）'],['note','运动观察备注']] as const).map(([key,label])=><label key={key}>{label}<input aria-label={label} value={input[key]} maxLength={100} onChange={e=>change(key,e.target.value)}/></label>)}</div>
+    <div className="projectile-controls"><button disabled={!s.completed} onClick={()=>change('timeRaw',String(s.displayS))}>采集停表示数</button><button disabled={!s.completed} onClick={()=>{setMessage(onCapture(input)??'已保存平均速度读数。');}}>保存平均速度读数</button></div>{message&&<p role="status">{message}</p>}<AverageSpeedResults scene={scene}/>
+  </section>;
+}
