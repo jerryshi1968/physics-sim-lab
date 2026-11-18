@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import type { PointerEvent, ReactNode } from 'react';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
-import type { DensityOutcome } from '../../equipment/density/simulate.ts';
+import type { DensityViewOutcome } from '../../equipment/density/simulate.ts';
 import { BALANCE, CYLINDER, SPECIMEN, MASS_SET, BEAKER, standardMassesG } from '../../equipment/density/definitions.ts';
 import { SPECIMEN_AREA_M2 } from '../../core/measurements/density.ts';
 
@@ -82,11 +82,11 @@ function DensityRiderScale({ riderKg, controls }: { riderKg: number; controls: D
 export function densityBounds(item: EquipmentInstance) {
   return item.type === BALANCE ? { x: -.23, y: -.25, width: .46, height: .29 } : item.type === CYLINDER ? { x: -.065, y: -.255, width: .13, height: .28 } : item.type === SPECIMEN ? { x: -.025, y: -Number(item.parameters.volumeM3) / SPECIMEN_AREA_M2, width: .05, height: Number(item.parameters.volumeM3) / SPECIMEN_AREA_M2 + .012 } : item.type === BEAKER ? { x: -.045, y: -.11, width: .09, height: .125 } : { x: -.12, y: -.035, width: .24, height: .08 };
 }
-export function DensityGraphic({ instance: item, outcome, controls }: { instance: EquipmentInstance; outcome?: DensityOutcome | null | undefined; controls?: DensityControls | undefined }) {
+export function DensityGraphic({ instance: item, outcome, controls }: { instance: EquipmentInstance; outcome?: DensityViewOutcome | null | undefined; controls?: DensityControls | undefined }) {
   const touchWeight = useRef<{ pointerId: number; slot: string | null; released: boolean } | null>(null);
   const p = item.parameters;
   const result = outcome?.weighing.ok && outcome.weighing.balance.id === item.id ? outcome.weighing : null;
-  const volume = outcome?.volume.ok && outcome.volume.cylinder.id === item.id ? outcome.volume : null;
+  const volume = outcome?.volume?.ok && outcome.volume.cylinder.id === item.id ? outcome.volume : null;
   const drop = result ? Math.tanh(result.residualKg / .005) * .025 : 0;
   const trim = balanceAdjustments.zeroTrimKg;
   const trimKg = Number(p.zeroTrimKg);
@@ -131,8 +131,9 @@ export function DensityGraphic({ instance: item, outcome, controls }: { instance
       <rect x="-.047" y="-.013" width=".094" height=".018" rx=".006" fill="#819e9d"/><text x="0" y="-.243" fontSize=".011" textAnchor="middle" fill="#3a6b66">mL · 1 mL/格</text>
       {volume?.liquid.overflow && <text x="0" y="-.263" fontSize=".016" textAnchor="middle" fill="#bb6243">溢出</text>}
     </>}
-    {item.type === SPECIMEN && <><path d={`M-.013 0L-.018 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2 * .7}L-.006 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2}L.012 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2 * .9}L.017-.015 0 .004Z`} fill="#818f8d" stroke="#526c6c" strokeWidth="1"/><path d={`M-.006 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2}V${-Number(p.volumeM3) / SPECIMEN_AREA_M2 - .02}`} stroke="#8a9385" strokeWidth="1"/><text x="0" y="-.014" fontSize=".012" textAnchor="middle" fill="white">{String(p.sampleCode)}</text></>}
-    {item.type === BEAKER && <><path d="M-.045-.1H-.035V0H.035V-.1H.025" fill="#e4eeeb55" stroke="#6d9393" strokeWidth="1.5"/><path d={`M-.033 ${-.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)}Q0 ${.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)} .033 ${-.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)}V-.002H-.033Z`} fill="#81bfd477"/><text x="0" y="-.03" fontSize=".011" textAnchor="middle" fill="#4c7375">液体 {String(p.liquidCode)}</text></>}
+    {item.type === SPECIMEN && ['橡皮', '铅笔'].includes(String(p.sampleCode)) && (p.sampleCode === '橡皮' ? <><rect x="-.023" y="-.032" width=".046" height=".032" rx=".003" fill="#d8dcc0" stroke="#6e8275" strokeWidth="1"/><path d="M.01-.031v.03" stroke="#b3bb9a" strokeWidth="3"/></> : <><path d="M-.024-.012H.014L.024-.006 .014 0H-.024Z" fill="#c99843" stroke="#6e634c" strokeWidth="1"/><path d="M.014-.012 .024-.006 .014 0Z" fill="#ead4a7"/><path d="M.021-.008 .024-.006 .021-.004Z" fill="#414a4d"/></>)}
+    {item.type === SPECIMEN && !['橡皮', '铅笔'].includes(String(p.sampleCode)) && <><path d={`M-.013 0L-.018 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2 * .7}L-.006 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2}L.012 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2 * .9}L.017-.015 0 .004Z`} fill="#818f8d" stroke="#526c6c" strokeWidth="1"/><path d={`M-.006 ${-Number(p.volumeM3) / SPECIMEN_AREA_M2}V${-Number(p.volumeM3) / SPECIMEN_AREA_M2 - .02}`} stroke="#8a9385" strokeWidth="1"/><text x="0" y="-.014" fontSize=".012" textAnchor="middle" fill="white">{String(p.sampleCode)}</text></>}
+    {item.type === BEAKER && <><path d="M-.045-.1H-.035V0H.035V-.1H.025" fill="#e4eeeb55" stroke="#6d9393" strokeWidth="1.5"/><path d={`M-.033 ${-.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)}Q0 ${.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)} .033 ${-.003 - Math.min(.09, Number(p.liquidM3) / .00025 * .09)}V-.002H-.033Z`} fill="#81bfd477"/><text x="0" y="-.03" fontSize=".011" textAnchor="middle" fill="#4c7375">{Number(p.liquidM3) > 0 ? `液体 ${String(p.liquidCode)}` : '空杯'}</text></>}
     {item.type === MASS_SET && <>
       <rect x="-.115" y="-.023" width=".23" height=".06" rx=".008" fill="#b18f58" stroke="#78603d" strokeWidth="1"/>
       {standardMassesG.map((g, index) => {

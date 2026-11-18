@@ -18,7 +18,7 @@ import { RULER } from '../../equipment/optical/definitions.ts';
 import { OpticalGraphic, opticalBounds } from '../optical/OpticalGraphic.tsx';
 
 import { densityTypes } from '../../equipment/density/definitions.ts';
-import type { DensityOutcome } from '../../equipment/density/simulate.ts';
+import type { DensityViewOutcome } from '../../equipment/density/simulate.ts';
 import { DensityGraphic, densityBounds } from '../density/DensityGraphic.tsx';
 import type { DensityControls } from '../density/DensityGraphic.tsx';
 import { cartTypes } from '../../equipment/cart/definitions.ts';
@@ -42,7 +42,7 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   }
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
-export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun }: { onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun }: { onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityViewOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
   if (buoyancyTypes.includes(item.type)) return <BuoyancyGraphic item={item} />;
   if (cartTypes.includes(item.type)) return <CartGraphic instance={item} run={cartRun} />;
   if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;

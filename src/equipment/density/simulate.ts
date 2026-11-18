@@ -76,7 +76,8 @@ export function simulateDensity(scene: SceneDocument, registry: EquipmentRegistr
   return { ...weighing, ...volume, weighing, volume, specimen, beaker };
 }
 export type DensityOutcome = ReturnType<typeof simulateDensity>;
-export function densityViewScene(scene: SceneDocument, preview?: { id: string; point: WorldPoint } | null, outcome?: DensityOutcome | null) {
+export type DensityViewOutcome = Pick<DensityOutcome, 'weighing'> & { volume?: ReturnType<typeof solveCylinder> };
+export function densityViewScene(scene: SceneDocument, preview?: { id: string; point: WorldPoint } | null, outcome?: DensityViewOutcome | null) {
   const items = scene.equipment.map(item => item.id === preview?.id ? { ...item, pose: { ...item.pose, ...preview.point }, parameters: { ...item.parameters, ...([SPECIMEN, BEAKER].includes(item.type) ? { targetId: '' } : {}) } } : item);
   return { ...scene, equipment: items.map(item => {
     if (item.id === preview?.id || ![SPECIMEN, BEAKER].includes(item.type)) return item;
