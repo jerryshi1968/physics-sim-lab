@@ -1,0 +1,30 @@
+import type { SceneDocument } from '../../core/scene/schema.ts';
+import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
+import { validateSceneDocument } from '../../core/scene/validate.ts';
+import { BALANCE, MASS_SET, SPECIMEN } from '../density/definitions.ts';
+import { MECHANICAL_RULER } from '../mechanical/definitions.ts';
+import { solveBalance, densityViewScene } from '../density/simulate.ts';
+import { massMessage } from '../mass/simulate.ts';
+export const MASS_VOLUME_EXPERIMENT = 'J-MEAS-03', MASS_VOLUME_MODEL = 'measurement.mass-volume.static.v1';
+export const massVolumeApparatus = [BALANCE, MASS_SET, SPECIMEN, MECHANICAL_RULER];
+export const aluminumDensityKgPerM3 = 2700;
+export const aluminumBlocks = [.02, .025, .03, .034].map((edgeM, index) => ({ code: `铝块${index + 1}`, edgeM, volumeM3: edgeM ** 3, massKg: aluminumDensityKgPerM3 * edgeM ** 3 }));
+export function simulateMassVolume(scene: SceneDocument, registry: EquipmentRegistry) {
+  const weighing = solveBalance(scene.equipment), fail = (code: string) => ({ ok: false as const, code, weighing });
+  if (!validateSceneDocument(scene, registry).ok) return fail('MASS_DOCUMENT');
+  if (scene.connections.length || scene.equipment.some(i => !massVolumeApparatus.includes(i.type))) return fail('MV_MIXED');
+  if (scene.simulationConfig.randomError.enabled) return fail('DENSITY_RANDOM');
+  if (massVolumeApparatus.some(type => scene.equipment.filter(i => i.type === type).length > 1)) return fail('MASS_DUPLICATE');
+  if (scene.equipment.some(i => i.pose.flippedX || Math.abs(i.pose.xM) > 100 || Math.abs(i.pose.yM) > 100 || i.type !== MECHANICAL_RULER && Math.abs(i.pose.rotationRad) > 1e-10 || Math.abs(i.pose.rotationRad) > 2 * Math.PI)) return fail('DENSITY_ORIENTATION');
+  const block = scene.equipment.find(i => i.type === SPECIMEN), ruler = scene.equipment.find(i => i.type === MECHANICAL_RULER), balance = scene.equipment.find(i => i.type === BALANCE);
+  if (block && !['', balance?.id].includes(String(block.parameters.targetId)) || scene.equipment.some(i => i.type === MASS_SET && !['', balance?.id].includes(String(i.parameters.balanceId)))) return fail('DENSITY_ATTACHMENT');
+  const sample = aluminumBlocks.find(b => b.code === block?.parameters.sampleCode);
+  if (!block || !sample || Math.abs(Number(block.parameters.volumeM3) - sample.volumeM3) > 1e-12 || Math.abs(Number(block.parameters.massKg) - sample.massKg) > 1e-10) return fail('MV_BLOCK');
+  const view = densityViewScene(scene, null, { weighing }), shown = view.equipment.find(i => i.id === block.id)!;
+  const startM = ruler ? shown.pose.xM - sample.edgeM / 2 - ruler.pose.xM : 0, endM = startM + sample.edgeM;
+  const gapM = ruler ? shown.pose.yM - ruler.pose.yM : 0;
+  const rulerReadable = !!ruler && !block.parameters.targetId && Math.abs(ruler.pose.rotationRad) < 1e-6 && gapM >= .008 - 1e-10 && gapM <= .04 + 1e-10 && startM >= -1e-10 && endM <= Number(ruler.parameters.lengthM) + 1e-10;
+  return { ok: true as const, weighing, block, ruler, sample, startM, endM, rulerReadable };
+}
+export type MassVolumeOutcome = ReturnType<typeof simulateMassVolume>;
+export const massVolumeMessage = (code: string) => ({ MV_MIXED: '本实验使用天平、砝码盒、铝块和独立刻度尺。', MV_BLOCK: '请选择一块预设铝块；同种材料的质量与体积须保持配套。', MV_MASS: '先把铝块放上左盘，空载调平后用砝码和游码配平，再记录质量。', MV_RULER: '将铝块放在桌面，水平刻度尺贴近正面下沿，刻度覆盖两端；可点击“将尺移到铝块下沿”。', MV_SOURCES: '请选择本组同一块铝块的有效质量和两端读尺记录，不能混用不同大小的铝块。', MV_LENGTH: '终点读数应大于起点，边长不能超出本次尺的量程。', MV_PREVIEW: '请先松手完成调整，再保存读数或计算。' } as Record<string, string>)[code] ?? massMessage(code);

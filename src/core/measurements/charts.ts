@@ -4,8 +4,8 @@ import type { SceneDocument } from '../scene/schema.ts';
 import { measurementRows, sourceLabel, validPlotValue } from './table.ts';
 import type { MeasurementRow } from './table.ts';
 
-export interface MeasurementAxis { quantity: Dimension; unit: SIUnit; displayUnit?: '°' | 'g' | 'mL' | 'g/cm³' | 'cm'; label: string; pointLabel?: string; power?: -1 | 1 | 2 }
-export interface MeasurementChartProfile { id: string; label: string; available: boolean; groupByRun?: boolean; x: MeasurementAxis | 'sample'; y: MeasurementAxis }
+export interface MeasurementAxis { quantity: Dimension; unit: SIUnit; displayUnit?: '°' | 'g' | 'mL' | 'g/cm³' | 'cm' | 'cm³'; label: string; pointLabel?: string; power?: -1 | 1 | 2 }
+export interface MeasurementChartProfile { id: string; label: string; available: boolean; groupByRun?: boolean; referenceOrigin?: boolean; x: MeasurementAxis | 'sample'; y: MeasurementAxis }
 export const measurementChartProfiles: readonly MeasurementChartProfile[] = [
   { id: 'electrical-current', label: '电流多测点比较', available: true, x: 'sample', y: { quantity: 'current', unit: 'A', label: '电流（A）' } },
   { id: 'electrical-voltage', label: '电压多测点比较', available: true, x: 'sample', y: { quantity: 'voltage', unit: 'V', label: '电压（V）' } },

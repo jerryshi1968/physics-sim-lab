@@ -1,4 +1,5 @@
 import { PENDULUM } from '../../equipment/pendulum/definitions.ts';
+import { MassVolumeRuler } from '../massVolume/MassVolumeRuler.tsx';
 import { PendulumGraphic, pendulumBounds } from '../pendulum/PendulumGraphic.tsx';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
 import type { LeverOutcome } from '../../equipment/mechanical/simulate.ts';
@@ -42,7 +43,7 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   }
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
-export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun }: { onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityViewOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+export function MechanicalGraphic({ massVolumeMode = false, instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun }: { massVolumeMode?: boolean; onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityViewOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
   if (buoyancyTypes.includes(item.type)) return <BuoyancyGraphic item={item} />;
   if (cartTypes.includes(item.type)) return <CartGraphic instance={item} run={cartRun} />;
   if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;
@@ -54,6 +55,7 @@ export function MechanicalGraphic({ instance: item, outcome, pixelsPerM = 600, s
   if (projectileTypes.includes(item.type)) return <ProjectileGraphic instance={item} flight={projectileFlight} timerValueS={timerValueS} pixelsPerM={pixelsPerM} />;
   if (item.type === SPRING) return <SpringGraphic instance={item} outcome={springOutcome} />;
   if (frictionTypes.includes(item.type)) return <FrictionGraphic instance={item} />;
+  if (item.type === MECHANICAL_RULER && massVolumeMode) return <MassVolumeRuler instance={item} pixelsPerM={pixelsPerM} />;
   if (item.type === MECHANICAL_RULER) return <OpticalGraphic instance={{ ...item, type: RULER }} pixelsPerM={pixelsPerM} />;
   return <g className="real-apparatus" data-appearance="physical" data-mechanical-type={item.type} stroke="none">
     {item.type === SUPPORT && <><rect x="-.055" y="0" width=".11" height=".02" rx=".007" fill="#344e58" /><rect x="-.007" y={-Number(p.heightM)} width=".014" height={Number(p.heightM)} fill="#9db0b6" /><path d={`M-.025 ${-Number(p.heightM) + .015}L0 ${-Number(p.heightM) - .015}L.025 ${-Number(p.heightM) + .015}Z`} fill="#526c71" /><circle cy={-Number(p.heightM)} r=".006" fill="#d9ad59" /></>}

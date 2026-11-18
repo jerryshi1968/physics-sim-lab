@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
-export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' }
+export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' }
 
 export function DocumentPreview({ pending, onConfirm, onCancel }: {
   pending: PendingDocument; onConfirm: () => void; onCancel: () => void;
@@ -18,6 +18,7 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     {pending.source === 'buoyancy' && <p>测力计与圆柱体逐步浸入，排液杯保留已收集的液体。每阶段自行读数，称量排液验证阿基米德原理。教材映射待教师核验。</p>}
     {pending.source === 'cart' && <p>理想水平轨道上由悬挂砝码牵引小车。可比较光电门读数和打点纸带，系统质量包括随动的悬挂砝码。高中教材映射待教师核验。</p>}
     {pending.source === 'mirror-image' && <p>用薄玻璃板、观察眼和镜后对照物找像位；用刻度尺量距离和高度，再用光屏验证。观察和读数由学生填写。教材映射待教师核验。</p>}
+    {pending.source === 'mass-volume' && <p>同种铝制正方体，先称量，再读尺计算边长与体积，使用手工记录绘制 m–V 图。教材映射待教师核验。</p>}
     {pending.source === 'mass' && <p>游码归零，空载调平，左物右码；液体称空杯和加水后总质量，用两条手工读数相减。教材映射待教师核验。</p>}
     {pending.source === 'density' && <p>托盘天平先空载调零，固体用称重与排水法，液体用倒出前后质量差法。放稳器材，自行加减砝码、移动游码和平视液面；学生读数不会自动填写。教材映射待教师核验。</p>}
     {pending.source === 'reflection' && <p>平面镜、光源、量角器、法线与可折承接纸板；局部三维计算光线与折板的关系。角从法线读起，记录不自动填写；折板无连续光迹不代表光消失。教材映射待教师核验。</p>}
