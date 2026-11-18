@@ -1,4 +1,5 @@
 import { createAverageSpeedExperiment } from './average-speed.ts';
+import { createGravityExperiment } from './gravity.ts';
 import { createMassVolumeExperiment } from './massVolume.ts';
 import { createMassExperiment } from './mass.ts';
 import { createRefractionExperiment } from './refraction.ts';
@@ -26,7 +27,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -55,6 +56,7 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
+  entry('gravity-mass', 'junior', 'mechanical', 'gravity', '探究重力的大小跟质量的关系', '逐次悬挂已知质量的钩码，自行读弹簧测力计，记录并绘制 G–m 图。', createGravityExperiment),
   entry('mass-volume', 'junior', 'mechanical', 'mass-volume', '探究同种物质的质量与体积的关系', '称量不同大小的正方体铝块，读尺计算体积，用学生数据绘制 m–V 图。', createMassVolumeExperiment),
   entry('mass-solid', 'junior', 'mechanical', 'mass', '用天平测量固体的质量', '空载调平后，称橡皮、铅笔等物体；直接操作砝码与游码并保存读数。', createMassExperiment),
   entry('mass-liquid', 'junior', 'mechanical', 'mass', '用天平测量液体的质量', '先称空烧杯，再加水称总质量，用同一烧杯的两次读数相减。', (id, time) => createMassExperiment(id, time, true)),
@@ -113,7 +115,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if ((choice.family === 'mass' || choice.family === 'mass-volume')) viewport.pixelsPerM = width < 760 ? 360 : 650;
+  if (choice.family === 'gravity') viewport.pixelsPerM = Math.min(650, width < 760 ? 420 : 650, (Math.max(352, height * .52 - 114) - 48) / .76);
+  else if ((choice.family === 'mass' || choice.family === 'mass-volume')) viewport.pixelsPerM = width < 760 ? 360 : 650;
   else if (choice.family === 'average-speed') viewport.pixelsPerM = Math.min(500, width < 760 ? 200 : width < 1100 ? 310 : 500, (Math.max(352, height * .52 - 114) - 60) / .65);
   else if ((choice.family === 'boiling' || choice.family === 'melting')) viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
   else if (choice.family === 'ohm' || choice.family === 'voltammetry' || choice.family === 'lamp-power') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
