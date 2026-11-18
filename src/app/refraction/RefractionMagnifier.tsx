@@ -1,0 +1,13 @@
+import { useEffect, useRef, useState } from 'react';
+import type { RefractionOutcome } from '../../equipment/refraction/simulate.ts';
+import { NORMAL, PROTRACTOR } from '../../equipment/reflection/definitions.ts';
+import { worldToScreen } from '../../core/workbench/geometry.ts';
+import { RefractionGraphic } from './RefractionGraphic.tsx';
+import { RefractionRays } from './RefractionRays.tsx';
+export function RefractionMagnifier({ outcome: o, reflection, onClose }: { outcome: RefractionOutcome; reflection: boolean; onClose: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null), viewport = useRef<HTMLDivElement>(null), [zoom, setZoom] = useState(1);
+  useEffect(() => { dialog.current?.showModal(); const element = viewport.current; if (element) { element.scrollLeft = Math.max(0, (element.scrollWidth - element.clientWidth) / 2); element.scrollTop = Math.max(0, (element.scrollHeight - element.clientHeight) / 2); } }, []);
+  if (!o.ok) return null;
+  const size = { width: 600, height: 600 }, view = { centerXM: o.hit.x, centerYM: o.hit.y, pixelsPerM: 240 / Math.max(.32, ...o.gauges.map(g => Number(g.parameters.radiusM))) }, tools = [...o.gauges, ...(o.normalMarker ? [o.normalMarker] : [])].filter(i => [NORMAL, PROTRACTOR].includes(i.type));
+  return <dialog ref={dialog} aria-label="放大量角观察" onCancel={onClose} style={{ width: 'min(720px, calc(100vw - 32px))', maxHeight: '90vh', padding: 16, border: '1px solid #aabebb', borderRadius: 12 }}><h3>放大量角观察</h3><p>保持实际器材位置与零线；未校准时不自动移正。可滚动查看两侧刻线，每小格 1°。</p><div className="reflection-actions"><button disabled={zoom <= 1} onClick={() => setZoom(v => Math.max(1, v - .5))} aria-label="缩小量角观察">−</button><span>{zoom}×</span><button disabled={zoom >= 3} onClick={() => setZoom(v => Math.min(3, v + .5))} aria-label="放大量角观察刻度">＋</button><button onClick={onClose}>关闭量角观察</button></div><div ref={viewport} style={{ overflow: 'auto', maxHeight: '58vh', maxWidth: '100%', overscrollBehavior: 'contain' }}><svg role="img" aria-label="折射量角器放大图" viewBox="0 0 600 600" style={{ width: 600 * zoom, maxWidth: 'none', display: 'block' }}><rect width="600" height="600" fill="#fafdfb" /><rect y="300" width="600" height="300" fill="#d4edf3" /><path d="M0 300H600" stroke="#6fa6b6" strokeWidth="2" /><text x="16" y="25" fontSize="16" fill="#38646e">空气</text><text x="16" y="580" fontSize="16" fill="#38646e">水</text>{tools.map(i => { const point = worldToScreen(i.pose, view, size); return <g key={i.id} transform={`translate(${point.x} ${point.y}) rotate(${-i.pose.rotationRad * 180 / Math.PI}) scale(${view.pixelsPerM})`}><RefractionGraphic instance={i} /></g>; })}<RefractionRays outcome={o} view={view} size={size} reflection={reflection} /></svg></div></dialog>;
+}

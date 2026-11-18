@@ -1,0 +1,41 @@
+import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
+import { selectCatalogOption } from './catalog-helpers.ts';
+import { createWorkbenchRegistry } from '../../src/equipment/registry.ts';
+import { simulateReflection } from '../../src/equipment/reflection/simulate.ts';
+import { simulateRefraction } from '../../src/equipment/refraction/simulate.ts';
+import type { SceneDocument } from '../../src/core/scene/schema.ts';
+const registry=createWorkbenchRegistry();
+async function open(page:Page,kind:'reflection'|'refraction'){await page.goto('/');await page.getByRole('button',{name:'初中物理实验',exact:true}).click();await selectCatalogOption(page,kind);await page.getByRole('button',{name:'进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();await page.getByLabel('选择器材',{exact:true}).selectOption('emitter');}
+async function exported(page:Page):Promise<SceneDocument>{const pending=page.waitForEvent('download');await page.getByRole('button',{name:'导出',exact:true}).click();return JSON.parse(await readFile((await(await pending).path())!,'utf8')) as SceneDocument;}
+function outcome(scene:SceneDocument,kind:'reflection'|'refraction'){const o=kind==='reflection'?simulateReflection(scene,registry):simulateRefraction(scene,registry);if(!o.ok)throw Error(JSON.stringify(o));return o;}
+async function orbitPath(page:Page,scene:SceneDocument,delta:number,finish=true){const handle=page.getByTestId('light-orbit-handle'),box=(await handle.boundingBox())!,board=(await page.getByTestId('scene-board').boundingBox())!,view=scene.viewport!,overlay=page.locator('[data-light-orbit]'),cx=Number(await overlay.getAttribute('data-pivot-x-m')),cy=Number(await overlay.getAttribute('data-pivot-y-m')),px=board.x+board.width/2+(cx-view.centerXM)*view.pixelsPerM,py=board.y+board.height/2-(cy-view.centerYM)*view.pixelsPerM,hx=box.x+box.width/2,hy=box.y+box.height/2;
+  await page.mouse.move(hx,hy);await page.mouse.down();for(let n=1;n<=12;n++){const a=-delta*Math.PI/180*n/12;await page.mouse.move(px+(hx-px)*Math.cos(a)-(hy-py)*Math.sin(a),py+(hx-px)*Math.sin(a)+(hy-py)*Math.cos(a));}if(finish)await page.mouse.up();
+}
+for(const kind of ['reflection','refraction']as const){
+test(`${kind}: source body moves freely; orbit previews and cancels, commits once, undo/redo and parameters retain off-center hit`,async({page},info)=>{
+  await page.setViewportSize({width:1600,height:1000});await open(page,kind);const body=page.getByTestId('scene-board').locator('[data-equipment-id="emitter"] .equipment-body'),box=(await body.boundingBox())!;
+  await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+24,box.y+box.height/2,{steps:5});await page.mouse.up();const before=await exported(page),first=outcome(before,kind),source=before.equipment.find(i=>i.id==='emitter')!;expect(Math.abs(first.hit.x)).toBeGreaterThan(.01);
+  await orbitPath(page,before,12,false);await expect(page.getByTestId('scene-board')).toHaveAttribute('data-revision',String(before.revision));await expect(page.getByRole('button',{name:kind==='reflection'?'保存反射记录':'保存折射记录',exact:true})).toBeDisabled();expect(Number(await page.getByTestId('scene-board').locator('[data-equipment-id="emitter"]').getAttribute('data-rotation-rad'))).not.toBeCloseTo(source.pose.rotationRad,6);
+  await page.keyboard.press('Escape');await page.mouse.up();expect(await exported(page)).toEqual(before);await page.getByLabel('选择器材',{exact:true}).selectOption('emitter');await orbitPath(page,before,12);const changed=await exported(page),after=outcome(changed,kind);expect(changed.revision).toBe(before.revision+1);expect(after.hit.x).toBeCloseTo(first.hit.x,9);expect(after.hit.y).toBeCloseTo(first.hit.y,9);expect(after.distance).toBeCloseTo(first.distance,9);expect(changed.equipment.filter(i=>i.id!=='emitter')).toEqual(before.equipment.filter(i=>i.id!=='emitter'));
+  await page.getByRole('button',{name:'撤销',exact:true}).click();expect((await exported(page)).equipment).toEqual(before.equipment);await page.getByRole('button',{name:'重做',exact:true}).click();expect((await exported(page)).equipment).toEqual(changed.equipment);
+  await page.getByLabel(kind==='reflection'?'光源圆周方位角（°）':'光源入射方向（°）',{exact:true}).fill(kind==='reflection'?'135':'20');const parameter=await exported(page),last=outcome(parameter,kind);expect(last.hit.x).toBeCloseTo(first.hit.x,9);expect(last.distance).toBeCloseTo(first.distance,9);await page.getByLabel('选择器材',{exact:true}).selectOption('emitter');await page.screenshot({path:info.outputPath(`${kind}-orbit.png`),fullPage:true});
+});
+test(`${kind}: pan takes priority, pointercancel restores preview, keyboard rotates, boundary stops before crossing interface`,async({page})=>{
+  await open(page,kind);const before=await exported(page);await page.getByRole('button',{name:'平移',exact:true}).click();await expect(page.getByTestId('light-orbit-handle')).toHaveCount(0);const body=page.getByTestId('scene-board').locator('[data-equipment-id="emitter"] .equipment-body'),box=(await body.boundingBox())!;await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+35,box.y+box.height/2+10,{steps:5});await page.mouse.up();const panned=await exported(page);expect(panned.equipment).toEqual(before.equipment);expect(panned.viewport).not.toEqual(before.viewport);await page.getByRole('button',{name:'平移',exact:true}).click();
+  await orbitPath(page,panned,15,false);await page.getByTestId('scene-board').dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();expect((await exported(page)).equipment).toEqual(before.equipment);
+  await page.getByTestId('light-orbit-handle').focus();await page.keyboard.press('ArrowLeft');const keyed=await exported(page);expect(keyed.revision).toBe(panned.revision+1);const a=outcome(panned,kind),b=outcome(keyed,kind);expect(a.hit.x).toBeCloseTo(b.hit.x,9);expect(a.distance).toBeCloseTo(b.distance,9);
+  await orbitPath(page,keyed,200);const edge=await exported(page),c=outcome(edge,kind);expect(c.incidenceRad).toBeLessThan(Math.PI/2);expect(c.hit.x).toBeCloseTo(a.hit.x,9);expect(c.distance).toBeCloseTo(a.distance,9);
+});}
+
+test.describe('native touch light rotation',()=>{
+  test.use({hasTouch:true,viewport:{width:390,height:844}});
+  for(const kind of ['reflection','refraction']as const)test(`${kind}: native touch cancel and commit preserve the pivot without a compatibility-click move`,async({page})=>{
+    await open(page,kind);const before=await exported(page),first=outcome(before,kind),cdp=await page.context().newCDPSession(page);
+    async function drag(cancel:boolean){const handle=page.getByTestId('light-orbit-handle');await handle.scrollIntoViewIfNeeded();const board=page.getByTestId('scene-board');await board.evaluate(e=>window.scrollBy(0,e.getBoundingClientRect().top-100));const box=(await handle.boundingBox())!,rect=(await board.boundingBox())!,view=before.viewport!,px=rect.x+rect.width/2+(first.hit.x-view.centerXM)*view.pixelsPerM,py=rect.y+rect.height/2-(first.hit.y-view.centerYM)*view.pixelsPerM,hx=box.x+box.width/2,hy=box.y+box.height/2;
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:hx,y:hy,id:1}]});for(let n=1;n<=8;n++){const a=-10*Math.PI/180*n/8;await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:px+(hx-px)*Math.cos(a)-(hy-py)*Math.sin(a),y:py+(hx-px)*Math.sin(a)+(hy-py)*Math.cos(a),id:1}]});}await cdp.send('Input.dispatchTouchEvent',{type:cancel?'touchCancel':'touchEnd',touchPoints:[]});
+    }
+    try{await drag(true);expect((await exported(page)).equipment).toEqual(before.equipment);await expect(page.getByLabel('选择器材',{exact:true})).toHaveValue('emitter');await drag(false);const after=await exported(page),last=outcome(after,kind);expect(after.revision).toBe(before.revision+1);expect(last.hit.x).toBeCloseTo(first.hit.x,9);expect(last.distance).toBeCloseTo(first.distance,9);expect(after.equipment.find(i=>i.id==='emitter')!.pose.rotationRad).not.toBeCloseTo(before.equipment.find(i=>i.id==='emitter')!.pose.rotationRad,6);}finally{await cdp.detach();}
+  });
+});

@@ -1,4 +1,6 @@
 import { registerAverageSpeedEquipment } from './averageSpeed/definitions.ts';
+import { registerRefractionEquipment } from './refraction/definitions.ts';
+import { registerMeltingEquipment } from './melting/definitions.ts';
 import { registerThermalEquipment } from './thermal/definitions.ts';
 import { registerPendulumEquipment } from './pendulum/definitions.ts';
 import { registerReflectionEquipment } from './reflection/definitions.ts';
@@ -27,6 +29,8 @@ export function createWorkbenchRegistry() {
   registerBuoyancyEquipment(registry);
   registerPendulumEquipment(registry);
   registerThermalEquipment(registry);
+  registerMeltingEquipment(registry);
+  registerRefractionEquipment(registry);
   registerAverageSpeedEquipment(registry);
   return registry;
 }

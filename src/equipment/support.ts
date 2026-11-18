@@ -1,6 +1,8 @@
 import type { SceneDocument } from '../core/scene/schema.ts';
 import { POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, WIRE } from './electrical/definitions.ts';
 import { BENCH, CANDLE, LENS, SCREEN, RULER } from './optical/definitions.ts';
+import { REFRACTION_EXPERIMENT, TANK, refractionApparatus } from './refraction/definitions.ts';
+import { PROTRACTOR } from './reflection/definitions.ts';
 import { reflectionTypes } from './reflection/definitions.ts';
 import { mirrorImageApparatus, mirrorImageTypes } from './mirrorImage/definitions.ts';
 import { LEVER, SUPPORT, WEIGHT, FORCE_METER, MECHANICAL_RULER } from './mechanical/definitions.ts';
@@ -12,6 +14,7 @@ import { densityTypes, BALANCE, CYLINDER, MASS_SET, BEAKER } from './density/def
 import { cartTypes, CART, TRACK, GATE, TICKER } from './cart/definitions.ts';
 import { buoyancyApparatus, buoyancyTypes, BODY, OVERFLOW } from './buoyancy/definitions.ts';
 
+import { MELTING_EXPERIMENT, TUBE, meltingApparatus } from './melting/definitions.ts';
 import { BOILING_EXPERIMENT, thermalApparatus, HEATER, THERMOMETER } from './thermal/definitions.ts';
 
 import { AVERAGE_SPEED_EXPERIMENT, averageSpeedApparatus, STOP } from './averageSpeed/definitions.ts';
@@ -35,6 +38,7 @@ export interface EquipmentSupport {
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
   { key: 'averageSpeed', label: '测量平均速度', experimentIds: [AVERAGE_SPEED_EXPERIMENT], types: averageSpeedApparatus, maximum: oneEach(averageSpeedApparatus) },
+  { key: 'melting', label: '固体熔化', experimentIds: [MELTING_EXPERIMENT], types: meltingApparatus, maximum: oneEach(meltingApparatus) },
   { key: 'boiling', label: '水沸腾', experimentIds: [BOILING_EXPERIMENT], types: thermalApparatus, maximum: oneEach(thermalApparatus) },
   { key: 'lampPower', label: '小灯泡电功率', experimentIds: ['J-ELEC-04'], types: [POWER, LAMP, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, LAMP, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'voltammetry', label: '伏安法测量定值电阻', experimentIds: ['J-ELEC-03'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, RESISTOR, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
@@ -42,6 +46,7 @@ export const equipmentSupports: readonly EquipmentSupport[] = [
   { key: 'emf', label: '电源电动势与内阻', experimentIds: ['H-ELEC-01'], types: [POWER, RESISTOR, SWITCH, JUNCTION, AMMETER, VOLTMETER, RHEOSTAT, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, VOLTMETER, RHEOSTAT]) },
   { key: 'electrical', label: '电路实验', experimentIds: ['J-ELEC-01', JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICAL_EXPERIMENT], types: electricalApparatus, maximum: {} },
   { key: 'optical', label: '凸透镜成像', experimentIds: ['J-OPT-02'], types: opticalApparatus, maximum: oneEach([BENCH, CANDLE, LENS, SCREEN]) },
+  { key: 'refraction', label: '光折射特点', experimentIds: [REFRACTION_EXPERIMENT], types: refractionApparatus, maximum: { ...oneEach([TANK, 'optical.ray-box', 'optical.normal-marker']), [PROTRACTOR]: 2 } },
   { key: 'reflection', label: '光的反射定律', experimentIds: ['J-OPT-01'], types: reflectionTypes, maximum: oneEach(reflectionTypes) },
   { key: 'mirrorImage', label: '平面镜成像', experimentIds: ['J-OPT-03'], types: mirrorImageApparatus, maximum: oneEach(mirrorImageApparatus.filter(type => type !== RULER)) },
   { key: 'lever', label: '杠杆平衡', experimentIds: ['J-MECH-02'], types: leverApparatus, maximum: oneEach([LEVER]) },
@@ -59,7 +64,7 @@ export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'eq
   const formal = equipmentSupports.find(profile => profile.experimentIds.includes(scene.experimentId ?? ''));
   if (formal) return formal;
   const has = (types: readonly string[]) => scene.equipment.some(item => types.includes(item.type));
-  const key = has([STOP]) ? 'averageSpeed' : has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
+  const key = has([TANK]) ? 'refraction' : has([TUBE]) ? 'melting' : has([STOP]) ? 'averageSpeed' : has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
     : has([PENDULUM]) ? 'pendulum' : has(densityTypes) ? 'density' : has(cartTypes) ? 'cart' : has([SPRING]) ? 'spring' : has(projectileTypes) ? 'projectile'
     : has(frictionTypes) ? 'friction' : scene.equipment.some(item => item.type.startsWith('mechanical.')) ? 'lever'
     : scene.equipment.some(item => item.type.startsWith('optical.')) ? 'optical' : scene.equipment.length || scene.connections.length ? 'electrical' : null;
@@ -67,15 +72,15 @@ export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'eq
 }
 
 export function freeOpticalSupport(scene: Pick<SceneDocument, 'equipment' | 'connections'>): EquipmentSupport {
-  const candidates = equipmentSupports.filter(profile => ['optical', 'reflection', 'mirrorImage'].includes(profile.key))
-    .filter(profile => !scene.connections.length && scene.equipment.every(item => item.type === RULER || profile.types.includes(item.type)));
+  const candidates = equipmentSupports.filter(profile => ['optical', 'reflection', 'mirrorImage', 'refraction'].includes(profile.key))
+    .filter(profile => !scene.connections.length && scene.equipment.every(item => item.type === RULER || profile.types.includes(item.type)) && Object.entries(profile.maximum).every(([type, maximum]) => scene.equipment.filter(item => item.type === type).length <= maximum));
   if (candidates.length === 1) {
     const profile = candidates[0]!;
     return profile.types.includes(RULER) ? profile : { ...profile, types: [...profile.types, RULER] };
   }
   const types = [...new Set(candidates.flatMap(profile => [...profile.types, RULER]))];
   return { key: 'opticalFree', label: candidates.length ? '光学自由搭建' : '光学自由搭建（器材互斥）', experimentIds: [FREE_OPTICAL_EXPERIMENT], types,
-    maximum: oneEach(types.filter(type => type !== RULER)) };
+    maximum: { ...oneEach(types.filter(type => type !== RULER)), ...(candidates.some(profile => profile.key === 'refraction') ? { [PROTRACTOR]: 2 } : {}) } };
 }
 
 export function equipmentAvailability(scene: Pick<SceneDocument, 'experimentId' | 'equipment' | 'connections'>, type: string) {

@@ -24,7 +24,7 @@ test('junior thermal catalogue, five physical apparatus, disabled incompatible t
   const library=page.getByRole('region',{name:'器材库',exact:true});
   await expect(library.getByRole('tab')).toHaveText(['电学','光学','力学','热学']);
   await expect(library.getByRole('tab',{name:'热学',exact:true})).toHaveAttribute('aria-selected','true');
-  await expect(library.locator('[data-library-type]')).toHaveCount(5);
+  await expect(library.locator('[data-library-type]')).toHaveCount(6);
   await expect(page.getByTestId('thermal-reading')).toHaveText('温度计：20 ℃');
   const scene=await exported(page);expect(scene.experimentId).toBe('J-THERM-01');expect(scene.equipment).toHaveLength(5);
   for(const [id,shape] of [['beaker','[data-testid="thermal-beaker"] path'],['heater','[data-testid="thermal-heater"] rect'],['thermometer','[data-testid="thermal-thermometer"] rect'],['timer','.equipment-body > g > rect']] as const) { await page.getByTestId('scene-board').locator(`[data-equipment-id="${id}"] ${shape}`).first().click(); await expect(page.getByLabel('选择器材',{exact:true})).toHaveValue(id); }

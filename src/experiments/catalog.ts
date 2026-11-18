@@ -1,4 +1,6 @@
 import { createAverageSpeedExperiment } from './average-speed.ts';
+import { createRefractionExperiment } from './refraction.ts';
+import { createMeltingExperiment } from './melting.ts';
 import { createBoilingExperiment } from './boiling.ts';
 import type { SceneDocument } from '../core/scene/schema.ts';
 import { createEmptyScene } from '../core/scene/create.ts';
@@ -22,7 +24,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -53,7 +55,9 @@ function opticalBlank(id: string, timestamp: string) {
 export const experimentChoices: readonly ExperimentChoice[] = [
   entry('average-speed-blank', 'junior', 'mechanical', 'average-speed', '空白搭建平均速度实验', '自行取用小车、斜面、木块、金属挡片、刻度尺和停表。', (id, time) => createAverageSpeedExperiment(id, time, true)),
   entry('average-speed', 'junior', 'mechanical', 'average-speed', '测量物体运动的平均速度', '沿小坡度斜面静止释放小车，分别测全程、上半程的路程和时间，用 s/t 计算平均速度。', createAverageSpeedExperiment),
-  entry('thermal-blank', 'junior', 'thermal', 'boiling', '空白搭建热学实验', '自行取用烧杯、加热装置、温度计、支架和计时器。', (id, time) => createBoilingExperiment(id, time, true)),
+  entry('thermal-blank', 'junior', 'thermal', 'boiling', '空白搭建水沸腾实验', '自行取用烧杯、加热装置、温度计、支架和计时器。', (id, time) => createBoilingExperiment(id, time, true)),
+  entry('melting-blank', 'junior', 'thermal', 'melting', '空白搭建固体熔化实验', '自行取用水浴烧杯、加热装置、试管、温度计、支架和计时器。', (id, time) => createMeltingExperiment(id, time, true)),
+  entry('melting', 'junior', 'thermal', 'melting', '探究固体熔化时温度的变化规律', '水浴加热海波或石蜡，观察物态，按分钟记录并比较温度—时间图线。', createMeltingExperiment),
   entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
   entry('density-blank', 'junior', 'mechanical', 'density', '空白搭建密度测量实验', '自行取用器材，设置天平、砝码盒、盛水量筒等。', (id, time) => createDensityExperiment(id, time, false, true)),
   entry('density-solid', 'junior', 'mechanical', 'density', '测量固体密度实验', '预放托盘天平、砝码盒、盛水量筒和待测固体。', (id, time) => createDensityExperiment(id, time, false, false)),
@@ -75,6 +79,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('parallel-same', 'junior', 'electrical', 'experiment', '并联 · 相同灯泡', '3 V 电源；两灯均为 3 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'parallel-same')),
   entry('parallel-different', 'junior', 'electrical', 'experiment', '并联 · 不同灯泡', '3 V 电源；两灯分别为 3 V / 0.3 A、3 V / 0.2 A。', (id, time) => createLampCircuitExperiment(id, time, 'parallel-different')),
   entry('optical-blank', 'junior', 'optical', 'free', '空白搭建光学实验', '自行取用器材，设置镜、透镜等，遇到互斥的设备按先放的优先。', opticalBlank),
+  entry('refraction', 'junior', 'optical', 'refraction', '探究光折射时的特点', '用空气—水界面观察偏折、量入射角和折射角，验证垂直入射与光路可逆。', createRefractionExperiment),
   entry('reflection', 'junior', 'optical', 'reflection', '光的反射定律实验', '平面镜、窄光束光源、量角器、法线与可折承接纸板。自行校准、读角，并折动右纸板观察连续光迹。', createReflectionExperiment),
   entry('mirror-image', 'junior', 'optical', 'mirror-image', '平面镜成像实验', '用薄玻璃板观察像，移动镜后对照物并消除视差，再测量像的位置与大小，用光屏检查像能否承接。', createMirrorImageExperiment),
   entry('lens', 'junior', 'optical', 'optical', '探究凸透镜成像规律', '蜡烛、透镜和光屏可独立移动和调高，光屏不自动跳到清晰位置。', createOpticalExperiment),
@@ -104,8 +109,9 @@ export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoic
   const viewport = scene.viewport;
   if (!viewport) return;
   if (choice.family === 'average-speed') viewport.pixelsPerM = Math.min(500, width < 760 ? 200 : width < 1100 ? 310 : 500, (Math.max(352, height * .52 - 114) - 60) / .65);
-  else if (choice.family === 'boiling') viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
+  else if ((choice.family === 'boiling' || choice.family === 'melting')) viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);
   else if (choice.family === 'ohm' || choice.family === 'voltammetry' || choice.family === 'lamp-power') viewport.pixelsPerM = Math.min(430, (Math.max(352, height * .52 - 114) - 120) / .68, width < 760 ? 260 : width < 1100 ? 350 : 430);
+  else if (choice.family === 'refraction') viewport.pixelsPerM = Math.min(480, (Math.max(352, height * .52 - 114) - 75) / 1.02, width < 760 ? 250 : 480);
   else if (choice.family === 'pendulum') viewport.pixelsPerM = Math.min(440, (Math.max(352, height - 414) - 60) / .8, width < 760 ? 300 : 440);
   else if (choice.family === 'buoyancy') viewport.pixelsPerM = Math.min(viewport.pixelsPerM, (Math.max(352, height - 414) - 116) / .72, width < 760 ? 290 : width < 1100 ? 440 : 620);
   else if (choice.family === 'cart' && (width < 760 || height < 900)) viewport.pixelsPerM = 130;
