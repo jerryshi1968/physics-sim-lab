@@ -1,3 +1,4 @@
+import type { Scalar } from '../../core/equipment/schema.ts';
 import { z } from 'zod';
 import { FiniteSchema } from '../../core/equipment/schema.ts';
 import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
@@ -26,10 +27,11 @@ export const cartFields: Record<string, readonly ParameterField[]> = {
 };
 
 export function registerCartEquipment(registry: EquipmentRegistry) {
+  const presentParameters = (parameters: Record<string, Scalar | undefined>): Record<string, Scalar> => Object.fromEntries(Object.entries(parameters).filter((entry): entry is [string, Scalar] => entry[1] !== undefined));
   const items = [
     { type: CART, label: '动力学小车', defaults: { cartMassKg: .35, loadMassKg: .1, hangerMassKg: .05, flagWidthM: .04 }, schema: z.strictObject({
-      cartMassKg: FiniteSchema.min(.05).max(5), loadMassKg: FiniteSchema.min(0).max(5), hangerMassKg: FiniteSchema.min(0).max(1), flagWidthM: FiniteSchema.min(.005).max(.12),
-    }) },
+      cartMassKg: FiniteSchema.min(.05).max(5), loadMassKg: FiniteSchema.min(0).max(5), hangerMassKg: FiniteSchema.min(0).max(1), flagWidthM: FiniteSchema.min(.005).max(.12), twoForceTableId: z.string().max(80).optional(), twoForceSpeedMPerS: FiniteSchema.min(-.3).max(.3).optional(),
+    }).transform(presentParameters) },
     { type: TRACK, label: '水平轨道（带定滑轮）', defaults: { lengthM: 1.8, dropLimitM: 1.4 }, schema: z.strictObject({
       lengthM: FiniteSchema.min(.6).max(4), dropLimitM: FiniteSchema.min(.05).max(2),
     }) },

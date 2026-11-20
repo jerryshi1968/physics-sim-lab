@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
-export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' }
+export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' }
 
 export function DocumentPreview({ pending, onConfirm, onCancel }: {
   pending: PendingDocument; onConfirm: () => void; onCancel: () => void;
@@ -18,6 +18,7 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     {pending.source === 'buoyancy' && <p>测力计与圆柱体逐步浸入，排液杯保留已收集的液体。每阶段自行读数，称量排液验证阿基米德原理。教材映射待教师核验。</p>}
     {pending.source === 'cart' && <p>理想水平轨道上由悬挂砝码牵引小车。可比较光电门读数和打点纸带，系统质量包括随动的悬挂砝码。高中教材映射待教师核验。</p>}
     {pending.source === 'mirror-image' && <p>用薄玻璃板、观察眼和镜后对照物找像位；用刻度尺量距离和高度，再用光屏验证。观察和读数由学生填写。教材映射待教师核验。</p>}
+    {pending.source === 'two-force' && <p>两端钩码牵引光滑水平面上的小车，扭转后释放，自行记录二力条件与现象。教材信息待教师核验。</p>}
     {pending.source === 'gravity' && <p>复用支架、弹簧测力计与钩码，逐次挂接并记录 G 和 m。教材信息待教师核验。</p>}
     {pending.source === 'mass-volume' && <p>同种铝制正方体，先称量，再读尺计算边长与体积，使用手工记录绘制 m–V 图。教材映射待教师核验。</p>}
     {pending.source === 'mass' && <p>游码归零，空载调平，左物右码；液体称空杯和加水后总质量，用两条手工读数相减。教材映射待教师核验。</p>}
@@ -27,7 +28,7 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     {pending.source === 'spring' && <p>竖直静态弹簧，盘质量为零；先无载读尺，再加载/卸载复测。原长、总长和形变量分别记录，超限不外推长度。高中教材映射待教师核验。</p>}
     {pending.source === 'optical' && <p>近轴薄凸透镜，f=0.10 m；初态未同高、未对焦，请自行摆放、调高、移动光屏找像。无自动填入读数。</p>}
     {pending.source === 'friction' && <p>水平一维干摩擦，g={scene.simulationConfig.gravityMPerS2} N/kg。匀速牵引含启动过程，连续滑动稳态后读表；非稳态保留标签，不自动填写学生记录。重载从初态重跑。</p>}
-    {pending.source === 'lever' && <p>刚性杠杆与理想铰支架，g={scene.simulationConfig.gravityMPerS2} N/kg。先空载调平，再自行挂码/接测力计、调力和抄表；不自动平衡或填写测量值。</p>}
+    {pending.source === 'lever' && <p>刚性杠杆与理想铰支架，g={scene.simulationConfig.gravityMPerS2} N/kg。先空载调平，再自行挂接钩码/接测力计、调力和抄表；不自动平衡或填写测量值。</p>}
     {pending.source === 'experiment' && <p>{scene.equipment.length ? '这是可编辑初态：开关断开，电流表接 0～3 A，电压表接 0～15 V。请核对电源与两灯参数后自行闭合；指导不会代为接线或选档。' : '空白工作台，没有预接线或预填读数；从器材库自行搭建。'}</p>}
     {pending.source === 'experiment' && scene.equipment.length > 0 && <ul className="experiment-preview-parameters">{scene.equipment.filter(item => item.type === 'electrical.power-supply' || item.type === 'electrical.lamp').map(item => <li key={item.id}>{item.type === 'electrical.power-supply' ? `电源：${item.parameters.voltageV} V` : `${item.id}：${item.parameters.ratedVoltageV} V / ${item.parameters.ratedCurrentA} A，冷态电阻 ${item.parameters.coldResistanceOhm} Ω`}</li>)}</ul>}
     <p>{pending.fromVersion === 1 ? '旧版 1 已校验并迁移为版本 2，保留原器材和连接。' : '版本 2，场景及端口校验通过。'}</p>

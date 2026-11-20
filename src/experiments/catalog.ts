@@ -1,3 +1,4 @@
+import { createTwoForceExperiment } from './twoForce.ts';
 import { createAverageSpeedExperiment } from './average-speed.ts';
 import { createGravityExperiment } from './gravity.ts';
 import { createMassVolumeExperiment } from './massVolume.ts';
@@ -27,7 +28,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -56,6 +57,7 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
+  entry('two-force', 'junior', 'mechanical', 'two-force', '探究二力平衡的条件', '改变两端钩码，扭转小车后释放，比较两力大小、方向、作用线与运动状态。', createTwoForceExperiment),
   entry('gravity-mass', 'junior', 'mechanical', 'gravity', '探究重力的大小跟质量的关系', '逐次悬挂已知质量的钩码，自行读弹簧测力计，记录并绘制 G–m 图。', createGravityExperiment),
   entry('mass-volume', 'junior', 'mechanical', 'mass-volume', '探究同种物质的质量与体积的关系', '称量不同大小的正方体铝块，读尺计算体积，用学生数据绘制 m–V 图。', createMassVolumeExperiment),
   entry('mass-solid', 'junior', 'mechanical', 'mass', '用天平测量固体的质量', '空载调平后，称橡皮、铅笔等物体；直接操作砝码与游码并保存读数。', createMassExperiment),
@@ -74,8 +76,8 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('buoyancy-blank', 'junior', 'mechanical', 'buoyancy', '空白搭建浮力实验', '自行取用器材，设置天平、砝码盒、溢水杯、接液杯、悬挂圆柱体等。', (id, time) => createBuoyancyExperiment(id, time, 'empty')),
   entry('buoyancy-factors', 'junior', 'mechanical', 'buoyancy', '探究浮力的影响因素', '悬挂圆柱体，观察浸没体积与测力计读数。', (id, time) => createBuoyancyExperiment(id, time, 'factors')),
   entry('buoyancy-archimedes', 'junior', 'mechanical', 'buoyancy', '验证阿基米德原理', '用溢水杯和接液杯收集排液，称量验证阿基米德原理。', (id, time) => createBuoyancyExperiment(id, time, 'archimedes')),
-  entry('lever-blank', 'junior', 'mechanical', 'lever', '空白搭建杠杆平衡实验', '自行取用器材，设置杠杆、挂码、弹簧测力计等。', (id, time) => createLeverExperiment(id, time, true)),
-  entry('lever', 'junior', 'mechanical', 'lever', '杠杆平衡实验', '杠杆调平，用挂码、调整拉力并记录，不自动给出平衡装置。', createLeverExperiment),
+  entry('lever-blank', 'junior', 'mechanical', 'lever', '空白搭建杠杆平衡实验', '自行取用器材，设置杠杆、钩码、弹簧测力计等。', (id, time) => createLeverExperiment(id, time, true)),
+  entry('lever', 'junior', 'mechanical', 'lever', '杠杆平衡实验', '杠杆调平，用钩码、调整拉力并记录，不自动给出平衡装置。', createLeverExperiment),
   entry('electrical-blank', 'junior', 'electrical', 'free', '空白搭建电学实验', '自行取用器材，设置电源和接线，串联与并联均可探索。', (id, time) => electricalBlank(id, time, 'junior')),
   entry('ohm-voltage', 'junior', 'electrical', 'ohm', '探究电流与电压的关系', '保持定值电阻不变，调节四柱变阻器，记录并绘制 I–U 图线。', (id, time) => createOhmExperiment(id, time, 'voltage')),
   entry('ohm-resistance', 'junior', 'electrical', 'ohm', '探究电流与电阻的关系', '替换定值电阻，调变阻器保持电压，记录并绘制 I–1/R 图线。', (id, time) => createOhmExperiment(id, time, 'resistance')),
@@ -115,7 +117,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'gravity') viewport.pixelsPerM = Math.min(650, width < 760 ? 420 : 650, (Math.max(352, height * .52 - 114) - 48) / .76);
+  if (choice.family === 'two-force') viewport.pixelsPerM = Math.min(500, width < 760 ? 170 : 500, (Math.max(352, height * .52 - 114) - 64) / 1.05);
+  else if (choice.family === 'gravity') viewport.pixelsPerM = Math.min(650, width < 760 ? 420 : 650, (Math.max(352, height * .52 - 114) - 48) / .76);
   else if ((choice.family === 'mass' || choice.family === 'mass-volume')) viewport.pixelsPerM = width < 760 ? 360 : 650;
   else if (choice.family === 'average-speed') viewport.pixelsPerM = Math.min(500, width < 760 ? 200 : width < 1100 ? 310 : 500, (Math.max(352, height * .52 - 114) - 60) / .65);
   else if ((choice.family === 'boiling' || choice.family === 'melting')) viewport.pixelsPerM = Math.min(650, (Math.max(352, height * .52 - 114) - 48) / .54, width < 760 ? 470 : 650);

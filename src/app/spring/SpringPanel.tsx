@@ -12,7 +12,7 @@ export function SpringPanel({ outcome, preview, gravity }: { outcome: SpringOutc
     {outcome.ok && <p>已挂 {outcome.loads.length} 件钩码，盘质量 {String(outcome.spring.parameters.trayMassKg)} kg。测原长时须取下全部钩码并将盘质量设为零；总长不是形变量。</p>}
     <label className="checkbox-field"><input type="checkbox" checked={auxiliary} onChange={event => setAuxiliary(event.target.checked)} />显示弹簧模型值与理论（可关闭）</label>
     {auxiliary && outcome.ok && !preview && <dl data-testid="spring-theory"><dt>模型 F=mg=kΔx</dt><dd>{Number(outcome.value.forceN.toPrecision(8))} N</dd><dt>模型原长 L0 / 总长 L / 形变量 Δx</dt><dd>{Number(outcome.spring.parameters.originalLengthM)} / {Number(outcome.value.lengthM.toPrecision(8))} / {Number(outcome.value.extensionM.toPrecision(8))} m</dd></dl>}
-    <details><summary>弹簧实验步骤与范围</summary><ol><li>安装弹簧，将独立尺竖直向下摆在旁边，移动尺零点以覆盖两端。无挂码且盘质量为零时，读取两端并相减得到 L0。</li><li>加载已知质量钩码，读两端得到总长 L；输入原长，按 Δx=L−L0 计算。F=(钩码质量+盘质量)g。</li><li>在范围内至少记录五个不同工作点，再卸载复测；切到图线，以记录值拟合 F=kΔx+b，斜率单位 N/m。</li></ol><p>最大线性伸长与额定载荷均是模型配置，超限无正常长度/采样，不预测永久变形。未实现过渡动画，拖动预览中禁止采样。教材映射待教师核验。</p></details>
+    <details><summary>弹簧实验步骤与范围</summary><ol><li>安装弹簧，将独立尺竖直向下摆在旁边，移动尺零点以覆盖两端。无钩码且盘质量为零时，读取两端并相减得到 L0。</li><li>加载已知质量钩码，读两端得到总长 L；输入原长，按 Δx=L−L0 计算。F=(钩码质量+盘质量)g。</li><li>在范围内至少记录五个不同工作点，再卸载复测；切到图线，以记录值拟合 F=kΔx+b，斜率单位 N/m。</li></ol><p>最大线性伸长与额定载荷均是模型配置，超限无正常长度/采样，不预测永久变形。未实现过渡动画，拖动预览中禁止采样。教材映射待教师核验。</p></details>
   </section>;
 }
 export function SpringAssembly({ scene, instance, onAttach }: { scene: SceneDocument; instance: EquipmentInstance; onAttach: (parameters: Record<string, Scalar>) => boolean }) {

@@ -19,8 +19,9 @@ export function measurementRows(scene: SceneDocument): MeasurementRow[] {
     const sampleId = record.context?.sampleId ?? record.id;
     if (!groups.has(sampleId)) groups.set(sampleId, groups.size + 1);
     const snapshot = record.context ? snapshots.get(record.context.sampleId) : undefined;
-    return { record, snapshot, sampleIndex: groups.get(sampleId)!, equipmentLabel: record.context?.equipmentLabel ?? record.equipmentId,
-      pointLabel: record.context?.pointLabel ?? record.equipmentId, setupLabel: snapshot?.setupLabel ?? '旧记录（无接线快照）' };
+    const label = (value: string) => record.runId.startsWith('two-force-') ? value.replaceAll('挂码', '钩码') : value;
+    return { record, snapshot, sampleIndex: groups.get(sampleId)!, equipmentLabel: label(record.context?.equipmentLabel ?? record.equipmentId),
+      pointLabel: label(record.context?.pointLabel ?? record.equipmentId), setupLabel: snapshot?.setupLabel ?? '旧记录（无接线快照）' };
   });
 }
 
