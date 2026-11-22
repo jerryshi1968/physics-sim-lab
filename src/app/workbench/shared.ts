@@ -1,3 +1,4 @@
+import { PULLEY, pulleyModes } from '../../equipment/pulley/definitions.ts';
 import { KINETIC_EXPERIMENT, kineticLabels } from '../../equipment/kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceLabels } from '../../equipment/twoForce/simulate.ts';
 import { AVERAGE_SPEED_EXPERIMENT, averageSpeedLabels } from '../../equipment/averageSpeed/definitions.ts';
@@ -23,7 +24,7 @@ export function changeSelection(current: Selection, next: Selection, additive = 
 export function equipmentLabel(scene: SceneDocument, registry: EquipmentRegistry, id: string): string {
   const index = scene.equipment.findIndex(item => item.id === id);
   const instance = scene.equipment[index];
-  return instance ? `${scene.experimentId === KINETIC_EXPERIMENT && kineticLabels[instance.type] || scene.experimentId === TWO_FORCE_EXPERIMENT && twoForceLabels[instance.type] || scene.experimentId === AVERAGE_SPEED_EXPERIMENT && averageSpeedLabels[instance.type] || registry.get(instance.type, instance.definitionVersion)?.label || '未知器材'} ${index + 1}` : '未知器材';
+  return instance ? `${instance.type === PULLEY && (instance.parameters.mode === 'direct' ? '备用滑轮' : pulleyModes[instance.parameters.mode as keyof typeof pulleyModes]) || scene.experimentId === KINETIC_EXPERIMENT && kineticLabels[instance.type] || scene.experimentId === TWO_FORCE_EXPERIMENT && twoForceLabels[instance.type] || scene.experimentId === AVERAGE_SPEED_EXPERIMENT && averageSpeedLabels[instance.type] || registry.get(instance.type, instance.definitionVersion)?.label || '未知器材'} ${index + 1}` : '未知器材';
 }
 
 export function endpointLabel(scene: SceneDocument, registry: EquipmentRegistry, endpoint: Endpoint | null): string {

@@ -39,7 +39,8 @@ export function LiveProperties({ instance, registry, fields, optical, canRotate,
     const value = active[key]?.raw ?? String(propertyValue(instance, key));
     const candidate = propertyCandidate(instance, { [key]: { raw: value, applied: propertyValue(instance, key) } });
     const invalid = value.trim() === '' || !Number.isFinite(Number(value)) || !validPropertyCandidate(candidate, registry) || rejected === key;
-    return <label key={key}>{label}<input aria-label={label} aria-describedby={helpId} aria-invalid={invalid} name={key} type="number" step="any" value={value}
+    const constraints = fields.find(field => field.key === key);
+    return <label key={key}>{label}<input aria-label={label} aria-describedby={helpId} aria-invalid={invalid} name={key} type="number" min={constraints?.min} max={constraints?.max} step={constraints?.step ?? 'any'} value={value}
       onChange={event => changeNumber(key, event.currentTarget.value, event.currentTarget)} onBlur={() => { setDrafts(current => { const remaining = { ...current }; delete remaining[key]; return remaining; }); setRejected(null); }}
       onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setDrafts(current => { const remaining = { ...current }; delete remaining[key]; return remaining; }); setRejected(null); } }} /></label>;
     })}

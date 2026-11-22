@@ -1,3 +1,5 @@
+import { PULLEY } from '../../equipment/pulley/definitions.ts';
+import { PulleyWheel } from '../pulley/PulleyWheel.tsx';
 import { PENDULUM } from '../../equipment/pendulum/definitions.ts';
 import { MassVolumeRuler } from '../massVolume/MassVolumeRuler.tsx';
 import { PendulumGraphic, pendulumBounds } from '../pendulum/PendulumGraphic.tsx';
@@ -27,6 +29,7 @@ import { CartGraphic, cartBounds } from '../cart/CartGraphic.tsx';
 import type { CartRun } from '../../equipment/cart/simulate.ts';
 
 export function mechanicalBounds(item: EquipmentInstance, springOutcome?: SpringOutcome | null) {
+  if (item.type === PULLEY) return { x: -.055, y: -.08, width: .11, height: .16 };
   if (item.type === PENDULUM) return pendulumBounds(item);
   if (buoyancyTypes.includes(item.type)) return buoyancyBounds(item);
   if (cartTypes.includes(item.type)) return cartBounds(item);
@@ -44,6 +47,7 @@ export function mechanicalBounds(item: EquipmentInstance, springOutcome?: Spring
   return { x: -.035, y: -.01, width: .07, height: weightHookDrop(item) + .02 };
 }
 export function MechanicalGraphic({ massVolumeMode = false, instance: item, outcome, pixelsPerM = 600, showWeightLabel = true, buoyancyReading, frictionReading, springOutcome, projectileFlight, pendulumAngle, onPendulumAngle, onPendulumSelect, timerValueS, densityOutcome, densityControls, cartRun, gravityReading }: { gravityReading?: { forceN: number; status: string } | undefined; massVolumeMode?: boolean; onPendulumSelect?: ((id: string, additive?: boolean) => void) | undefined; pendulumAngle?: number | undefined; onPendulumAngle?: ((id: string, degrees: number) => void) | undefined; timerValueS?: number | undefined; densityOutcome?: DensityViewOutcome | null | undefined; densityControls?: DensityControls | undefined; projectileFlight?: ProjectileFlight | null | undefined; springOutcome?: SpringOutcome | null | undefined; buoyancyReading?: { forceN: number; status: string } | undefined; frictionReading?: { forceN: number; status: string } | undefined; cartRun?: CartRun | null | undefined; instance: EquipmentInstance; outcome?: LeverOutcome | null; pixelsPerM?: number; showWeightLabel?: boolean }) {
+  if (item.type === PULLEY) return <PulleyWheel item={item} />;
   if (buoyancyTypes.includes(item.type)) return <BuoyancyGraphic item={item} />;
   if (cartTypes.includes(item.type)) return <CartGraphic instance={item} run={cartRun} />;
   if (densityTypes.includes(item.type)) return <DensityGraphic instance={item} outcome={densityOutcome} controls={densityControls} />;

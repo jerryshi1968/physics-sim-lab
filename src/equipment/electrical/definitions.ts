@@ -16,7 +16,7 @@ export const AMMETER = 'electrical.ammeter';
 export const VOLTMETER = 'electrical.voltmeter';
 export const RHEOSTAT = 'electrical.rheostat';
 
-export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean'; inverted?: boolean }
+export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean'; inverted?: boolean; min?: number; max?: number; step?: number }
 export const parameterFields: Record<string, readonly ParameterField[]> = {
   [POWER]: [{ key: 'voltageV', label: '电源电压', unit: 'V', kind: 'number' }, { key: 'internalResistanceOhm', label: '电源内阻', unit: 'Ω', kind: 'number' }],
   [RESISTOR]: [{ key: 'resistanceOhm', label: '电阻', unit: 'Ω', kind: 'number' }, { key: 'concealResistance', label: '隐藏阻值（待测电阻）', unit: '', kind: 'boolean' }],

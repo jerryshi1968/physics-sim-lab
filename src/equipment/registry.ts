@@ -1,3 +1,4 @@
+import { registerPulleyEquipment } from './pulley/definitions.ts';
 import { registerAverageSpeedEquipment } from './averageSpeed/definitions.ts';
 import { registerRefractionEquipment } from './refraction/definitions.ts';
 import { registerMeltingEquipment } from './melting/definitions.ts';
@@ -32,5 +33,6 @@ export function createWorkbenchRegistry() {
   registerMeltingEquipment(registry);
   registerRefractionEquipment(registry);
   registerAverageSpeedEquipment(registry);
+  registerPulleyEquipment(registry);
   return registry;
 }

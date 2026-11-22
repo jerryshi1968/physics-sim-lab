@@ -1,3 +1,4 @@
+import { PULLEY, PULLEY_EXPERIMENT, pulleyApparatus } from './pulley/definitions.ts';
 import { KINETIC_EXPERIMENT, kineticApparatus } from './kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceApparatus } from './twoForce/simulate.ts';
 import { GRAVITY_EXPERIMENT, gravityApparatus } from './gravity/simulate.ts';
@@ -42,6 +43,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'pulley', label: '定滑轮和动滑轮', experimentIds: [PULLEY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 1, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
   { key: 'kinetic', label: '动能影响因素', experimentIds: [KINETIC_EXPERIMENT], types: kineticApparatus, maximum: { ...oneEach(kineticApparatus), [MECHANICAL_RULER]: 2 } },
   { key: 'twoForce', label: '二力平衡', experimentIds: [TWO_FORCE_EXPERIMENT], types: twoForceApparatus, maximum: { [CART]: 1, [TRACK]: 1, [WEIGHT]: 6 } },
   { key: 'gravity', label: '重力与质量', experimentIds: [GRAVITY_EXPERIMENT], types: gravityApparatus, maximum: { [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6 } },
@@ -74,7 +76,7 @@ export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'eq
   const formal = equipmentSupports.find(profile => profile.experimentIds.includes(scene.experimentId ?? ''));
   if (formal) return formal;
   const has = (types: readonly string[]) => scene.equipment.some(item => types.includes(item.type));
-  const key = has([TANK]) ? 'refraction' : has([TUBE]) ? 'melting' : has([STOP]) ? 'averageSpeed' : has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
+  const key = has([PULLEY]) ? 'pulley' : has([TANK]) ? 'refraction' : has([TUBE]) ? 'melting' : has([STOP]) ? 'averageSpeed' : has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
     : has([PENDULUM]) ? 'pendulum' : has(densityTypes) ? 'density' : has(cartTypes) ? 'cart' : has([SPRING]) ? 'spring' : has(projectileTypes) ? 'projectile'
     : has(frictionTypes) ? 'friction' : scene.equipment.some(item => item.type.startsWith('mechanical.')) ? 'lever'
     : scene.equipment.some(item => item.type.startsWith('optical.')) ? 'optical' : scene.equipment.length || scene.connections.length ? 'electrical' : null;

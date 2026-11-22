@@ -1,0 +1,28 @@
+import type { EquipmentRegistry } from '../../core/equipment/registry.ts';
+import type { MeasurementRecord, SceneDocument } from '../../core/scene/schema.ts';
+import { MeasurementRecordSchema, MeasurementSnapshotSchema } from '../../core/scene/schema.ts';
+import { manualResult, parseManualValue } from '../../core/measurements/records.ts';
+import { MECHANICAL_RULER } from '../mechanical/definitions.ts';
+import { PULLEY_MODEL, pulleyModes } from './definitions.ts';
+import { simulatePulley, pulleyMessage } from './simulate.ts';
+import type { PulleyOutcome } from './simulate.ts';
+export interface PulleyInput {group:string;gravity:string;force:string;loadStart:string;loadEnd:string;pullStart:string;pullEnd:string;loadRuler:string;pullRuler:string;direction:string;note:string}
+export function pulleyScale(scene:SceneDocument,outcome:PulleyOutcome,id:string,side:'load'|'pull') {
+  const ruler=scene.equipment.find(i=>i.id===id&&i.type===MECHANICAL_RULER),l=outcome.layout;if(!ruler||!l||ruler.pose.flippedX||Math.abs(ruler.pose.rotationRad-Math.PI/2)>1e-8)return null;
+  const start=(side==='load'?l.loadStart:l.meterStart).yM-ruler.pose.yM,end=(side==='load'?l.loadPoint:l.meterPoint).yM-ruler.pose.yM,length=Number(ruler.parameters.lengthM);return {ruler,start,end,length,covered:Math.min(start,end)>=-1e-9&&Math.max(start,end)<=length+1e-9};
+}
+export function buildPulleyReading(scene:SceneDocument,registry:EquipmentRegistry,input:PulleyInput,id:string,time:string,preview=false) {
+  const out=simulatePulley(scene,registry,preview),fail=(message:string)=>({ok:false as const,message});if(!out.ok)return fail(pulleyMessage(out.code));const l=out.layout!,load=pulleyScale(scene,out,input.loadRuler,'load'),pull=pulleyScale(scene,out,input.pullRuler,'pull');
+  if(!load?.covered||!pull?.covered)return fail('选择两把竖直向上的尺，分别覆盖重物和测力计的起止标记。');
+  if(Object.values(input).some(value=>value.length>100)||!['未判断','向上','向下'].includes(input.direction))return fail('请输入有效条件，文字最多 100 字。');
+  const runId=`pulley-${id}`,note=JSON.stringify({kind:'pulley',mode:l.mode,massKg:out.massKg,pulleyMassKg:Number(l.pulley.parameters.massKg),direction:input.direction,note:input.note,pullM:l.u});
+  const snapshot=MeasurementSnapshotSchema.safeParse({id,documentId:scene.documentId,documentRevision:scene.revision,runId,sequence:scene.revision+1,capturedAt:time,setupLabel:input.group,note,modelVersion:PULLEY_MODEL,equipment:scene.equipment,connections:scene.connections,modelConfigSnapshot:scene.simulationConfig});if(!snapshot.success)return fail('记录来源无效。');
+  const specs=[['gravity','物重G','force','N',1,out.weightN,l.weight.id,{min:0,max:50,resolution:.02}],['force','拉力F','force','N',1,out.forceN,l.meter.id,{min:0,max:Number(l.meter.parameters.rangeN),resolution:Number(l.meter.parameters.resolutionN)}],['loadStart','重物起点','length','m',.01,load.start,load.ruler.id,{min:0,max:load.length,resolution:.001}],['loadEnd','重物终点','length','m',.01,load.end,load.ruler.id,{min:0,max:load.length,resolution:.001}],['pullStart','测力计起点','length','m',.01,pull.start,pull.ruler.id,{min:0,max:pull.length,resolution:.001}],['pullEnd','测力计终点','length','m',.01,pull.end,pull.ruler.id,{min:0,max:pull.length,resolution:.001}]] as const,records:MeasurementRecord[]=[];
+  for(const [key,label,quantity,unit,factor,physicalValue,equipmentId,range]of specs){const raw=input[key],parsed=parseManualValue(raw);if(!parsed.ok)return fail('请输入有效数字，留空保留缺失。');const converted=parsed.value===null?raw:String(Number((parsed.value*factor).toPrecision(12))),result=manualResult(converted,'valid',range);if(!result)return fail('读数格式无效。');const row=MeasurementRecordSchema.safeParse({id:`${id}.${key}`,source:'manual',quantity,unit,...result,rawInput:converted,equipmentId,range,recordedAt:time,documentRevision:scene.revision,runId,sequence:snapshot.data.sequence,modelConfigSnapshot:scene.simulationConfig,context:{sampleId:id,equipmentLabel:`滑轮实验·${pulleyModes[l.mode]}`,pointLabel:label,instrumentStatus:'valid',instrumentDisplayValue:key==='force'?out.displayN:physicalValue,physicalValue,originalRawInput:converted,diagnosticCodes:[]}});if(!row.success)return fail('读数超出记录范围。');records.push(row.data);}
+  return {ok:true as const,records,snapshot:snapshot.data};
+}
+export function pulleyRows(scene:SceneDocument) {
+  return (scene.measurementSnapshots??[]).flatMap(snapshot=>{if(snapshot.modelVersion!==PULLEY_MODEL)return [];try{const note=JSON.parse(snapshot.note);if(note.kind!=='pulley'||!Object.hasOwn(pulleyModes,note.mode)||!['未判断','向上','向下'].includes(note.direction)||typeof note.massKg!=='number'||!Number.isFinite(note.massKg)||note.massKg<=0||typeof note.pulleyMassKg!=='number'||!Number.isFinite(note.pulleyMassKg)||note.pulleyMassKg<0||note.pulleyMassKg>.2)return [];
+    const value=(key:string)=>{const r=scene.measurementRecords.find(r=>r.id===`${snapshot.id}.${key}`&&r.context?.sampleId===snapshot.id);return r?.measurementStatus==='valid'?r.value:null;},gravity=value('gravity'),force=value('force'),a=value('loadStart'),b=value('loadEnd'),c=value('pullStart'),d=value('pullEnd'),height=a!==null&&b!==null&&b>=a?b-a:null,distance=c!==null&&d!==null?Math.abs(d-c):null;
+    return [{id:snapshot.id,group:snapshot.setupLabel,mode:pulleyModes[note.mode as keyof typeof pulleyModes],gravity,force,height,distance,forceRatio:force!==null&&gravity!==null&&gravity>0?force/gravity:null,distanceRatio:height!==null&&height>0&&distance!==null?distance/height:null,direction:String(note.direction),note:typeof note.note==='string'?note.note:'',mass:Number(note.massKg),pulleyMass:Number(note.pulleyMassKg)}];}catch{return [];}});
+}

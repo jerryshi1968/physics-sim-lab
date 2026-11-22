@@ -1,3 +1,4 @@
+import { createPulleyExperiment } from './pulley.ts';
 import { createKineticExperiment } from './kinetic.ts';
 import { createTwoForceExperiment } from './twoForce.ts';
 import { createAverageSpeedExperiment } from './average-speed.ts';
@@ -29,7 +30,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic';
+export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -58,6 +59,7 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
+  entry('pulley', 'junior', 'mechanical', 'pulley', '研究定滑轮和动滑轮的特点', '复用测力计、钩码和独立尺，比较直接提起、定滑轮和动滑轮的拉力、方向与距离。', createPulleyExperiment),
   entry('kinetic', 'junior', 'mechanical', 'kinetic', '探究物体的动能跟哪些因素有关', '钢球从不同高度滚下，改变质量，以同一木块的位移比较动能。', createKineticExperiment),
   entry('two-force', 'junior', 'mechanical', 'two-force', '探究二力平衡的条件', '改变两端钩码，扭转小车后释放，比较两力大小、方向、作用线与运动状态。', createTwoForceExperiment),
   entry('gravity-mass', 'junior', 'mechanical', 'gravity', '探究重力的大小跟质量的关系', '逐次悬挂已知质量的钩码，自行读弹簧测力计，记录并绘制 G–m 图。', createGravityExperiment),
@@ -119,7 +121,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'kinetic') viewport.pixelsPerM = Math.min(350, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 3.3, (Math.max(352, height * .52 - 114) - 80) / .7);
+  if (choice.family === 'pulley') viewport.pixelsPerM = Math.min(500, (Math.max(300, height * .52 - 114) - 80) / 1.05, width < 760 ? 240 : 500);
+  else if (choice.family === 'kinetic') viewport.pixelsPerM = Math.min(350, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 3.3, (Math.max(352, height * .52 - 114) - 80) / .7);
   else if (choice.family === 'two-force') viewport.pixelsPerM = Math.min(500, width < 760 ? 170 : 500, (Math.max(352, height * .52 - 114) - 64) / 1.05);
   else if (choice.family === 'gravity') viewport.pixelsPerM = Math.min(650, width < 760 ? 420 : 650, (Math.max(352, height * .52 - 114) - 48) / .76);
   else if ((choice.family === 'mass' || choice.family === 'mass-volume')) viewport.pixelsPerM = width < 760 ? 360 : 650;
