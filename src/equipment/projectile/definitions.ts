@@ -13,7 +13,7 @@ export const projectileFields: Record<string, readonly ParameterField[]> = {
 export function registerProjectileEquipment(registry: EquipmentRegistry) {
   const items = [
     { type: LAUNCHER, label: '水平发射器', defaults: { speedMPerS: 2 }, schema: z.strictObject({ speedMPerS: FiniteSchema.min(0).max(20) }) },
-    { type: BALL, label: '平抛小球', defaults: { launcherId: '' }, schema: z.strictObject({ launcherId: z.string().max(80) }) },
+    { type: BALL, label: '平抛小球', defaults: { launcherId: '' }, schema: z.strictObject({ launcherId: z.string().max(80), massKg: FiniteSchema.min(.02).max(.5).optional() }).transform(value => Object.fromEntries(Object.entries(value).filter((entry): entry is [string, string | number] => entry[1] !== undefined))) },
     { type: TIMER, label: '计时器', defaults: { intervalS: .1, resolutionS: .001 }, schema: z.strictObject({ intervalS: FiniteSchema.min(.001).max(2), resolutionS: FiniteSchema.min(.0001).max(.1) }) },
     { type: SCALE, label: '平抛二维标尺', defaults: { widthM: 2, heightM: 1.4 }, schema: z.strictObject({ widthM: FiniteSchema.min(.2).max(10), heightM: FiniteSchema.min(.2).max(10) }) },
     { type: GROUND, label: '水平地面', defaults: { lengthM: 3.3 }, schema: z.strictObject({ lengthM: FiniteSchema.min(.5).max(50) }) },

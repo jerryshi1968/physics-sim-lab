@@ -1,3 +1,4 @@
+import { KINETIC_EXPERIMENT, kineticApparatus } from './kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceApparatus } from './twoForce/simulate.ts';
 import { GRAVITY_EXPERIMENT, gravityApparatus } from './gravity/simulate.ts';
 import type { SceneDocument } from '../core/scene/schema.ts';
@@ -41,6 +42,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'kinetic', label: '动能影响因素', experimentIds: [KINETIC_EXPERIMENT], types: kineticApparatus, maximum: { ...oneEach(kineticApparatus), [MECHANICAL_RULER]: 2 } },
   { key: 'twoForce', label: '二力平衡', experimentIds: [TWO_FORCE_EXPERIMENT], types: twoForceApparatus, maximum: { [CART]: 1, [TRACK]: 1, [WEIGHT]: 6 } },
   { key: 'gravity', label: '重力与质量', experimentIds: [GRAVITY_EXPERIMENT], types: gravityApparatus, maximum: { [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6 } },
   { key: 'massVolume', label: '同种物质质量与体积', experimentIds: [MASS_VOLUME_EXPERIMENT], types: massVolumeApparatus, maximum: oneEach(massVolumeApparatus) },
