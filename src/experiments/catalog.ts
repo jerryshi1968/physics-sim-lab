@@ -1,3 +1,4 @@
+import { createPulleyEfficiencyExperiment } from './pulley-efficiency.ts';
 import { createPulleyExperiment } from './pulley.ts';
 import { createKineticExperiment } from './kinetic.ts';
 import { createTwoForceExperiment } from './twoForce.ts';
@@ -59,29 +60,30 @@ function opticalBlank(id: string, timestamp: string) {
 }
 
 export const experimentChoices: readonly ExperimentChoice[] = [
-  entry('pulley', 'junior', 'mechanical', 'pulley', '研究定滑轮和动滑轮的特点', '复用测力计、钩码和独立尺，比较直接提起、定滑轮和动滑轮的拉力、方向与距离。', createPulleyExperiment),
-  entry('kinetic', 'junior', 'mechanical', 'kinetic', '探究物体的动能跟哪些因素有关', '钢球从不同高度滚下，改变质量，以同一木块的位移比较动能。', createKineticExperiment),
-  entry('two-force', 'junior', 'mechanical', 'two-force', '探究二力平衡的条件', '改变两端钩码，扭转小车后释放，比较两力大小、方向、作用线与运动状态。', createTwoForceExperiment),
-  entry('gravity-mass', 'junior', 'mechanical', 'gravity', '探究重力的大小跟质量的关系', '逐次悬挂已知质量的钩码，自行读弹簧测力计，记录并绘制 G–m 图。', createGravityExperiment),
-  entry('mass-volume', 'junior', 'mechanical', 'mass-volume', '探究同种物质的质量与体积的关系', '称量不同大小的正方体铝块，读尺计算体积，用学生数据绘制 m–V 图。', createMassVolumeExperiment),
-  entry('mass-solid', 'junior', 'mechanical', 'mass', '用天平测量固体的质量', '空载调平后，称橡皮、铅笔等物体；直接操作砝码与游码并保存读数。', createMassExperiment),
-  entry('mass-liquid', 'junior', 'mechanical', 'mass', '用天平测量液体的质量', '先称空烧杯，再加水称总质量，用同一烧杯的两次读数相减。', (id, time) => createMassExperiment(id, time, true)),
   entry('average-speed-blank', 'junior', 'mechanical', 'average-speed', '空白搭建平均速度实验', '自行取用小车、斜面、木块、金属挡片、刻度尺和停表。', (id, time) => createAverageSpeedExperiment(id, time, true)),
   entry('average-speed', 'junior', 'mechanical', 'average-speed', '测量物体运动的平均速度', '沿小坡度斜面静止释放小车，分别测全程、上半程的路程和时间，用 s/t 计算平均速度。', createAverageSpeedExperiment),
+  entry('mass-solid', 'junior', 'mechanical', 'mass', '用天平测量固体的质量', '空载调平后，称橡皮、铅笔等物体；直接操作砝码与游码并保存读数。', createMassExperiment),
+  entry('mass-liquid', 'junior', 'mechanical', 'mass', '用天平测量液体的质量', '先称空烧杯，再加水称总质量，用同一烧杯的两次读数相减。', (id, time) => createMassExperiment(id, time, true)),
+  entry('mass-volume', 'junior', 'mechanical', 'mass-volume', '探究同种物质的质量与体积的关系', '称量不同大小的正方体铝块，读尺计算体积，用学生数据绘制 m–V 图。', createMassVolumeExperiment),
+  entry('density-blank', 'junior', 'mechanical', 'density', '空白搭建密度测量实验', '自行取用器材，设置天平、砝码盒、盛水量筒等。', (id, time) => createDensityExperiment(id, time, false, true)),
+  entry('density-solid', 'junior', 'mechanical', 'density', '测量固体密度实验', '预放托盘天平、砝码盒、盛水量筒和待测固体。', (id, time) => createDensityExperiment(id, time, false, false)),
+  entry('density-liquid', 'junior', 'mechanical', 'density', '测量液体密度实验', '预放托盘天平、砝码盒、空量筒和盛液烧杯。', (id, time) => createDensityExperiment(id, time, true, false)),
+  entry('gravity-mass', 'junior', 'mechanical', 'gravity', '探究重力的大小跟质量的关系', '逐次悬挂已知质量的钩码，自行读弹簧测力计，记录并绘制 G–m 图。', createGravityExperiment),
+  entry('friction-blank', 'junior', 'mechanical', 'friction', '空白搭建滑动摩擦实验', '自行取用器材，设置测力计与牵引器连接等。', (id, time) => createFrictionExperiment(id, time, true)),
   entry('thermal-blank', 'junior', 'thermal', 'boiling', '空白搭建水沸腾实验', '自行取用烧杯、加热装置、温度计、支架和计时器。', (id, time) => createBoilingExperiment(id, time, true)),
   entry('melting-blank', 'junior', 'thermal', 'melting', '空白搭建固体熔化实验', '自行取用水浴烧杯、加热装置、试管、温度计、支架和计时器。', (id, time) => createMeltingExperiment(id, time, true)),
   entry('melting', 'junior', 'thermal', 'melting', '探究固体熔化时温度的变化规律', '水浴加热海波或石蜡，观察物态，按分钟记录并比较温度—时间图线。', createMeltingExperiment),
   entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
-  entry('density-blank', 'junior', 'mechanical', 'density', '空白搭建密度测量实验', '自行取用器材，设置天平、砝码盒、盛水量筒等。', (id, time) => createDensityExperiment(id, time, false, true)),
-  entry('density-solid', 'junior', 'mechanical', 'density', '测量固体密度实验', '预放托盘天平、砝码盒、盛水量筒和待测固体。', (id, time) => createDensityExperiment(id, time, false, false)),
-  entry('density-liquid', 'junior', 'mechanical', 'density', '测量液体密度实验', '预放托盘天平、砝码盒、空量筒和盛液烧杯。', (id, time) => createDensityExperiment(id, time, true, false)),
-  entry('friction-blank', 'junior', 'mechanical', 'friction', '空白搭建滑动摩擦实验', '自行取用器材，设置测力计与牵引器连接等。', (id, time) => createFrictionExperiment(id, time, true)),
   entry('friction', 'junior', 'mechanical', 'friction', '滑动摩擦实验', '水平一维，测力计与牵引器连接。自行选择材料、质量和接触面积，等待匀速稳态再读数。', createFrictionExperiment),
+  entry('two-force', 'junior', 'mechanical', 'two-force', '探究二力平衡的条件', '改变两端钩码，扭转小车后释放，比较两力大小、方向、作用线与运动状态。', createTwoForceExperiment),
   entry('buoyancy-blank', 'junior', 'mechanical', 'buoyancy', '空白搭建浮力实验', '自行取用器材，设置天平、砝码盒、溢水杯、接液杯、悬挂圆柱体等。', (id, time) => createBuoyancyExperiment(id, time, 'empty')),
   entry('buoyancy-factors', 'junior', 'mechanical', 'buoyancy', '探究浮力的影响因素', '悬挂圆柱体，观察浸没体积与测力计读数。', (id, time) => createBuoyancyExperiment(id, time, 'factors')),
   entry('buoyancy-archimedes', 'junior', 'mechanical', 'buoyancy', '验证阿基米德原理', '用溢水杯和接液杯收集排液，称量验证阿基米德原理。', (id, time) => createBuoyancyExperiment(id, time, 'archimedes')),
+  entry('kinetic', 'junior', 'mechanical', 'kinetic', '探究物体的动能跟哪些因素有关', '钢球从不同高度滚下，改变质量，以同一木块的位移比较动能。', createKineticExperiment),
   entry('lever-blank', 'junior', 'mechanical', 'lever', '空白搭建杠杆平衡实验', '自行取用器材，设置杠杆、钩码、弹簧测力计等。', (id, time) => createLeverExperiment(id, time, true)),
   entry('lever', 'junior', 'mechanical', 'lever', '杠杆平衡实验', '杠杆调平，用钩码、调整拉力并记录，不自动给出平衡装置。', createLeverExperiment),
+  entry('pulley', 'junior', 'mechanical', 'pulley', '研究定滑轮和动滑轮的特点', '复用测力计、钩码和独立尺，比较直接提起、定滑轮和动滑轮的拉力、方向与距离。', createPulleyExperiment),
+  entry('pulley-efficiency', 'junior', 'mechanical', 'pulley', '测量滑轮组的机械效率', '复用一定一动滑轮组，改变钩码，读 G、F、h、s，计算有用功、总功与机械效率。', createPulleyEfficiencyExperiment),
   entry('electrical-blank', 'junior', 'electrical', 'free', '空白搭建电学实验', '自行取用器材，设置电源和接线，串联与并联均可探索。', (id, time) => electricalBlank(id, time, 'junior')),
   entry('ohm-voltage', 'junior', 'electrical', 'ohm', '探究电流与电压的关系', '保持定值电阻不变，调节四柱变阻器，记录并绘制 I–U 图线。', (id, time) => createOhmExperiment(id, time, 'voltage')),
   entry('ohm-resistance', 'junior', 'electrical', 'ohm', '探究电流与电阻的关系', '替换定值电阻，调变阻器保持电压，记录并绘制 I–1/R 图线。', (id, time) => createOhmExperiment(id, time, 'resistance')),

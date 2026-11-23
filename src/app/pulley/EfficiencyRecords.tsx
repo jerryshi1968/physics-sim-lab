@@ -1,0 +1,18 @@
+import { useState } from 'react';
+import type { SceneDocument } from '../../core/scene/schema.ts';
+import type { PulleyOutcome } from '../../equipment/pulley/simulate.ts';
+import type { PulleyInput } from '../../equipment/pulley/measure.ts';
+import { MECHANICAL_RULER } from '../../equipment/mechanical/definitions.ts';
+import { efficiencyRows, efficiencyCsv } from '../../equipment/pulley/efficiency.ts';
+import { PulleyReadWindow } from './PulleyRecords.tsx';
+export function EfficiencyTable({scene}:{scene:SceneDocument}) {
+  const rows=efficiencyRows(scene),show=(v:number|null,factor=1)=>v===null?'—':Number((v*factor).toFixed(4));
+  return <div className="measurement-table-scroll"><table className="measurement-table" aria-label="滑轮组机械效率记录表"><thead><tr>{['组别','装配','G/N','h/m','有用功/J','F/N','s/m','总功/J','机械效率/%','钩码/g','动滑轮/g','核对提示','备注','绳端固定位置','承重段数','拉动方向'].map(s=><th key={s}>{s}</th>)}</tr></thead><tbody>{rows.map(r=><tr key={r.id}><td>{r.group}</td><td>{r.mode}</td><td>{show(r.gravity)}</td><td>{show(r.height)}</td><td>{show(r.useful)}</td><td>{show(r.force)}</td><td>{show(r.distance)}</td><td>{show(r.total)}</td><td>{show(r.efficiency,100)}</td><td>{show(r.mass,1000)}</td><td>{show(r.pulleyMass,1000)}</td><td>{r.warning}</td><td>{r.note}</td><td>{r.ropeEnd}</td><td>{r.strands||'—'}</td><td>{r.direction}</td></tr>)}</tbody></table>{!rows.length&&<p>尚无机械效率记录。</p>}</div>;
+}
+export function EfficiencyRecords({scene,outcome,onCapture}:{scene:SceneDocument;outcome:PulleyOutcome;onCapture:(input:PulleyInput)=>string|null}) {
+  const rulers=scene.equipment.filter(i=>i.type===MECHANICAL_RULER),[input,setInput]=useState<PulleyInput>({group:'第1次',gravity:'',force:'',loadStart:'',loadEnd:'',pullStart:'',pullEnd:'',loadRuler:rulers[0]?.id??'',pullRuler:rulers[1]?.id??'',direction:'向下',note:''}),[error,setError]=useState(''),direct=outcome.layout?.mode==='direct',update=(key:keyof PulleyInput,value:string)=>setInput(old=>({...old,[key]:value}));
+  function download(){try{const url=URL.createObjectURL(new Blob([efficiencyCsv(scene)],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='滑轮组机械效率.csv';a.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{setError('效率表导出失败，原始记录保持不变。');}}
+  return <section className="density-records"><h3>机械效率测量与计算</h3><p>用手工读数计算 W有用=Gh、W总=Fs、η=W有用/W总。画布和读尺窗使用 cm，表格中的 h、s 换算为 m。改动源读数后重新计算，缺失或分母为零时留空。</p>{!direct&&([['loadRuler','重物读尺来源','load'],['pullRuler','测力计读尺来源','pull']] as const).map(([key,label,side])=><div key={key}><label>{label}<select aria-label={label} value={input[key]} onChange={e=>update(key,e.target.value)}>{rulers.map(i=><option key={i.id} value={i.id}>{i.id}</option>)}</select></label><PulleyReadWindow scene={scene} outcome={outcome} id={input[key]} side={side}/></div>)}
+    <form onSubmit={e=>{e.preventDefault();const message=onCapture(input);setError(message??'');if(!message)setInput(old=>({...old,force:'',loadStart:'',loadEnd:'',pullStart:'',pullEnd:'',note:''}));}}>{([['group','滑轮实验组名'],['gravity','物重 G（N）'],...(!direct?[['force','拉力 F（N）'],['loadStart','重物起点读数（cm）'],['loadEnd','重物终点读数（cm）'],['pullStart','测力计起点读数（cm）'],['pullEnd','测力计终点读数（cm）']]:[]),['note','机械效率观察与分析']] as [keyof PulleyInput,string][]).map(([key,label])=><label key={key}>{label}<input aria-label={label} maxLength={100} value={input[key]} onChange={e=>update(key,e.target.value)}/></label>)}<button disabled={!outcome.ok}>{direct?'保存物重读数':'保存机械效率读数'}</button></form>{error&&<p role="alert">{error}</p>}<button onClick={download} disabled={!efficiencyRows(scene).length}>导出效率表 CSV</button><EfficiencyTable scene={scene}/><p>通用记录表保留原始抄表、修订与来源快照；效率表由这些读数计算。超过 100% 时显示核对提示，不把数据改成理论答案。</p>
+  </section>;
+}

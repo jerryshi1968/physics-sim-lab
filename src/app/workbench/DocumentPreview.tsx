@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { EFFICIENCY_EXPERIMENT } from '../../equipment/pulley/definitions.ts';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
 export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley' }
@@ -18,7 +19,8 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     {pending.source === 'buoyancy' && <p>测力计与圆柱体逐步浸入，排液杯保留已收集的液体。每阶段自行读数，称量排液验证阿基米德原理。教材映射待教师核验。</p>}
     {pending.source === 'cart' && <p>理想水平轨道上由悬挂砝码牵引小车。可比较光电门读数和打点纸带，系统质量包括随动的悬挂砝码。高中教材映射待教师核验。</p>}
     {pending.source === 'mirror-image' && <p>用薄玻璃板、观察眼和镜后对照物找像位；用刻度尺量距离和高度，再用光屏验证。观察和读数由学生填写。教材映射待教师核验。</p>}
-    {pending.source === 'pulley' && <p>用同一组钩码比较直接提起、定滑轮和动滑轮；缓慢拖动测力计，静止后手工记录力、方向和两端距离。</p>}
+    {pending.source === 'pulley' && pending.document.experimentId === EFFICIENCY_EXPERIMENT && <p>一定一动滑轮组，先测物重，再读拉力与两端距离，改变钩码并计算有用功、总功与机械效率。</p>}
+    {pending.source === 'pulley' && pending.document.experimentId !== EFFICIENCY_EXPERIMENT && <p>用同一组钩码比较直接提起、定滑轮和动滑轮；缓慢拖动测力计，静止后手工记录力、方向和两端距离。</p>}
     {pending.source === 'kinetic' && <p>钢球从斜槽滚下撞击木块，分别改变高度和质量，自行读尺比较位移。</p>}
     {pending.source === 'two-force' && <p>两端钩码牵引光滑水平面上的小车，扭转后释放，自行记录二力条件与现象。教材信息待教师核验。</p>}
     {pending.source === 'gravity' && <p>复用支架、弹簧测力计与钩码，逐次挂接并记录 G 和 m。教材信息待教师核验。</p>}

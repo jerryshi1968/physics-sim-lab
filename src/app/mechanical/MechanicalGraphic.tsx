@@ -1,4 +1,4 @@
-import { PULLEY } from '../../equipment/pulley/definitions.ts';
+import { PULLEY, pulleyWheelScale } from '../../equipment/pulley/definitions.ts';
 import { PulleyWheel } from '../pulley/PulleyWheel.tsx';
 import { PENDULUM } from '../../equipment/pendulum/definitions.ts';
 import { MassVolumeRuler } from '../massVolume/MassVolumeRuler.tsx';
@@ -29,7 +29,7 @@ import { CartGraphic, cartBounds } from '../cart/CartGraphic.tsx';
 import type { CartRun } from '../../equipment/cart/simulate.ts';
 
 export function mechanicalBounds(item: EquipmentInstance, springOutcome?: SpringOutcome | null) {
-  if (item.type === PULLEY) return { x: -.055, y: -.08, width: .11, height: .16 };
+  if (item.type === PULLEY) { const scale = pulleyWheelScale(item); return { x: -.055 * scale, y: -.08 * scale, width: .11 * scale, height: .16 * scale }; }
   if (item.type === PENDULUM) return pendulumBounds(item);
   if (buoyancyTypes.includes(item.type)) return buoyancyBounds(item);
   if (cartTypes.includes(item.type)) return cartBounds(item);

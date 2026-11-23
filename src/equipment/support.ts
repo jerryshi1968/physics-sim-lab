@@ -1,4 +1,4 @@
-import { PULLEY, PULLEY_EXPERIMENT, pulleyApparatus } from './pulley/definitions.ts';
+import { PULLEY, PULLEY_EXPERIMENT, EFFICIENCY_EXPERIMENT, pulleyApparatus } from './pulley/definitions.ts';
 import { KINETIC_EXPERIMENT, kineticApparatus } from './kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceApparatus } from './twoForce/simulate.ts';
 import { GRAVITY_EXPERIMENT, gravityApparatus } from './gravity/simulate.ts';
@@ -43,7 +43,9 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'pulley', label: '滑轮组机械效率', experimentIds: [EFFICIENCY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 2, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
   { key: 'pulley', label: '定滑轮和动滑轮', experimentIds: [PULLEY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 1, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
+  { key: 'pulley', label: '滑轮组机械效率', experimentIds: [EFFICIENCY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 2, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
   { key: 'kinetic', label: '动能影响因素', experimentIds: [KINETIC_EXPERIMENT], types: kineticApparatus, maximum: { ...oneEach(kineticApparatus), [MECHANICAL_RULER]: 2 } },
   { key: 'twoForce', label: '二力平衡', experimentIds: [TWO_FORCE_EXPERIMENT], types: twoForceApparatus, maximum: { [CART]: 1, [TRACK]: 1, [WEIGHT]: 6 } },
   { key: 'gravity', label: '重力与质量', experimentIds: [GRAVITY_EXPERIMENT], types: gravityApparatus, maximum: { [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6 } },
