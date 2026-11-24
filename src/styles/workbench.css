@@ -466,3 +466,7 @@ input:focus-visible, select:focus-visible { outline: 3px solid #da982c; outline-
 
 .library-tabs button { white-space: nowrap; padding-inline: 1px; }
 @media (max-width: 760px) { .library-tabs { margin-inline: 10px; gap: 2px; } }
+
+.heat-comparison-controls { font-size: 12px; line-height: 1.7; }
+.heat-comparison-controls h4 { margin: 14px 0 6px; }
+.heat-comparison-controls button { padding: 7px 9px; }

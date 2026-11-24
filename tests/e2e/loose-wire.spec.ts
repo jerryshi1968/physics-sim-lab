@@ -89,8 +89,7 @@ test('physical apparatus and single-cell battery preview replace symbols; loose 
   await page.getByRole('button', { name: '拔开线头 A', exact: true }).click();
   await expect(wire).toHaveAttribute('data-from', 'null');
   await page.getByRole('button', { name: '连接线头 A', exact: true }).click();
-  await page.getByLabel('选择器材', { exact: true }).selectOption((await source.getAttribute('data-equipment-id'))!);
-  await page.getByRole('button', { name: '正极 +', exact: true }).click();
+  await source.locator('[data-port-id="positive"]').press('Enter');
   await expect(ends.locator('[data-wire-end="from"]')).toHaveAttribute('data-attached', 'true');
   const attachedBefore = await points(wire.locator('.wire-line'));
   const position = await onCurve(wire.locator('.wire-hit'));

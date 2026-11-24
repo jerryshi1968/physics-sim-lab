@@ -1,3 +1,6 @@
+import { PARALLEL_CURRENT_EXPERIMENT, parallelCurrentSetup } from '../experiments/parallel-current.ts';
+import { SERIES_CURRENT_EXPERIMENT, seriesCurrentSetup } from '../experiments/series-current.ts';
+import { HEAT_COMPARISON_EXPERIMENT, heatComparisonApparatus } from './heatComparison/simulate.ts';
 import { PULLEY, PULLEY_EXPERIMENT, EFFICIENCY_EXPERIMENT, pulleyApparatus } from './pulley/definitions.ts';
 import { KINETIC_EXPERIMENT, kineticApparatus } from './kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceApparatus } from './twoForce/simulate.ts';
@@ -43,6 +46,9 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'parallelCurrent', label: '并联电流关系', experimentIds: [PARALLEL_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
+  { key: 'seriesCurrent', label: '串联电流关系', experimentIds: [SERIES_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
+  { key: 'heatComparison', label: '不同物质吸热比较', experimentIds: [HEAT_COMPARISON_EXPERIMENT], types: heatComparisonApparatus, maximum: Object.fromEntries(heatComparisonApparatus.map(type => [type, 2])) },
   { key: 'pulley', label: '滑轮组机械效率', experimentIds: [EFFICIENCY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 2, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
   { key: 'pulley', label: '定滑轮和动滑轮', experimentIds: [PULLEY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 1, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
   { key: 'pulley', label: '滑轮组机械效率', experimentIds: [EFFICIENCY_EXPERIMENT], types: pulleyApparatus, maximum: { [PULLEY]: 2, [SUPPORT]: 1, [FORCE_METER]: 1, [WEIGHT]: 6, [MECHANICAL_RULER]: 2 } },
@@ -74,7 +80,9 @@ export const equipmentSupports: readonly EquipmentSupport[] = [
 ];
 
 export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'equipment' | 'connections'>): EquipmentSupport | null {
+  if (scene.experimentId === 'J-ELEC-01' && parallelCurrentSetup(scene).position) return equipmentSupports.find(profile => profile.key === 'parallelCurrent')!;
   if (scene.experimentId === FREE_OPTICAL_EXPERIMENT) return freeOpticalSupport(scene);
+  if (scene.experimentId === 'J-ELEC-01' && seriesCurrentSetup(scene).position) return equipmentSupports.find(profile => profile.key === 'seriesCurrent')!;
   const formal = equipmentSupports.find(profile => profile.experimentIds.includes(scene.experimentId ?? ''));
   if (formal) return formal;
   const has = (types: readonly string[]) => scene.equipment.some(item => types.includes(item.type));

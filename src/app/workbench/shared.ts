@@ -1,3 +1,6 @@
+import { PARALLEL_CURRENT_EXPERIMENT, parallelCurrentSetup } from '../../experiments/parallel-current.ts';
+import { SERIES_CURRENT_EXPERIMENT, seriesCurrentSetup } from '../../experiments/series-current.ts';
+import { HEAT_COMPARISON_EXPERIMENT, heatComparisonLabel } from '../../equipment/heatComparison/simulate.ts';
 import { PULLEY, pulleyModes } from '../../equipment/pulley/definitions.ts';
 import { KINETIC_EXPERIMENT, kineticLabels } from '../../equipment/kinetic/simulate.ts';
 import { TWO_FORCE_EXPERIMENT, twoForceLabels } from '../../equipment/twoForce/simulate.ts';
@@ -24,6 +27,11 @@ export function changeSelection(current: Selection, next: Selection, additive = 
 export function equipmentLabel(scene: SceneDocument, registry: EquipmentRegistry, id: string): string {
   const index = scene.equipment.findIndex(item => item.id === id);
   const instance = scene.equipment[index];
+  const parallel = scene.experimentId === PARALLEL_CURRENT_EXPERIMENT || scene.experimentId === 'J-ELEC-01' ? parallelCurrentSetup(scene) : null;
+  if (parallel?.roles && (scene.experimentId === PARALLEL_CURRENT_EXPERIMENT || parallel.position)) { if (id === parallel.roles.L1) return '灯泡 L1'; if (id === parallel.roles.L2) return '灯泡 L2'; }
+  const series = scene.experimentId === SERIES_CURRENT_EXPERIMENT || scene.experimentId === 'J-ELEC-01' ? seriesCurrentSetup(scene) : null;
+  if (series?.roles && (scene.experimentId === SERIES_CURRENT_EXPERIMENT || series.position)) { if (id === series.roles.L1) return '灯泡 L1'; if (id === series.roles.L2) return '灯泡 L2'; }
+  if (instance && scene.experimentId === HEAT_COMPARISON_EXPERIMENT) return heatComparisonLabel(scene, instance);
   return instance ? `${instance.type === PULLEY && (instance.parameters.mode === 'direct' ? '备用滑轮' : instance.parameters.mode === 'tackle' ? '动滑轮' : pulleyModes[instance.parameters.mode as keyof typeof pulleyModes]) || scene.experimentId === KINETIC_EXPERIMENT && kineticLabels[instance.type] || scene.experimentId === TWO_FORCE_EXPERIMENT && twoForceLabels[instance.type] || scene.experimentId === AVERAGE_SPEED_EXPERIMENT && averageSpeedLabels[instance.type] || registry.get(instance.type, instance.definitionVersion)?.label || '未知器材'} ${index + 1}` : '未知器材';
 }
 

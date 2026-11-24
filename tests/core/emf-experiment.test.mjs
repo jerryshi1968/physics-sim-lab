@@ -50,6 +50,7 @@ test('junior meters default to the ideal model and nonideal EMF starters inherit
   assert.equal(defaults.finiteInput, false); assert.equal(defaults.inputResistanceOhm, 1_000_000);
   for (const id of ['series-same', 'series-different', 'parallel-same', 'parallel-different', 'emf-reference', 'emf-inner', 'emf-outer']) {
     const scene = createCatalogExperiment(id, `meter.${id}`, timestamp), meter = scene.equipment.find(item => item.type === VOLTMETER);
+    if (id === 'series-same' || id === 'series-different' || id === 'parallel-same' || id === 'parallel-different') { assert.equal(meter, undefined); assert.equal(scene.equipment.find(item => item.type === 'electrical.ammeter').parameters.resistanceOhm, 0); continue; }
     assert.equal(meter.parameters.finiteInput, id === 'emf-inner' || id === 'emf-outer', id);
     assert.equal(meter.parameters.inputResistanceOhm, 1_000_000, id);
   }

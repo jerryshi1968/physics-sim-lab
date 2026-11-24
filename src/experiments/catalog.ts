@@ -1,3 +1,6 @@
+import { createParallelCurrentExperiment } from './parallel-current.ts';
+import { createSeriesCurrentExperiment } from './series-current.ts';
+import { createHeatComparisonExperiment } from './heat-comparison.ts';
 import { createPulleyEfficiencyExperiment } from './pulley-efficiency.ts';
 import { createPulleyExperiment } from './pulley.ts';
 import { createKineticExperiment } from './kinetic.ts';
@@ -31,7 +34,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
+export type CatalogFamily = 'parallel-current' | 'series-current' | 'heat-comparison' | 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -74,6 +77,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('melting-blank', 'junior', 'thermal', 'melting', '空白搭建固体熔化实验', '自行取用水浴烧杯、加热装置、试管、温度计、支架和计时器。', (id, time) => createMeltingExperiment(id, time, true)),
   entry('melting', 'junior', 'thermal', 'melting', '探究固体熔化时温度的变化规律', '水浴加热海波或石蜡，观察物态，按分钟记录并比较温度—时间图线。', createMeltingExperiment),
   entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
+  entry('heat-comparison', 'junior', 'thermal', 'heat-comparison', '比较不同物质吸热的情况', '用相同电加热器加热等质量的水和食用油，比较相同时间的温升或相同温升所需的时间。', createHeatComparisonExperiment),
   entry('friction', 'junior', 'mechanical', 'friction', '滑动摩擦实验', '水平一维，测力计与牵引器连接。自行选择材料、质量和接触面积，等待匀速稳态再读数。', createFrictionExperiment),
   entry('two-force', 'junior', 'mechanical', 'two-force', '探究二力平衡的条件', '改变两端钩码，扭转小车后释放，比较两力大小、方向、作用线与运动状态。', createTwoForceExperiment),
   entry('buoyancy-blank', 'junior', 'mechanical', 'buoyancy', '空白搭建浮力实验', '自行取用器材，设置天平、砝码盒、溢水杯、接液杯、悬挂圆柱体等。', (id, time) => createBuoyancyExperiment(id, time, 'empty')),
@@ -89,10 +93,8 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('ohm-resistance', 'junior', 'electrical', 'ohm', '探究电流与电阻的关系', '替换定值电阻，调变阻器保持电压，记录并绘制 I–1/R 图线。', (id, time) => createOhmExperiment(id, time, 'resistance')),
   entry('voltammetry', 'junior', 'electrical', 'voltammetry', '伏安法测量定值电阻', '选择电表量程，调节变阻器测多组 U、I，计算未知电阻并分析读数误差。', createVoltammetryExperiment),
   entry('lamp-power', 'junior', 'electrical', 'lamp-power', '测量小灯泡的电功率', '调节变阻器找到额定电压，记录不同工作点的 U、I，计算功率并比较亮度。', createLampPowerExperiment),
-  entry('series-same', 'junior', 'electrical', 'experiment', '串联 · 相同灯泡', '6 V 电源；两灯均为 3 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'series-same')),
-  entry('series-different', 'junior', 'electrical', 'experiment', '串联 · 不同灯泡', '9 V 电源；两灯分别为 3 V / 0.3 A、6 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'series-different')),
-  entry('parallel-same', 'junior', 'electrical', 'experiment', '并联 · 相同灯泡', '3 V 电源；两灯均为 3 V / 0.3 A。', (id, time) => createLampCircuitExperiment(id, time, 'parallel-same')),
-  entry('parallel-different', 'junior', 'electrical', 'experiment', '并联 · 不同灯泡', '3 V 电源；两灯分别为 3 V / 0.3 A、3 V / 0.2 A。', (id, time) => createLampCircuitExperiment(id, time, 'parallel-different')),
+  entry('series-current', 'junior', 'electrical', 'series-current', '探究串联电路中各处电流的关系', '选择电流表在三处串入，分别用相同和不同灯泡测量并比较各处电流。', createSeriesCurrentExperiment),
+  entry('parallel-current', 'junior', 'electrical', 'parallel-current', '探究并联电路中干路电流与各支路电流的关系', '选择电流表测量干路或各支路电流，分别用相同和不同灯泡进行比较。', createParallelCurrentExperiment),
   entry('optical-blank', 'junior', 'optical', 'free', '空白搭建光学实验', '自行取用器材，设置镜、透镜等，遇到互斥的设备按先放的优先。', opticalBlank),
   entry('refraction', 'junior', 'optical', 'refraction', '探究光折射时的特点', '用空气—水界面观察偏折、量入射角和折射角，验证垂直入射与光路可逆。', createRefractionExperiment),
   entry('reflection', 'junior', 'optical', 'reflection', '光的反射定律实验', '平面镜、窄光束光源、量角器、法线与可折承接纸板。自行校准、读角，并折动右纸板观察连续光迹。', createReflectionExperiment),
@@ -113,6 +115,8 @@ export const experimentChoices: readonly ExperimentChoice[] = [
 ];
 
 export function createCatalogExperiment(choiceId: string, id: string, timestamp: string) {
+  if (choiceId === 'series-same' || choiceId === 'series-different') return createSeriesCurrentExperiment(id, timestamp, choiceId === 'series-same' ? 'same' : 'different');
+  if (choiceId === 'parallel-same' || choiceId === 'parallel-different') return createParallelCurrentExperiment(id, timestamp, choiceId === 'parallel-same' ? 'same' : 'different');
   const choice = experimentChoices.find(item => item.id === choiceId);
   if (!choice) throw new RangeError('UNKNOWN_EXPERIMENT_CHOICE');
   const scene = choice.create(id, timestamp);
@@ -123,7 +127,10 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'pulley') viewport.pixelsPerM = Math.min(500, (Math.max(300, height * .52 - 114) - 80) / 1.05, width < 760 ? 240 : 500);
+  if (choice.family === 'parallel-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 1.1, (Math.max(352, height * .52 - 114) - 100) / .65);
+  else if (choice.family === 'series-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / .9, (Math.max(352, height * .52 - 114) - 100) / .65);
+  else if (choice.family === 'heat-comparison') viewport.pixelsPerM = Math.min(700, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / .9, (Math.max(300, height * .52 - 114) - 70) / .56);
+  else if (choice.family === 'pulley') viewport.pixelsPerM = Math.min(500, (Math.max(300, height * .52 - 114) - 80) / 1.05, width < 760 ? 240 : 500);
   else if (choice.family === 'kinetic') viewport.pixelsPerM = Math.min(350, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 3.3, (Math.max(352, height * .52 - 114) - 80) / .7);
   else if (choice.family === 'two-force') viewport.pixelsPerM = Math.min(500, width < 760 ? 170 : 500, (Math.max(352, height * .52 - 114) - 64) / 1.05);
   else if (choice.family === 'gravity') viewport.pixelsPerM = Math.min(650, width < 760 ? 420 : 650, (Math.max(352, height * .52 - 114) - 48) / .76);

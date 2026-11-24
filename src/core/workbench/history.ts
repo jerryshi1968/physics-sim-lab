@@ -17,6 +17,7 @@ export type SceneCommand =
   | { type: 'add-equipment'; equipmentType: string; id: string; point: WorldPoint; initial?: Pick<EquipmentInstance, 'pose' | 'parameters'> }
   | { type: 'add-wire'; id: string; point: WorldPoint }
   | { type: 'update-equipment'; id: string; pose: Pose2D; parameters: Record<string, Scalar> }
+  | { type: 'update-circuit'; updates: Pick<EquipmentInstance, 'id' | 'pose' | 'parameters'>[]; connections: Connection[] }
   | { type: 'update-equipment-batch'; updates: Pick<EquipmentInstance, 'id' | 'pose' | 'parameters'>[] }
   | { type: 'connect'; id: string; from: Endpoint; to: Endpoint }
   | { type: 'remove-equipment' | 'remove-wire'; id: string }
@@ -71,6 +72,10 @@ export function executeCommand(history: SceneHistory, command: SceneCommand, reg
     case 'add-wire': label = '放置导线'; result = addLooseWire(current, registry, command.id, command.point, timestamp); break;
     case 'update-equipment': label = '移动或修改器材'; result = updateEquipment(current, registry, command.id, command.pose, command.parameters, timestamp); break;
     case 'update-equipment-batch': label = '配置器材'; result = updateEquipmentMany(current, registry, command.updates, timestamp); break;
+    case 'update-circuit':
+      label = '配置电路接线与器材'; result = updateEquipmentMany(current, registry, command.updates, timestamp);
+      if (result.ok) result = validateSceneDocument({ ...result.document, connections: command.connections }, registry);
+      break;
     case 'connect': label = '连接接线柱'; result = connectEndpoints(current, registry, command.id, command.from, command.to, timestamp); break;
     case 'remove-equipment': label = '删除器材（保留导线）'; result = removeEquipment(current, registry, command.id, timestamp); break;
     case 'remove-equipment-batch': label = '批量删除器材（保留导线）'; result = removeEquipmentMany(current, registry, command.ids, timestamp, command.updates); break;

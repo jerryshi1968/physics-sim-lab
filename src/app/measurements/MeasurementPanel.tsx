@@ -12,12 +12,13 @@ export interface CaptureInput { source: 'manual' | 'instrument'; setupLabel: str
 interface Props {
   scene: SceneDocument; registry: EquipmentRegistry; ready: boolean;
   entryEnabled?: boolean;
+  defaultSetupLabel?: string | undefined; defaultPointLabels?: Readonly<Record<string, string>> | undefined;
   onCapture: (entry: CaptureInput) => string | null;
   onCorrect: (id: string, rawInput: string) => string | null;
   onRemove: (id: string) => void; onExport: () => void;
 }
-export function MeasurementPanel({ scene, registry, ready, entryEnabled = true, onCapture, onCorrect, onRemove, onExport }: Props) {
-  const [excluded, setExcluded] = useState<string[]>([]), [setupLabel, setSetupLabel] = useState(scene.experimentId === LAMP_CIRCUIT_EXPERIMENT ? '第1组' : '自由搭建'), [note, setNote] = useState('');
+export function MeasurementPanel({ scene, registry, ready, entryEnabled = true, defaultSetupLabel, defaultPointLabels, onCapture, onCorrect, onRemove, onExport }: Props) {
+  const [excluded, setExcluded] = useState<string[]>([]), [setupLabel, setSetupLabel] = useState(defaultSetupLabel ?? (scene.experimentId === LAMP_CIRCUIT_EXPERIMENT ? '第1组' : '自由搭建')), [note, setNote] = useState('');
   const [pointLabels, setPointLabels] = useState<Record<string, string>>({}), [manualValues, setManualValues] = useState<Record<string, string>>({});
   const [error, setError] = useState(''), [editing, setEditing] = useState<string | null>(null), [correction, setCorrection] = useState('');
   const [entryOpen, setEntryOpen] = useState(scene.measurementRecords.length === 0);
@@ -25,7 +26,7 @@ export function MeasurementPanel({ scene, registry, ready, entryEnabled = true, 
   const meters = entryEnabled ? scene.equipment.filter(item => item.type === AMMETER || item.type === VOLTMETER) : [];
   const rows = measurementRows(scene);
   const choices = meters.filter(item => !excluded.includes(item.id)).map(item => ({ equipmentId: item.id,
-    pointLabel: pointLabels[item.id] ?? equipmentLabel(scene, registry, item.id), rawInput: manualValues[item.id] ?? '' }));
+    pointLabel: pointLabels[item.id] ?? defaultPointLabels?.[item.id] ?? equipmentLabel(scene, registry, item.id), rawInput: manualValues[item.id] ?? '' }));
   function capture(source: CaptureInput['source']) {
     const message = onCapture({ source, setupLabel, note, choices }); setError(message ?? '');
     if (!message) { setEntryOpen(false); if (source === 'manual') setManualValues({}); }
@@ -38,7 +39,7 @@ export function MeasurementPanel({ scene, registry, ready, entryEnabled = true, 
         const label = equipmentLabel(scene, registry, item.id), unit = item.type === AMMETER ? 'A' : 'V';
         return <div className="measurement-meter" key={item.id}>
           <label className="measurement-check"><input type="checkbox" aria-label={`记录${label}`} checked={!excluded.includes(item.id)} onChange={event => setExcluded(current => event.target.checked ? current.filter(id => id !== item.id) : [...current, item.id])} />{label}</label>
-          <label>测点名称<input aria-label={`${label}测点名称`} value={pointLabels[item.id] ?? label} maxLength={100} onChange={event => setPointLabels(current => ({ ...current, [item.id]: event.target.value }))} /></label>
+          <label>测点名称<input aria-label={`${label}测点名称`} value={pointLabels[item.id] ?? defaultPointLabels?.[item.id] ?? label} maxLength={100} onChange={event => setPointLabels(current => ({ ...current, [item.id]: event.target.value }))} /></label>
           <label>手工抄表（{unit}）<input aria-label={`${label}抄表值（${unit}）`} type="text" inputMode="decimal" maxLength={1000} value={manualValues[item.id] ?? ''} placeholder="自行读表，留空记缺失" onChange={event => setManualValues(current => ({ ...current, [item.id]: event.target.value }))} /></label>
         </div>;
       })}

@@ -1,3 +1,4 @@
+import { createLampCircuitExperiment } from '../../src/experiments/lamp-circuits.ts';
 import { openFamily } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
@@ -10,12 +11,18 @@ async function ready(page: Page) {
 }
 async function preview(page: Page, start: string) {
   await openFamily(page, '灯泡串并联实验');
-  await page.locator(`input[name="experiment-catalog-choice"][value="${start === 'blank' ? 'electrical-blank' : start}"]`).check();
+  await page.locator(`input[name="experiment-catalog-choice"][value="${start === 'blank' ? 'electrical-blank' : start.startsWith('series-') ? 'series-current' : start.startsWith('parallel-') ? 'parallel-current' : start}"]`).check();
   await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await expect(page.getByRole('heading', { name: '实验起点预览', exact: true })).toBeVisible();
 }
 async function start(page: Page, choice: string) {
   await preview(page, choice); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  if (choice === 'series-same' || choice === 'series-different' || choice === 'parallel-same' || choice === 'parallel-different') await page.getByLabel('灯泡组合', { exact: true }).selectOption(choice.endsWith('-same') ? 'same' : 'different');
+}
+async function legacyParallel(page: Page, choice: 'parallel-same' | 'parallel-different') {
+  const scene = createLampCircuitExperiment('legacy-parallel', '2026-11-24T00:00:00.000Z', choice);
+  await page.getByLabel('导入实验 JSON').setInputFiles({ name: 'legacy-parallel.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(scene)) });
+  await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function downloaded(page: Page, button: string) {
   const event = page.waitForEvent('download'); await page.getByRole('button', { name: button, exact: true }).click();
@@ -73,7 +80,8 @@ test('electrical equipment icons paint in the narrow workbench', async ({ page }
 
 test('blank drags leave the voltmeter in place and pan mode moves only the view', async ({ page, context, browserName }) => {
   await ready(page);
-  await start(page, 'series-same');
+  await legacyParallel(page, 'parallel-same');
+  await guideDoesNotEdit(page);
   const board = page.getByTestId('scene-board');
   const meter = board.locator('[data-equipment-id="V"]');
   const body = meter.locator('.equipment-body');
@@ -128,36 +136,35 @@ test('blank drags leave the voltmeter in place and pan mode moves only the view'
   await expect(meter).toHaveAttribute('data-x-m', xM);
   await expect(meter).toHaveAttribute('data-y-m', yM);
   await expect(board).toHaveAttribute('data-revision', String(revision));
-  await expect(board.locator('[data-wire-id]')).toHaveCount(7);
+  await expect(board.locator('[data-wire-id]')).toHaveCount(8);
 
   await pan.click();
   await dragFromMeter();
   await expect(meter).not.toHaveAttribute('data-x-m', xM);
   await expect(board).toHaveAttribute('data-revision', String(revision + 1));
-  await expect(board.locator('[data-wire-id]')).toHaveCount(7);
+  await expect(board.locator('[data-wire-id]')).toHaveCount(8);
 });
 
-test('experiment chooser previews and cancels without replacing work; four editable open templates solve real same/different lamp circuits', async ({ page }, testInfo) => {
+test('experiment chooser previews and cancels without replacing work; merged series and parallel variants solve real same/different lamp circuits', async ({ page }, testInfo) => {
   test.setTimeout(90_000); await page.setViewportSize({ width: 1920, height: 1080 }); await ready(page);
   await place(page, POWER, 0, 0); const original = await exported(page);
   await preview(page, 'series-same'); await page.getByRole('button', { name: '取消', exact: true }).click(); expect(await exported(page)).toEqual(original);
   const documentIds = new Set<string>();
-  for (const [choice, sourceV, current] of [['series-same', 6, .3], ['series-different', 9, .3], ['parallel-same', 3, .6], ['parallel-different', 3, .5]] as const) {
+  for (const [choice, sourceV, current] of [['series-same', 9, .34], ['series-different', 9, .3], ['parallel-same', 3, .6], ['parallel-different', 3, .5]] as const) {
     await start(page, choice); const initial = await exported(page); documentIds.add(initial.documentId);
-    expect(initial.experimentId).toBe('J-ELEC-01'); expect(initial.provenance.origin).toBe('template');
+    expect(initial.experimentId).toBe(choice.startsWith('series-') ? 'J-ELEC-01-SERIES' : 'J-ELEC-01-PARALLEL'); expect(initial.provenance.origin).toBe('template');
     expect(initial.equipment.find(item => item.id === 'E')!.parameters.voltageV).toBe(sourceV); expect(initial.measurementRecords).toEqual([]);
     await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0 A');
     await page.getByRole('button', { name: '合上开关', exact: true }).click();
     await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText(`${current} A`);
-    await expect(page.locator('[data-meter-reading="V"] strong')).toHaveText(`${sourceV} V`);
-    await guideDoesNotEdit(page);
+    if (choice.startsWith('series-')) await expect(page.getByTestId('series-current-panel')).toBeVisible();
+    else { await expect(page.getByTestId('parallel-current-panel')).toBeVisible(); await expect(page.locator('[data-meter-reading="V"]')).toHaveCount(0); }
   }
   expect(documentIds.size).toBe(4);
   await properties(page, 'E', { '电源电压（V）': '0' }); await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0 A');
   await page.getByRole('button', { name: '撤销', exact: true }).click(); await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.5 A');
   await page.getByRole('button', { name: '保存', exact: true }).click(); await page.reload();
-  await expect(page.getByTestId('lamp-circuit-guide')).toBeVisible(); await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.5 A');
-  await page.getByTestId('lamp-circuit-guide').locator(':scope > summary').click();
+  await expect(page.getByTestId('parallel-current-panel')).toBeVisible(); await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.5 A');
   await page.screenshot({ path: testInfo.outputPath('lamp-experiment-template-guide.png'), fullPage: true });
 });
 
@@ -222,7 +229,7 @@ for (const parallel of [false, true]) test(parallel ? 'parallel from formal blan
 test.describe('touch experiment entry', () => {
   test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
   test('touch chooses and edits a formal template; guidance and blank plan fit without page horizontal overflow', async ({ page }, testInfo) => {
-    await ready(page); await start(page, 'parallel-different');
+    await ready(page); await legacyParallel(page, 'parallel-different');
     await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0 A');
     await page.getByRole('button', { name: '合上开关', exact: true }).tap(); await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.5 A');
     const before = await exported(page), guide = page.getByTestId('lamp-circuit-guide');
