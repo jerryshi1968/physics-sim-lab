@@ -1,3 +1,4 @@
+import { METAL_WIRE } from '../../src/equipment/electrical/conductor.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { z } from 'zod';
@@ -41,9 +42,11 @@ function circuit() {
 }
 
 test('production registry keeps original apparatus and adds lamp and dual-range meters with SI defaults', () => {
-  assert.deepEqual(registry.list().map(item => item.type), [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT]);
+  assert.deepEqual(registry.list().map(item => item.type), [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, METAL_WIRE]);
   assert.deepEqual(registry.get(POWER, 1).ports.map(port => port.id), ['positive', 'negative']);
   assert.equal(registry.get(POWER, 1).defaultParameters.voltageV, 3);
+  assert.equal(registry.get(METAL_WIRE, 1).defaultParameters.areaM2, 1e-7);
+  assert.equal(registry.get(METAL_WIRE, 1).defaultParameters.temperatureK, 293.15);
   assert.equal(registry.get(RESISTOR, 1).defaultParameters.resistanceOhm, 10);
   assert.equal(registry.get(SWITCH, 1).defaultParameters.closed, false);
   assert.deepEqual(registry.get(JUNCTION, 1).ports.map(port => port.id), ['node']);

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { EFFICIENCY_EXPERIMENT } from '../../equipment/pulley/definitions.ts';
 import type { SceneDocument } from '../../core/scene/schema.ts';
 
-export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'parallel-current' | 'series-current' | 'heat-comparison' | 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley' }
+export interface PendingDocument { document: SceneDocument; fromVersion: number; source: 'conductor' | 'parallel-current' | 'series-current' | 'heat-comparison' | 'import' | 'saved' | 'experiment' | 'optical' | 'lever' | 'friction' | 'spring' | 'projectile' | 'reflection' | 'density' | 'cart' | 'mirror-image' | 'buoyancy' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley' }
 
 export function DocumentPreview({ pending, onConfirm, onCancel }: {
   pending: PendingDocument; onConfirm: () => void; onCancel: () => void;
@@ -14,6 +14,7 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     <h2 id="preview-title">{pending.source === 'import' ? '导入预览' : pending.source !== 'saved' ? '实验起点预览' : '本地保存预览'}</h2>
     <h3>{scene.title}</h3>
     <p>{scene.equipment.length} 件器材 · {scene.connections.length} 根连接 · {scene.measurementRecords.length} 条记录</p>
+    {pending.source === 'conductor' && <p>使用电源、开关、理想电流表和可替换金属丝；温度计与加热装置用于温度对比，开关初态断开。</p>}
     {pending.source === 'parallel-current' && <p>按教师装置预放电源、开关、电流表和两灯；开关断开。右侧选择干路或两条支路，以及相同或不同灯泡。</p>}
     {pending.source === 'series-current' && <p>按教师装置预放电源、开关、电流表和两灯；开关断开。右侧选择三处串入位置，以及相同或不同灯泡。</p>}
     {pending.source === 'heat-comparison' && <p>两杯等质量的水和食用油，用相同电加热器分别加热，抄写温度与时间并比较。</p>}

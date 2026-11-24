@@ -1,3 +1,4 @@
+import { registerMetalWire } from './conductor.ts';
 import { z } from 'zod';
 import { EquipmentRegistry } from '../../core/equipment/registry.ts';
 import { FiniteSchema } from '../../core/equipment/schema.ts';
@@ -75,5 +76,6 @@ export function createElectricalRegistry(): EquipmentRegistry {
     defaultParameters: { maxResistanceOhm: 20, position: .5 },
     ports: ['a', 'b', 'c', 'd'].map((id, index) => ({ id, kind: 'electrical-terminal',
       localPositionM: { x: index % 2 === 0 ? -.075 : .075, y: index < 2 ? -.032 : .04 } })) });
+  registerMetalWire(registry);
   return registry;
 }

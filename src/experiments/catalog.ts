@@ -1,3 +1,4 @@
+import { createConductorExperiment } from './conductor.ts';
 import { createParallelCurrentExperiment } from './parallel-current.ts';
 import { createSeriesCurrentExperiment } from './series-current.ts';
 import { createHeatComparisonExperiment } from './heat-comparison.ts';
@@ -34,7 +35,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'parallel-current' | 'series-current' | 'heat-comparison' | 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
+export type CatalogFamily = 'conductor' | 'parallel-current' | 'series-current' | 'heat-comparison' | 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -89,6 +90,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('pulley', 'junior', 'mechanical', 'pulley', '研究定滑轮和动滑轮的特点', '复用测力计、钩码和独立尺，比较直接提起、定滑轮和动滑轮的拉力、方向与距离。', createPulleyExperiment),
   entry('pulley-efficiency', 'junior', 'mechanical', 'pulley', '测量滑轮组的机械效率', '复用一定一动滑轮组，改变钩码，读 G、F、h、s，计算有用功、总功与机械效率。', createPulleyEfficiencyExperiment),
   entry('electrical-blank', 'junior', 'electrical', 'free', '空白搭建电学实验', '自行取用器材，设置电源和接线，串联与并联均可探索。', (id, time) => electricalBlank(id, time, 'junior')),
+  entry('conductor', 'junior', 'electrical', 'conductor', '探究影响导体电阻大小的因素', '比较不同长度、粗细和材料的金属丝，可设置温度并用加热装置探究温度影响。', createConductorExperiment),
   entry('ohm-voltage', 'junior', 'electrical', 'ohm', '探究电流与电压的关系', '保持定值电阻不变，调节四柱变阻器，记录并绘制 I–U 图线。', (id, time) => createOhmExperiment(id, time, 'voltage')),
   entry('ohm-resistance', 'junior', 'electrical', 'ohm', '探究电流与电阻的关系', '替换定值电阻，调变阻器保持电压，记录并绘制 I–1/R 图线。', (id, time) => createOhmExperiment(id, time, 'resistance')),
   entry('voltammetry', 'junior', 'electrical', 'voltammetry', '伏安法测量定值电阻', '选择电表量程，调节变阻器测多组 U、I，计算未知电阻并分析读数误差。', createVoltammetryExperiment),
@@ -127,7 +129,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'parallel-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 1.1, (Math.max(352, height * .52 - 114) - 100) / .65);
+  if (choice.family === 'conductor') viewport.pixelsPerM = Math.min(500, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.1, (Math.max(352, height * .52 - 114) - 70) / .65);
+  else if (choice.family === 'parallel-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 1.1, (Math.max(352, height * .52 - 114) - 100) / .65);
   else if (choice.family === 'series-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / .9, (Math.max(352, height * .52 - 114) - 100) / .65);
   else if (choice.family === 'heat-comparison') viewport.pixelsPerM = Math.min(700, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / .9, (Math.max(300, height * .52 - 114) - 70) / .56);
   else if (choice.family === 'pulley') viewport.pixelsPerM = Math.min(500, (Math.max(300, height * .52 - 114) - 80) / 1.05, width < 760 ? 240 : 500);

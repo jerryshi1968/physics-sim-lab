@@ -1,3 +1,4 @@
+import { CONDUCTOR_EXPERIMENT, METAL_WIRE } from './electrical/conductor.ts';
 import { PARALLEL_CURRENT_EXPERIMENT, parallelCurrentSetup } from '../experiments/parallel-current.ts';
 import { SERIES_CURRENT_EXPERIMENT, seriesCurrentSetup } from '../experiments/series-current.ts';
 import { HEAT_COMPARISON_EXPERIMENT, heatComparisonApparatus } from './heatComparison/simulate.ts';
@@ -28,7 +29,7 @@ import { BOILING_EXPERIMENT, thermalApparatus, HEATER, THERMOMETER } from './the
 
 import { AVERAGE_SPEED_EXPERIMENT, averageSpeedApparatus, STOP } from './averageSpeed/definitions.ts';
 
-export const electricalApparatus = [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, WIRE];
+export const electricalApparatus = [METAL_WIRE, POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, WIRE];
 export const opticalApparatus = [BENCH, CANDLE, LENS, SCREEN, RULER];
 export const leverApparatus = [LEVER, SUPPORT, WEIGHT, FORCE_METER, MECHANICAL_RULER];
 export const frictionApparatus = [...frictionTypes, FORCE_METER, MECHANICAL_RULER];
@@ -46,6 +47,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'conductor', label: '导体电阻因素', experimentIds: [CONDUCTOR_EXPERIMENT], types: [POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER]) },
   { key: 'parallelCurrent', label: '并联电流关系', experimentIds: [PARALLEL_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
   { key: 'seriesCurrent', label: '串联电流关系', experimentIds: [SERIES_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
   { key: 'heatComparison', label: '不同物质吸热比较', experimentIds: [HEAT_COMPARISON_EXPERIMENT], types: heatComparisonApparatus, maximum: Object.fromEntries(heatComparisonApparatus.map(type => [type, 2])) },
