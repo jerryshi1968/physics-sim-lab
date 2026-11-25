@@ -26,6 +26,7 @@ import { createOpticalExperiment } from './optical-bench.ts';
 import { createReflectionExperiment } from './reflection.ts';
 import { createMirrorImageExperiment } from './mirrorImage.ts';
 import { createCartExperiment } from './cart.ts';
+import { createTapeSpeedExperiment } from './tapeSpeed.ts';
 import { createTickerExperiment } from './ticker.ts';
 import { createPendulumExperiment } from './pendulum.ts';
 import { createSpringExperiment } from './spring.ts';
@@ -90,6 +91,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('boiling', 'junior', 'thermal', 'boiling', '探究水的沸腾', '加热水，观察温度计与气泡，记录并绘制温度—时间图线。', createBoilingExperiment),
   entry('heat-comparison', 'junior', 'thermal', 'heat-comparison', '比较不同物质吸热的情况', '用相同电加热器加热等质量的水和食用油，比较相同时间的温升或相同温升所需的时间。', createHeatComparisonExperiment),
   entry('ticker', 'senior', 'mechanical', 'ticker', '练习使用打点计时器', '固定计时器、装纸带，先通电再水平拉带；断电取带，自行数间隔、读尺并记录时间与位移。', createTickerExperiment),
+  entry('tape-speed', 'senior', 'mechanical', 'ticker', '测量纸带的平均速度和瞬时速度', '用已有计时器和刻度尺，手工读计数点位置，计算平均速度并用短区间近似瞬时速度。', createTapeSpeedExperiment),
   entry('cart-blank', 'senior', 'mechanical', 'cart', '空白搭建小车实验', '自行取用一套小车器材（含两种计时方式）。', (id, time) => createCartExperiment(id, time, true)),
   entry('cart', 'senior', 'mechanical', 'cart', '加速度与力、质量实验', '用悬挂砝码牵引水平轨道上的小车。可分别用两个光电门和打点纸带测加速度。', createCartExperiment),
   entry('spring-blank', 'senior', 'mechanical', 'spring', '空白搭建弹簧弹力与形变量实验', '自行取用一套弹簧、钩码器材。', (id, time) => createSpringExperiment(id, time, true)),

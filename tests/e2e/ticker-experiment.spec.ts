@@ -109,7 +109,12 @@ test('threading and removing tape reject powered or closed-clamp operations, inc
   const clamp = page.getByRole('button', { name: '固定计时器夹具', exact: true }), power = page.getByRole('button', { name: '计时器电源开关', exact: true });
   const setClamp = () => clamp.locator('rect').click();
   await expect(apparatus).toHaveAttribute('data-powered', 'false'); await expect(clamp).toHaveAttribute('aria-pressed', 'false');
+  await page.getByTestId('scene-board').screenshot({ path: info.outputPath('ticker-clamp-open-shape.png') });
   await setClamp();
+  await page.getByTestId('scene-board').screenshot({ path: info.outputPath('ticker-clamp-folded-up.png') });
+  const foldedArm = await page.getByTestId('ticker-clamp-arms').locator('path').first().evaluate(element => { const path = element as SVGPathElement, point = path.getPointAtLength(path.getTotalLength() * .75), at = new DOMPoint(point.x, point.y).matrixTransform(path.getScreenCTM()!); return { x: at.x, y: at.y }; });
+  await page.mouse.click(foldedArm.x, foldedArm.y); await expect(clamp).toHaveAttribute('aria-pressed', 'false');
+  await clamp.press('Enter'); await expect(clamp).toHaveAttribute('aria-pressed', 'true');
   await drag(page, await center(page, '[data-testid="ticker-paper"] > rect'), await center(page, '[data-equipment-id="ticker"] .equipment-body'), false, 6, 5);
   await expect(apparatus).toHaveAttribute('data-installed', 'false'); await expect(status).toContainText('打开固定夹');
   await paper.press('Enter'); await expect(apparatus).toHaveAttribute('data-installed', 'false');

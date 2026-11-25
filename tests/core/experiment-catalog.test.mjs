@@ -18,17 +18,17 @@ const registry = createWorkbenchRegistry(), time = '2026-11-12T00:00:00.000Z';
 const create = choice => choice.endsWith('-blank') && !experimentChoices.some(item => item.id === choice) ? legacyJuniorBlank(choice) : createCatalogExperiment(choice, `catalog.${choice}`, time);
 const add = (scene, type) => scene.equipment.push({ id: `equipment.${scene.equipment.length}`, type, definitionVersion: 1, pose: { xM: 0, yM: 0, rotationRad: 0 }, parameters: { ...registry.get(type, 1).defaultParameters } });
 
-test('catalogue contains exactly 43 distinct options in the requested stage/domain distribution', () => {
-  assert.equal(experimentChoices.length, 43); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 43);
+test('catalogue contains exactly 44 distinct options in the requested stage/domain distribution', () => {
+  assert.equal(experimentChoices.length, 44); assert.equal(new Set(experimentChoices.map(choice => choice.id)).size, 44);
   assert.equal(experimentChoices.some(choice => choice.id === 'ohm-blank'), false);
   assert.equal(experimentChoices.filter(choice => choice.stage === 'junior' && choice.id.endsWith('-blank')).length, 0);
-  for (const [stage, domain, count] of [['junior', 'mechanical', 15], ['junior', 'electrical', 8], ['junior', 'optical', 4], ['junior', 'thermal', 3], ['senior', 'mechanical', 9], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
+  for (const [stage, domain, count] of [['junior', 'mechanical', 15], ['junior', 'electrical', 8], ['junior', 'optical', 4], ['junior', 'thermal', 3], ['senior', 'mechanical', 10], ['senior', 'electrical', 4], ['senior', 'optical', 0]]) assert.equal(experimentChoices.filter(choice => choice.stage === stage && choice.domain === domain).length, count);
   assert.deepEqual(experimentChoices.filter(choice => choice.stage === 'junior').map(choice => choice.id), [
     'average-speed', 'mass-solid', 'mass-liquid', 'mass-volume', 'density-solid', 'density-liquid', 'gravity-mass', 'friction', 'two-force', 'buoyancy-factors', 'buoyancy-archimedes', 'kinetic', 'lever', 'pulley', 'pulley-efficiency',
     'ohm-voltage', 'ohm-resistance', 'voltammetry', 'lamp-power', 'series-current', 'parallel-current', 'conductor', 'induction',
     'reflection', 'mirror-image', 'refraction', 'lens', 'melting', 'boiling', 'heat-comparison',
   ]);
-  assert.deepEqual(experimentChoices.filter(choice => choice.stage === 'senior').map(choice => choice.id), ['ticker', 'cart-blank', 'cart', 'spring-blank', 'spring', 'pendulum-blank', 'pendulum', 'projectile-blank', 'projectile', 'current-blank', 'emf-reference', 'emf-inner', 'emf-outer']);
+  assert.deepEqual(experimentChoices.filter(choice => choice.stage === 'senior').map(choice => choice.id), ['ticker', 'tape-speed', 'cart-blank', 'cart', 'spring-blank', 'spring', 'pendulum-blank', 'pendulum', 'projectile-blank', 'projectile', 'current-blank', 'emf-reference', 'emf-inner', 'emf-outer']);
 });
 
 test('every catalogue option produces an independent valid pending-review scene and round trips its actual apparatus', () => {

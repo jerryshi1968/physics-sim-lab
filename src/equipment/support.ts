@@ -22,6 +22,7 @@ import { PENDULUM } from './pendulum/definitions.ts';
 import { SPRING } from './spring/definitions.ts';
 import { projectileTypes, LAUNCHER, BALL, TIMER, GROUND } from './projectile/definitions.ts';
 import { densityTypes, BALANCE, CYLINDER, MASS_SET, BEAKER } from './density/definitions.ts';
+import { TAPE_SPEED_EXPERIMENT } from './tapeSpeed/model.ts';
 import { TICKER_EXPERIMENT, tickerTypes } from './ticker/simulate.ts';
 import { cartTypes, CART, TRACK, GATE, TICKER } from './cart/definitions.ts';
 import { buoyancyApparatus, buoyancyTypes, BODY, OVERFLOW } from './buoyancy/definitions.ts';
@@ -49,7 +50,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
-  { key: 'ticker', label: '练习使用打点计时器', experimentIds: [TICKER_EXPERIMENT], types: tickerTypes, maximum: oneEach(tickerTypes) },
+  { key: 'ticker', label: '练习使用打点计时器', experimentIds: [TICKER_EXPERIMENT, TAPE_SPEED_EXPERIMENT], types: tickerTypes, maximum: oneEach(tickerTypes) },
   { key: 'induction', label: '磁生电', experimentIds: [INDUCTION_EXPERIMENT], types: [MAGNET, GALVANOMETER, METAL_WIRE, SWITCH, WIRE], maximum: oneEach([MAGNET, GALVANOMETER, METAL_WIRE, SWITCH]) },
   { key: 'conductor', label: '导体电阻因素', experimentIds: [CONDUCTOR_EXPERIMENT], types: [POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER]) },
   { key: 'parallelCurrent', label: '并联电流关系', experimentIds: [PARALLEL_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
@@ -90,7 +91,7 @@ export function equipmentSupport(scene: Pick<SceneDocument, 'experimentId' | 'eq
   if (scene.experimentId === FREE_OPTICAL_EXPERIMENT) return freeOpticalSupport(scene);
   if (scene.experimentId === 'J-ELEC-01' && seriesCurrentSetup(scene).position) return equipmentSupports.find(profile => profile.key === 'seriesCurrent')!;
   const formal = equipmentSupports.find(profile => profile.experimentIds.includes(scene.experimentId ?? ''));
-  if (formal) return formal;
+  if (formal) return scene.experimentId === TAPE_SPEED_EXPERIMENT ? { ...formal, label: '纸带平均速度与瞬时速度测量' } : formal;
   const has = (types: readonly string[]) => scene.equipment.some(item => types.includes(item.type));
   const key = has([PULLEY]) ? 'pulley' : has([TANK]) ? 'refraction' : has([TUBE]) ? 'melting' : has([STOP]) ? 'averageSpeed' : has([HEATER, THERMOMETER]) ? 'boiling' : has(buoyancyTypes) ? 'buoyancy' : has(mirrorImageTypes) ? 'mirrorImage' : has(reflectionTypes) ? 'reflection'
     : has([PENDULUM]) ? 'pendulum' : has(densityTypes) ? 'density' : has(cartTypes) ? 'cart' : has([SPRING]) ? 'spring' : has(projectileTypes) ? 'projectile'

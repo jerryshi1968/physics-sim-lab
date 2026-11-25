@@ -82,6 +82,8 @@ import type { DensityPreview } from '../density/DensityPanel.tsx';
 import { CART as DYNAMICS_CART, TICKER as CART_TICKER, TRACK as CART_TRACK } from '../../equipment/cart/definitions.ts';
 import type { CartRig, CartRun } from '../../equipment/cart/simulate.ts';
 import { CartTether } from '../cart/CartGraphic.tsx';
+import { TapeSpeedMarks } from '../tapeSpeed/TapeSpeedMarks.tsx';
+import type { TapeSpeedSelection } from '../tapeSpeed/useTapeSpeedSelection.ts';
 import { TickerOverlay } from '../ticker/TickerOverlay.tsx';
 import { tickerMaximumZoom, tickerRulerBounds } from '../ticker/TickerRuler.tsx';
 import type { TickerSimulation } from '../ticker/useTicker.ts';
@@ -99,6 +101,7 @@ import { STOP as SPEED_STOP } from '../../equipment/averageSpeed/definitions.ts'
 import { CART as SPEED_CART } from '../../equipment/cart/definitions.ts';
 
 interface Props {
+  tapeSpeed?: TapeSpeedSelection | undefined;
   ticker?: TickerSimulation | undefined;
   onInductionReset?: ((width: number, height: number) => void) | undefined;
   onInductionDrag?: ((event: InductionDrag | null) => WorldPoint | undefined) | undefined;
@@ -182,7 +185,7 @@ type Gesture = { pointerId: number; clientX: number; clientY: number; view: View
   | { kind: 'equipment-select' }
 );
 
-export function SceneBoard({ ticker, onInductionReset, onInductionDrag, heatComparison, pulleyOutcome = null, kinetic, twoForce, twoForceYaw, onTwoForceYaw, onTwoForceYawPreview, gravityOutcome = null, massVolumeMode = false, massMode = false, averageSpeed, thermal, melting, pendulumAngle, pendulumTimeS, onPendulumAngle, cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, refractionOutcome = null, refractionReflection = false, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onOpticalPose, onRoute, onWireChange, onWireEnd, onViewport, panMode, onPanMode: setPanMode, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
+export function SceneBoard({ tapeSpeed, ticker, onInductionReset, onInductionDrag, heatComparison, pulleyOutcome = null, kinetic, twoForce, twoForceYaw, onTwoForceYaw, onTwoForceYawPreview, gravityOutcome = null, massVolumeMode = false, massMode = false, averageSpeed, thermal, melting, pendulumAngle, pendulumTimeS, onPendulumAngle, cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, refractionOutcome = null, refractionReflection = false, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onOpticalPose, onRoute, onWireChange, onWireEnd, onViewport, panMode, onPanMode: setPanMode, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
   const svg = useRef<SVGSVGElement>(null);
   const wireLayerId = useId();
   const gesture = useRef<Gesture | null>(null);
@@ -683,6 +686,7 @@ export function SceneBoard({ ticker, onInductionReset, onInductionDrag, heatComp
           return <g key={instance.id} data-selection-outline={instance.id} transform={`translate(${screen.x} ${screen.y}) rotate(${-instance.pose.rotationRad * 180 / Math.PI}) scale(${view.pixelsPerM * (instance.pose.flippedX ? -1 : 1)} ${view.pixelsPerM})`}><rect x={bounds.x - padding} y={bounds.y - padding} width={bounds.width + 2 * padding} height={bounds.height + 2 * padding} rx={4 / view.pixelsPerM} fill="none" stroke="#167e6a" strokeWidth="2" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" /></g>;
         })}</g>
         {ticker && <TickerOverlay scene={{ ...scene, equipment }} simulation={ticker} view={view} size={size} interactive={!panMode && !placing && !start} onViewport={onViewport} onMove={onMove} onPreview={onMechanicalPreview} onSelect={id => onSelect({ kind: 'equipment', id })} />}
+        {ticker && tapeSpeed && <TapeSpeedMarks scene={scene} ticker={ticker} selection={tapeSpeed} view={view} size={size} />}
         {orbit && <LightOrbitControl orbit={orbit} pose={equipment.find(item => item.id === orbit.id)!.pose} view={view} size={size} onStart={event => {
           const point = pointerPoint(event.clientX, event.clientY);
           if (!event.isPrimary || event.button !== 0) return;

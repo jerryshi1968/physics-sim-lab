@@ -1,5 +1,17 @@
 # H-MECH-05 实际验收：练习使用打点计时器
 
+## 2026-11-25 追加修订：扣夹上翻，用外形区分开合
+
+教师要求扣上固定夹时向上翻折，避免仅以颜色区分。本次H-MECH-05和H-MECH-06共用显示改为固定铰点的夹臂：打开向下、扣上向上，夹臂与说明两态颜色相同；保留文字和aria-pressed以供键盘/辅助访问。保留原点击区，另在夹臂上提供透明宽命中线，直接点击上翻夹臂可打开。未改电源、断电开夹穿取联锁、纸带运动、测量或历史数据。
+
+- Edge相关 **5/5**：穿取联锁流程中直接点击上翻夹臂并用键盘扣回，原纸带键盘操作，测速完整桌面及手机/平板原生触摸。[浏览器日志](../../artifacts/ticker-fold-browser.log)、[机器结果](../../artifacts/ticker-fold-browser/results.json)。
+- 实际查看打开与扣上截图，夹臂分别位于铰点下方和上方，颜色一致；截图位于`artifacts/ticker-fold-browser/`对应联锁用例目录。
+- TypeScript、相关ESLint和Vite构建通过；入口`index-DOW1Klrn.js`为1424.54 kB，既有大包提示保留。[类型](../../artifacts/ticker-fold-types.log)、[lint](../../artifacts/ticker-fold-lint.log)、[构建](../../artifacts/ticker-fold-build.log)。
+- 两份本轮修改的既有代码原注释、未改动行的文字/空格/混合换行保持，前项测速代码未覆盖。[完整性报告](../../artifacts/ticker-fold-integrity.json)。差异检查使用`git -c core.whitespace=cr-at-eol diff --check`。
+
+仅改变显示与对应命中区，未增加依赖、素材、物理模型或保存字段；本轮未重复完整核心、全部旧E2E、WebKit或实体设备验收。教材/实体设备仍待核验。未提交或部署。
+
+
 ## 2026-11-25 GitHub提交范围核对
 
 本次按维护者授权单独整理H-MECH-05及必要集成，基于main的41b2697，目标为jerryshi1968/physics-sim-lab的main。其他未提交电磁感应与初中目录整理保留在工作区。为使GitHub提交自身可验证，在忽略目录内从HEAD建立独立副本，移入本次28份源码／测试／说明文件；不覆盖工作区文件，不删除原注释，未改动行的文字、空格与混合换行保留。

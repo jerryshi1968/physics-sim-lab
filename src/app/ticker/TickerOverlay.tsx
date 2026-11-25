@@ -110,8 +110,13 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     {!s.installed && !s.taken && <g pointerEvents="none"><rect x={start.x - .072 * scale} y={start.y - .013 * scale} width={.144 * scale} height={.026 * scale} rx="3" fill="none" stroke="#c78329" strokeDasharray="3 3" /><text x={start.x - .10 * scale} y={start.y - .06 * scale} fontSize="12" fill="#6c735b">纸带通道</text></g>}
     <TickerControl label="固定计时器夹具" pressed={s.fixed} action={s.fix}>
       <rect x={start.x - .085 * scale} y={start.y + .04 * scale} width={.17 * scale} height={Math.max(24, .032 * scale)} fill="transparent" />
-      <g fill="none" stroke={s.fixed ? '#347e6c' : '#bd8e43'} strokeWidth="3"><path d={`M${start.x - .06 * scale} ${start.y + .025 * scale}v${.028 * scale}h${.045 * scale}`} /><path d={`M${start.x + .06 * scale} ${start.y + .025 * scale}v${.028 * scale}h${-.045 * scale}`} /></g>
-      <text x={start.x + .10 * scale} y={start.y + .06 * scale} fontSize="12" fill={s.fixed ? '#347e6c' : '#8a672d'}>← 固定夹{s.fixed ? '已扣上' : '已打开'}</text>
+      <g transform={`translate(${start.x} ${start.y + .025 * scale})`}>
+        <g data-testid="ticker-clamp-arms" transform={`scale(1 ${s.fixed ? -1 : 1})`} fill="none" stroke="#bd8e43" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
+          {[-1, 1].map(side => <g key={side}><path d={`M${side * .06 * scale} 0v${.028 * scale}h${-side * .045 * scale}`} stroke="transparent" strokeWidth="14" pointerEvents="stroke" /><path d={`M${side * .06 * scale} 0v${.028 * scale}h${-side * .045 * scale}`} /></g>)}
+        </g>
+        {[-1, 1].map(side => <circle key={side} cx={side * .06 * scale} cy="0" r="2.5" fill="#bd8e43" stroke="#f2dfbd" strokeWidth="1" />)}
+      </g>
+      <text x={start.x + .10 * scale} y={start.y + .06 * scale} fontSize="12" fill="#8a672d">← 固定夹{s.fixed ? '已扣上（上翻）' : '已打开'}</text>
     </TickerControl>
     <TickerControl label="计时器电源开关" pressed={s.powered} action={s.togglePower}>
       <rect x={start.x + .058 * scale - 16} y={start.y - .026 * scale - 16} width="32" height="32" fill="transparent" />
