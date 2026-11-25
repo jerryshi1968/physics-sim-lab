@@ -1,10 +1,10 @@
-import { openFamily } from './catalog-helpers.ts';
+import { openFamily, importLegacyBlank } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 async function open(page: Page, choice = '探究浮力的影响因素') {
-  await page.goto('/');
+  await page.goto('/'); if (choice === '空白搭建浮力实验') { await importLegacyBlank(page, 'buoyancy-blank'); return; }
   await openFamily(page, '浮力实验');
   await page.getByRole('radio', { name: choice, exact: true }).check();
   await page.getByRole('button', { name: '进入实验' }).click();

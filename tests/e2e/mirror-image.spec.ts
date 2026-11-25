@@ -1,12 +1,11 @@
-import { openFamily } from './catalog-helpers.ts';
+import { openFamily, importLegacyBlank } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 async function openMirror(page: Page, empty = false) {
-  await page.goto('/');
+  await page.goto('/'); if (empty) { await importLegacyBlank(page, 'optical-blank'); return; }
   await openFamily(page, '平面镜成像实验');
-  if (empty) await page.getByRole('radio', { name: '空白搭建光学实验' }).check();
   await page.getByRole('button', { name: '进入实验' }).click();
   await page.getByRole('button', { name: '确认替换当前实验' }).click();
 }

@@ -1,3 +1,4 @@
+import { GALVANOMETER, MAGNET, INDUCTION_EXPERIMENT } from './induction/definitions.ts';
 import { CONDUCTOR_EXPERIMENT, METAL_WIRE } from './electrical/conductor.ts';
 import { PARALLEL_CURRENT_EXPERIMENT, parallelCurrentSetup } from '../experiments/parallel-current.ts';
 import { SERIES_CURRENT_EXPERIMENT, seriesCurrentSetup } from '../experiments/series-current.ts';
@@ -49,6 +50,7 @@ export interface EquipmentSupport {
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
   { key: 'ticker', label: '练习使用打点计时器', experimentIds: [TICKER_EXPERIMENT], types: tickerTypes, maximum: oneEach(tickerTypes) },
+  { key: 'induction', label: '磁生电', experimentIds: [INDUCTION_EXPERIMENT], types: [MAGNET, GALVANOMETER, METAL_WIRE, SWITCH, WIRE], maximum: oneEach([MAGNET, GALVANOMETER, METAL_WIRE, SWITCH]) },
   { key: 'conductor', label: '导体电阻因素', experimentIds: [CONDUCTOR_EXPERIMENT], types: [POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER]) },
   { key: 'parallelCurrent', label: '并联电流关系', experimentIds: [PARALLEL_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },
   { key: 'seriesCurrent', label: '串联电流关系', experimentIds: [SERIES_CURRENT_EXPERIMENT], types: [POWER, SWITCH, LAMP, AMMETER, WIRE], maximum: { [POWER]: 1, [SWITCH]: 1, [LAMP]: 2, [AMMETER]: 1 } },

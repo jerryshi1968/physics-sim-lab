@@ -11,11 +11,18 @@ export const metalMaterials = {
   iron: { label: '铁', rho: 9.71e-8, alpha: .0065, color: '#657882' },
 } as const;
 export const MetalWireSchema = z.strictObject({
+  inductionPerspective: z.boolean().optional(),
+  inductionShape: z.enum(['rod', 'coil']).optional(), turns: FiniteSchema.int().min(1).max(100).optional(),
+  velocityXMPerS: FiniteSchema.optional(), velocityYMPerS: FiniteSchema.optional(),
   material: z.enum(['nichrome', 'constantan', 'iron']),
   lengthM: FiniteSchema.min(.2).max(2),
   areaM2: FiniteSchema.min(5e-8).max(4e-7),
   temperatureK: FiniteSchema.min(293.15).max(353.15),
-});
+}).transform(({ inductionPerspective, inductionShape, turns, velocityXMPerS, velocityYMPerS, ...required }) => ({ ...required,
+  ...(inductionPerspective === undefined ? {} : { inductionPerspective }),
+  ...(inductionShape === undefined ? {} : { inductionShape }), ...(turns === undefined ? {} : { turns }),
+  ...(velocityXMPerS === undefined ? {} : { velocityXMPerS }), ...(velocityYMPerS === undefined ? {} : { velocityYMPerS }),
+}));
 export type MetalWireParameters = z.infer<typeof MetalWireSchema>;
 export const metalSamples = [
   { id: 'A', label: 'A · 镍铬丝，50 cm，0.10 mm²', material: 'nichrome', lengthM: .5, areaM2: 1e-7 },
@@ -36,7 +43,7 @@ export function metalPoint(instance: EquipmentInstance) {
   return `${metalSampleId(instance)} · ${metalMaterials[p.material].label} · ${Number((p.lengthM * 100).toFixed(2))}cm · ${Number((p.areaM2 * 1e6).toFixed(3))}mm² · ${Number((p.temperatureK - 273.15).toFixed(2))}℃`;
 }
 export function registerMetalWire(registry: EquipmentRegistry) {
-  registry.registerParameterSchema(`${METAL_WIRE}.parameters.v1`, MetalWireSchema);
+  registry.registerParameterSchema(`${METAL_WIRE}.parameters.v1`, MetalWireSchema.transform(value => Object.fromEntries(Object.entries(value).filter(([, v]) => v !== undefined)) as Record<string, string | number | boolean>));
   registry.register({ type: METAL_WIRE, definitionVersion: 1, label: '金属丝（电阻丝）', domain: 'electrical',
     parameterSchemaId: `${METAL_WIRE}.parameters.v1`, modelAdapterId: `${METAL_WIRE}.dc.v1`, viewId: `${METAL_WIRE}.physical.v1`,
     defaultParameters: { material: 'nichrome', lengthM: .5, areaM2: 1e-7, temperatureK: 293.15 },

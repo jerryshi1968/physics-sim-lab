@@ -1,7 +1,8 @@
+import { legacyJuniorBlank } from '../fixtures/legacy-junior-blanks.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createLampPowerExperiment } from '../../src/experiments/lamp-power.ts';
-import { createCatalogExperiment, experimentChoices } from '../../src/experiments/catalog.ts';
+import { experimentChoices } from '../../src/experiments/catalog.ts';
 import { createWorkbenchRegistry } from '../../src/equipment/registry.ts';
 import { simulateElectrical } from '../../src/equipment/electrical/simulate.ts';
 import { lampPowerCircuit, lampPowerMode, lampPowerPoint, buildLampPowerMeasurements, lampPowerAnalysis } from '../../src/equipment/electrical/lamp-power.ts';
@@ -95,11 +96,11 @@ test('changing current lamp ratings does not alter historic work points and diff
 });
 
 test('unified electrical blank selects saved, undoable power records without adding a second blank or changing apparatus', () => {
-  const scene = createCatalogExperiment('electrical-blank', 'blank', time), kit = create(); scene.equipment = kit.equipment; scene.connections = kit.connections;
+  const scene = legacyJuniorBlank('electrical-blank'), kit = create(); scene.equipment = kit.equipment; scene.connections = kit.connections;
   const history = createHistory(scene), result = executeCommand(history, { type: 'set-ohm-control', control: { mode: 'lamp-power', fixedResistanceOhm: 10, targetVoltageV: 2, voltageToleranceV: .05 } }, registry, time);
   assert.equal(result.ok, true); assert.equal(lampPowerMode(result.history.present), true); assert.equal(ohmRecordMode(result.history.present), false);
   assert.deepEqual(result.history.present.equipment, scene.equipment); assert.deepEqual(result.history.present.connections, scene.connections); assert.equal(equipmentSupport(result.history.present).key, 'electrical');
   assert.equal(lampPowerMode(parseSceneJson(serializeScene(result.history.present, registry), registry).document), true);
   assert.equal(lampPowerMode(travelHistory(result.history, 'undo', registry, time).history.present), false);
-  assert.equal(experimentChoices.filter(choice => choice.stage === 'junior' && choice.domain === 'electrical' && choice.id.endsWith('-blank')).length, 1);
+  assert.equal(experimentChoices.filter(choice => choice.stage === 'junior' && choice.domain === 'electrical' && choice.id.endsWith('-blank')).length, 0);
 });

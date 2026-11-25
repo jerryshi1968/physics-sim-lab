@@ -60,7 +60,8 @@ export function correctManualMeasurement(document: SceneDocument, registry: Equi
   const baseStatus = instrumentStatus === 'valid' ? record.context?.diagnosticCodes.includes('FRICTION_NON_STEADY') ? 'non-steady' : 'valid' : instrumentStatus === 'reverse' ? 'reverse'
     : instrumentStatus === 'over-range' ? 'over-range' : instrumentStatus === 'out-of-model' ? 'out-of-model'
       : instrumentStatus ? 'invalid' : record.measurementStatus;
-  const result = manualResult(rawInput, baseStatus, record.range);
+  const signedGalvanometer = document.measurementSnapshots?.find(snapshot => snapshot.id === record.context?.sampleId)?.equipment.some(item => item.id === record.equipmentId && item.type === 'electrical.galvanometer');
+  const result = manualResult(rawInput, signedGalvanometer && baseStatus === 'valid' && record.range && Number(rawInput) < record.range.min ? 'over-range' : baseStatus, record.range);
   if (!result) return measurementFailure('INVALID_MANUAL_VALUE');
   const candidate = SceneDocumentSchema.parse(document);
   candidate.measurementRecords = candidate.measurementRecords.map(item => item.id === id ? { ...item, ...result, rawInput, correctedAt: timestamp } : item);

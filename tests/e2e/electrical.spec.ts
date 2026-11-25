@@ -138,14 +138,11 @@ test('actual range rewiring, reverse, over-range, invalid multi-range and reset 
   await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('超量程');
   await page.getByLabel('选择导线', { exact: true }).selectOption('w0');
   await page.getByRole('button', { name: '连接线头 B', exact: true }).click();
-  await page.getByLabel('选择器材', { exact: true }).selectOption('A');
-  await page.getByRole('button', { name: '大量程 +', exact: true }).click();
+  await port(page.getByTestId('scene-board').locator('[data-equipment-id="A"]'), 'high').click();
   await expect(page.locator('[data-meter-reading="A"]')).toHaveAttribute('data-meter-status', 'valid');
   await expect(page.locator('[data-meter-reading="A"] strong')).toHaveText('0.9 A');
-  await page.getByLabel('选择器材', { exact: true }).selectOption('A');
-  await page.getByRole('button', { name: '小量程 +', exact: true }).click();
-  await page.getByLabel('选择器材', { exact: true }).selectOption('E');
-  await page.getByRole('button', { name: '正极 +', exact: true }).click();
+  await port(page.getByTestId('scene-board').locator('[data-equipment-id="A"]'), 'low').click();
+  await port(page.getByTestId('scene-board').locator('[data-equipment-id="E"]'), 'positive').press('Enter');
   await expect(page.getByRole('alert')).toContainText('两个正量程端同时接线');
   await expect(page.locator('[data-meter-reading]')).toHaveCount(0);
   const reverse = meterScene(); reverse.connections[0]!.to!.portId = 'common'; reverse.connections[1]!.from!.portId = 'low';
@@ -185,8 +182,7 @@ test('both meter scales stay visible with independent divisions, active-range hi
   await page.screenshot({ path: testInfo.outputPath('dual-meter-scales.png'), fullPage: true });
   await page.getByLabel('选择导线', { exact: true }).selectOption('w0');
   await page.getByRole('button', { name: '连接线头 B', exact: true }).click();
-  await page.getByLabel('选择器材', { exact: true }).selectOption('A');
-  await page.getByRole('button', { name: '大量程 +', exact: true }).click();
+  await port(page.getByTestId('scene-board').locator('[data-equipment-id="A"]'), 'high').click();
   await expect(ammeter.locator('[data-meter-scale="high"]')).toHaveAttribute('data-scale-active', 'true');
   await expect(ammeter.locator('[data-meter-scale="low"]')).toHaveAttribute('data-scale-active', 'false');
   expect(Number(await ammeter.getAttribute('data-needle-fraction'))).toBeCloseTo(.1, 6);

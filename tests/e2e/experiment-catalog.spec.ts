@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { experimentChoices, schoolLabels, catalogDomainLabels } from '../../src/experiments/catalog.ts';
 import type { SchoolStage, CatalogDomain } from '../../src/experiments/catalog.ts';
-import { selectCatalogOption } from './catalog-helpers.ts';
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
 
 async function exported(page: Page) {
   const pending = page.waitForEvent('download'); await page.getByRole('button', { name: '导出', exact: true }).click();
@@ -24,10 +24,10 @@ test('two school entries keep the toolbar compact, all categories are accessible
   const before = await exported(page);
   await page.getByRole('button', { name: '初中物理实验', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: '初中物理实验', exact: true });
-  await expect(dialog.getByRole('radio')).toHaveCount(20); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
+  await expect(dialog.getByRole('radio')).toHaveCount(15); await expect(dialog.getByRole('radio', { name: /空白/ })).toHaveCount(0); await expect(dialog.getByRole('button', { name: '进入实验' })).toBeDisabled();
   await dialog.getByRole('tab', { name: '力学实验', exact: true }).focus(); await page.keyboard.press('ArrowRight');
   await expect(dialog.getByRole('tab', { name: '电学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(8);
-  await page.keyboard.press('End'); await expect(dialog.getByRole('tab', { name: '热学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(5);
+  await page.keyboard.press('End'); await expect(dialog.getByRole('tab', { name: '热学实验', exact: true })).toBeFocused(); await expect(dialog.getByRole('radio')).toHaveCount(3);
   await selectCatalogOption(page, 'reflection'); await page.keyboard.press('Delete'); await page.keyboard.press('Escape');
   expect(await exported(page)).toEqual(before);
   await page.getByRole('button', { name: '高中物理实验', exact: true }).click();
@@ -53,8 +53,8 @@ for (const [stage, domain] of [['junior', 'mechanical'], ['junior', 'electrical'
   });
 }
 
-test('free optics uses placed apparatus to choose the model, releases it on deletion and preserves identity after undo/reload', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 }); await page.goto('/'); await begin(page, 'optical-blank');
+test('legacy imported free optics uses placed apparatus to choose the model, releases it on deletion and preserves identity after undo/reload', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 }); await page.goto('/'); await importLegacyBlank(page, 'optical-blank');
   await expect(page.getByRole('heading', { name: '光学自由搭建', exact: true })).toBeVisible();
   await place(page, 'optical.ruler'); await place(page, 'optical.plane-mirror');
   await expect(page.getByRole('heading', { name: '光学自由搭建', exact: true })).toBeVisible();

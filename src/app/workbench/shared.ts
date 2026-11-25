@@ -1,3 +1,5 @@
+import { INDUCTION_EXPERIMENT } from '../../equipment/induction/definitions.ts';
+import { METAL_WIRE } from '../../equipment/electrical/conductor.ts';
 import { PARALLEL_CURRENT_EXPERIMENT, parallelCurrentSetup } from '../../experiments/parallel-current.ts';
 import { SERIES_CURRENT_EXPERIMENT, seriesCurrentSetup } from '../../experiments/series-current.ts';
 import { HEAT_COMPARISON_EXPERIMENT, heatComparisonLabel } from '../../equipment/heatComparison/simulate.ts';
@@ -27,6 +29,7 @@ export function changeSelection(current: Selection, next: Selection, additive = 
 export function equipmentLabel(scene: SceneDocument, registry: EquipmentRegistry, id: string): string {
   const index = scene.equipment.findIndex(item => item.id === id);
   const instance = scene.equipment[index];
+  if (scene.experimentId === INDUCTION_EXPERIMENT && instance?.type === METAL_WIRE) return instance.parameters.inductionShape === 'coil' ? '线圈 AB' : '导体 AB';
   const parallel = scene.experimentId === PARALLEL_CURRENT_EXPERIMENT || scene.experimentId === 'J-ELEC-01' ? parallelCurrentSetup(scene) : null;
   if (parallel?.roles && (scene.experimentId === PARALLEL_CURRENT_EXPERIMENT || parallel.position)) { if (id === parallel.roles.L1) return '灯泡 L1'; if (id === parallel.roles.L2) return '灯泡 L2'; }
   const series = scene.experimentId === SERIES_CURRENT_EXPERIMENT || scene.experimentId === 'J-ELEC-01' ? seriesCurrentSetup(scene) : null;
@@ -37,5 +40,5 @@ export function equipmentLabel(scene: SceneDocument, registry: EquipmentRegistry
 
 export function endpointLabel(scene: SceneDocument, registry: EquipmentRegistry, endpoint: Endpoint | null): string {
   if (!endpoint) return '未连接';
-  return `${equipmentLabel(scene, registry, endpoint.equipmentId)} · ${portLabel(endpoint.portId)}`;
+  return `${equipmentLabel(scene, registry, endpoint.equipmentId)} · ${scene.equipment.find(i => i.id === endpoint.equipmentId)?.type === 'electrical.galvanometer' ? endpoint.portId === 'low' ? '正接线柱 +' : '负接线柱 −' : portLabel(endpoint.portId)}`;
 }

@@ -1,3 +1,5 @@
+import { GALVANOMETER, MAGNET } from '../../equipment/induction/definitions.ts';
+import { InductionGraphic } from '../induction/InductionGraphic.tsx';
 import { METAL_WIRE } from '../../equipment/electrical/conductor.ts';
 import { MetalWireGraphic } from '../conductor/ConductorGraphic.tsx';
 import { AMMETER, JUNCTION, LAMP, POWER, RESISTOR, SWITCH, VOLTMETER, RHEOSTAT } from '../../equipment/electrical/definitions.ts';
@@ -23,7 +25,8 @@ export function EquipmentGraphic({ instance, branchValue, meter, onToggleSwitch,
       <linearGradient id={`${id}-ceramic`} x2="0" y2="1"><stop stopColor="#e4eadf" /><stop offset=".45" stopColor="#ffffff" /><stop offset="1" stopColor="#a9b4a2" /></linearGradient>
       <radialGradient id={`${id}-lamp-glow`}><stop stopColor="#fff6bc" /><stop offset=".45" stopColor="#ffd464" stopOpacity=".7" /><stop offset="1" stopColor="#ffc443" stopOpacity="0" /></radialGradient>
     </defs>
-    {instance.type === METAL_WIRE && <MetalWireGraphic instance={instance} />}
+    {(instance.type === GALVANOMETER || instance.type === MAGNET || instance.type === METAL_WIRE && instance.parameters.inductionShape) && <InductionGraphic instance={instance} reading={meter} />}
+    {instance.type === METAL_WIRE && !instance.parameters.inductionShape && <MetalWireGraphic instance={instance} />}
     {instance.type === POWER && <g>
       <rect x="-.067" y="-.03" width=".134" height=".06" rx=".009" fill="#293e48" />
       <rect x="-.059" y="-.022" width=".118" height=".044" rx=".004" fill="#132830" />

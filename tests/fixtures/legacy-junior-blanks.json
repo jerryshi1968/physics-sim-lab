@@ -1,0 +1,507 @@
+{
+  "average-speed-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.average-speed-blank",
+    "revision": 0,
+    "title": "空白搭建平均速度实验",
+    "experimentId": "J-MECH-04",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {
+        "mechanical.average-speed": "analytic.v1"
+      },
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "路程、时间与平均速度；正式条目待教师核验",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0,
+      "centerYM": 0.22,
+      "pixelsPerM": 500
+    }
+  },
+  "density-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.density-blank",
+    "revision": 0,
+    "title": "空白搭建密度测量实验",
+    "experimentId": "J-MEAS-01",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {
+        "measurement.density": "static.v1"
+      },
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "质量、体积与密度测量；具体条目待教师核验",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0.05,
+      "centerYM": 0.05,
+      "pixelsPerM": 650
+    }
+  },
+  "friction-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.friction-blank",
+    "revision": 0,
+    "title": "空白搭建滑动摩擦实验",
+    "experimentId": "J-MECH-01",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {},
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "滑动摩擦与控制变量",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0,
+      "centerYM": 0.08,
+      "pixelsPerM": 400
+    }
+  },
+  "thermal-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.thermal-blank",
+    "revision": 0,
+    "title": "空白搭建水沸腾实验",
+    "experimentId": "J-THERM-01",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {
+        "thermal.boiling": "lumped.v1"
+      },
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "水的沸腾与温度—时间记录；正式条目待教师核验",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0.08,
+      "centerYM": 0.08,
+      "pixelsPerM": 650
+    }
+  },
+  "melting-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.melting-blank",
+    "revision": 0,
+    "title": "空白搭建固体熔化实验",
+    "experimentId": "J-THERM-02",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {
+        "thermal.melting": "enthalpy.v1"
+      },
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "固体熔化过程的物态与温度变化；正式条目待教师核验",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0.08,
+      "centerYM": 0.08,
+      "pixelsPerM": 650
+    }
+  },
+  "buoyancy-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.buoyancy-blank",
+    "revision": 0,
+    "title": "空白搭建浮力实验",
+    "experimentId": "J-MECH-03",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {
+        "mechanical.buoyancy": "mechanical.buoyancy.static.v1"
+      },
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "浮力与阿基米德原理，具体条目待教师核验",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": -0.18,
+      "centerYM": 0.29,
+      "pixelsPerM": 600
+    }
+  },
+  "lever-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.lever-blank",
+    "revision": 0,
+    "title": "空白搭建杠杆平衡实验",
+    "experimentId": "J-MECH-02",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {},
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "杠杆平衡",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0,
+      "centerYM": 0.18,
+      "pixelsPerM": 900
+    }
+  },
+  "electrical-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.electrical-blank",
+    "revision": 0,
+    "title": "空白搭建电学实验",
+    "experimentId": "J-ELEC-FREE",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {},
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "电路搭建与测量",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0,
+      "centerYM": 0,
+      "pixelsPerM": 600
+    }
+  },
+  "optical-blank": {
+    "schemaVersion": 2,
+    "documentId": "catalog.optical-blank",
+    "revision": 0,
+    "title": "空白搭建光学实验",
+    "experimentId": "J-OPT-FREE",
+    "equipment": [],
+    "connections": [],
+    "simulationConfig": {
+      "modelVersions": {},
+      "electricalMode": "ideal",
+      "gravityMPerS2": 10,
+      "fixedTimeStepS": 0.008333333333333333,
+      "randomError": {
+        "enabled": false,
+        "seed": 0,
+        "distribution": "none",
+        "amplitude": 0
+      }
+    },
+    "measurementRecords": [],
+    "curriculumRef": {
+      "stage": "junior",
+      "standard": {
+        "title": "义务教育物理课程标准",
+        "edition": "2022 年版",
+        "topic": "光学器材搭建与观察",
+        "clause": null
+      },
+      "textbookMappings": [
+        {
+          "publisher": "人民教育出版社",
+          "edition": null,
+          "volume": null,
+          "chapter": null,
+          "page": null,
+          "status": "pending_teacher_review",
+          "reviewedBy": null,
+          "reviewedAt": null
+        }
+      ]
+    },
+    "provenance": {
+      "origin": "original",
+      "sourceDocumentId": null,
+      "createdAt": "2026-11-25T00:00:00.000Z",
+      "updatedAt": "2026-11-25T00:00:00.000Z",
+      "notes": []
+    },
+    "viewport": {
+      "centerXM": 0,
+      "centerYM": 0.12,
+      "pixelsPerM": 600
+    }
+  }
+}

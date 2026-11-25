@@ -1,8 +1,8 @@
 import { test,expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
-async function open(page:Page,blank=false){await page.goto('/');await page.getByRole('button',{name:'初中物理实验',exact:true}).click();await selectCatalogOption(page,blank?'melting-blank':'melting');await page.getByRole('button',{name:'进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
+async function open(page:Page,blank=false){await page.goto('/');if(blank){await importLegacyBlank(page,'melting-blank');return;}await page.getByRole('button',{name:'初中物理实验',exact:true}).click();await selectCatalogOption(page,'melting');await page.getByRole('button',{name:'进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
 async function exported(page:Page){const event=page.waitForEvent('download');await page.getByRole('button',{name:'导出',exact:true}).click();return JSON.parse(await readFile((await(await event).path())!,'utf8'));}
 async function heat(page:Page){await page.getByRole('button',{name:'开始水浴加热',exact:true}).click();await page.getByRole('button',{name:'暂停熔化实验',exact:true}).click();}
 async function step(page:Page,n=1){for(let i=0;i<n;i++)await page.getByRole('button',{name:'单步熔化实验',exact:true}).click();}

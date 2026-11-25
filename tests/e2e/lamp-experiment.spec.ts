@@ -1,5 +1,5 @@
 import { createLampCircuitExperiment } from '../../src/experiments/lamp-circuits.ts';
-import { openFamily } from './catalog-helpers.ts';
+import { openFamily, previewLegacyBlank } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -10,8 +10,9 @@ async function ready(page: Page) {
   await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
 }
 async function preview(page: Page, start: string) {
+  if (start === 'blank') { await previewLegacyBlank(page, 'electrical-blank'); return; }
   await openFamily(page, '灯泡串并联实验');
-  await page.locator(`input[name="experiment-catalog-choice"][value="${start === 'blank' ? 'electrical-blank' : start.startsWith('series-') ? 'series-current' : start.startsWith('parallel-') ? 'parallel-current' : start}"]`).check();
+  await page.locator(`input[name="experiment-catalog-choice"][value="${start.startsWith('series-') ? 'series-current' : start.startsWith('parallel-') ? 'parallel-current' : start}"]`).check();
   await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await expect(page.getByRole('heading', { name: '实验起点预览', exact: true })).toBeVisible();
 }

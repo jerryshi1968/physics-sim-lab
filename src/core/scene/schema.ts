@@ -53,10 +53,10 @@ export const MeasurementSnapshotSchema = z.strictObject({
   runId: IdSchema, sequence: z.number().int().positive(), capturedAt: DateTimeSchema,
   setupLabel: z.string().max(100), note: z.string().max(500), modelVersion: IdSchema,
   sourceSnapshotIds: z.array(IdSchema).min(1).max(3).refine(ids => new Set(ids).size === ids.length).optional(),
-  captureState: z.strictObject({ kind: z.literal('projectile-launch'), launchRevision: z.number().int().nonnegative(), equipment: z.array(EquipmentInstanceSchema).max(200), connections: z.array(ConnectionSchema).max(500), modelConfigSnapshot: SimulationConfigSchema }).optional(),
+  captureState: z.strictObject({ kind: z.enum(['projectile-launch', 'induction-motion']), launchRevision: z.number().int().nonnegative(), equipment: z.array(EquipmentInstanceSchema).max(200), connections: z.array(ConnectionSchema).max(500), modelConfigSnapshot: SimulationConfigSchema }).optional(),
   equipment: z.array(EquipmentInstanceSchema).max(200), connections: z.array(ConnectionSchema).max(500),
   modelConfigSnapshot: SimulationConfigSchema,
-}).refine(snapshot => !snapshot.captureState || snapshot.modelVersion === 'mechanical.projectile.analytic.v1' && snapshot.captureState.launchRevision <= snapshot.documentRevision && snapshot.equipment.every(item => item.type.startsWith('mechanical.projectile-')) && snapshot.equipment.some(item => item.type === 'mechanical.projectile-ball'), { message: 'Invalid frozen launch snapshot' });
+}).refine(snapshot => !snapshot.captureState || snapshot.captureState.kind === 'induction-motion' && ['induction-quasistatic.v1', 'induction-perspective.v2'].includes(snapshot.modelVersion) && snapshot.captureState.launchRevision === snapshot.documentRevision && snapshot.equipment.every(item => ['electrical.horseshoe-magnet', 'electrical.galvanometer', 'electrical.metal-wire', 'electrical.switch'].includes(item.type)) && snapshot.equipment.some(item => item.type === 'electrical.metal-wire') || snapshot.captureState?.kind === 'projectile-launch' && snapshot.modelVersion === 'mechanical.projectile.analytic.v1' && snapshot.captureState.launchRevision <= snapshot.documentRevision && snapshot.equipment.every(item => item.type.startsWith('mechanical.projectile-')) && snapshot.equipment.some(item => item.type === 'mechanical.projectile-ball'), { message: 'Invalid frozen launch snapshot' });
 
 export const MeasurementContextSchema = z.strictObject({
   sampleId: IdSchema, equipmentLabel: z.string().min(1).max(200), pointLabel: z.string().min(1).max(100),

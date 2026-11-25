@@ -1,7 +1,7 @@
+import { legacyJuniorBlank } from '../fixtures/legacy-junior-blanks.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createVoltammetryExperiment } from '../../src/experiments/voltammetry.ts';
-import { createCatalogExperiment } from '../../src/experiments/catalog.ts';
 import { createWorkbenchRegistry } from '../../src/equipment/registry.ts';
 import { simulateElectrical } from '../../src/equipment/electrical/simulate.ts';
 import { buildVoltammetryMeasurements, voltammetryAnalysis, voltammetryMode } from '../../src/equipment/electrical/voltammetry.ts';
@@ -108,7 +108,7 @@ test('series are separated for different specimens or sources, while both meter 
 });
 
 test('unified blank adds resistance measurement as an undoable saved record mode without replacing apparatus or adding a duplicate catalogue blank', () => {
-  const scene = createCatalogExperiment('electrical-blank', 'blank', time), hardware = create(); scene.equipment = hardware.equipment; scene.connections = hardware.connections;
+  const scene = legacyJuniorBlank('electrical-blank'), hardware = create(); scene.equipment = hardware.equipment; scene.connections = hardware.connections;
   let history = createHistory(scene);
   const control = { mode: 'measurement', fixedResistanceOhm: 10, targetVoltageV: 2, voltageToleranceV: .05 };
   let result = executeCommand(history, { type: 'set-ohm-control', control }, registry, time); assert.equal(result.ok, true); history = result.history;

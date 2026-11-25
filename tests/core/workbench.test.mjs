@@ -51,7 +51,7 @@ function circuit() {
 }
 
 test('production registry keeps original apparatus and adds lamp and dual-range meters with SI defaults', () => {
-  assert.deepEqual(registry.list().map(item => item.type), [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, METAL_WIRE]);
+  assert.deepEqual(registry.list().map(item => item.type), [POWER, RESISTOR, SWITCH, JUNCTION, LAMP, AMMETER, VOLTMETER, RHEOSTAT, METAL_WIRE, 'electrical.horseshoe-magnet', 'electrical.galvanometer']);
   assert.deepEqual(registry.get(POWER, 1).ports.map(port => port.id), ['positive', 'negative']);
   assert.equal(registry.get(POWER, 1).defaultParameters.voltageV, 3);
   assert.equal(registry.get(METAL_WIRE, 1).defaultParameters.areaM2, 1e-7);

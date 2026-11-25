@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
 
 async function open(page: Page) {
   await page.goto('/'); await page.getByRole('button', { name: '初中物理实验', exact: true }).click();
@@ -86,8 +86,7 @@ test('existing auxiliary apparatus can be restored and the new wire also works i
   const heater = page.locator('[data-library-type="thermal.heater"]'); await expect(heater).toBeEnabled();
   await heater.click(); await page.getByRole('button', { name: '在视口中心放置', exact: true }).click();
   await expect(page.getByTestId('scene-board').locator('[data-conductor-heater]')).toHaveCount(1);
-  await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await selectCatalogOption(page, 'electrical-blank');
-  for (const name of ['进入实验', '确认替换当前实验']) await page.getByRole('button', { name, exact: true }).click();
+  await importLegacyBlank(page, 'electrical-blank');
   await page.locator('[data-library-type="electrical.metal-wire"]').click();
   await page.getByRole('button', { name: '在视口中心放置', exact: true }).click();
   await page.getByLabel('金属丝样品', { exact: true }).selectOption('C');

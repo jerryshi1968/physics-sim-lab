@@ -1,4 +1,4 @@
-import { openFamily } from './catalog-helpers.ts';
+import { openFamily, importLegacyBlank } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -6,9 +6,9 @@ import type { SceneDocument } from '../../src/core/scene/schema.ts';
 import { BENCH, CANDLE, LENS, SCREEN, RULER } from '../../src/equipment/optical/definitions.ts';
 
 async function ready(page: Page, empty = false) {
-  await page.goto('/'); await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
+  await page.goto('/'); if (empty) { await importLegacyBlank(page, 'optical-blank'); return; } await expect(page.getByRole('button', { name: '保存', exact: true })).toBeEnabled();
   await openFamily(page, '凸透镜成像实验');
-  if (empty) await page.getByRole('radio', { name: '空白搭建光学实验', exact: true }).check();
+
   await page.getByRole('button', { name: '进入实验', exact: true }).click();
   await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }

@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
-async function open(page:Page,blank=false){await page.goto('/');await page.getByRole('button',{name:'初中物理实验',exact:true}).click();await selectCatalogOption(page,blank?'average-speed-blank':'average-speed');await page.getByRole('button',{name:'进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
+async function open(page:Page,blank=false){await page.goto('/');if(blank){await importLegacyBlank(page,'average-speed-blank');return;}await page.getByRole('button',{name:'初中物理实验',exact:true}).click();await selectCatalogOption(page,'average-speed');await page.getByRole('button',{name:'进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();}
 async function exported(page:Page){const event=page.waitForEvent('download');await page.getByRole('button',{name:'导出',exact:true}).click();return JSON.parse(await readFile((await (await event).path())!,'utf8'));}
 async function finish(page:Page){await page.getByRole('button',{name:'释放并计时',exact:true}).click();await expect(page.getByTestId('average-speed-clock')).toContainText('已撞到挡片',{timeout:12000});}
 async function record(page:Page,stop:string){await page.getByLabel('起始车头尺读数（cm）',{exact:true}).fill('109');await page.getByLabel('挡片尺读数（cm）',{exact:true}).fill(stop);await page.getByRole('button',{name:'采集停表示数',exact:true}).click();await page.getByRole('button',{name:'保存平均速度读数',exact:true}).click();}

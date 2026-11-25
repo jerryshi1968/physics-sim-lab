@@ -52,6 +52,10 @@ export function endpointWorld(endpoint: Endpoint, equipment: readonly EquipmentI
   const instance = equipment.find(item => item.id === endpoint.equipmentId);
   const port = instance && registry.get(instance.type, instance.definitionVersion)?.ports.find(item => item.id === endpoint.portId);
   if (!instance || !port) throw new RangeError('UNKNOWN_ENDPOINT');
+  if (instance.type === 'electrical.metal-wire' && instance.parameters.inductionShape) {
+    const depth = Number(instance.parameters.lengthM) * (port.id === 'b' ? 1 : -1);
+    return localToWorld({ x: depth * .375, y: -depth * .65 }, instance.pose);
+  }
   return localToWorld(port.localPositionM, instance.pose);
 }
 

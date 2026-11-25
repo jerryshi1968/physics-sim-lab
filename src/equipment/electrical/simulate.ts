@@ -1,3 +1,4 @@
+import { GALVANOMETER } from '../induction/definitions.ts';
 import { CONDUCTOR_EXPERIMENT } from './conductor.ts';
 import { registerThermalEquipment } from '../thermal/definitions.ts';
 import type { SceneDocument } from '../../core/scene/schema.ts';
@@ -16,6 +17,6 @@ export function simulateElectrical(scene: SceneDocument, options: DcSolveOptions
   if (scene.experimentId === CONDUCTOR_EXPERIMENT) { registerThermalEquipment(registry); adapters.set('thermal.boiling.lumped.v1', () => []); }
   const compiled = compileDcScene(scene, registry, adapters);
   const result = compiled.ok ? solveDcNetlist(compiled.netlist, options) : compiled;
-  return { result, meters: result.ok ? scene.equipment.filter(item => item.type === AMMETER || item.type === VOLTMETER).map(item =>
-    meterReading(item, meterConnection(scene, item.id), result.solution.branches.find(branch => branch.id === item.id), item.type === AMMETER ? 'A' : 'V')) : [] };
+  return { result, meters: result.ok ? scene.equipment.filter(item => item.type === GALVANOMETER || item.type === AMMETER || item.type === VOLTMETER).map(item =>
+    meterReading(item.type === GALVANOMETER ? { ...item, parameters: { lowRange: item.parameters.maximumA!, highRange: Number(item.parameters.maximumA) * 5, lowResolution: item.parameters.resolutionA!, highResolution: Number(item.parameters.resolutionA) * 5 } } : item, meterConnection(scene, item.id), result.solution.branches.find(branch => branch.id === item.id), item.type === AMMETER || item.type === GALVANOMETER ? 'A' : 'V', item.type === GALVANOMETER)) : [] };
 }

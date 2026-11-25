@@ -1,8 +1,9 @@
+import { legacyJuniorBlank } from '../fixtures/legacy-junior-blanks.ts';
 import type { Page } from '@playwright/test';
 import { experimentChoices, schoolLabels, catalogDomainLabels } from '../../src/experiments/catalog.ts';
 
 const defaults: Record<string, string> = {
-  '灯泡串并联实验': 'electrical-blank', '光的反射定律实验': 'reflection', '平面镜成像实验': 'mirror-image', '凸透镜成像实验': 'lens',
+  '灯泡串并联实验': 'series-current', '光的反射定律实验': 'reflection', '平面镜成像实验': 'mirror-image', '凸透镜成像实验': 'lens',
   '杠杆平衡实验': 'lever', '浮力实验': 'buoyancy-factors', '滑动摩擦实验': 'friction', '弹簧弹力实验': 'spring',
   '平抛运动实验': 'projectile', '加速度与力、质量实验': 'cart', '测量密度实验': 'density-solid', '电动势与内阻实验': 'emf-inner',
 };
@@ -21,4 +22,14 @@ export async function openFamily(page: Page, family: string, touch = false) {
   const button = page.getByRole('button', { name: schoolLabels[choice.stage], exact: true });
   if (touch) await button.tap(); else await button.click();
   await selectCatalogOption(page, choice.id, touch);
+}
+
+export async function previewLegacyBlank(page: Page, id: string) {
+  const catalog = page.locator('dialog.experiment-catalog-dialog');
+  if (await catalog.count()) await catalog.getByRole('button', { name: '取消', exact: true }).click();
+  await page.getByLabel('导入实验 JSON').setInputFiles({ name: id + '.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(legacyJuniorBlank(id))) });
+}
+export async function importLegacyBlank(page: Page, id: string) {
+  await previewLegacyBlank(page, id);
+  await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }

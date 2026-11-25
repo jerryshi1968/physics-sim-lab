@@ -36,18 +36,18 @@ export function meterConnection(scene: Pick<SceneDocument, 'connections'>, id: s
     commonConnected: ports.has('common'), bothRanges: ports.has('low') && ports.has('high') };
 }
 
-export function meterReading(instance: EquipmentInstance, connection: MeterConnection, value: DcBranchValue | undefined, unit: 'A' | 'V'): MeterReading {
+export function meterReading(instance: EquipmentInstance, connection: MeterConnection, value: DcBranchValue | undefined, unit: 'A' | 'V', centerZero = false): MeterReading {
   const range = connection.range;
   const maximum = Number(instance.parameters[range === 'high' ? 'highRange' : 'lowRange']);
   const resolution = Number(instance.parameters[range === 'high' ? 'highResolution' : 'lowResolution']);
   const raw = unit === 'A' ? value?.currentA : value?.voltageV;
   const disconnected = !range || !connection.commonConnected;
   const trueValue = connection.bothRanges || disconnected || raw === undefined || raw === null || !Number.isFinite(raw) ? null : raw;
-  const reverse = trueValue !== null && trueValue < -1e-12;
+  const reverse = !centerZero && trueValue !== null && trueValue < -1e-12;
   const overRange = trueValue !== null && Math.abs(trueValue) > maximum + 1e-9 * maximum;
   const status = connection.bothRanges ? 'invalid' : disconnected ? 'disconnected' : trueValue === null ? 'undefined' : overRange ? 'over-range' : reverse ? 'reverse' : 'valid';
-  const displayValue = status === 'valid' ? Number((Math.round(Math.max(0, trueValue!) / resolution) * resolution).toPrecision(12)) : null;
+  const displayValue = status === 'valid' ? Number(((centerZero ? Math.sign(trueValue!) * Math.round(Math.abs(trueValue!) / resolution) : Math.round(Math.max(0, trueValue!) / resolution)) * resolution).toPrecision(12)) : null;
   return { id: instance.id, unit, range, maximum, resolution, status, trueValue, displayValue,
-    needleFraction: trueValue === null ? 0 : Math.max(-.05, Math.min(1.05, (displayValue ?? trueValue) / maximum)),
+    needleFraction: trueValue === null ? centerZero ? .5 : 0 : Math.max(-.05, Math.min(1.05, centerZero ? .5 + .5 * (displayValue ?? trueValue) / maximum : (displayValue ?? trueValue) / maximum)),
     measurementUsable: status === 'valid', reverse, overRange };
 }

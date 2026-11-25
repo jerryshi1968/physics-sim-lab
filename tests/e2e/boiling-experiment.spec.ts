@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
 async function open(page: Page, blank = false) {
-  await page.goto('/'); await page.getByRole('button', {name:'初中物理实验',exact:true}).click();
-  await selectCatalogOption(page,blank ? 'thermal-blank' : 'boiling');
+  await page.goto('/'); if (blank) { await importLegacyBlank(page, 'thermal-blank'); return; } await page.getByRole('button', {name:'初中物理实验',exact:true}).click();
+  await selectCatalogOption(page,'boiling');
   await page.getByRole('button',{name:'进入实验',exact:true}).click(); await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
 }
 async function exported(page: Page) {

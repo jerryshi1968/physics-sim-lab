@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
-async function open(page: Page, blank = false) { await page.goto('/'); await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await selectCatalogOption(page, blank ? 'optical-blank' : 'refraction'); await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click(); }
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
+async function open(page: Page, blank = false) { await page.goto('/');if(blank){await importLegacyBlank(page,'optical-blank');return;} await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await selectCatalogOption(page, 'refraction'); await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click(); }
 async function exported(page: Page) { const pending = page.waitForEvent('download'); await page.getByRole('button', { name: '导出', exact: true }).click(); return JSON.parse(await readFile((await (await pending).path())!, 'utf8')); }
 async function property(page: Page, id: string, name: string, value: string) { await page.getByLabel('选择器材', { exact: true }).selectOption(id); await page.getByLabel(name, { exact: true }).fill(value); }
 const rays = (page: Page) => page.getByTestId('scene-board').locator('[data-refraction-ray]');

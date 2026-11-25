@@ -1,3 +1,4 @@
+import { registerInduction, GALVANOMETER, MAGNET } from '../induction/definitions.ts';
 import { registerMetalWire } from './conductor.ts';
 import { z } from 'zod';
 import { EquipmentRegistry } from '../../core/equipment/registry.ts';
@@ -19,6 +20,8 @@ export const RHEOSTAT = 'electrical.rheostat';
 
 export interface ParameterField { key: string; label: string; unit: string; kind: 'number' | 'boolean'; inverted?: boolean; min?: number; max?: number; step?: number }
 export const parameterFields: Record<string, readonly ParameterField[]> = {
+  [MAGNET]: [{ key: 'fieldT', label: '磁感应强度', unit: 'T', kind: 'number' }, { key: 'reversed', label: '反转磁极', unit: '', kind: 'boolean' }],
+  [GALVANOMETER]: [{ key: 'maximumA', label: '双向量程上限', unit: 'A', kind: 'number' }, { key: 'resolutionA', label: '分度值', unit: 'A', kind: 'number' }, { key: 'resistanceOhm', label: '灵敏电流计内阻', unit: 'Ω', kind: 'number' }],
   [POWER]: [{ key: 'voltageV', label: '电源电压', unit: 'V', kind: 'number' }, { key: 'internalResistanceOhm', label: '电源内阻', unit: 'Ω', kind: 'number' }],
   [RESISTOR]: [{ key: 'resistanceOhm', label: '电阻', unit: 'Ω', kind: 'number' }, { key: 'concealResistance', label: '隐藏阻值（待测电阻）', unit: '', kind: 'boolean' }],
   [SWITCH]: [{ key: 'closed', label: '闭合开关', unit: '', kind: 'boolean' }],
@@ -77,5 +80,6 @@ export function createElectricalRegistry(): EquipmentRegistry {
     ports: ['a', 'b', 'c', 'd'].map((id, index) => ({ id, kind: 'electrical-terminal',
       localPositionM: { x: index % 2 === 0 ? -.075 : .075, y: index < 2 ? -.032 : .04 } })) });
   registerMetalWire(registry);
+  registerInduction(registry);
   return registry;
 }

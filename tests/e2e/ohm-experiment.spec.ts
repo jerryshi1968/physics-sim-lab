@@ -1,12 +1,12 @@
 import { test, expect, devices } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { selectCatalogOption } from './catalog-helpers.ts';
+import { selectCatalogOption, importLegacyBlank } from './catalog-helpers.ts';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
 import { createOhmExperiment } from '../../src/experiments/ohm.ts';
 
 async function open(page: Page, id = 'ohm-voltage') {
-  await page.goto('/'); await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await selectCatalogOption(page, id);
+  await page.goto('/'); if (id === 'electrical-blank') { await importLegacyBlank(page, id); return; } await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await selectCatalogOption(page, id);
   await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
 }
 async function exported(page: Page): Promise<SceneDocument> {
@@ -87,8 +87,8 @@ test('unified electrical blank preserves free equipment and supports inquiry ass
 
 test('one electrical blank offers all record modes and keeps freely placed equipment when switching or undoing', async ({ page }) => {
   await page.goto('/'); await page.getByRole('button', { name: '初中物理实验', exact: true }).click(); await page.getByRole('dialog').getByRole('tab', { name: '电学实验', exact: true }).click();
-  await expect(page.getByRole('radio', { name: '空白搭建电流与电压、电阻关系实验', exact: true })).toHaveCount(0); await expect(page.getByRole('radio', { name: '空白搭建电学实验', exact: true })).toHaveCount(1);
-  await selectCatalogOption(page, 'electrical-blank'); await page.getByRole('button', { name: '进入实验', exact: true }).click(); await page.getByRole('button', { name: '确认替换当前实验', exact: true }).click();
+  await expect(page.getByRole('radio', { name: '空白搭建电流与电压、电阻关系实验', exact: true })).toHaveCount(0); await expect(page.getByRole('radio', { name: '空白搭建电学实验', exact: true })).toHaveCount(0);
+  await importLegacyBlank(page, 'electrical-blank');
   const mode = page.getByLabel('记录模式', { exact: true }); await expect(mode).toHaveValue('normal');
   await page.locator('[data-library-type="electrical.lamp"]').click(); await page.getByRole('button', { name: '在视口中心放置', exact: true }).click(); const before = await exported(page);
   await mode.selectOption('voltage'); await expect(page.getByLabel('探究关系', { exact: true })).toHaveCount(0); await expect(page.getByLabel('电流关系成组记录')).toBeVisible(); await expect(page.locator('[data-library-type="electrical.lamp"]')).toBeEnabled();

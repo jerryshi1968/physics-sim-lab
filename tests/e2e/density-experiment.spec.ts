@@ -1,12 +1,12 @@
-import { openFamily } from './catalog-helpers.ts';
+import { openFamily, importLegacyBlank } from './catalog-helpers.ts';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { SceneDocument } from '../../src/core/scene/schema.ts';
 import { BEAKER, densityTypes } from '../../src/equipment/density/definitions.ts';
 async function open(page: Page, liquid=false, empty=false) {
- await page.goto('/');await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await openFamily(page, '测量密度实验');
- if(liquid)await page.getByRole('radio',{name:'测量液体密度实验',exact:true}).check();if(empty)await page.getByLabel('空白搭建密度测量实验',{exact:true}).check();
+ await page.goto('/'); if (empty) { await importLegacyBlank(page, 'density-blank'); return; }await expect(page.getByRole('button',{name:'保存',exact:true})).toBeEnabled();await openFamily(page, '测量密度实验');
+ if(liquid)await page.getByRole('radio',{name:'测量液体密度实验',exact:true}).check();
  await page.getByRole('button',{name: '进入实验',exact:true}).click();await page.getByRole('button',{name:'确认替换当前实验',exact:true}).click();
 }
 async function download(page:Page,name='导出'){const pending=page.waitForEvent('download');await page.getByRole('button',{name,exact:true}).click();return readFile((await(await pending).path())!,'utf8');}

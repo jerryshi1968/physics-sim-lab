@@ -1,3 +1,5 @@
+import { GALVANOMETER, MAGNET } from '../induction/definitions.ts';
+import { inductionSource } from '../induction/model.ts';
 import { METAL_WIRE, metalResistance } from './conductor.ts';
 import type { EquipmentInstance } from '../../core/equipment/schema.ts';
 import type { DcModelAdapter, DcModelAdapters } from '../../core/electrical/compile.ts';
@@ -15,11 +17,19 @@ function terminal(instance: EquipmentInstance, portId: string): string {
 
 export function createDcModelAdapters(): DcModelAdapters {
   const adapters = new Map<string, DcModelAdapter>();
+  adapters.set(MAGNET + '.dc.v1', () => []);
+  adapters.set(GALVANOMETER + '.dc.v1', instance => [{ id: instance.id, kind: 'current-meter', from: terminal(instance, 'low'), to: terminal(instance, 'common'), resistanceOhm: Number(instance.parameters.resistanceOhm) }]);
   adapters.set(`${POWER}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'voltage-source',
     from: terminal(instance, 'positive'), to: terminal(instance, 'negative'), voltageV: Number(instance.parameters.voltageV), resistanceOhm: Number(instance.parameters.internalResistanceOhm ?? 0) }]);
   adapters.set(`${RESISTOR}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'resistor',
     from: terminal(instance, 'a'), to: terminal(instance, 'b'), resistanceOhm: Number(instance.parameters.resistanceOhm) }]);
-  adapters.set(`${METAL_WIRE}.dc.v1`, instance => [{ id: instance.id, kind: 'resistor', from: terminal(instance, 'a'), to: terminal(instance, 'b'), resistanceOhm: metalResistance(instance.parameters) }]);
+  adapters.set(METAL_WIRE + '.dc.v1', (instance, { scene }) => {
+    if (instance.parameters.inductionShape) {
+      try { return [{ id: instance.id, kind: 'voltage-source', from: terminal(instance, 'a'), to: terminal(instance, 'b'), ...inductionSource(scene, instance) }]; }
+      catch { throw new DcAdapterError('INDUCTION_MODEL_RANGE'); }
+    }
+    return [{ id: instance.id, kind: 'resistor', from: terminal(instance, 'a'), to: terminal(instance, 'b'), resistanceOhm: metalResistance(instance.parameters) }];
+  });
   adapters.set(`${SWITCH}.uncompiled.v1`, instance => [{ id: instance.id, kind: 'switch',
     from: terminal(instance, 'a'), to: terminal(instance, 'b'), closed: instance.parameters.closed === true, resistanceOhm: 0 }]);
   adapters.set(`${JUNCTION}.uncompiled.v1`, () => []);
