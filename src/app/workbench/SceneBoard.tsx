@@ -79,6 +79,9 @@ import type { DensityPreview } from '../density/DensityPanel.tsx';
 import { CART as DYNAMICS_CART, TICKER as CART_TICKER, TRACK as CART_TRACK } from '../../equipment/cart/definitions.ts';
 import type { CartRig, CartRun } from '../../equipment/cart/simulate.ts';
 import { CartTether } from '../cart/CartGraphic.tsx';
+import { TickerOverlay } from '../ticker/TickerOverlay.tsx';
+import { tickerMaximumZoom, tickerRulerBounds } from '../ticker/TickerRuler.tsx';
+import type { TickerSimulation } from '../ticker/useTicker.ts';
 
 import { MeltingGraphic, meltingBounds } from '../melting/MeltingGraphic.tsx';
 import type { MeltingSimulation } from '../melting/useMelting.ts';
@@ -93,6 +96,7 @@ import { STOP as SPEED_STOP } from '../../equipment/averageSpeed/definitions.ts'
 import { CART as SPEED_CART } from '../../equipment/cart/definitions.ts';
 
 interface Props {
+  ticker?: TickerSimulation | undefined;
   heatComparison?: HeatComparisonSimulation | undefined;
   pulleyOutcome?: PulleyOutcome | null;
   kinetic?: KineticSimulation | undefined;
@@ -173,7 +177,7 @@ type Gesture = { pointerId: number; clientX: number; clientY: number; view: View
   | { kind: 'equipment-select' }
 );
 
-export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoForce, twoForceYaw, onTwoForceYaw, onTwoForceYawPreview, gravityOutcome = null, massVolumeMode = false, massMode = false, averageSpeed, thermal, melting, pendulumAngle, pendulumTimeS, onPendulumAngle, cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, refractionOutcome = null, refractionReflection = false, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onOpticalPose, onRoute, onWireChange, onWireEnd, onViewport, panMode, onPanMode: setPanMode, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
+export function SceneBoard({ ticker, heatComparison, pulleyOutcome = null, kinetic, twoForce, twoForceYaw, onTwoForceYaw, onTwoForceYawPreview, gravityOutcome = null, massVolumeMode = false, massMode = false, averageSpeed, thermal, melting, pendulumAngle, pendulumTimeS, onPendulumAngle, cartMode = false, cartRig = null, cartRun = null, densityOutcome = null, buoyancyOutcome = null, onDensityPreview, onDensityAdjust, onDensityWeight, refractionOutcome = null, refractionReflection = false, reflectionOutcome = null, mirrorImageOutcome = null, mirrorGuides = false, mirrorRays = false, projectileMode = false, projectileFlight = null, projectileMarks = false, springOutcome, frictionSample, scene, registry, selection, placing, start, wireColor, activeWireEnd, onSelect, onPort, onPlace, onMove, onOpticalPose, onRoute, onWireChange, onWireEnd, onViewport, panMode, onPanMode: setPanMode, onCancel, onNotice, undoLabel, redoLabel, onUndo, onRedo, outcome, opticalOutcome, opticalAuxiliary, onOpticalPreview, leverOutcome, leverAuxiliary, onMechanicalPreview, calculationStatus, onToggleSwitch, onRheostatChange, onRheostatPreview }: Props) {
   const svg = useRef<SVGSVGElement>(null);
   const wireLayerId = useId();
   const gesture = useRef<Gesture | null>(null);
@@ -217,11 +221,11 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
       if (gesture.current) return;
       const rect = element!.getBoundingClientRect();
       const anchor = { x: (event.clientX - rect.left) * size.width / rect.width, y: (event.clientY - rect.top) * size.height / rect.height };
-      onViewport(zoomViewport(view, Math.exp(Math.max(-1, Math.min(1, -event.deltaY * 0.001))), anchor, size));
+      onViewport(zoomViewport(view, Math.exp(Math.max(-1, Math.min(1, -event.deltaY * 0.001))), anchor, size, ticker ? tickerMaximumZoom : 2400));
     }
     element.addEventListener('wheel', wheel, { passive: false });
     return () => element.removeEventListener('wheel', wheel);
-  }, [view, size, onViewport]);
+  }, [view, size, onViewport, ticker]);
 
   function pointerPoint(clientX: number, clientY: number, viewport = view): WorldPoint {
     const rect = svg.current!.getBoundingClientRect();
@@ -383,9 +387,9 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
 
   return <section className="panel bench" id="workbench" tabIndex={-1} aria-labelledby="bench-title">
     <div className="bench-toolbar"><div><h2 id="bench-title">实验区域</h2><span className="muted">{scene.equipment.length} 件器材 · {heatComparison ? '吸热比较实验' : pulleyOutcome ? '滑轮实验' : kinetic ? '动能实验' : twoForce ? '二力平衡实验' : gravityOutcome ? '重力与质量实验' : averageSpeed ? '平均速度实验' : melting ? '固体熔化实验' : thermal ? '热学实验' : pendulumTimeS !== undefined ? '单摆实验' : buoyancyOutcome ? '浮力实验' : cartMode ? '小车实验' : massVolumeMode ? '质量与体积实验' : massMode ? '质量测量实验' : densityOutcome ? '密度实验' : mirrorImageOutcome ? '平面镜成像' : refractionOutcome ? '折射实验' : reflectionOutcome ? '反射实验' : projectileMode ? '平抛实验' : springOutcome ? '弹簧实验' : frictionSample ? '摩擦实验' : leverOutcome ? '杠杆实验' : opticalOutcome ? '光具座实验' : `${scene.connections.length} 根导线`}</span></div>
-      <div className="view-actions"><button aria-label="缩小" onClick={() => onViewport(zoomViewport(view, 1 / 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>−</button>
+      <div className="view-actions"><button aria-label="缩小" onClick={() => onViewport(zoomViewport(view, 1 / 1.25, { x: size.width / 2, y: size.height / 2 }, size, ticker ? tickerMaximumZoom : 2400))}>−</button>
         <span aria-label="缩放比例">{Math.round(view.pixelsPerM / DEFAULT_VIEWPORT.pixelsPerM * 100)}%</span>
-        <button aria-label="放大" onClick={() => onViewport(zoomViewport(view, 1.25, { x: size.width / 2, y: size.height / 2 }, size))}>＋</button>
+        <button aria-label="放大" onClick={() => onViewport(zoomViewport(view, 1.25, { x: size.width / 2, y: size.height / 2 }, size, ticker ? tickerMaximumZoom : 2400))}>＋</button>
         <button aria-pressed={panMode} onClick={() => setPanMode(!panMode)}>平移</button><button onClick={() => onViewport({ ...DEFAULT_VIEWPORT })}>复位视图</button>
       </div>
       <div className="history-actions"><button disabled={!undoLabel} aria-label="撤销" title={undoLabel ? `撤销：${undoLabel}（Ctrl+Z）` : '暂无可撤销操作'} onClick={onUndo}>↶</button><button disabled={!redoLabel} aria-label="重做" title={redoLabel ? `重做：${redoLabel}（Ctrl+Shift+Z / Ctrl+Y）` : '暂无可重做操作'} onClick={onRedo}>↷</button></div>
@@ -465,7 +469,7 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
           const selected = equipmentSelectionIds(selection).includes(instance.id);
           const definition = registry.get(instance.type, instance.definitionVersion)!;
           if (definition.domain === 'optical' && ![screen.x, screen.y].every(Number.isFinite)) return null;
-          const bounds = instance.type === METAL_WIRE || conductorMode && conductorAuxiliary.includes(instance.type) ? conductorBounds(instance.type) : heatComparison ? heatComparisonBounds(instance.type) : kinetic ? kineticBounds(instance) : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? twoForceBounds(instance) : averageSpeed ? averageSpeedBounds(instance) : melting ? meltingBounds(instance) : thermal ? thermalBounds(instance.type) : definition.domain === 'mechanical' ? buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? buoyancyBounds(instance) : mechanicalBounds(instance, springOutcome) : refractionOutcome ? refractionBounds(instance) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
+          const bounds = instance.type === METAL_WIRE || conductorMode && conductorAuxiliary.includes(instance.type) ? conductorBounds(instance.type) : heatComparison ? heatComparisonBounds(instance.type) : kinetic ? kineticBounds(instance) : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? twoForceBounds(instance) : averageSpeed ? averageSpeedBounds(instance) : melting ? meltingBounds(instance) : thermal ? thermalBounds(instance.type) : definition.domain === 'mechanical' ? buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? buoyancyBounds(instance) : ticker && instance.type === MECHANICAL_RULER ? tickerRulerBounds(instance, view.pixelsPerM) : mechanicalBounds(instance, springOutcome) : refractionOutcome ? refractionBounds(instance) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
           let frictionCaption: { x: number; y: number } | null = null;
           if (frictionSample?.ok) {
             const base = worldToScreen(frictionSample.rig.surface.pose, view, size).y + .07 * view.pixelsPerM;
@@ -507,7 +511,7 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
             : instance.type === CART_TICKER ? { x: Math.max(8, screen.x - .085 * view.pixelsPerM), y: screen.y + .053 * view.pixelsPerM + 16, anchor: 'start' as const } : null;
           const hasDensityControls = densityOutcome && (instance.type === BALANCE || instance.type === MASS_SET);
           return <g key={instance.id} data-equipment-id={instance.id} data-equipment-type={instance.type} data-x-m={instance.pose.xM} data-y-m={instance.pose.yM} data-rotation-rad={instance.pose.rotationRad}>
-            <g className={`equipment-body ${selected ? 'is-selected' : ''} ${instance.pose.flippedX ? 'is-flipped' : ''}`} data-flipped-x={!!instance.pose.flippedX} data-selected={selected} role={instance.type === SWITCH || instance.type === RHEOSTAT || hasDensityControls ? 'group' : 'button'} tabIndex={0} aria-label={`选择${equipmentLabel(scene, registry, instance.id)}`}
+            <g className={`equipment-body ${selected ? 'is-selected' : ''} ${instance.pose.flippedX ? 'is-flipped' : ''}`} data-flipped-x={!!instance.pose.flippedX} data-selected={selected} role={instance.type === SWITCH || instance.type === RHEOSTAT || hasDensityControls ? 'group' : 'button'} tabIndex={ticker && instance.type === MECHANICAL_RULER ? -1 : 0} pointerEvents={ticker && instance.type === MECHANICAL_RULER ? 'none' : undefined} aria-label={`选择${equipmentLabel(scene, registry, instance.id)}`}
               transform={`translate(${screen.x} ${screen.y}) rotate(${-instance.pose.rotationRad * 180 / Math.PI}) scale(${view.pixelsPerM * (instance.pose.flippedX ? -1 : 1)} ${view.pixelsPerM})`}
               onPointerDown={event => {
                 if (pulleyOutcome?.layout && instance.type === PULLEY) { event.stopPropagation(); if (event.isPrimary && event.button === 0) { onSelect({ kind: 'equipment', id: instance.id }, event.shiftKey); capture(event, { kind: 'equipment-select', pointerId: event.pointerId, clientX: event.clientX, clientY: event.clientY, view: { ...view } }); } onNotice('滑轮轴位置由装配约束；请拖动支架，或拖动测力计提拉。'); return; }
@@ -530,7 +534,7 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
                 if (delta && projectileFlight && instance.id === projectileFlight.rig.ball.id) { event.preventDefault(); event.stopPropagation(); onNotice('请重置后再摆放小球。'); return; }
                 if (delta) { event.preventDefault(); event.stopPropagation(); onMove(instance.id, { xM: instance.pose.xM + delta.xM, yM: instance.pose.yM + delta.yM }); }
               }}>
-              <rect className="equipment-backdrop" {...bounds} rx=".008" />{heatComparison ? <HeatComparisonGraphic instance={instance} scene={scene} simulation={heatComparison} /> : kinetic ? <KineticGraphic instance={instance} pixelsPerM={view.pixelsPerM} spin={kinetic.state?.spin ?? 0} /> : averageSpeed ? <AverageSpeedGraphic instance={instance} timeS={averageSpeed.displayS} pixelsPerM={view.pixelsPerM} /> : melting ? <MeltingGraphic instance={instance} simulation={melting} /> : thermal ? <ThermalGraphic instance={instance} simulation={thermal} /> : buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? <BuoyancyGraphic item={instance} outcome={buoyancyOutcome} /> : refractionOutcome ? <RefractionGraphic instance={instance} /> : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? <TwoForceGraphic item={instance} /> : definition.domain === 'mechanical' ? <MechanicalGraphic massVolumeMode={massVolumeMode} onPendulumSelect={(id, additive) => onSelect({ kind: 'equipment', id }, additive)} pendulumAngle={pendulumAngle} timerValueS={pendulumTimeS} onPendulumAngle={onPendulumAngle} cartRun={cartRun} densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
+              <rect className="equipment-backdrop" {...bounds} rx=".008" />{heatComparison ? <HeatComparisonGraphic instance={instance} scene={scene} simulation={heatComparison} /> : kinetic ? <KineticGraphic instance={instance} pixelsPerM={view.pixelsPerM} spin={kinetic.state?.spin ?? 0} /> : averageSpeed ? <AverageSpeedGraphic instance={instance} timeS={averageSpeed.displayS} pixelsPerM={view.pixelsPerM} /> : melting ? <MeltingGraphic instance={instance} simulation={melting} /> : thermal ? <ThermalGraphic instance={instance} simulation={thermal} /> : buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? <BuoyancyGraphic item={instance} outcome={buoyancyOutcome} /> : refractionOutcome ? <RefractionGraphic instance={instance} /> : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? <TwoForceGraphic item={instance} /> : definition.domain === 'mechanical' ? ticker && instance.type === MECHANICAL_RULER ? null : <MechanicalGraphic massVolumeMode={massVolumeMode} onPendulumSelect={(id, additive) => onSelect({ kind: 'equipment', id }, additive)} pendulumAngle={pendulumAngle} timerValueS={pendulumTimeS} onPendulumAngle={onPendulumAngle} cartRun={cartRun} densityOutcome={densityOutcome} densityControls={hasDensityControls ? {
                 onAdjustStart: (key, event) => {
                   if (!event.isPrimary || event.button !== 0) return;
                   if (key === 'zeroTrimKg' && (!densityOutcome?.weighing.ok || !densityOutcome.weighing.canZero)) {
@@ -665,10 +669,11 @@ export function SceneBoard({ heatComparison, pulleyOutcome = null, kinetic, twoF
         {twoForce && <TwoForceOverlay simulation={twoForce} view={view} size={size} selected={equipmentSelectionIds(selection).includes(twoForce.viewScene.equipment.find(item => item.type === DYNAMICS_CART)?.id ?? '')} previewAngle={twoForceYaw} onYaw={onTwoForceYaw} onPreview={onTwoForceYawPreview} />}
         <g className="selection-overlay" pointerEvents="none" aria-hidden="true">{equipment.filter(instance => equipmentSelectionIds(selection).includes(instance.id)).map(instance => {
           const definition = registry.get(instance.type, instance.definitionVersion)!, screen = worldToScreen(instance.pose, view, size);
-          const bounds = instance.type === METAL_WIRE || conductorMode && conductorAuxiliary.includes(instance.type) ? conductorBounds(instance.type) : heatComparison ? heatComparisonBounds(instance.type) : kinetic ? kineticBounds(instance) : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? twoForceBounds(instance) : averageSpeed ? averageSpeedBounds(instance) : melting ? meltingBounds(instance) : thermal ? thermalBounds(instance.type) : definition.domain === 'mechanical' ? buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? buoyancyBounds(instance) : mechanicalBounds(instance, springOutcome) : refractionOutcome ? refractionBounds(instance) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
+          const bounds = instance.type === METAL_WIRE || conductorMode && conductorAuxiliary.includes(instance.type) ? conductorBounds(instance.type) : heatComparison ? heatComparisonBounds(instance.type) : kinetic ? kineticBounds(instance) : twoForce && [DYNAMICS_CART, CART_TRACK].includes(instance.type) ? twoForceBounds(instance) : averageSpeed ? averageSpeedBounds(instance) : melting ? meltingBounds(instance) : thermal ? thermalBounds(instance.type) : definition.domain === 'mechanical' ? buoyancyOutcome && [BUOY_BODY, OVERFLOW, BUOY_BEAKER].includes(instance.type) ? buoyancyBounds(instance) : ticker && instance.type === MECHANICAL_RULER ? tickerRulerBounds(instance, view.pixelsPerM) : mechanicalBounds(instance, springOutcome) : refractionOutcome ? refractionBounds(instance) : definition.domain === 'optical' ? mirrorImageOutcome && mirrorImageApparatus.includes(instance.type) ? mirrorImageBounds(instance) : opticalBounds(instance) : { x: -.088, y: -.06, width: .176, height: .12 };
           const padding = 7 / view.pixelsPerM;
           return <g key={instance.id} data-selection-outline={instance.id} transform={`translate(${screen.x} ${screen.y}) rotate(${-instance.pose.rotationRad * 180 / Math.PI}) scale(${view.pixelsPerM * (instance.pose.flippedX ? -1 : 1)} ${view.pixelsPerM})`}><rect x={bounds.x - padding} y={bounds.y - padding} width={bounds.width + 2 * padding} height={bounds.height + 2 * padding} rx={4 / view.pixelsPerM} fill="none" stroke="#167e6a" strokeWidth="2" strokeDasharray="6 4" vectorEffect="non-scaling-stroke" /></g>;
         })}</g>
+        {ticker && <TickerOverlay scene={{ ...scene, equipment }} simulation={ticker} view={view} size={size} interactive={!panMode && !placing && !start} onViewport={onViewport} onMove={onMove} onPreview={onMechanicalPreview} onSelect={id => onSelect({ kind: 'equipment', id })} />}
         {orbit && <LightOrbitControl orbit={orbit} pose={equipment.find(item => item.id === orbit.id)!.pose} view={view} size={size} onStart={event => {
           const point = pointerPoint(event.clientX, event.clientY);
           if (!event.isPrimary || event.button !== 0) return;

@@ -4,8 +4,8 @@ const rulerStepsMm = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000];
 const maxTapeZoom = 16;
 const cm = (millimetres: number) => Number((millimetres / 10).toFixed(3));
 
-export function CartPaperTape({ dots, stride, selectedM }: {
-  dots: readonly { displacementM: number }[]; stride: number; selectedM: number | undefined;
+export function CartPaperTape({ dots, stride, selectedM, rulerLengthM = Infinity }: {
+  dots: readonly { displacementM: number }[]; stride: number; selectedM: number | undefined; rulerLengthM?: number;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(640);
@@ -24,7 +24,7 @@ export function CartPaperTape({ dots, stride, selectedM }: {
   const minorMm = rulerStepsMm.find(step => step * plotWidth / spanMm >= 2.5) ?? 2000;
   const majorMm = rulerStepsMm.find(step => step % minorMm === 0 && step * plotWidth / spanMm >= 45) ?? 2000;
   const firstTickMm = Math.ceil(startMm / minorMm) * minorMm;
-  const tickCount = Math.max(0, Math.floor((endMm - firstTickMm) / minorMm) + 1);
+  const tickCount = Math.max(0, Math.floor((Math.min(endMm, rulerLengthM * 1000) - firstTickMm) / minorMm) + 1);
   const selectedVisible = selectedMm !== undefined && selectedMm >= startMm && selectedMm <= endMm;
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export function CartPaperTape({ dots, stride, selectedM }: {
         return <circle key={index} cx={xAt(distanceMm)} cy="17" r={index % stride === 0 ? 2.3 : 1.3} fill={index % stride === 0 ? '#17635f' : '#776850'} />;
       })}
       {selectedVisible && <circle data-cart-tape-selected="true" cx={xAt(selectedMm)} cy="17" r="6" fill="none" stroke="#a64b2c" strokeWidth="1.6" />}
-      <path d={`M24 32H${width - 24}`} stroke="#6a6958" />
+      {rulerLengthM * 1000 >= startMm && <path d={`M24 32H${xAt(Math.min(endMm, rulerLengthM * 1000))}`} stroke="#6a6958" />}
       {Array.from({ length: tickCount }, (_, index) => {
         const distanceMm = firstTickMm + index * minorMm, x = xAt(distanceMm);
         const major = distanceMm % majorMm === 0;

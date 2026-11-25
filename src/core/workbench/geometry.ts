@@ -26,10 +26,10 @@ export function screenToWorld(point: ScreenPoint, view: Viewport, size: SurfaceS
     yM: view.centerYM - (point.y - size.height / 2) / view.pixelsPerM };
 }
 
-export function zoomViewport(view: Viewport, factor: number, anchor: ScreenPoint, size: SurfaceSize): Viewport {
-  if (!Number.isFinite(factor) || factor <= 0) throw new RangeError('INVALID_ZOOM');
+export function zoomViewport(view: Viewport, factor: number, anchor: ScreenPoint, size: SurfaceSize, maximumPixelsPerM = 2400): Viewport {
+  if (!Number.isFinite(factor) || factor <= 0 || !Number.isFinite(maximumPixelsPerM) || maximumPixelsPerM < 100) throw new RangeError('INVALID_ZOOM');
   const before = screenToWorld(anchor, view, size);
-  const pixelsPerM = Math.min(2400, Math.max(100, view.pixelsPerM * factor));
+  const pixelsPerM = Math.min(maximumPixelsPerM, Math.max(100, view.pixelsPerM * factor));
   const after = screenToWorld(anchor, { ...view, pixelsPerM }, size);
   return { centerXM: view.centerXM + before.xM - after.xM, centerYM: view.centerYM + before.yM - after.yM, pixelsPerM };
 }

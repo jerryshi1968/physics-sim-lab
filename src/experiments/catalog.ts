@@ -24,6 +24,7 @@ import { createOpticalExperiment } from './optical-bench.ts';
 import { createReflectionExperiment } from './reflection.ts';
 import { createMirrorImageExperiment } from './mirrorImage.ts';
 import { createCartExperiment } from './cart.ts';
+import { createTickerExperiment } from './ticker.ts';
 import { createPendulumExperiment } from './pendulum.ts';
 import { createSpringExperiment } from './spring.ts';
 import { createProjectileExperiment } from './projectile.ts';
@@ -35,7 +36,7 @@ import { FREE_OPTICAL_EXPERIMENT, JUNIOR_ELECTRICAL_EXPERIMENT, SENIOR_ELECTRICA
 
 export type SchoolStage = 'junior' | 'senior';
 export type CatalogDomain = 'mechanical' | 'electrical' | 'optical' | 'thermal';
-export type CatalogFamily = 'conductor' | 'parallel-current' | 'series-current' | 'heat-comparison' | 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
+export type CatalogFamily = 'ticker' | 'conductor' | 'parallel-current' | 'series-current' | 'heat-comparison' | 'density' | 'friction' | 'buoyancy' | 'lever' | 'experiment' | 'optical' | 'reflection' | 'mirror-image' | 'cart' | 'spring' | 'projectile' | 'emf' | 'free' | 'pendulum' | 'ohm' | 'voltammetry' | 'lamp-power' | 'boiling' | 'average-speed' | 'melting' | 'refraction' | 'mass' | 'mass-volume' | 'gravity' | 'two-force' | 'kinetic' | 'pulley';
 export const schoolLabels = { junior: '初中物理实验', senior: '高中物理实验' };
 export const catalogDomainLabels = { mechanical: '力学实验', electrical: '电学实验', optical: '光学实验', thermal: '热学实验' };
 export interface ExperimentChoice {
@@ -102,6 +103,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('reflection', 'junior', 'optical', 'reflection', '光的反射定律实验', '平面镜、窄光束光源、量角器、法线与可折承接纸板。自行校准、读角，并折动右纸板观察连续光迹。', createReflectionExperiment),
   entry('mirror-image', 'junior', 'optical', 'mirror-image', '平面镜成像实验', '用薄玻璃板观察像，移动镜后对照物并消除视差，再测量像的位置与大小，用光屏检查像能否承接。', createMirrorImageExperiment),
   entry('lens', 'junior', 'optical', 'optical', '探究凸透镜成像规律', '蜡烛、透镜和光屏可独立移动和调高，光屏不自动跳到清晰位置。', createOpticalExperiment),
+  entry('ticker', 'senior', 'mechanical', 'ticker', '练习使用打点计时器', '固定计时器、装纸带，先通电再水平拉带；断电取带，自行数间隔、读尺并记录时间与位移。', createTickerExperiment),
   entry('cart-blank', 'senior', 'mechanical', 'cart', '空白搭建小车实验', '自行取用一套小车器材（含两种计时方式）。', (id, time) => createCartExperiment(id, time, true)),
   entry('cart', 'senior', 'mechanical', 'cart', '加速度与力、质量实验', '用悬挂砝码牵引水平轨道上的小车。可分别用两个光电门和打点纸带测加速度。', createCartExperiment),
   entry('spring-blank', 'senior', 'mechanical', 'spring', '空白搭建弹簧弹力与形变量实验', '自行取用一套弹簧、钩码器材。', (id, time) => createSpringExperiment(id, time, true)),
@@ -129,7 +131,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'conductor') viewport.pixelsPerM = Math.min(500, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.1, (Math.max(352, height * .52 - 114) - 70) / .65);
+  if (choice.family === 'ticker') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.3);
+  else if (choice.family === 'conductor') viewport.pixelsPerM = Math.min(500, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.1, (Math.max(352, height * .52 - 114) - 70) / .65);
   else if (choice.family === 'parallel-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 1.1, (Math.max(352, height * .52 - 114) - 100) / .65);
   else if (choice.family === 'series-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / .9, (Math.max(352, height * .52 - 114) - 100) / .65);
   else if (choice.family === 'heat-comparison') viewport.pixelsPerM = Math.min(700, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / .9, (Math.max(300, height * .52 - 114) - 70) / .56);

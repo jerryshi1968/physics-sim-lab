@@ -15,6 +15,15 @@ const time = '2026-11-03T08:00:00.000Z';
 const empty = () => createEmptyScene('scene.workbench', time);
 const ep = (equipmentId, portId) => ({ equipmentId, portId });
 
+test('ticker zoom can reach 12.8 pixels per millimetre without changing other workbench limits or the anchor', () => {
+  const size = { width: 800, height: 400 }, anchor = { x: 210, y: 180 }, view = { centerXM: .2, centerYM: -.1, pixelsPerM: 1200 };
+  const initial = screenToWorld(anchor, view, size), ordinary = zoomViewport(view, 100, anchor, size), ticker = zoomViewport(view, 100, anchor, size, 12800);
+  assert.equal(ordinary.pixelsPerM, 2400); assert.equal(ticker.pixelsPerM, 12800);
+  close(screenToWorld(anchor, ticker, size).xM, initial.xM); close(screenToWorld(anchor, ticker, size).yM, initial.yM);
+  assert.equal(zoomViewport(ticker, 2, anchor, size, 12800).pixelsPerM, 12800);
+  for (const maximum of [0, 99, Infinity, NaN]) assert.throws(() => zoomViewport(view, 2, anchor, size, maximum), /INVALID_ZOOM/);
+});
+
 function accepted(result) {
   assert.equal(result.ok, true, JSON.stringify(result));
   return result.document;
