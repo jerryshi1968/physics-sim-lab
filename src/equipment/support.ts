@@ -22,6 +22,7 @@ import { PENDULUM } from './pendulum/definitions.ts';
 import { SPRING } from './spring/definitions.ts';
 import { projectileTypes, LAUNCHER, BALL, TIMER, GROUND } from './projectile/definitions.ts';
 import { densityTypes, BALANCE, CYLINDER, MASS_SET, BEAKER } from './density/definitions.ts';
+import { CART_VELOCITY_EXPERIMENT, cartVelocityTypes } from './cartVelocity/definitions.ts';
 import { TAPE_SPEED_EXPERIMENT } from './tapeSpeed/model.ts';
 import { TICKER_EXPERIMENT, tickerTypes } from './ticker/simulate.ts';
 import { cartTypes, CART, TRACK, GATE, TICKER } from './cart/definitions.ts';
@@ -50,6 +51,7 @@ export interface EquipmentSupport {
 }
 const oneEach = (types: readonly string[]) => Object.fromEntries(types.map(type => [type, 1]));
 export const equipmentSupports: readonly EquipmentSupport[] = [
+  { key: 'ticker', label: '小车速度随时间变化', experimentIds: [CART_VELOCITY_EXPERIMENT], types: cartVelocityTypes, maximum: oneEach(cartVelocityTypes) },
   { key: 'ticker', label: '练习使用打点计时器', experimentIds: [TICKER_EXPERIMENT, TAPE_SPEED_EXPERIMENT], types: tickerTypes, maximum: oneEach(tickerTypes) },
   { key: 'induction', label: '磁生电', experimentIds: [INDUCTION_EXPERIMENT], types: [MAGNET, GALVANOMETER, METAL_WIRE, SWITCH, WIRE], maximum: oneEach([MAGNET, GALVANOMETER, METAL_WIRE, SWITCH]) },
   { key: 'conductor', label: '导体电阻因素', experimentIds: [CONDUCTOR_EXPERIMENT], types: [POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER, WIRE], maximum: oneEach([POWER, SWITCH, AMMETER, METAL_WIRE, HEATER, THERMOMETER]) },

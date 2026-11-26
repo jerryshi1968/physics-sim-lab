@@ -15,7 +15,8 @@ export function DocumentPreview({ pending, onConfirm, onCancel }: {
     <h3>{scene.title}</h3>
     <p>{scene.equipment.length} 件器材 · {scene.connections.length} 根连接 · {scene.measurementRecords.length} 条记录</p>
     {scene.experimentId === 'H-MECH-06' && <p>复用打点计时器和独立刻度尺：断电开夹穿带，扣夹通电后水平拉动，再断电开夹取带。手动量计数点到参考起点的距离，计算平均速度；改变目标点前后区间，用短区间平均速度近似瞬时速度并比较读尺误差。教材映射待教师核验。</p>}
-    {pending.source === 'ticker' && scene.experimentId !== 'H-MECH-06' && <p>复用打点计时器和独立刻度尺。先固定、穿纸带，开启配套电源后用手水平拉动；关闭电源取带，自行数点和测量。无小车、轨道或悬挂砝码。教材映射待教师核验。</p>}
+    {scene.experimentId === 'H-MECH-07' && <p>复用已有计时器、纸带、小车、轨道滑轮、槽码和刻度尺。断电开夹穿带，把右端拖到车尾，扣夹通电后点击车身释放。断电开夹取带，手工读尺求速度，改变槽码或配重重复两次并画v–t图。教材映射待教师核验。</p>}
+    {pending.source === 'ticker' && !['H-MECH-06', 'H-MECH-07'].includes(scene.experimentId ?? '') && <p>复用打点计时器和独立刻度尺。先固定、穿纸带，开启配套电源后用手水平拉动；关闭电源取带，自行数点和测量。无小车、轨道或悬挂砝码。教材映射待教师核验。</p>}
     {pending.source === 'induction' && <p>蹄形磁体、导体、开关和灵敏电流计，开关初态断开。</p>}
     {pending.source === 'conductor' && <p>使用电源、开关、理想电流表和可替换金属丝；温度计与加热装置用于温度对比，开关初态断开。</p>}
     {pending.source === 'parallel-current' && <p>按教师装置预放电源、开关、电流表和两灯；开关断开。右侧选择干路或两条支路，以及相同或不同灯泡。</p>}

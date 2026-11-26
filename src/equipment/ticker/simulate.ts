@@ -1,4 +1,5 @@
 import type { SceneDocument } from '../../core/scene/schema.ts';
+import { CART_VELOCITY_EXPERIMENT, cartVelocityTypes } from '../cartVelocity/definitions.ts';
 import { TICKER } from '../cart/definitions.ts';
 import { MECHANICAL_RULER } from '../mechanical/definitions.ts';
 
@@ -12,7 +13,9 @@ export function tickerTapeHandlingNotice(powered: boolean, clampClosed: boolean)
   return powered ? '请先关闭计时器电源，再打开固定夹。' : clampClosed ? '请先打开固定夹，再穿入或取下纸带。' : null;
 }
 export interface TapeDot { timeS: number; displacementM: number }
-export interface TapePlacement { xM: number; yM: number }
+export interface TapePlacement { xM: number; yM: number; flippedX?: boolean | undefined }
+export function tapePointXM(paper: TapePlacement, displacementM: number) { return paper.xM + (paper.flippedX ? 1 : -1) * displacementM; }
+export function flipTapePlacement(paper: TapePlacement, pivotDisplacementM: number): TapePlacement { return { ...paper, xM: paper.xM + 2 * (paper.flippedX ? 1 : -1) * pivotDisplacementM, flippedX: !paper.flippedX }; }
 export interface TapeRun { id: string; signature: string; frequencyHz: number; timeS: number; displacementM: number; dots: TapeDot[]; interaction?: 'pointer.v2' }
 
 export function tickerSignature(scene: SceneDocument) {
@@ -22,7 +25,7 @@ export function tickerSignature(scene: SceneDocument) {
 export function tickerRig(scene: SceneDocument) {
   const ticker = scene.equipment.find(item => item.type === TICKER);
   const ruler = scene.equipment.find(item => item.type === MECHANICAL_RULER);
-  if (!ticker || scene.equipment.filter(item => item.type === TICKER).length !== 1 || scene.equipment.filter(item => item.type === MECHANICAL_RULER).length > 1 || scene.equipment.some(item => !tickerTypes.includes(item.type)) || scene.connections.length) return { ok: false as const, message: '请放置一台打点计时器；本实验仅使用计时器、纸带和刻度尺。' };
+  if (!ticker || scene.equipment.filter(item => item.type === TICKER).length !== 1 || scene.equipment.filter(item => item.type === MECHANICAL_RULER).length > 1 || scene.equipment.some(item => !(scene.experimentId === CART_VELOCITY_EXPERIMENT ? cartVelocityTypes : tickerTypes).includes(item.type)) || scene.connections.length) return { ok: false as const, message: '请放置一台打点计时器；本实验仅使用计时器、纸带和刻度尺。' };
   if (![50, 60].includes(Number(ticker.parameters.frequencyHz)) || !Number.isFinite(ticker.pose.rotationRad) || Math.abs(ticker.pose.rotationRad) > 1e-8 || ticker.pose.flippedX) return { ok: false as const, message: '请将计时器水平正向摆放，并设置 50 或 60 Hz。' };
   if (scene.simulationConfig.randomError.enabled) return { ok: false as const, message: '本实验支持无随机误差的等周期打点模型。' };
   return { ok: true as const, ticker, ruler, frequencyHz: Number(ticker.parameters.frequencyHz) };
@@ -59,8 +62,8 @@ export function tapeRulerPlacement(scene: SceneDocument, run: TapeRun, placement
   const rig = tickerRig(scene), selected = tapeSelection(run, origin, target);
   if (!rig.ok || !rig.ruler || !selected || !placement || ![placement.xM, placement.yM].every(Number.isFinite)) return null;
   const ruler = rig.ruler, gap = placement.yM - ruler.pose.yM;
-  const originM = placement.xM - selected.a.displacementM - ruler.pose.xM, targetM = placement.xM - selected.b.displacementM - ruler.pose.xM;
-  if (ruler.pose.flippedX || Math.abs(ruler.pose.rotationRad) > 1e-8 || Math.abs(gap) > .06 || targetM < -1e-9 || originM > Number(ruler.parameters.lengthM) + 1e-9) return null;
+  const originM = tapePointXM(placement, selected.a.displacementM) - ruler.pose.xM, targetM = tapePointXM(placement, selected.b.displacementM) - ruler.pose.xM;
+  if (ruler.pose.flippedX || Math.abs(ruler.pose.rotationRad) > 1e-8 || Math.abs(gap) > .06 || Math.min(originM, targetM) < -1e-9 || Math.max(originM, targetM) > Number(ruler.parameters.lengthM) + 1e-9) return null;
   return { originM: Math.max(0, originM), targetM: Math.max(0, targetM) };
 }
 

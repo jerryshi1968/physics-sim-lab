@@ -26,6 +26,7 @@ import { createOpticalExperiment } from './optical-bench.ts';
 import { createReflectionExperiment } from './reflection.ts';
 import { createMirrorImageExperiment } from './mirrorImage.ts';
 import { createCartExperiment } from './cart.ts';
+import { createCartVelocityExperiment } from './cartVelocity.ts';
 import { createTapeSpeedExperiment } from './tapeSpeed.ts';
 import { createTickerExperiment } from './ticker.ts';
 import { createPendulumExperiment } from './pendulum.ts';
@@ -92,6 +93,7 @@ export const experimentChoices: readonly ExperimentChoice[] = [
   entry('heat-comparison', 'junior', 'thermal', 'heat-comparison', '比较不同物质吸热的情况', '用相同电加热器加热等质量的水和食用油，比较相同时间的温升或相同温升所需的时间。', createHeatComparisonExperiment),
   entry('ticker', 'senior', 'mechanical', 'ticker', '练习使用打点计时器', '固定计时器、装纸带，先通电再水平拉带；断电取带，自行数间隔、读尺并记录时间与位移。', createTickerExperiment),
   entry('tape-speed', 'senior', 'mechanical', 'ticker', '测量纸带的平均速度和瞬时速度', '用已有计时器和刻度尺，手工读计数点位置，计算平均速度并用短区间近似瞬时速度。', createTapeSpeedExperiment),
+  entry('cart-velocity', 'senior', 'mechanical', 'ticker', '探究小车速度随时间变化的规律', '复用小车、轨道和打点计时器，先通电再放车，读纸带并比较三次实验的v–t图像。', createCartVelocityExperiment),
   entry('cart-blank', 'senior', 'mechanical', 'cart', '空白搭建小车实验', '自行取用一套小车器材（含两种计时方式）。', (id, time) => createCartExperiment(id, time, true)),
   entry('cart', 'senior', 'mechanical', 'cart', '加速度与力、质量实验', '用悬挂砝码牵引水平轨道上的小车。可分别用两个光电门和打点纸带测加速度。', createCartExperiment),
   entry('spring-blank', 'senior', 'mechanical', 'spring', '空白搭建弹簧弹力与形变量实验', '自行取用一套弹簧、钩码器材。', (id, time) => createSpringExperiment(id, time, true)),
@@ -119,7 +121,8 @@ export function createCatalogExperiment(choiceId: string, id: string, timestamp:
 export function fitCatalogViewport(scene: SceneDocument, choice: ExperimentChoice, width: number, height: number) {
   const viewport = scene.viewport;
   if (!viewport) return;
-  if (choice.family === 'ticker') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.3);
+  if (choice.id === 'cart-velocity') { viewport.pixelsPerM = Math.min(350, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 2.25, (Math.max(258, height * .52 - 208) - 110) / 1.35); viewport.centerYM = -.375 + 25 / viewport.pixelsPerM; }
+  else if (choice.family === 'ticker') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.3);
   else if (choice.family === 'induction') Object.assign(viewport, inductionViewport(scene, width - (width < 760 ? 28 : width <= 1050 ? 426 : 542), Math.max(352, height * .52 - 114)));
   else if (choice.family === 'conductor') viewport.pixelsPerM = Math.min(500, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 60) / 1.1, (Math.max(352, height * .52 - 114) - 70) / .65);
   else if (choice.family === 'parallel-current') viewport.pixelsPerM = Math.min(600, (width - (width < 760 ? 28 : width <= 1050 ? 426 : 542) - 70) / 1.1, (Math.max(352, height * .52 - 114) - 100) / .65);

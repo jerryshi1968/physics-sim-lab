@@ -4,14 +4,14 @@ import type { SceneDocument } from '../../core/scene/schema.ts';
 import { screenToWorld, worldToScreen } from '../../core/workbench/geometry.ts';
 import type { SurfaceSize, Viewport } from '../../core/workbench/geometry.ts';
 import { TICKER } from '../../equipment/cart/definitions.ts';
-import { tapeRulerPlacement, tapeSelection } from '../../equipment/ticker/simulate.ts';
+import { tapePointXM, tapeRulerPlacement, tapeSelection } from '../../equipment/ticker/simulate.ts';
 import type { TapePlacement } from '../../equipment/ticker/simulate.ts';
 import type { TickerSimulation } from './useTicker.ts';
 import { TickerRuler, tickerMaximumZoom } from './TickerRuler.tsx';
 
-type Drag = { pointerId: number; kind: 'paper' | 'pull' | 'ruler'; pointer: TapePlacement; paper: TapePlacement; installed: boolean; taken: boolean; storedPaper: TapePlacement | null; displacementM: number; view: Viewport; moved: boolean; dot: number | null };
+type Drag = { pointerId: number; kind: 'paper' | 'pull' | 'ruler' | 'attach'; pointer: TapePlacement; paper: TapePlacement; installed: boolean; taken: boolean; storedPaper: TapePlacement | null; displacementM: number; view: Viewport; moved: boolean; dot: number | null };
 
-function TickerControl({ label, action, pressed, transform, children }: { label: string; action: () => void; pressed?: boolean; transform?: string; children: ReactNode }) {
+export function TickerControl({ label, action, pressed, transform, children }: { label: string; action: () => void; pressed?: boolean; transform?: string; children: ReactNode }) {
   const touchClick = useRef(false);
   return <g role="button" tabIndex={0} aria-label={label} aria-pressed={pressed} transform={transform}
     onPointerDown={event => { event.stopPropagation(); touchClick.current = false; event.currentTarget.focus({ preventScroll: true }); }}
@@ -21,17 +21,19 @@ function TickerControl({ label, action, pressed, transform, children }: { label:
     onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); if (!event.repeat) action(); } }}>{children}</g>;
 }
 
-export function TickerOverlay({ scene, simulation: s, view, size, interactive, onViewport, onMove, onPreview, onSelect }: { scene: SceneDocument; simulation: TickerSimulation; view: Viewport; size: SurfaceSize; interactive: boolean; onViewport: (view: Viewport) => void; onMove: (id: string, point: TapePlacement) => void; onPreview: (preview: { id: string; point: TapePlacement } | null) => void; onSelect: (id: string) => void }) {
+export function TickerOverlay({ scene, simulation: s, view, size, interactive, onViewport, onMove, onPreview, onSelect, coupling }: { coupling?: { attached: boolean; carRear: TapePlacement; attach: (point: TapePlacement) => void; bounds: { minX: number; maxX: number; minY: number; maxY: number } | null } | undefined; scene: SceneDocument; simulation: TickerSimulation; view: Viewport; size: SurfaceSize; interactive: boolean; onViewport: (view: Viewport) => void; onMove: (id: string, point: TapePlacement) => void; onPreview: (preview: { id: string; point: TapePlacement } | null) => void; onSelect: (id: string) => void }) {
   const root = useRef<SVGGElement>(null), active = useRef<Drag | null>(null);
+  const [attachPreview, setAttachPreview] = useState<TapePlacement | null>(null);
   const [rulerPreview, setRulerPreview] = useState<TapePlacement | null>(null);
   const ticker = scene.equipment.find(item => item.type === TICKER);
   if (!ticker || !s.rig?.ok) return null;
   const start = worldToScreen({ xM: ticker.pose.xM, yM: ticker.pose.yM }, view, size), scale = view.pixelsPerM;
   const displacement = s.run?.displacementM ?? 0, mountedOrigin = { xM: ticker.pose.xM + displacement, yM: ticker.pose.yM };
-  const paper = s.installed ? mountedOrigin : s.paper ?? { xM: ticker.pose.xM + .22, yM: ticker.pose.yM + .13 };
-  const p = worldToScreen(paper, view, size), endX = start.x + (Math.max(.12, .058 + 40 / scale) + displacement) * scale;
-  const left = s.installed ? start.x + .084 * scale : p.x - (s.run ? displacement + .04 : .14) * scale;
-  const right = s.installed ? endX : p.x + (s.run ? .06 : .14) * scale;
+  const paper: TapePlacement = s.installed ? mountedOrigin : s.paper ?? { xM: ticker.pose.xM + .22, yM: ticker.pose.yM + .13 };
+  const p = worldToScreen(paper, view, size), endX = coupling?.attached ? worldToScreen(coupling.carRear, view, size).x : start.x + (Math.max(.12, .058 + 40 / scale) + displacement) * scale;
+  const direction = !s.installed && paper.flippedX ? 1 : -1;
+  const left = !s.installed && paper.flippedX ? p.x - .06 * scale : s.installed ? start.x + .084 * scale : p.x - (s.run ? displacement + .04 : .14) * scale;
+  const right = !s.installed && paper.flippedX ? p.x + (displacement + .04) * scale : s.installed ? endX : p.x + (s.run ? .06 : .14) * scale;
   const originalRuler = s.rig.ruler;
   const ruler = originalRuler && rulerPreview ? { ...originalRuler, pose: { ...originalRuler.pose, ...rulerPreview } } : originalRuler;
   const aligned = s.taken && s.run ? tapeRulerPlacement(scene, s.run, s.paper, s.origin, s.target) : null;
@@ -44,8 +46,8 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     event.preventDefault(); event.stopPropagation(); root.current!.focus({ preventScroll: true });
     if (kind === 'paper' && (s.powered || s.installed && s.fixed)) { s.movePaper(paper); return; }
     const pointer = position(event);
-    const selectedDot = s.taken && s.run ? s.run.dots.reduce((best, point, index, dots) => Math.abs(paper.xM - point.displacementM - pointer.xM) < Math.abs(paper.xM - dots[best]!.displacementM - pointer.xM) ? index : best, 0) : dot;
-    const nearDot = selectedDot !== null && s.run?.dots[selectedDot] && Math.abs(paper.yM - pointer.yM) * scale <= 12 && Math.abs(paper.xM - s.run.dots[selectedDot]!.displacementM - pointer.xM) * scale <= 12;
+    const selectedDot = s.taken && s.run ? s.run.dots.reduce((best, point, index, dots) => Math.abs(tapePointXM(paper, point.displacementM) - pointer.xM) < Math.abs(tapePointXM(paper, dots[best]!.displacementM) - pointer.xM) ? index : best, 0) : dot;
+    const nearDot = selectedDot !== null && s.run?.dots[selectedDot] && Math.abs(paper.yM - pointer.yM) * scale <= 12 && Math.abs(tapePointXM(paper, s.run.dots[selectedDot]!.displacementM) - pointer.xM) * scale <= 12;
     active.current = { pointerId: event.pointerId, kind, pointer, paper: kind === 'ruler' && ruler ? ruler.pose : paper, storedPaper: s.paper, installed: s.installed, taken: s.taken, displacementM: displacement, view: { ...view }, moved: false, dot: kind === 'ruler' && !nearDot ? null : selectedDot };
     if (kind === 'ruler' && ruler) onSelect(ruler.id);
     root.current!.setPointerCapture(event.pointerId);
@@ -57,14 +59,16 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     event.preventDefault(); event.stopPropagation();
     const at = position(event, drag.view), dx = at.xM - drag.pointer.xM, dy = at.yM - drag.pointer.yM;
     drag.moved ||= Math.hypot(dx, dy) * drag.view.pixelsPerM > 3;
-    const next = { xM: drag.paper.xM + dx, yM: drag.paper.yM + dy };
-    if (drag.kind === 'ruler' && ruler && drag.moved) { setRulerPreview(next); onPreview({ id: ruler.id, point: next }); }
+    const next = { xM: drag.paper.xM + dx, yM: drag.paper.yM + dy, ...(drag.kind === 'paper' && drag.paper.flippedX !== undefined ? { flippedX: drag.paper.flippedX } : {}) };
+    if (drag.kind === 'attach') setAttachPreview(at);
+    else if (drag.kind === 'ruler' && ruler && drag.moved) { setRulerPreview(next); onPreview({ id: ruler.id, point: next }); }
     else if (drag.kind === 'pull' && s.powered) s.pullTo(drag.displacementM + dx);
     else if (drag.moved && !s.powered) s.movePaper(next);
     if (!finish) return;
     active.current = null;
     if (root.current!.hasPointerCapture(event.pointerId)) root.current!.releasePointerCapture(event.pointerId);
-    if (drag.kind === 'ruler') { if (drag.moved && ruler) onMove(ruler.id, next); else if (drag.dot !== null) s.choose(drag.dot); setRulerPreview(null); onPreview(null); }
+    if (drag.kind === 'attach') { coupling?.attach(at); setAttachPreview(null); }
+    else if (drag.kind === 'ruler') { if (drag.moved && ruler) onMove(ruler.id, next); else if (drag.dot !== null) s.choose(drag.dot); setRulerPreview(null); onPreview(null); }
     else if (drag.kind === 'pull') s.endPull();
     else if (drag.moved) s.dropPaper(next);
     else if (drag.dot !== null) s.choose(drag.dot);
@@ -74,7 +78,8 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     active.current = null;
     if (!drag) { if (s.dragging) s.endPull(); return; }
     if (root.current?.hasPointerCapture(drag.pointerId)) root.current.releasePointerCapture(drag.pointerId);
-    if (drag.kind === 'ruler') { setRulerPreview(null); onPreview(null); }
+    if (drag.kind === 'attach') setAttachPreview(null);
+    else if (drag.kind === 'ruler') { setRulerPreview(null); onPreview(null); }
     else if (drag.kind === 'pull') s.endPull();
     else s.restorePaper(drag.storedPaper, drag.installed, drag.taken);
   }
@@ -84,7 +89,7 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     if (delta) {
       event.preventDefault(); event.stopPropagation();
       if (s.powered) { if (event.key === 'ArrowRight') { if (!s.dragging) s.beginPull(); s.pullTo(displacement + step); } }
-      else s.movePaper({ xM: paper.xM + delta[0]!, yM: paper.yM + delta[1]! });
+      else s.movePaper({ ...paper, xM: paper.xM + delta[0]!, yM: paper.yM + delta[1]! });
     } else if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault(); event.stopPropagation();
       if (!s.powered) s.dropPaper(paper);
@@ -94,16 +99,17 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
     if (!ruler || !s.run) return;
     const a = s.run.dots[s.origin]?.displacementM ?? 0, b = s.run.dots[s.target]?.displacementM ?? a;
     const pixelsPerM = Math.min(tickerMaximumZoom, Math.max(8000, view.pixelsPerM * 1.6));
-    onViewport({ centerXM: paper.xM - (a + b) / 2, centerYM: ruler.pose.yM + (Math.max(125, size.height * .55) - size.height / 2) / pixelsPerM, pixelsPerM });
+    onViewport({ centerXM: tapePointXM(paper, (a + b) / 2), centerYM: ruler.pose.yM + (Math.max(125, size.height * .55) - size.height / 2) / pixelsPerM, pixelsPerM });
   }
   function overview(fresh = false) {
-    const visiblePaper = fresh ? { xM: ticker!.pose.xM + .22, yM: ticker!.pose.yM + .13 } : paper;
-    const xs = [ticker!.pose.xM - .22, ticker!.pose.xM + .4, visiblePaper.xM - Math.max(.14, (fresh ? 0 : displacement) + .04), visiblePaper.xM + .16, ...(ruler ? [ruler.pose.xM, ruler.pose.xM + Number(ruler.parameters.lengthM)] : [])];
+    const visiblePaper: TapePlacement = fresh ? { xM: ticker!.pose.xM + .22, yM: ticker!.pose.yM + .13 } : paper;
+    const xs = [ticker!.pose.xM - .22, ticker!.pose.xM + .4, visiblePaper.xM + (fresh ? -1 : direction) * Math.max(.14, (fresh ? 0 : displacement) + .04), visiblePaper.xM - (fresh ? -1 : direction) * .16, ...(ruler ? [ruler.pose.xM, ruler.pose.xM + Number(ruler.parameters.lengthM)] : [])];
     const ys = [ticker!.pose.yM + .2, ticker!.pose.yM - .1, visiblePaper.yM + .06, visiblePaper.yM - .06, ...(ruler ? [ruler.pose.yM - .08] : [])];
+    if (coupling?.bounds) { xs.push(coupling.bounds.minX, coupling.bounds.maxX); ys.push(coupling.bounds.minY, coupling.bounds.maxY); }
     const pixelsPerM = Math.min(600, (size.width - 60) / (Math.max(...xs) - Math.min(...xs)), (size.height - 95) / (Math.max(...ys) - Math.min(...ys)));
     onViewport({ centerXM: (Math.min(...xs) + Math.max(...xs)) / 2, centerYM: (Math.min(...ys) + Math.max(...ys)) / 2 + 25 / pixelsPerM, pixelsPerM });
   }
-  return <g ref={root} tabIndex={-1} data-testid="ticker-apparatus" data-powered={s.powered} data-clamp-closed={s.fixed} data-installed={s.installed} data-taken={s.taken} data-origin={s.origin} data-target={s.target} data-displacement-m={displacement} data-time-s={s.run?.timeS ?? 0} data-paper-x-m={paper.xM} data-paper-y-m={paper.yM} pointerEvents={interactive ? undefined : 'none'} style={{ touchAction: 'none', outline: 'none' }} aria-label="直接操作打点计时器"
+  return <g ref={root} tabIndex={-1} data-testid="ticker-apparatus" data-powered={s.powered} data-clamp-closed={s.fixed} data-installed={s.installed} data-taken={s.taken} data-origin={s.origin} data-target={s.target} data-displacement-m={displacement} data-time-s={s.run?.timeS ?? 0} data-paper-x-m={paper.xM} data-paper-y-m={paper.yM} data-paper-flipped={!!paper.flippedX} pointerEvents={interactive ? undefined : 'none'} style={{ touchAction: 'none', outline: 'none' }} aria-label="直接操作打点计时器"
     onPointerMove={event => move(event)} onPointerUp={event => move(event, true)} onPointerCancel={cancel} onLostPointerCapture={() => { if (active.current) cancel(); }}
     onClick={event => event.stopPropagation()} onWheelCapture={event => { if (active.current) event.stopPropagation(); }}
     onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); cancel(); } else if (event.key === 'Delete' || event.key === 'Backspace') { event.preventDefault(); event.stopPropagation(); } }}>
@@ -116,22 +122,22 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
         </g>
         {[-1, 1].map(side => <circle key={side} cx={side * .06 * scale} cy="0" r="2.5" fill="#bd8e43" stroke="#f2dfbd" strokeWidth="1" />)}
       </g>
-      <text x={start.x + .10 * scale} y={start.y + .06 * scale} fontSize="12" fill="#8a672d">← 固定夹{s.fixed ? '已扣上（上翻）' : '已打开'}</text>
+      <text display={coupling && scale < 450 ? "none" : undefined} x={start.x + .10 * scale} y={start.y + .06 * scale} fontSize="12" fill="#8a672d">← 固定夹{s.fixed ? '已扣上（上翻）' : '已打开'}</text>
     </TickerControl>
     <TickerControl label="计时器电源开关" pressed={s.powered} action={s.togglePower}>
       <rect x={start.x + .058 * scale - 16} y={start.y - .026 * scale - 16} width="32" height="32" fill="transparent" />
       <circle cx={start.x + .058 * scale} cy={start.y - .026 * scale} r={Math.max(8, .013 * scale)} fill={s.powered ? '#ed7e2c' : '#b67f3c'} stroke="#fff5cd" strokeWidth="1.5" />
       <text x={start.x + .058 * scale} y={start.y - .026 * scale + 4} textAnchor="middle" fontSize="11" fill="white" pointerEvents="none">{s.powered ? 'Ⅰ' : '○'}</text>
     </TickerControl>
-    <g role="button" tabIndex={0} aria-label={s.installed ? '纸带本体（断电并打开固定夹后拖出）' : s.taken ? '已取下的纸带（拖到尺旁）' : '新纸带（拖入计时器）'} data-testid="ticker-paper" style={{ cursor: s.powered ? 'default' : 'grab' }} onPointerDown={event => begin(event, 'paper')} onKeyDown={paperKey} onKeyUp={event => { if (event.key === 'ArrowRight' && s.powered) { event.stopPropagation(); s.endPull(); } }}>
+    <g role="button" tabIndex={0} aria-label={s.installed ? '纸带本体（断电并打开固定夹后拖出）' : s.taken ? '已取下的纸带（拖到尺旁）' : '新纸带（拖入计时器）'} data-testid="ticker-paper" style={{ cursor: s.powered ? 'default' : 'grab' }} onPointerDown={event => begin(event, 'paper')} onKeyDown={paperKey} onKeyUp={event => { if (event.key === 'ArrowRight' && s.powered) { event.stopPropagation(); s.endPull(); } else if (coupling && !s.powered && s.taken && /^Arrow/.test(event.key)) { event.stopPropagation(); s.dropPaper(paper); } }}>
       <rect x={left} y={p.y - Math.max(5, .009 * scale)} width={Math.max(20, right - left)} height={Math.max(10, .018 * scale)} rx="2" fill="#f3dfb7" stroke="#bba374" />
       <rect x={left - 2} y={p.y - 15} width={Math.max(24, right - left + 4)} height="30" fill="transparent" />
       {s.installed && <rect x={start.x - .2 * scale} y={p.y - .009 * scale} width={.115 * scale} height={.018 * scale} fill="#f3dfb7" stroke="#bba374" />}
-      {!s.run && <text x={(left + right) / 2} y={p.y - 20} textAnchor="middle" fontSize="12" fill="#426c6d">{s.installed ? '拖右端向右拉带 →' : '纸带 · 拖到通道穿入'}</text>}
+      {!s.run && (!coupling || scale >= 450) && <text pointerEvents={coupling ? 'none' : undefined} x={(left + right) / 2} y={p.y - 20} textAnchor="middle" fontSize="12" fill="#426c6d">{s.installed ? coupling ? coupling.attached ? '纸带已连接车尾' : '拖右端到车尾 →' : '拖右端向右拉带 →' : '纸带 · 拖到通道穿入'}</text>}
       {s.run?.dots.map((dot, i) => {
-        const x = p.x - dot.displacementM * scale;
+        const x = p.x + direction * dot.displacementM * scale;
         if (s.installed && x < left) return null;
-        const selected = s.taken && (i === s.origin || i === s.target);
+        const selected = !coupling && s.taken && (i === s.origin || i === s.target);
         return <g key={i} data-ticker-dot={i} data-dot-displacement-m={dot.displacementM} role={s.taken ? 'button' : undefined} tabIndex={s.taken && selected ? 0 : undefined} aria-label={s.taken ? `选择纸带第 ${i} 点` : undefined} onPointerDown={event => { if (s.taken) begin(event, 'paper', i); }} onKeyDown={event => { if (s.taken && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); event.stopPropagation(); s.choose(i); } }}>
           <circle cx={x} cy={p.y} r="1.7" fill="#68523d" />
           {selected && <><circle cx={x} cy={p.y} r="6" fill="none" stroke={i === s.origin ? '#16856d' : '#c05a39'} strokeWidth="1.8" /><text x={x} y={p.y - (i === s.origin ? 11 : 25)} fontSize="11" textAnchor="middle" fill={i === s.origin ? '#16856d' : '#a7472c'}>{i === s.origin ? '起' : '终'} {i}</text></>}
@@ -139,17 +145,18 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
         </g>;
       })}
     </g>
-    {s.taken && s.run && ruler && [s.origin, s.target].map(index => {
+    {!coupling && s.taken && s.run && ruler && [s.origin, s.target].map(index => {
       const dot = s.run!.dots[index];
       if (!dot) return null;
-      const x = p.x - dot.displacementM * scale, rulerY = worldToScreen(ruler.pose, view, size).y;
+      const x = p.x + direction * dot.displacementM * scale, rulerY = worldToScreen(ruler.pose, view, size).y;
       return <path key={index} d={`M${x} ${p.y + 7}V${rulerY}`} fill="none" stroke={index === s.origin ? '#16856d' : '#c05a39'} strokeWidth="1" strokeDasharray="3 3" pointerEvents="none" />;
     })}
-    {s.installed && <g role="button" tabIndex={0} aria-label="纸带右端（拖动拉带）" data-testid="ticker-pull-grip" onPointerDown={event => begin(event, s.powered ? 'pull' : 'paper')} onKeyDown={paperKey} onKeyUp={event => { if (event.key === 'ArrowRight') s.endPull(); }} style={{ cursor: 'ew-resize' }}>
+    {attachPreview && <path d={`M${endX} ${start.y}L${worldToScreen(attachPreview, view, size).x} ${worldToScreen(attachPreview, view, size).y}`} stroke="#d2b481" strokeWidth="5" pointerEvents="none" />}
+    {s.installed && <g role="button" tabIndex={0} aria-label="纸带右端（拖动拉带）" data-testid="ticker-pull-grip" onPointerDown={event => begin(event, coupling ? 'attach' : s.powered ? 'pull' : 'paper')} onKeyDown={event => { if (coupling && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); event.stopPropagation(); coupling.attach(coupling.carRear); } else paperKey(event); }} onKeyUp={event => { if (event.key === 'ArrowRight') s.endPull(); }} style={{ cursor: 'ew-resize' }}>
       <rect x={endX - 15} y={start.y - 18} width="30" height="36" rx="6" fill="#62a69622" stroke="#418c7c" strokeDasharray="3 2" />
       <path d={`M${endX - 5} ${start.y}h10m-4-4 4 4-4 4`} fill="none" stroke="#287c83" strokeWidth="2" />
     </g>}
-    {s.taken && <text x={Math.max(12, Math.min(size.width - 180, p.x - displacement * scale))} y={Math.max(105, p.y >= 130 ? p.y - 45 : p.y + 23)} fontSize="12" fill="#426c6d" pointerEvents="none">← 打点先后 · 点击选{s.choosing === 'origin' ? '起点' : '终点'}</text>}
+    {!coupling && s.taken && <text x={Math.max(12, Math.min(size.width - 180, p.x - displacement * scale))} y={Math.max(105, p.y >= 130 ? p.y - 45 : p.y + 23)} fontSize="12" fill="#426c6d" pointerEvents="none">← 打点先后 · {coupling ? '按计数点编号逐点记录位置' : `点击选${s.choosing === 'origin' ? '起点' : '终点'}`}</text>}
     {ruler && (() => {
       const at = worldToScreen(ruler.pose, view, size);
       return <g data-testid="ticker-ruler" role="button" tabIndex={0} aria-label="拖动刻度尺（可叠在纸带上）" transform={`translate(${at.x} ${at.y}) rotate(${-ruler.pose.rotationRad * 180 / Math.PI}) scale(${scale * (ruler.pose.flippedX ? -1 : 1)} ${scale})`} style={{ cursor: 'grab' }} onPointerDown={event => begin(event, 'ruler')} onKeyDown={event => {
@@ -158,7 +165,7 @@ export function TickerOverlay({ scene, simulation: s, view, size, interactive, o
       }}><TickerRuler instance={ruler} pixelsPerM={scale} /></g>;
     })()}
     <rect x="0" y="0" width={size.width} height="70" fill="#f7faf9" pointerEvents="none" />
-    <text x="16" y="24" fontSize="13" fill="#385f65" pointerEvents="none">{s.powered ? '电源：开 · 拖右端拉带，松手即停' : s.taken ? !s.run || !tapeSelection(s.run, s.origin, s.target) ? '点选两个清晰测点，避开重合点' : aligned ? '纸带已摆到尺旁，可选点读数' : '拖纸带到尺上沿，再选点读数' : s.installed ? s.run ? s.fixed ? '已断电 · 先打开固定夹再取带' : '已断电、夹已开 · 可拖出纸带' : s.fixed ? '纸带已夹好 · 点击开关通电' : '纸带已穿入 · 先扣上固定夹' : s.fixed ? '先打开固定夹，再穿入纸带' : '已断电、夹已开 · 拖纸带穿入通道'}</text>
+    <text x="16" y="24" fontSize="13" fill="#385f65" pointerEvents="none">{s.powered ? coupling ? '电源：开 · 点击车身放开小车，停止后及时断电' : '电源：开 · 拖右端拉带，松手即停' : s.taken ? coupling ? '按计数点编号逐点记录位置 · 点击表格定位纸带' : !s.run || !tapeSelection(s.run, s.origin, s.target) ? '点选两个清晰测点，避开重合点' : aligned ? '纸带已摆到尺旁，可选点读数' : '拖纸带到尺上沿，再选点读数' : s.installed ? s.run ? s.fixed ? '已断电 · 先打开固定夹再取带' : '已断电、夹已开 · 可拖出纸带' : s.fixed ? '纸带已夹好 · 点击开关通电' : '纸带已穿入 · 先扣上固定夹' : s.fixed ? '先打开固定夹，再穿入纸带' : '已断电、夹已开 · 拖纸带穿入通道'}</text>
     <TickerControl label="取用新纸带" transform="translate(16 38)" action={() => { s.renew(); if (!s.powered && (!s.installed || !s.fixed)) overview(true); }}><rect width="86" height="26" rx="5" fill="#edf6f1" stroke="#b1c9c4" /><text x="43" y="18" textAnchor="middle" fontSize="12" fill="#28636a">新纸带</text></TickerControl>
     {s.taken && <TickerControl label="放大纸带读尺" transform="translate(112 38)" action={readView}><rect width="86" height="26" rx="5" fill="#edf6f1" stroke="#b1c9c4" /><text x="43" y="18" textAnchor="middle" fontSize="12" fill="#28636a">放大读尺</text></TickerControl>}
     <TickerControl label="查看纸带全景" transform="translate(208 38)" action={overview}><rect width="64" height="26" rx="5" fill="#edf6f1" stroke="#b1c9c4" /><text x="32" y="18" textAnchor="middle" fontSize="12" fill="#28636a">全景</text></TickerControl>

@@ -2,6 +2,7 @@ import type { MeasurementRecord } from '../scene/schema.ts';
 import { parseManualValue } from './records.ts';
 
 function contextualDisplay(record: MeasurementRecord) {
+  if (record.unit === 'm' && record.context?.diagnosticCodes.includes('CART_POSITION_CM')) return { unit: 'cm' as const, factor: 100 };
   if (record.runId.startsWith('heat-comparison-') && record.unit === 'kg') return { unit: 'g' as const, factor: 1000 };
   if ((record.runId.startsWith('pulley-') || record.runId.startsWith('efficiency-')) && record.unit === 'm') return { unit: 'cm' as const, factor: 100 };
   if (record.runId.startsWith('kinetic-') && record.unit === 'kg') return { unit: 'g' as const, factor: 1000 };
